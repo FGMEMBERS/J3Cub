@@ -22,7 +22,7 @@
 
  <!-- panel models -->
  <model>
-  <path>Aircraft/Cub/Models/alt.xml</path>
+  <path>Aircraft/J3Cub/Models/alt.xml</path>
   <offsets>
    <x-m>-0.172</x-m>
    <y-m> 0.095</y-m>
@@ -31,7 +31,7 @@
  </model>
 
  <model>
-  <path>Aircraft/Cub/Models/compass.xml</path>
+  <path>Aircraft/J3Cub/Models/compass.xml</path>
   <offsets>
    <x-m>-0.165</x-m>
    <y-m> 0.0</y-m>
@@ -40,7 +40,7 @@
  </model>
 
  <model>
-  <path>Aircraft/Cub/Models/asi.xml</path>
+  <path>Aircraft/J3Cub/Models/asi.xml</path>
   <offsets>
    <x-m>-0.172</x-m>
    <y-m> -0.095</y-m>
@@ -49,7 +49,7 @@
  </model>
 
  <model>
-  <path>Aircraft/Cub/Models/tach.xml</path>
+  <path>Aircraft/J3Cub/Models/tach.xml</path>
   <offsets>
    <x-m>-0.172</x-m>
    <y-m> -0.19</y-m>
@@ -58,7 +58,7 @@
  </model>
 
  <model>
-  <path>Aircraft/Cub/Models/oil.xml</path>
+  <path>Aircraft/J3Cub/Models/oil.xml</path>
   <offsets>
    <x-m>-0.172</x-m>
    <y-m> 0.19</y-m>
@@ -434,7 +434,7 @@
 
   <model>
     <name>pilot</name>
-    <path>Aircraft/Cub/Models/Pilot/pilot.xml</path>
+    <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
     <offsets>
       <x-m>0.617</x-m>
       <y-m>0.0</y-m>
@@ -691,7 +691,7 @@
   </model>
 
  <!--model>
-    <path>Aircraft/Cub/Models/Effects/tyre-smoke-port.xml</path>
+    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-port.xml</path>
     <name>tyre-smoke-port</name>
     <offsets>
       <x-m>0.1</x-m>
@@ -701,7 +701,7 @@
   </model>
 
   <model>
-    <path>Aircraft/Cub/Models/Effects/tyre-smoke-stbd.xml</path>
+    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-stbd.xml</path>
     <name>tyre-smoke-stbd</name>
     <offsets>
       <x-m>0.1</x-m>
@@ -714,7 +714,7 @@
 <!-- exhaust smoke; just a little pollution -->
 
 <model>
- <path>Aircraft/Cub/Models/Effects/exhaustsmoke.xml</path>
+ <path>Aircraft/J3Cub/Models/Effects/exhaustsmoke.xml</path>
   <offsets>
    <x-m>-0.25</x-m>
    <y-m>0.25</y-m>
@@ -729,7 +729,7 @@
 <!-- registration (Fr - immatriculation)   -->
 
   <model>
-    <path>Aircraft/Cub/Models/Immat/immat.xml</path>
+    <path>Aircraft/J3Cub/Models/Immat/immat.xml</path>
     <offsets>
       <x-m> 0.0 </x-m>
       <y-m> 0.0 </y-m>
@@ -743,7 +743,7 @@
 <!--  ground shadow  -->
 
  <model>
-  <path>Aircraft/Cub/Models/Effects/shadow.xml</path>
+  <path>Aircraft/J3Cub/Models/Effects/shadow.xml</path>
  </model>
 
 

@@ -26,17 +26,17 @@ version 2.0  090410-->
   <fuel-fraction>0.8</fuel-fraction>
 
   <startup>
-   <splash-texture>Aircraft/Cub/splash.png</splash-texture>
+   <splash-texture>Aircraft/J3Cub/splash.png</splash-texture>
   </startup>
 
   <systems>
    <electrical>
-    <path>Aircraft/Cub/Cub-electrical.xml</path>
+    <path>Aircraft/J3Cub/Cub-electrical.xml</path>
    </electrical>
   </systems>
 
   <sound>
-   <path>Aircraft/Cub/Cub-sound.xml</path>
+   <path>Aircraft/J3Cub/Cub-sound.xml</path>
   </sound>
 
   <panel>
@@ -44,7 +44,7 @@ version 2.0  090410-->
   </panel>
 
   <model>
-   <path archive="y">Aircraft/Cub/Models/Cub.xml</path>
+   <path archive="y">Aircraft/J3Cub/Models/Cub.xml</path>
   </model>
 
 <!-- pilot viewpoint x=y y=z z=x ?  -->
@@ -219,7 +219,7 @@ version 2.0  090410-->
 
  <nasal>
   <Cub>
-   <file>Aircraft/Cub/Nasal/immat.nas</file>
+   <file>Aircraft/J3Cub/Nasal/immat.nas</file>
   </Cub>
   <failures> 
     <file>Aircraft/Generic/limits.nas</file>
