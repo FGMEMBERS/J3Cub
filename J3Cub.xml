@@ -6,10 +6,22 @@
    xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
  <fileheader>
-  <author> Aeromatic v 3.2.0 </author>
+  <author> Erik Hofman using Aeromatic v 3.2.0 </author>
   <filecreationdate> 18 Dec 2015 </filecreationdate>
   <version>$Revision: 1.26 $</version>
   <description> Models a J3Cub. </description>
+  <note>
+    This model was created using publicly available data, publicly available
+    technical reports, textbooks, and guesses. It contains no proprietary or
+    restricted data. If this model has been validated at all, it would be
+    only to the extent that it seems to "fly right", and that it possibly
+    complies with published, publicly known, performance data (maximum speed,
+    endurance, etc.). Thus, this model is meant for educational and
+    entertainment purposes only.
+
+    This simulation model is not endorsed by the manufacturer.
+      </note>
+  <reference refID="Du_Y_Thesis_2011" author="Yongliang Du" title="Development of real-time flight control system for low-cost vehicle" date="2011"/>
  </fileheader>
 
 <!--
@@ -35,7 +47,7 @@
     engine layout: forward fuselage
 
     gear type:     taildragger
-    steering type: castering
+    steering type: steerable
     retractable?:  no
 
   Outputs:
@@ -49,9 +61,12 @@
     Mcrit:         0.58
 
    References:
-   "DEVELOPMENT OF REAL-TIME FLIGHT CONTROL SYSTEM FOR LOW-COST VEHICLE"
-   YONGLIANG DU - CRANFIELD UNIVERSITY, January 2011
-   https://dspace.lib.cranfield.ac.uk/bitstream/1826/8621/1/Du_Y_Thesis_2011.pdf
+   * "Development of real-time flight control system for low-cost vehicle"
+     Du, Yongliang - Cranfield University, January 2011
+     https://dspace.lib.cranfield.ac.uk/handle/1826/8621
+
+   * "USA-35B AIRFOIL (usa35b-il)"
+     http://airfoiltools.com/airfoil/details?airfoil=usa35b-il#polars
 -->
 
  <metrics>
@@ -66,7 +81,7 @@
    <location name="AERORP" unit="IN">
      <x>   110.60 </x>
      <y>     0.00 </y>
-     <z>     0.00 </z>
+     <z>    17.00 </z>
    </location>
    <location name="EYEPOINT" unit="IN">
      <x>    34.97 </x>
@@ -91,7 +106,7 @@
      <z>    -6.73 </z>
    </location>
    <pointmass name="Payload">
-    <description> 274.44 LBS should bring model up to entered max weight </description>
+    <description> 274.44 LBS should bring model up to max weight </description>
     <weight unit="LBS"> 137.22 </weight>
     <location name="POINTMASS" unit="IN">
      <x>   110.60 </x>
@@ -135,19 +150,10 @@
      <location unit="IN">
        <x>   110.60 </x>
        <y>     0.00 </y>
-       <z>    -6.73 </z>
+       <z>    17.00 </z>
      </location>
-     <capacity unit="LBS"> 90.28 </capacity>
-     <contents unit="LBS"> 45.14 </contents>
-  </tank>
-  <tank type="FUEL" number="1">
-     <location unit="IN">
-       <x>   110.60 </x>
-       <y>     0.00 </y>
-       <z>    -6.73 </z>
-     </location>
-     <capacity unit="LBS"> 90.28 </capacity>
-     <contents unit="LBS"> 45.14 </contents>
+     <capacity unit="LBS"> 75.00 </capacity>
+     <contents unit="LBS"> 65.00 </contents>
   </tank>
 
  </propulsion>
@@ -158,7 +164,7 @@
     <location unit="IN">
       <x>   244.79 </x>
       <y>     0.00 </y>
-      <z>   -16.14 </z>
+      <z>   -22.14 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -174,8 +180,8 @@
   <contact type="BOGEY" name="LEFT_MAIN">
     <location unit="IN">
       <x>   100.65 </x>
-      <y>   -38.07 </y>
-      <z>   -53.80 </z>
+      <y>   -35.43 </y>
+      <z>   -54.80 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -190,8 +196,8 @@
   <contact type="BOGEY" name="RIGHT_MAIN">
     <location unit="IN">
       <x>   100.65 </x>
-      <y>    38.07 </y>
-      <z>   -53.80 </z>
+      <y>    35.43 </y>
+      <z>   -54.80 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -205,9 +211,9 @@
 
   <contact type="STRUCTURE" name="LEFT_WING">
     <location unit="IN">
-     <x>   110.60 </x>
+     <x>   100.65 </x>
      <y>   -17.62 </y>
-     <z>    -6.73 </z>
+     <z>   -23.62 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
@@ -217,9 +223,9 @@
 
   <contact type="STRUCTURE" name="RIGHT_WING">
     <location unit="IN">
-     <x>   110.60 </x>
+     <x>   100.65 </x>
      <y>    17.62 </y>
-     <z>    -6.73 </z>
+     <z>   -23.62 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
@@ -332,31 +338,22 @@
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
-            <tableData>
-                       1610211    3577889
-              -0.200  -0.3234    -0.8331
-              -0.147  -0.3217    -0.2540
-              -0.122  -0.1609    -0.1270
-              -0.098   0.0000     0.0000
-              -0.073   0.1609     0.1270
-              -0.049   0.3217     0.2540
-              -0.024   0.4826     0.3810
-               0.000   0.6434     0.5080
-               0.024   0.8043     0.6351
-               0.047   0.9651     0.7621
-               0.072   1.1260     0.8891
-               0.096   1.2868     1.0161
-               0.122   1.4477     1.1431
-               0.150   1.6085     1.2701
-               0.178   1.7694     1.3971
-               0.208   1.9302     1.5241
-               0.239   2.0911     1.6511
-               0.257   2.1313     1.6829
-               0.276   2.0911     1.6511
-               0.309   1.9302     1.5241
-               0.342   1.7694     1.3971
-               0.382   1.6085     1.2701
-               0.600   0.8915     0.8915
+            <tableData>			<!-- USA-35B -->
+                      1668183  3707224
+             -1.5700   0.0000   0.0000
+             -0.3491  -0.0085  -0.5085
+             -0.2443  -0.5085  -0.8136
+             -0.1745  -0.5085  -0.5085
+             -0.0873   0.1017   0.1017
+              0.0000   0.5339   0.5339
+              0.0873   1.2204   1.2204
+              0.1309   1.4746   1.4746
+              0.1745   1.5000   1.6272
+              0.2182   1.6201   1.7797
+              0.2618   1.5645   1.8306
+              0.3054   1.4272   1.6272
+              0.3491   1.3138   1.4238
+              1.5700   0.0000   0.0000
             </tableData>
           </table>
       </product>
@@ -412,43 +409,22 @@
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
-            <tableData>
-                      1610211   3577889
-             -1.570    1.4091   1.4091
-             -0.405    0.3529   0.3382
-             -0.363    0.3156   0.3009
-             -0.339    0.2782   0.2635
-             -0.323    0.2608   0.2461
-             -0.288    0.1750   0.1603
-             -0.265    0.1702   0.1555
-             -0.257    0.1635   0.1488
-             -0.229    0.1434   0.1287
-             -0.201    0.1254   0.1107
-             -0.175    0.1094   0.0947
-             -0.147    0.0944   0.0797
-             -0.122    0.0815   0.0668
-             -0.098    0.0704   0.0557
-             -0.072    0.0594   0.0447
-             -0.049    0.0562   0.0415
-             -0.024    0.0434   0.0287
-              0.000    0.0373   0.0226
-              0.024    0.0434   0.0287
-              0.049    0.0562   0.0415
-              0.072    0.0594   0.0447
-              0.098    0.0704   0.0557
-              0.122    0.0815   0.0668
-              0.147    0.0944   0.0797
-              0.175    0.1094   0.0947
-              0.201    0.1254   0.1107
-              0.229    0.1434   0.1287
-              0.257    0.1635   0.1488
-              0.265    0.1702   0.1555
-              0.288    0.1750   0.1603
-              0.323    0.2608   0.2461
-              0.339    0.2782   0.2635
-              0.363    0.3156   0.3009
-              0.405    0.3529   0.3382
-              1.570    1.4091   1.4091
+            <tableData>			<!-- USA-35B -->
+                      1668183  3707224
+             -1.5700   1.4091   1.4091
+             -0.3491   0.1898   0.1736
+             -0.2443   0.1567   0.0494
+             -0.1745   0.0307   0.0290
+             -0.0873   0.0216   0.0208
+              0.0000   0.0189   0.0187
+              0.0873   0.0216   0.0208
+              0.1309   0.0289   0.0279
+              0.1745   0.0332   0.0315
+              0.2182   0.0435   0.0402
+              0.2618   0.0757   0.0707
+              0.3054   0.1408   0.1125
+              0.3491   0.1898   0.1736
+              1.5700   1.4091   1.4091
             </tableData>
           </table>
        </product>
@@ -525,8 +501,8 @@
            <table>
             <independentVar lookup="row">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-              1610211  0.1434
-              3577889  0.0022
+              1668183  0.1434
+              3707224  0.0022
             </tableData>
           </table>
        </product>
@@ -586,8 +562,8 @@
            <table>
             <independentVar lookup="row">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-              1610211  -2.0327
-              3577889  -1.3432
+              1668183  -2.0327
+              3707224  -1.3432
             </tableData>
           </table>
        </product>
@@ -653,9 +629,9 @@
            <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
-              0.16   0.0
-              0.20  -0.01
-              0.24  -0.3
+              0.12   0.0
+              0.20  -0.05
+              0.24  -0.17
             </tableData>
            </table>
        </product>
@@ -672,7 +648,7 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-                     1610211   3577889
+                     1668183   3707224
              -0.035 -0.031363 -0.010147
               0.175 -0.310788 -0.100549
             </tableData>
@@ -704,7 +680,7 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-                     1610211    3577889
+                     1668183    3707224
              -0.035  0.071235   0.021888
               0.175  0.834059   0.256275
             </tableData>
@@ -760,8 +736,8 @@
            <table>
             <independentVar lookup="row">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-              1610211  -0.0531
-              3577889  -0.0006
+              1668183  -0.0531
+              3707224  -0.0006
             </tableData>
           </table>
        </product>
@@ -801,9 +777,9 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
             <tableData>                 <!-- Du Y -->
-                     1610211    3577889
-             -0.035  0.001706   0.0015
-              0.175 -0.018900  -0.0017
+                     1668183    3707224
+             -0.035  0.00171    0.00150
+              0.175 -0.01890   -0.00173
             </tableData>
           </table>
        </product>
