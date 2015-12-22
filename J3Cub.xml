@@ -165,7 +165,8 @@
     <rolling_friction> 0.02 </rolling_friction>
     <spring_coeff  unit="LBS/FT">     1220.00 </spring_coeff>
     <damping_coeff unit="LBS/FT/SEC"> 610.00 </damping_coeff>
-    <max_steer unit="DEG"> 360.00 </max_steer>
+    <steerability> STEERABLE </steerability>
+    <max_steer unit="DEG"> -30.00 </max_steer>
     <brake_group> NONE </brake_group>
     <retractable> 0 </retractable>
   </contact>
@@ -229,13 +230,79 @@
  </ground_reactions>
 
  <system file="Conventional Controls.xml"/>
- <system file="Landing Gear.xml"/>
 
  <flight_control name="FCS: J3Cub">
 
  </flight_control>
 
  <aerodynamics>
+
+  <function name="aero/function/kCDge">
+      <description>Change_in_drag_due_to_ground_effect</description>
+      <product>
+            <table>
+                <independentVar>aero/h_b-mac-ft</independentVar>
+                <tableData>
+                    0.0000        0.4800
+                    0.1000        0.5150
+                    0.1500        0.6290
+                    0.2000        0.7090
+                    0.3000        0.8150
+                    0.4000        0.8820
+                    0.5000        0.9280
+                    0.6000        0.9620
+                    0.7000        0.9880
+                    0.8000        1.0000
+                    0.9000        1.0000
+                    1.0000        1.0000
+                    1.1000        1.0000
+                </tableData>
+            </table>
+      </product>
+  </function>
+
+  <function name="aero/function/kCLge">
+      <description>Change_in_lift_due_to_ground_effect</description>
+      <product>
+            <table>
+                <independentVar>aero/h_b-mac-ft</independentVar>
+                <tableData>
+                    0.0000        1.2030
+                    0.1000        1.1270
+                    0.1500        1.0900
+                    0.2000        1.0730
+                    0.3000        1.0460
+                    0.4000        1.0550
+                    0.5000        1.0190
+                    0.6000        1.0130
+                    0.7000        1.0080
+                    0.8000        1.0060
+                    0.9000        1.0030
+                    1.0000        1.0020
+                    1.1000        1.0000
+                </tableData>
+            </table>
+      </product>
+  </function>
+
+  <function name="aero/function/velocity-induced-fps">
+    <description> velocity including the propulsion induced velocity.</description>
+    <sum>
+      <property>velocities/u-aero-fps</property>
+      <property>propulsion/engine/prop-induced-velocity_fps</property>
+      <property>propulsion/engine/prop-induced-velocity_fps</property>
+    </sum>
+  </function>
+ 
+  <function name="aero/function/qbar-induced-psf">
+    <description> q bar including the propulsion induced velocity.</description>
+    <product>
+      <property>aero/function/velocity-induced-fps</property>
+      <property>aero/function/velocity-induced-fps</property>
+      <property>atmosphere/rho-slugs_ft3</property>
+      <value>0.5</value>
+    </product>
+  </function>
 
   <axis name="LIFT">
 
@@ -248,9 +315,9 @@
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
-              -0.01  0.000
-               0.00  0.003
-               0.34  0.023
+              -0.12  0.000
+               0.00  0.042
+               0.34  0.313
                0.68  0.000
             </tableData>
           </table>
@@ -264,11 +331,32 @@
           <property>metrics/Sw-sqft</property>
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">aero/Re</independentVar>
             <tableData>
-              -0.20 -0.7532
-               0.00  0.2500
-               0.32  1.8538
-               0.60  0.8915
+                       1610211    3577889
+              -0.200  -0.3234    -0.8331
+              -0.147  -0.3217    -0.2540
+              -0.122  -0.1609    -0.1270
+              -0.098   0.0000     0.0000
+              -0.073   0.1609     0.1270
+              -0.049   0.3217     0.2540
+              -0.024   0.4826     0.3810
+               0.000   0.6434     0.5080
+               0.024   0.8043     0.6351
+               0.047   0.9651     0.7621
+               0.072   1.1260     0.8891
+               0.096   1.2868     1.0161
+               0.122   1.4477     1.1431
+               0.150   1.6085     1.2701
+               0.178   1.7694     1.3971
+               0.208   1.9302     1.5241
+               0.239   2.0911     1.6511
+               0.257   2.1313     1.6829
+               0.276   2.0911     1.6511
+               0.309   1.9302     1.5241
+               0.342   1.7694     1.3971
+               0.382   1.6085     1.2701
+               0.600   0.8915     0.8915
             </tableData>
           </table>
       </product>
@@ -288,7 +376,6 @@
               0.175  6.996364
             </tableData>
           </table>
-
         </product>
       </function>
 
@@ -324,12 +411,44 @@
           <property>metrics/Sw-sqft</property>
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">aero/Re</independentVar>
             <tableData>
-             -1.57    1.5000
-             -0.26    0.0312
-              0.00    0.0215
-              0.26    0.0312
-              1.57    1.5000
+                      1610211   3577889
+             -1.570    1.4091   1.4091
+             -0.405    0.3529   0.3382
+             -0.363    0.3156   0.3009
+             -0.339    0.2782   0.2635
+             -0.323    0.2608   0.2461
+             -0.288    0.1750   0.1603
+             -0.265    0.1702   0.1555
+             -0.257    0.1635   0.1488
+             -0.229    0.1434   0.1287
+             -0.201    0.1254   0.1107
+             -0.175    0.1094   0.0947
+             -0.147    0.0944   0.0797
+             -0.122    0.0815   0.0668
+             -0.098    0.0704   0.0557
+             -0.072    0.0594   0.0447
+             -0.049    0.0562   0.0415
+             -0.024    0.0434   0.0287
+              0.000    0.0373   0.0226
+              0.024    0.0434   0.0287
+              0.049    0.0562   0.0415
+              0.072    0.0594   0.0447
+              0.098    0.0704   0.0557
+              0.122    0.0815   0.0668
+              0.147    0.0944   0.0797
+              0.175    0.1094   0.0947
+              0.201    0.1254   0.1107
+              0.229    0.1434   0.1287
+              0.257    0.1635   0.1488
+              0.265    0.1702   0.1555
+              0.288    0.1750   0.1603
+              0.323    0.2608   0.2461
+              0.339    0.2782   0.2635
+              0.363    0.3156   0.3009
+              0.405    0.3529   0.3382
+              1.570    1.4091   1.4091
             </tableData>
           </table>
        </product>
@@ -343,23 +462,6 @@
            <property>aero/cl-squared</property>
            <value> 0.0485 </value>
          </product>
-    </function>
-
-    <function name="aero/force/Drag_mach">
-       <description>Drag due to mach</description>
-        <product>
-          <property>aero/qbar-psf</property>
-          <property>metrics/Sw-sqft</property>
-          <table>
-            <independentVar lookup="row">velocities/mach</independentVar>
-            <tableData>
-                0.00    0.0000
-                0.58    0.0000
-                1.10    0.0230
-                1.80    0.0150
-            </tableData>
-          </table>
-        </product>
     </function>
 
     <function name="aero/force/Drag_beta">
@@ -420,7 +522,13 @@
            <property>metrics/Sw-sqft</property>
            <property>aero/bi2vel</property>
            <property>velocities/p-aero-rad_sec</property>
-           <value> -1.1725 </value>	<!-- Du Y -->
+           <table>
+            <independentVar lookup="row">aero/Re</independentVar>
+            <tableData>			<!-- Du Y -->
+              1610211  0.1434
+              3577889  0.0022
+            </tableData>
+          </table>
        </product>
     </function>
 
@@ -460,8 +568,8 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
               -0.01  0.000
-               0.00 -0.002
-               0.34 -0.007
+               0.00 -0.015
+               0.34 -0.108
                0.44  0.000
             </tableData>
           </table>
@@ -476,10 +584,10 @@
            <property>metrics/cbarw-ft</property>
            <property>aero/alpha-rad</property>
            <table>
-            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="row">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-             -0.035 -1.145628
-              0.175 -2.329748
+              1610211  -2.0327
+              3577889  -1.3432
             </tableData>
           </table>
        </product>
@@ -488,17 +596,11 @@
     <function name="aero/moment/Pitch_elevator">
        <description>Pitch moment due to elevator</description>
        <product>
-          <property>aero/qbar-psf</property>
+          <property>aero/function/qbar-induced-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
           <property>fcs/elevator-pos-rad</property>
-          <table>
-            <independentVar lookup="row">velocities/mach</independentVar>
-            <tableData>			<!-- Du Y -->
-              0.0    -1.2004
-              2.0    -0.2001
-            </tableData>
-          </table>
+          <value> -1.2004 </value>	<!-- Du Y -->
        </product>
     </function>
 
@@ -538,7 +640,24 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/alpha-rad</property>
-           <value> 0.0095 </value>
+           <value> 0.1280 </value>
+       </product>
+    </function>
+
+    <function name="aero/coefficient/Stall_roll">
+       <description>Roll_moment_due_to_alpha</description>
+       <product>
+           <property>aero/qbar-psf</property>
+           <property>metrics/Sw-sqft</property>
+           <property>metrics/bw-ft</property>
+           <table>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <tableData>
+              0.16   0.0
+              0.20  -0.01
+              0.24  -0.3
+            </tableData>
+           </table>
        </product>
     </function>
 
@@ -549,7 +668,15 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
-           <value> -0.0524 </value>	<!-- Du Y -->
+           <table>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">aero/Re</independentVar>
+            <tableData>			<!-- Du Y -->
+                     1610211   3577889
+             -0.035 -0.031363 -0.010147
+              0.175 -0.310788 -0.100549
+            </tableData>
+          </table>
        </product>
     </function>
 
@@ -575,9 +702,11 @@
            <property>velocities/r-aero-rad_sec</property>
            <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-             -0.035  0.021888
-              0.175  0.256275
+                     1610211    3577889
+             -0.035  0.071235   0.021888
+              0.175  0.834059   0.256275
             </tableData>
           </table>
        </product>
@@ -590,13 +719,7 @@
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
           <property>fcs/left-aileron-pos-rad</property>
-           <table>
-            <independentVar lookup="row">velocities/mach</independentVar>
-            <tableData>			<!-- Du Y -->
-              0.0    0.3498
-              2.0    0.0425
-            </tableData>
-          </table>
+          <value> 0.3498 </value>	<!-- Du Y -->
        </product>
     </function>
 
@@ -634,7 +757,13 @@
            <property>metrics/bw-ft</property>
            <property>aero/bi2vel</property>
            <property>velocities/p-rad_sec</property>
-           <value> -0.0252 </value>
+           <table>
+            <independentVar lookup="row">aero/Re</independentVar>
+            <tableData>			<!-- Du Y -->
+              1610211  -0.0531
+              3577889  -0.0006
+            </tableData>
+          </table>
        </product>
     </function>
 
@@ -653,7 +782,7 @@
     <function name="aero/moment/Yaw_rudder">
        <description>Yaw moment due to rudder</description>
        <product>
-           <property>aero/qbar-psf</property>
+           <property>aero/function/qbar-induced-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>fcs/rudder-pos-rad</property>
@@ -668,7 +797,15 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>fcs/left-aileron-pos-rad</property>
-           <value> -0.0100 </value>
+           <table>
+            <independentVar lookup="row">aero/alpha-rad</independentVar>
+            <independentVar lookup="column">aero/Re</independentVar>
+            <tableData>                 <!-- Du Y -->
+                     1610211    3577889
+             -0.035  0.001706   0.0015
+              0.175 -0.018900  -0.0017
+            </tableData>
+          </table>
        </product>
     </function>
 
