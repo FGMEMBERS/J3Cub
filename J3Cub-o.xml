@@ -79,14 +79,14 @@
    <vtailarea  unit="FT2">   10.20 </vtailarea>
    <vtailarm  unit="FT" >    13.40 </vtailarm>
    <location name="AERORP" unit="IN">
-     <x>   110.60 </x>
+     <x>     0.00 </x>
      <y>     0.00 </y>
-     <z>    17.00 </z>
+     <z>    23.23 </z>
    </location>
    <location name="EYEPOINT" unit="IN">
-     <x>    34.97 </x>
-     <y>   -18.00 </y>
-     <z>    45.00 </z>
+     <x>    21.65 </x>
+     <y>     0.00 </y>
+     <z>    12.21 </z>
    </location>
    <location name="VRP" unit="IN">
      <x>     0.0 </x>
@@ -101,17 +101,17 @@
    <izz unit="SLUG*FT2">    871.03 </izz>
    <emptywt unit="LBS" >    765.00 </emptywt>
    <location name="CG" unit="IN">
-     <x>   110.60 </x>
+     <x>     0.00 </x>
      <y>     0.00 </y>
-     <z>    -6.73 </z>
+     <z>     0.00 </z>
    </location>
    <pointmass name="Payload">
     <description> 274.44 LBS should bring model up to max weight </description>
-    <weight unit="LBS"> 137.22 </weight>
+    <weight unit="LBS"> 175.0 </weight>
     <location name="POINTMASS" unit="IN">
-     <x>   110.60 </x>
+     <x>    21.65 </x>
      <y>     0.00 </y>
-     <z>    -6.73 </z>
+     <z>     0.00 </z>
    </location>
   </pointmass>
  </mass_balance>
@@ -120,7 +120,7 @@
 
    <engine file="Continental A-65-8">
     <location unit="IN">
-      <x>    36.00 </x>
+      <x>   -57.09 </x>
       <y>     0.00 </y>
       <z>     0.00 </z>
     </location>
@@ -134,9 +134,9 @@
     <thruster file="CM7445 MCCauley">
      <sense> 1 </sense>
      <location unit="IN">
-       <x>    36.00 </x>
+       <x>   -69.29 </x>
        <y>     0.00 </y>
-       <z>     0.00 </z>
+       <z>     1.18 </z>
      </location>
      <orient unit="DEG">
        <pitch>     0.00 </pitch>
@@ -148,9 +148,9 @@
 
   <tank type="FUEL" number="0">
      <location unit="IN">
-       <x>   110.60 </x>
+       <x>   -57.09 </x>
        <y>     0.00 </y>
-       <z>    17.00 </z>
+       <z>     0.00 </z>
      </location>
      <capacity unit="LBS"> 75.00 </capacity>
      <contents unit="LBS"> 65.00 </contents>
@@ -162,9 +162,9 @@
 
   <contact type="BOGEY" name="TAIL">
     <location unit="IN">
-      <x>   244.79 </x>
+      <x>   188.58 </x>
       <y>     0.00 </y>
-      <z>   -22.14 </z>
+      <z>    -9.05 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -179,9 +179,9 @@
 
   <contact type="BOGEY" name="LEFT_MAIN">
     <location unit="IN">
-      <x>   100.65 </x>
+      <x>   -12.99 </x>
       <y>   -35.43 </y>
-      <z>   -54.80 </z>
+      <z>   -50.79 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -195,9 +195,9 @@
 
   <contact type="BOGEY" name="RIGHT_MAIN">
     <location unit="IN">
-      <x>   100.65 </x>
+      <x>   -12.99 </x>
       <y>    35.43 </y>
-      <z>   -54.80 </z>
+      <z>   -50.79 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -211,26 +211,26 @@
 
   <contact type="STRUCTURE" name="LEFT_WING">
     <location unit="IN">
-     <x>   100.65 </x>
-     <y>   -17.62 </y>
-     <z>   -23.62 </z>
+     <x>    10.00 </x>
+     <y>  -211.50 </y>
+     <z>    23.23 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
-   <spring_coeff unit="LBS/FT">      1220.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 1220.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      20000 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC">  2000 </damping_coeff>
   </contact>
 
   <contact type="STRUCTURE" name="RIGHT_WING">
     <location unit="IN">
-     <x>   100.65 </x>
-     <y>    17.62 </y>
-     <z>   -23.62 </z>
+     <x>    10.00 </x>
+     <y>   211.50 </y>
+     <z>    23.23 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
-   <spring_coeff unit="LBS/FT">      1220.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 1220.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      20000 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC">  2000 </damping_coeff>
   </contact>
 
  </ground_reactions>
