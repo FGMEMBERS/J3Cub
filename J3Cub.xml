@@ -346,10 +346,10 @@
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
-              -0.12  0.000
-               0.00  0.042
-               0.34  0.313
-               0.68  0.000
+              -0.22  0.000
+               0.00  0.068
+               0.31  0.313
+               0.62  0.000
             </tableData>
           </table>
       </product>
@@ -571,9 +571,9 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
               -0.01  0.000
-               0.00 -0.015
-               0.34 -0.108
-               0.44  0.000
+               0.00  0.023
+               0.31  0.108
+               0.40  0.000
             </tableData>
           </table>
       </product>
@@ -749,8 +749,8 @@
            <table>
             <independentVar lookup="row">aero/Re</independentVar>
             <tableData>			<!-- Du Y -->
-               564033  -0.4738
-              1128067  -0.1184
+               341838  -2.1500
+              1128067  -0.1974
               1668183  -0.0531
               3707224  -0.0006
             </tableData>
