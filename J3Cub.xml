@@ -179,9 +179,9 @@
 
   <contact type="BOGEY" name="LEFT_MAIN">
     <location unit="IN">
-      <x>   100.65 </x>
+      <x>   11.65 </x>
       <y>   -35.43 </y>
-      <z>   -54.80 </z>
+      <z>   -75.80 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -195,9 +195,9 @@
 
   <contact type="BOGEY" name="RIGHT_MAIN">
     <location unit="IN">
-      <x>   100.65 </x>
+      <x>   11.65 </x>
       <y>    35.43 </y>
-      <z>   -54.80 </z>
+      <z>   -75.80 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
