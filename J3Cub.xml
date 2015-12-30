@@ -79,19 +79,19 @@
    <vtailarea  unit="FT2">   10.20 </vtailarea>
    <vtailarm  unit="FT" >    13.40 </vtailarm>
    <location name="AERORP" unit="IN">
-     <x>   110.60 </x>
+     <x>     0.00 </x>
      <y>     0.00 </y>
-     <z>    17.00 </z>
+     <z>     0.00 </z>
    </location>
    <location name="EYEPOINT" unit="IN">
-     <x>    34.97 </x>
-     <y>   -18.00 </y>
-     <z>    45.00 </z>
+     <x>    30.63 </x>
+     <y>     0.00 </y>
+     <z>   -11.00 </z>
    </location>
    <location name="VRP" unit="IN">
-     <x>     0.0 </x>
-     <y>     0.0 </y>
-     <z>     0.0 </z>
+     <x>  -110.60 </x>
+     <y>     0.00 </y>
+     <z>   -17.00 </z>
    </location>
  </metrics>
 
@@ -101,17 +101,17 @@
    <izz unit="SLUG*FT2">    871.03 </izz>
    <emptywt unit="LBS" >    765.00 </emptywt>
    <location name="CG" unit="IN">
-     <x>   108.00 </x>
+     <x>    -2.60 </x>
      <y>     0.00 </y>
-     <z>    -6.73 </z>
+     <z>   -23.23 </z>
    </location>
    <pointmass name="Payload">
     <description> 274.44 LBS should bring model up to max weight </description>
     <weight unit="LBS"> 137.22 </weight>
     <location name="POINTMASS" unit="IN">
-     <x>   140.60 </x>
+     <x>    30.60 </x>
      <y>     0.00 </y>
-     <z>   -16.73 </z>
+     <z>   -33.73 </z>
    </location>
   </pointmass>
  </mass_balance>
@@ -120,9 +120,9 @@
 
    <engine file="Continental A-65-8">
     <location unit="IN">
-      <x>    36.00 </x>
+      <x>   -57.10 </x>
       <y>     0.00 </y>
-      <z>     0.00 </z>
+      <z>   -23.00 </z>
     </location>
     <orient unit="DEG">
       <pitch>     0.00 </pitch>
@@ -134,9 +134,9 @@
     <thruster file="CM7445 MCCauley">
      <sense> 1 </sense>
      <location unit="IN">
-       <x>    36.00 </x>
+       <x>   -69.30 </x>
        <y>     0.00 </y>
-       <z>     0.00 </z>
+       <z>   -23.00 </z>
      </location>
      <orient unit="DEG">
        <pitch>     0.00 </pitch>
@@ -148,9 +148,9 @@
 
   <tank type="FUEL" number="0">
      <location unit="IN">
-       <x>   110.60 </x>
+       <x>     0.00 </x>
        <y>     0.00 </y>
-       <z>    17.00 </z>
+       <z>     0.00 </z>
      </location>
      <capacity unit="LBS"> 75.00 </capacity>
      <contents unit="LBS"> 65.00 </contents>
@@ -162,9 +162,9 @@
 
   <contact type="BOGEY" name="TAIL">
     <location unit="IN">
-      <x> 227.00 </x>
+      <x> 188.60 </x>
       <y>   0.00 </y>
-      <z> -27.90 </z>
+      <z> -32.30 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -179,9 +179,9 @@
 
   <contact type="BOGEY" name="LEFT_MAIN">
     <location unit="IN">
-      <x> 110.65 </x>
+      <x> -10.65 </x>
       <y> -35.43 </y>
-      <z> -70.20   </z>
+      <z> -74.20   </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -196,9 +196,9 @@
 
   <contact type="BOGEY" name="RIGHT_MAIN">
     <location unit="IN">
-      <x>  110.65 </x>
+      <x>  -10.65 </x>
       <y>   35.43 </y>
-      <z>  -70.20 </z>
+      <z>  -74.20 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -213,9 +213,9 @@
 
   <contact type="STRUCTURE" name="LEFT_WING">
     <location unit="IN">
-     <x>   100.65 </x>
+     <x>    -9.95 </x>
      <y>  -211.62 </y>
-     <z>   -23.62 </z>
+     <z>     0.00 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
@@ -225,9 +225,9 @@
 
   <contact type="STRUCTURE" name="RIGHT_WING">
     <location unit="IN">
-     <x>   100.65 </x>
+     <x>    -9.95 </x>
      <y>   211.62 </y>
-     <z>   -23.62 </z>
+     <z>     0.00 </z>
     </location>
    <static_friction>  1 </static_friction>
    <dynamic_friction> 1 </dynamic_friction>
