@@ -162,9 +162,9 @@
 
   <contact type="BOGEY" name="TAIL">
     <location unit="IN">
-      <x> 188.60 </x>
+	  <x> 199.90 </x>
       <y>   0.00 </y>
-      <z> -38.30 </z>
+	  <z> -33.80 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -181,7 +181,7 @@
     <location unit="IN">
       <x> -10.65 </x>
       <y> -35.43 </y>
-      <z> -77.20   </z>
+      <z> -77.20 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
