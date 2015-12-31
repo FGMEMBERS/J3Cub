@@ -89,9 +89,9 @@
      <z>   -11.00 </z>
    </location>
    <location name="VRP" unit="IN">
-     <x>  -110.60 </x>
+     <x>    -9.86 </x>
      <y>     0.00 </y>
-     <z>   -17.00 </z>
+     <z>    -0.97 </z>
    </location>
  </metrics>
 
@@ -164,7 +164,7 @@
     <location unit="IN">
       <x> 188.60 </x>
       <y>   0.00 </y>
-      <z> -32.30 </z>
+      <z> -38.30 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -181,7 +181,7 @@
     <location unit="IN">
       <x> -10.65 </x>
       <y> -35.43 </y>
-      <z> -74.20   </z>
+      <z> -77.20   </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -198,7 +198,7 @@
     <location unit="IN">
       <x>  -10.65 </x>
       <y>   35.43 </y>
-      <z>  -74.20 </z>
+      <z>  -77.20 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
