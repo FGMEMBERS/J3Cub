@@ -81,7 +81,7 @@
     <!-- <property>/sim/current-view/internal</property> -->
    </condition>
    <volume>
-    <property>/velocities/airspeed-kt</property>
+    <property>/velocities/groundspeed-kt</property>
     <type>log</type>
     <factor>0.25</factor>
    </volume>
@@ -157,6 +157,34 @@
    <path>Sounds/click.wav</path>
   </click>
 -->
+
+    <thunder1>
+        <name>thunder1</name>
+        <mode>once</mode>
+        <path>Sounds/thunder1.wav</path>
+        <property>/sim/model/j3cub/sound/click-thunder1</property>
+        <volume>
+            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder1</property>
+        </volume>
+    </thunder1>
+    <thunder2>
+        <name>thunder2</name>
+        <mode>once</mode>
+        <path>Sounds/thunder2.wav</path>
+        <property>/sim/model/j3cub/sound/click-thunder2</property>
+        <volume>
+            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder2</property>
+        </volume>
+    </thunder2>
+    <thunder3>
+        <name>thunder3</name>
+        <mode>once</mode>
+        <path>Sounds/thunder3.wav</path>
+        <property>/sim/model/j3cub/sound/click-thunder3</property>
+        <volume>
+            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder3</property>
+        </volume>
+    </thunder3>
 
 </fx>
  
