@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name>Immatriculation</name>
+  <name>registration-dialog</name>
   <layout>vbox</layout>
   <modal>false</modal>
   <draggable>true</draggable>
@@ -10,7 +10,7 @@
   <group>
     <layout>hbox</layout>
     <text>
-      <label>Immatriculation</label>
+      <label>Registration</label>
     </text>
   </group>
 

@@ -56,6 +56,22 @@ version 2.0  090410-->
 
   <model>
    <path archive="y">Aircraft/J3Cub/Models/Cub.xml</path>
+   
+   <j3cub>
+		<!-- Event sounds -->
+		<sound>
+			<click-thunder1 type="bool">false</click-thunder1>
+			<click-thunder2 type="bool">false</click-thunder2>
+			<click-thunder3 type="bool">false</click-thunder3>
+
+			<!--Lightning distance from aircraft -->
+			<lightning>
+				<dist1 type="double">0.0</dist1>
+				<dist2 type="double">0.0</dist2>
+				<dist3 type="double">0.0</dist3>
+			</lightning>
+		</sound>
+	</j3cub>
   </model>
 
 <!-- pilot viewpoint x=y y=z z=x ?  -->
@@ -234,6 +250,9 @@ version 2.0  090410-->
 	<file>Nasal/weather.nas</file>
 	<file>Nasal/glass.nas</file-->
     <file>Aircraft/J3Cub/Nasal/immat.nas</file>
+	<file>Aircraft/J3Cub/Nasal/aircraft-dialog.nas</file>
+	<!--file>Nasal/physics.nas</file-->
+	<file>Nasal/j3cub.nas</file>
   </Cub>
   <failures> 
     <file>Aircraft/Generic/limits.nas</file>
@@ -242,5 +261,69 @@ version 2.0  090410-->
     <file>Nasal/tyresmoke.nas</file>
   </tyresmoke-->
  </nasal>
+ 
+ <gear>
+	<gear n="0">
+		<tyre-smoke type="int">0</tyre-smoke>
+		<sprayspeed-ms type="double">0</sprayspeed-ms>
+		<spray-density type="double">0</spray-density>
+	</gear>
+	<gear n="1">
+		<tyre-smoke type="int">0</tyre-smoke>
+		<sprayspeed-ms type="double">0</sprayspeed-ms>
+		<spray-density type="double">0</spray-density>
+	</gear>
+	<gear n="2">
+		<tyre-smoke type="int">0</tyre-smoke>
+		<sprayspeed-ms type="double">0</sprayspeed-ms>
+		<spray-density type="double">0</spray-density>
+	</gear>
+ </gear>
+
+    <!-- gear 0, 1, 2 double for the snow skis -->
+    <fdm>
+        <jsbsim>
+            <gear>
+                <unit n="0">
+                    <broken type="bool">0</broken>
+                </unit>
+                <unit n="1">
+                    <broken type="bool">0</broken>
+                </unit>
+                <unit n="2">
+                    <broken type="bool">0</broken>
+                </unit>
+            </gear>
+            <contact>
+                <unit n="4">
+                    <broken type="bool">0</broken>
+                </unit>
+                <unit n="5">
+                    <broken type="bool">0</broken>
+                </unit>
+            </contact>
+            <!--heat>
+                <cabin-air-temp-degc type="double">0.0</cabin-air-temp-degc>
+            </heat-->
+            <crash type="bool">false</crash>
+            <running type="bool">false</running>
+            <complex type="bool">true</complex>
+            <bushkit type="int">0</bushkit>
+            <wing-damage>
+                <left-wing type="double">0.0</left-wing>
+                <right-wing type="double">0.0</right-wing>
+            </wing-damage>
+            <pontoon-damage>
+                <left-pontoon type="int">0</left-pontoon>
+                <right-pontoon type="int">0</right-pontoon>
+            </pontoon-damage>
+            <damage>
+                <repairing type="bool">false</repairing>
+            </damage>
+            <settings>
+                <damage type="bool">true</damage>
+            </settings>
+        </jsbsim>
+    </fdm>
 
 </PropertyList>
