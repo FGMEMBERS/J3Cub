@@ -16,7 +16,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="15">
                 bushkit EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</output>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</output>
         </switch>
 
         <switch name="extra-weight-right-36-in">
@@ -24,7 +24,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="15">
                 bushkit EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[6]</output>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</output>
         </switch>
 
         <switch name="extra-weight-left-ski">
