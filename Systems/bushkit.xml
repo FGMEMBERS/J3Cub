@@ -16,7 +16,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="15">
                 bushkit EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[7]</output>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</output>
         </switch>
 
         <switch name="extra-weight-right-36-in">
@@ -24,7 +24,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="15">
                 bushkit EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[8]</output>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[6]</output>
         </switch>
 
         <switch name="extra-weight-left-ski">
@@ -123,7 +123,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="1.07">
                 bushkit EQ 1
             </test>
-            <output>gear/drag-coef[2]</output>
+            <output>gear/drag-coef[1]</output>
         </switch>
 
         <switch name="drag-Floats">
@@ -131,7 +131,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="1.20">
                 bushkit EQ 2
             </test>
-            <output>gear/drag-coef[3]</output>
+            <output>gear/drag-coef[2]</output>
         </switch>
 
         <switch name="drag-Amphibious">
@@ -139,7 +139,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="1.22">
                 bushkit EQ 3
             </test>
-            <output>gear/drag-coef[4]</output>
+            <output>gear/drag-coef[3]</output>
         </switch>
 
         <switch name="drag-Ski">
@@ -147,7 +147,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <test logic="AND" value="1.20"> <!-- 36 inch wheel plus ski  -->
                 bushkit EQ 4
             </test>
-            <output>gear/drag-coef[5]</output>
+            <output>gear/drag-coef[4]</output>
         </switch>
     </channel>
 
