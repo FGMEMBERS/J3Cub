@@ -102,7 +102,7 @@ var reset_system = func {
 # If you need to run nasal as loop, add it in this function
 ############################################
 var global_system_loop = func {
-    #Cub.physics_loop();
+    Cub.physics_loop();
 }
 
 ##########################################
@@ -112,7 +112,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     # Use Nasal to make some properties persistent. <aircraft-data> does
     # not work reliably.
     #aircraft.data.add("/sim/model/j3cub/immat-on-panel");
-    #aircraft.data.load();
+    aircraft.data.load();
 
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);

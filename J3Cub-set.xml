@@ -20,7 +20,6 @@ version 2.0  090410-->
     <cockpit type="int">4</cockpit>
   </rating>
 
-
   <flight-model archive="y">jsb</flight-model>
   <aero archive="y">J3Cub</aero>
   <fuel-fraction>0.8</fuel-fraction>
@@ -49,33 +48,41 @@ version 2.0  090410-->
 	
   </systems>
 
-  <sound>
-   <path>Aircraft/J3Cub/Cub-sound.xml</path>
-  </sound>
+    <sound>
+        <path>Aircraft/J3Cub/Cub-sound.xml</path>
+    </sound>
+
+    <!-- Save some properties when the simulator is shut down -->
+    <aircraft-data>
+        <path>/fdm/jsbsim/bushkit</path>
+    </aircraft-data>
 
   <panel>
    <visibility archive="n">false</visibility>
   </panel>
 
-  <model>
-   <path archive="y">Aircraft/J3Cub/Models/Cub.xml</path>
-   
-   <j3cub>
-		<!-- Event sounds -->
-		<sound>
-			<click-thunder1 type="bool">false</click-thunder1>
-			<click-thunder2 type="bool">false</click-thunder2>
-			<click-thunder3 type="bool">false</click-thunder3>
+    <model>
+        <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
 
-			<!--Lightning distance from aircraft -->
-			<lightning>
-				<dist1 type="double">0.0</dist1>
-				<dist2 type="double">0.0</dist2>
-				<dist3 type="double">0.0</dist3>
-			</lightning>
-		</sound>
-	</j3cub>
-  </model>
+        <!-- The bushkit variants: default/36"/pontoons/amphibious/skis -->
+        <variant alias="/fdm/jsbsim/bushkit"/>
+
+        <j3cub>
+            <!-- Event sounds -->
+            <sound>
+                <click-thunder1 type="bool">false</click-thunder1>
+                <click-thunder2 type="bool">false</click-thunder2>
+                <click-thunder3 type="bool">false</click-thunder3>
+
+                <!--Lightning distance from aircraft -->
+                <lightning>
+                    <dist1 type="double">0.0</dist1>
+                    <dist2 type="double">0.0</dist2>
+                    <dist3 type="double">0.0</dist3>
+                </lightning>
+            </sound>
+        </j3cub>
+    </model>
 
 <!-- pilot viewpoint x=y y=z z=x ?  -->
   <view>
@@ -88,36 +95,25 @@ version 2.0  090410-->
    </config>
   </view>
 
-  <help>
-    <title>Piper J-3 Cub</title>
-    <line>cruise speed: 70 mph (61 kt)</line>
-    <line>never exceed (Vne): 122 mph (106 kt)</line>
-    <line>best glide (Vglide): 60 mph (52 kt)</line>
-    <line>maneuvering (Va): 70 mph (61 kt)</line>
-    <line>approach speed: 50-60 mph (44-52 kt)</line>
-    <line>stall speed (Vs): 38 mph (33 kt)</line>
-    <line></line>
-    <line>hit d to open/close door</line>
-    <line></line>
-    <line>aerotow:</line>
-    <line>place Cub within 60m of a glider</line>
-    <line>glider pilot presses Ctrl-o to hook up</line>
-    <line>Ctrl-O to detach tow</line>
-    <key>
-      <name>d</name>
-      <desc>open/close door</desc>
-    </key>
-    <key>
-      <name>o</name>
-      <desc>lock aerotow-hook</desc>
-    </key>
-    <key>
-      <name>O</name>
-      <desc>open aerotow-hook</desc>
-    </key>
-   </help>
+    <help include="J3Cub-help.xml"/>
 
-   <menubar include="Dialogs/Cub-menu.xml"/>
+    <menubar include="Dialogs/Cub-menu.xml"/>
+
+    <multiplay>
+        <chat_display>1</chat_display>
+        <generic>
+            <int n="6" alias="/fdm/jsbsim/gear/unit[0]/broken"/>
+            <int n="7" alias="/fdm/jsbsim/gear/unit[1]/broken"/>
+            <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
+        </generic>
+    </multiplay>
+
+    <flight-recorder>
+        <replay-config type="int">0</replay-config>
+        <config n="0" include="Systems/flight-recorder/flight-recorder.xml">
+            <name type="string">J3Cub Flight Recorder</name>
+        </config>
+    </flight-recorder>
 
   <hitches>
    <!-- make sure some properties do exist, when the list for multiplayer transfer is defined-->
@@ -204,42 +200,9 @@ version 2.0  090410-->
    </config>
  </autopilot>
 
- <input>
-  <keyboard>
-   <key n="79">
-    <name>O</name>
-    <desc>Open aerotow hook</desc>
-    <binding>
-     <command>property-assign</command>
-     <property>/sim/hitches/aerotow/open</property>
-     <value type="bool">true</value>
-    </binding>
-   </key>
-   <key n="100">
-     <name>d</name>
-     <desc>Open/Close door</desc>
-     <binding>
-       <command>nasal</command>
-       <script>
-         if(getprop("controls/door[0]") > 0) {
-           interpolate("controls/door[0]", 0, 1);
-         } else {
-           interpolate("controls/door[0]", 1, 1);
-         }
-       </script>
-     </binding>
-   </key>
-   <key n="111">
-    <name>o</name>
-    <desc>Lock aerotow hook</desc>
-     <binding>
-      <command>property-assign</command>
-      <property>/sim/hitches/aerotow/open</property>
-      <value type="bool">false</value>
-    </binding>
-   </key>
-  </keyboard>
- </input>
+    <input>
+        <keyboard include="J3Cub-keyboard.xml"/>
+    </input>
 
  <limits>
    <max-positive-g>3.5</max-positive-g>
@@ -247,41 +210,41 @@ version 2.0  090410-->
    <vne>106</vne>
  </limits>
  
- <nasal>
-  <Cub>
-	<!--file>Nasal/shadow.nas</file>
-	<file>Nasal/weather.nas</file>
-	<file>Nasal/glass.nas</file-->
-    <file>Aircraft/J3Cub/Nasal/immat.nas</file>
-	<file>Aircraft/J3Cub/Nasal/aircraft-dialog.nas</file>
-	<!--file>Nasal/physics.nas</file-->
-	<file>Nasal/j3cub.nas</file>
-  </Cub>
-  <failures> 
-    <file>Aircraft/Generic/limits.nas</file>
-  </failures>
-  <!--tyresmoke>
-    <file>Nasal/tyresmoke.nas</file>
-  </tyresmoke-->
- </nasal>
+    <nasal>
+        <Cub>
+            <!--file>Nasal/shadow.nas</file>
+            <file>Nasal/weather.nas</file>
+            <file>Nasal/glass.nas</file-->
+            <file>Aircraft/J3Cub/Nasal/immat.nas</file>
+            <file>Aircraft/J3Cub/Nasal/aircraft-dialog.nas</file>
+            <file>Nasal/physics.nas</file>
+            <file>Nasal/j3cub.nas</file>
+        </Cub>
+        <failures>
+            <file>Aircraft/Generic/limits.nas</file>
+        </failures>
+        <!--tyresmoke>
+        <file>Nasal/tyresmoke.nas</file>
+        </tyresmoke-->
+    </nasal>
  
- <gear>
-	<gear n="0">
-		<tyre-smoke type="int">0</tyre-smoke>
-		<sprayspeed-ms type="double">0</sprayspeed-ms>
-		<spray-density type="double">0</spray-density>
-	</gear>
-	<gear n="1">
-		<tyre-smoke type="int">0</tyre-smoke>
-		<sprayspeed-ms type="double">0</sprayspeed-ms>
-		<spray-density type="double">0</spray-density>
-	</gear>
-	<gear n="2">
-		<tyre-smoke type="int">0</tyre-smoke>
-		<sprayspeed-ms type="double">0</sprayspeed-ms>
-		<spray-density type="double">0</spray-density>
-	</gear>
- </gear>
+    <gear>
+        <gear n="0">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+        </gear>
+        <gear n="1">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+        </gear>
+        <gear n="2">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+        </gear>
+    </gear>
 
     <!-- gear 0, 1, 2 double for the snow skis -->
     <fdm>

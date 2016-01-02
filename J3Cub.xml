@@ -211,6 +211,21 @@
     <retractable> 0 </retractable>
   </contact>
 
+    <!--XXXXXXXXXXXXXXXXXXXX CONTACT PLACEHOLDER XXXXXXXXXXXXXXXX -->
+    <!-- contact 3, 4, 5 -->
+    <contact type="STRUCTURE" name="TAIL_SKID">
+        <location unit="IN">
+            <x> 0 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </location>
+        <static_friction> 0.5 </static_friction>
+        <dynamic_friction> 0.25 </dynamic_friction>
+        <spring_coeff unit="LBS/FT">       2000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC">   1000 </damping_coeff>
+    </contact>
+    <!--XXXXXXXXXXXXXXXXXXXX END CONTACT PLACEHOLDER XXXXXXXXXXXXXXXX -->
+
   <contact type="STRUCTURE" name="LEFT_WING">
     <location unit="IN">
      <x>    -9.95 </x>
@@ -237,7 +252,9 @@
 
  </ground_reactions>
 
- <system file="Conventional Controls.xml"/>
+    <system file="Conventional Controls.xml"/>
+    <system file="bushkit"/>
+    <system file="j3cub-ground-effects"/>
 
  <flight_control name="FCS: J3Cub">
 
