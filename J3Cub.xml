@@ -534,7 +534,6 @@
        <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-          <property>aero/function/kCDge</property>
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <independentVar lookup="column">aero/Re</independentVar>
@@ -565,6 +564,7 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>aero/cl-squared</property>
+           <property>aero/function/kCDge</property>
            <value> 0.0485 </value>
          </product>
     </function>

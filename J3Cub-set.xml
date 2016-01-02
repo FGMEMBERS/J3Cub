@@ -7,7 +7,7 @@ model, instrument panel, and external 3D model.
 ************************************************************************
 version 2.0  090410-->
 
-<PropertyList>
+<PropertyList include="Cub-shared.xml">
  <sim>
 
   <description>Piper J-3 Cub (J3C-65, 1946 model) (JBSSim)</description>
@@ -24,15 +24,7 @@ version 2.0  090410-->
   <aero archive="y">J3Cub</aero>
   <fuel-fraction>0.8</fuel-fraction>
 
-  <startup>
-   <splash-texture>Aircraft/J3Cub/splash.png</splash-texture>
-  </startup>
-
   <systems>
-   <electrical>
-    <path>Aircraft/J3Cub/Cub-electrical.xml</path>
-   </electrical>
-   
 	<!-- FDM level updates 
 	<autopilot>
       <path>Aircraft/BushCub/Systems/gearAGL3d.xml</path>
@@ -45,184 +37,88 @@ version 2.0  090410-->
     <property-rule n="107">
         <path>Aircraft/J3Cub/Systems/sounds.xml</path>
     </property-rule>
-	
   </systems>
 
-    <sound>
-        <path>Aircraft/J3Cub/Cub-sound.xml</path>
-    </sound>
+  <!-- Save some properties when the simulator is shut down -->
+  <aircraft-data>
+    <path>/fdm/jsbsim/bushkit</path>
+  </aircraft-data>
 
-    <!-- Save some properties when the simulator is shut down -->
-    <aircraft-data>
-        <path>/fdm/jsbsim/bushkit</path>
-    </aircraft-data>
+  <model>
+    <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
 
-  <panel>
-   <visibility archive="n">false</visibility>
-  </panel>
+    <!-- The bushkit variants: default/36"/pontoons/amphibious/skis -->
+    <variant alias="/fdm/jsbsim/bushkit"/>
 
-    <model>
-        <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
+    <j3cub>
+      <!-- Event sounds -->
+      <sound>
+        <click-thunder1 type="bool">false</click-thunder1>
+        <click-thunder2 type="bool">false</click-thunder2>
+        <click-thunder3 type="bool">false</click-thunder3>
 
-        <!-- The bushkit variants: default/36"/pontoons/amphibious/skis -->
-        <variant alias="/fdm/jsbsim/bushkit"/>
+        <!--Lightning distance from aircraft -->
+        <lightning>
+          <dist1 type="double">0.0</dist1>
+          <dist2 type="double">0.0</dist2>
+          <dist3 type="double">0.0</dist3>
+        </lightning>
+      </sound>
+    </j3cub>
+  </model>
 
-        <j3cub>
-            <!-- Event sounds -->
-            <sound>
-                <click-thunder1 type="bool">false</click-thunder1>
-                <click-thunder2 type="bool">false</click-thunder2>
-                <click-thunder3 type="bool">false</click-thunder3>
+  <help include="J3Cub-help.xml"/>
 
-                <!--Lightning distance from aircraft -->
-                <lightning>
-                    <dist1 type="double">0.0</dist1>
-                    <dist2 type="double">0.0</dist2>
-                    <dist3 type="double">0.0</dist3>
-                </lightning>
-            </sound>
-        </j3cub>
-    </model>
+  <menubar include="Dialogs/Cub-menu.xml"/>
 
-<!-- pilot viewpoint x=y y=z z=x ?  -->
-  <view>
-   <internal archive="y">true</internal>
-   <config>
-     <x-offset-m archive="y">0</x-offset-m>
-     <y-offset-m archive="y">-0.15</y-offset-m>
-     <z-offset-m archive="y">0.6</z-offset-m>
-     <pitch-offset-deg>-8</pitch-offset-deg>
-   </config>
-  </view>
+  <multiplay>
+    <chat_display>1</chat_display>
+    <generic>
+      <int n="6" alias="/fdm/jsbsim/gear/unit[0]/broken"/>
+      <int n="7" alias="/fdm/jsbsim/gear/unit[1]/broken"/>
+      <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
+    </generic>
+  </multiplay>
 
-    <help include="J3Cub-help.xml"/>
+  <flight-recorder>
+    <replay-config type="int">0</replay-config>
+    <config n="0" include="Systems/flight-recorder/flight-recorder.xml">
+      <name type="string">J3Cub Flight Recorder</name>
+    </config>
+  </flight-recorder>
 
-    <menubar include="Dialogs/Cub-menu.xml"/>
-
-    <multiplay>
-        <chat_display>1</chat_display>
-        <generic>
-            <int n="6" alias="/fdm/jsbsim/gear/unit[0]/broken"/>
-            <int n="7" alias="/fdm/jsbsim/gear/unit[1]/broken"/>
-            <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
-        </generic>
-    </multiplay>
-
-    <flight-recorder>
-        <replay-config type="int">0</replay-config>
-        <config n="0" include="Systems/flight-recorder/flight-recorder.xml">
-            <name type="string">J3Cub Flight Recorder</name>
-        </config>
-    </flight-recorder>
-
-  <hitches>
-   <!-- make sure some properties do exist, when the list for multiplayer transfer is defined-->
-   <!-- they need to be in the same value, as they are initilized in the FDM, to get the same values after reset
-    should fix this somehow-->
-   <aerotow>
-    <tow>
-     <length type="float">60</length>
-     <elastic-constant type="float">10000</elastic-constant>
-     <weight-per-m-kg-m type="float">1</weight-per-m-kg-m>
-     <dist type="float">1</dist>
-     <connected-to-property-node type="bool"></connected-to-property-node>
-     <brake-force type="float">100000</brake-force>
-     <connected-to-ai-or-mp-callsign type ="string">*</connected-to-ai-or-mp-callsign>
-     <end-force-x type ="float">0</end-force-x>
-     <end-force-y type ="float">0</end-force-y>
-     <end-force-z type ="float">0</end-force-z>
-    </tow>
-    <speed-in-tow-direction type="float">0</speed-in-tow-direction>
-    <open type="bool">true</open>
-    <local-pos-x type="float">0</local-pos-x>
-    <local-pos-y type="float">0</local-pos-y>
-    <local-pos-z type="float">0</local-pos-z>
-    <is-slave type="bool">false</is-slave>
-   </aerotow>
-  </hitches>
-   
   <!-- Payload -->
   <weight>
    <name type="string">Pilot</name>
-   <weight-lb alias="/yasim/Cub/pilot-lb"/>
+   <weight-lb alias="/sim/model/Cub/pilot-lb"/>
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">210.0</max-lb>
   </weight>  
   <weight>
    <name type="string">Passenger</name>
-   <weight-lb alias="/yasim/Cub/passenger-lb"/>
+   <weight-lb alias="/sim/model/Cub/passenger-lb"/>
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">210.0</max-lb>
   </weight>
+
+  <model>
+   <Cub>
+    <pilot-lb>180.0</pilot-lb>
+    <passenger-lb>0.0</passenger-lb>
+   </Cub>
+  </model>
+
  </sim>
 
- <yasim>
-  <Cub>
-   <pilot-lb>180.0</pilot-lb>
-   <passenger-lb>0.0</passenger-lb>
-  </Cub>
- </yasim>
-
- <controls>
-  <flight>
-   <aileron-trim>0.0025</aileron-trim>   <!-- fixed -->
-   <elevator-trim>0.00</elevator-trim> <!-- controllable -->
-   <rudder-trim>0.075</rudder-trim>     <!-- fixed -->
-  </flight>
-  <engines>
-   <engine n="0">
-    <magnetos>3</magnetos>
-   </engine>
-  </engines>
-  <door>1.0</door>
-  <aerotow>
-   <find-aircraft type="bool">false</find-aircraft>
-  </aerotow>
- </controls>
-
- <engines>
-  <engine>
-   <rpm type="double">0</rpm>
-  </engine>
- </engines>
-
- <!-- An autopilot on a Cub??? -->
- <autopilot>
-   <config>
-     <min-climb-speed-kt type="float">48.0</min-climb-speed-kt>
-     <best-climb-speed-kt type="float">56.0</best-climb-speed-kt>
-     <target-climb-rate-fpm type="float">400.0</target-climb-rate-fpm>
-     <target-descent-rate-fpm type="float">1000.0</target-descent-rate-fpm>
-     <elevator-adj-factor type="float">6000.0</elevator-adj-factor>
-     <integral-contribution type="float">0.008</integral-contribution>
-     <zero-pitch-throttle type="float">0.35</zero-pitch-throttle>
-     <zero-pitch-trim-full-throttle type="float">0.001</zero-pitch-trim-full-throttle>
-   </config>
- </autopilot>
-
-    <input>
-        <keyboard include="J3Cub-keyboard.xml"/>
-    </input>
-
- <limits>
-   <max-positive-g>3.5</max-positive-g>
-   <max-negative-g>-1.52</max-negative-g>
-   <vne>106</vne>
- </limits>
- 
     <nasal>
         <Cub>
             <!--file>Nasal/shadow.nas</file>
             <file>Nasal/weather.nas</file>
             <file>Nasal/glass.nas</file-->
-            <file>Aircraft/J3Cub/Nasal/immat.nas</file>
             <file>Aircraft/J3Cub/Nasal/aircraft-dialog.nas</file>
             <file>Nasal/physics.nas</file>
             <file>Nasal/j3cub.nas</file>
         </Cub>
-        <failures>
-            <file>Aircraft/Generic/limits.nas</file>
-        </failures>
         <!--tyresmoke>
         <file>Nasal/tyresmoke.nas</file>
         </tyresmoke-->
