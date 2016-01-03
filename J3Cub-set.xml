@@ -101,12 +101,14 @@ version 2.0  090410-->
    <max-lb type="double">210.0</max-lb>
   </weight>
 
+<!--
   <model>
    <Cub>
     <pilot-lb>180.0</pilot-lb>
     <passenger-lb>0.0</passenger-lb>
    </Cub>
   </model>
+-->
 
  </sim>
 
