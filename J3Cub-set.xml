@@ -47,7 +47,7 @@ version 2.0  090410-->
   <model>
     <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
 
-    <!-- The bushkit variants: default/36"/pontoons/amphibious/skis -->
+    <!-- The bushkit variants: default/35"/pontoons/amphibious/skis -->
     <variant alias="/fdm/jsbsim/bushkit"/>
 
     <j3cub>

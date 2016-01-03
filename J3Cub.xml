@@ -123,7 +123,7 @@
         </pointmass>
         <!-- Gear configurations 0 to 4, pointmass [2] to [9]  -->
         <!-- Weight and drag are managed by Systems/bushkit.xml -->
-        <pointmass name="Left bush wheel 36 inches">
+        <pointmass name="Left bush wheel 35 inches">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -131,7 +131,7 @@
                 <z> -63.32 </z>
             </location>
         </pointmass>
-        <pointmass name="Right bush wheel 36 inches">
+        <pointmass name="Right bush wheel 35 inches">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -247,7 +247,7 @@
     <location unit="IN">
 	  <x> 199.90 </x>
       <y>   0.00 </y>
-	  <z> -33.80 </z>
+	  <z> -33.50 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -264,7 +264,7 @@
     <location unit="IN">
       <x> -10.65 </x>
       <y> -35.43 </y>
-      <z> -77.20 </z>
+      <z> -78.50 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>
@@ -281,7 +281,7 @@
     <location unit="IN">
       <x>  -10.65 </x>
       <y>   35.43 </y>
-      <z>  -77.20 </z>
+      <z>  -78.50 </z>
     </location>
     <static_friction>  0.80 </static_friction>
     <dynamic_friction> 0.50 </dynamic_friction>

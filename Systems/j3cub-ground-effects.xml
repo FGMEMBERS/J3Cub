@@ -39,12 +39,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value>-33.8</value>
-                        <value>-33.8</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-33.8</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value> -33.50 </value>
+                        <value> -35.00 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -35.00 </value>
                     </switch>
                 </ifthen>
             </function>
@@ -59,12 +59,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value>-77.2</value>
-                        <value>-89.9</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-89.9</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value> -78.50 </value>
+                        <value> -86.30 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -86.30 </value>
                     </switch>
                 </ifthen>
             </function>
@@ -79,12 +79,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value>-77.2</value>
-                        <value>-89.9</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-89.9</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value> -78.50 </value>
+                        <value> -86.30 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -86.30 </value>
                     </switch>
                 </ifthen>
             </function>
@@ -98,12 +98,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value>-10.0</value>
-                        <value>-17.7</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-23.0</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value> -10.00 </value>
+                        <value> -17.70 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -23.00 </value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
@@ -118,12 +118,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value> -9.5</value>
-                        <value>-16.0</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-21.0</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value>  -9.50 </value>
+                        <value> -16.00 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -21.00 </value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
@@ -138,12 +138,12 @@
                     <switch>
                         <property>bushkit</property>
 
-                        <!-- Default/36"/pontoon/amphibious/skis -->
-                        <value> -8.0</value>
-                        <value>-17.4</value>
-                        <value>  0.0</value>
-                        <value>  0.0</value>
-                        <value>-21.0</value>
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value>  -8.00 </value>
+                        <value> -17.40 </value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -21.00 </value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
