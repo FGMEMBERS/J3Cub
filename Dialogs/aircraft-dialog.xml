@@ -430,7 +430,6 @@
 
             <group>
                 <layout>hbox</layout>
-
                 <radio>
                     <halign>left</halign>
                     <label>Default</label>
@@ -461,10 +460,13 @@
                         </script>
                     </binding>
                 </radio>
+            </group>
 
+            <group>
+                <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
-                    <label>36"</label>
+                    <label>35" Bush</label>
                     <property>sim/model/j3cub/bushkit_flag_1</property>
                     <live>true</live>
                     <enable>
@@ -496,7 +498,6 @@
 
             <group>
                 <layout>hbox</layout>
-
                 <radio>
                     <halign>left</halign>
                     <label>Floats</label>
@@ -547,7 +548,10 @@
                         <value>false</value>
                     </binding-->
                 </radio>
+            </group>
 
+            <group>
+                <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
                     <label>Amphibious</label>
@@ -583,7 +587,10 @@
                         <value>false</value>
                     </binding-->
                 </radio>
+            </group>
 
+            <group>
+                <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
                     <label>Snow Skis</label>
