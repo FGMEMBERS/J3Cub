@@ -17,16 +17,16 @@
     <line>glider pilot presses Ctrl-o to hook up</line>
     <line>Ctrl-O to detach tow</line>
     <key>
-      <name>d</name>
-      <desc>open/close door</desc>
+        <name>d</name>
+        <desc>open/close door</desc>
     </key>
     <key>
-      <name>o</name>
-      <desc>lock aerotow-hook</desc>
+        <name>o</name>
+        <desc>lock aerotow-hook</desc>
     </key>
     <key>
-      <name>O</name>
-      <desc>open aerotow-hook</desc>
+        <name>O</name>
+        <desc>open aerotow-hook</desc>
     </key>
 
 </PropertyList>

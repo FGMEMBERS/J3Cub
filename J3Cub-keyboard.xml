@@ -17,39 +17,39 @@
 
 <PropertyList>
 
-   <key n="79">
-    <name>O</name>
-    <desc>Open aerotow hook</desc>
-    <binding>
-     <command>property-assign</command>
-     <property>/sim/hitches/aerotow/open</property>
-     <value type="bool">true</value>
-    </binding>
-   </key>
-   
-   <key n="100">
-     <name>d</name>
-     <desc>Open/Close door</desc>
-     <binding>
-       <command>nasal</command>
-       <script>
-         if(getprop("controls/door[0]") > 0) {
-           interpolate("controls/door[0]", 0, 1);
-         } else {
-           interpolate("controls/door[0]", 1, 1);
-         }
-       </script>
-     </binding>
-   </key>
-   
-   <key n="111">
-    <name>o</name>
-    <desc>Lock aerotow hook</desc>
-     <binding>
-      <command>property-assign</command>
-      <property>/sim/hitches/aerotow/open</property>
-      <value type="bool">false</value>
-    </binding>
-   </key>
+    <key n="79">
+        <name>O</name>
+        <desc>Open aerotow hook</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>/sim/hitches/aerotow/open</property>
+            <value type="bool">true</value>
+        </binding>
+    </key>
+
+    <key n="100">
+        <name>d</name>
+        <desc>Open/Close door</desc>
+        <binding>
+            <command>nasal</command>
+            <script>
+                if(getprop("controls/door[0]") > 0) {
+                    interpolate("controls/door[0]", 0, 1);
+                } else {
+                    interpolate("controls/door[0]", 1, 1);
+                }
+            </script>
+        </binding>
+    </key>
+
+    <key n="111">
+        <name>o</name>
+        <desc>Lock aerotow hook</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>/sim/hitches/aerotow/open</property>
+            <value type="bool">false</value>
+        </binding>
+    </key>
 
 </PropertyList>

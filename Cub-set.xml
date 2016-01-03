@@ -20,6 +20,57 @@ version 2.0  090410-->
     <cockpit type="int">4</cockpit>
   </rating>
 
+    <menubar>
+        <default>
+            <menu n="10">
+                <label>J3Cub</label>
+                <enabled type="bool">true</enabled>
+                <item>
+                    <label>Livery (none yet)</label>
+                    <binding>
+                        <command>nasal</command>
+                        <script>aircraft.livery.dialog.toggle()</script>
+                    </binding>
+                </item>
+                <item>
+                    <label>Registration</label>
+                    <binding>
+                        <command>dialog-show</command>
+                        <dialog-name>registration-dialog</dialog-name>
+                    </binding>
+                </item>
+            </menu>
+        </default>
+    </menubar>
+
+    <help>
+        <title>Piper J-3 Cub</title>
+        <line>cruise speed: 70 mph (61 kt)</line>
+        <line>never exceed (Vne): 122 mph (106 kt)</line>
+        <line>best glide (Vglide): 60 mph (52 kt)</line>
+        <line>maneuvering (Va): 70 mph (61 kt)</line>
+        <line>approach speed: 50-60 mph (44-52 kt)</line>
+        <line>stall speed (Vs): 38 mph (33 kt)</line>
+        <line></line>
+        <line>hit d to open/close door</line>
+        <line></line>
+        <line>aerotow:</line>
+        <line>place Cub within 60m of a glider</line>
+        <line>glider pilot presses Ctrl-o to hook up</line>
+        <line>Ctrl-O to detach tow</line>
+        <key>
+            <name>d</name>
+            <desc>open/close door</desc>
+        </key>
+        <key>
+            <name>o</name>
+            <desc>lock aerotow-hook</desc>
+        </key>
+        <key>
+            <name>O</name>
+            <desc>open aerotow-hook</desc>
+        </key>
+    </help>
 
   <flight-model>yasim</flight-model>
   <aero>Cub_FDM</aero>
@@ -43,6 +94,43 @@ version 2.0  090410-->
    <max-lb type="double">210.0</max-lb>
   </weight>
  </sim>
+
+    <input>
+        <keyboard>
+            <key n="79">
+                <name>O</name>
+                <desc>Open aerotow hook</desc>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/aerotow/open</property>
+                    <value type="bool">true</value>
+                </binding>
+            </key>
+            <key n="100">
+                <name>d</name>
+                <desc>Open/Close door</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        if(getprop("controls/door[0]") > 0) {
+                        interpolate("controls/door[0]", 0, 1);
+                        } else {
+                        interpolate("controls/door[0]", 1, 1);
+                        }
+                    </script>
+                </binding>
+            </key>
+            <key n="111">
+                <name>o</name>
+                <desc>Lock aerotow hook</desc>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/aerotow/open</property>
+                    <value type="bool">false</value>
+                </binding>
+            </key>
+        </keyboard>
+    </input>
 
  <yasim>
   <Cub>
