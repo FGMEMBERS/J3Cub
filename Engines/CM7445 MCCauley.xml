@@ -19,7 +19,7 @@
 -->
 
 <propeller version="1.01" name="prop">
-  <ixx> 3.01492 </ixx>
+  <ixx> 1.51492 </ixx>
   <diameter unit="IN"> 74 </diameter>
   <numblades> 2 </numblades>
   <gearratio> 0.75592 </gearratio>
@@ -108,6 +108,7 @@
       2.20    0.0911
       2.30    0.1072
       2.40    0.1244
+     </tableData>
   </table>
 
 <!-- thrust effects of helical tip Mach -->
