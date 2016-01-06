@@ -935,8 +935,8 @@
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>
               -0.01  0.000
-               0.00  0.023
-               0.31  0.108
+               0.00 -0.023
+               0.31 -0.108
                0.40  0.000
             </tableData>
           </table>
