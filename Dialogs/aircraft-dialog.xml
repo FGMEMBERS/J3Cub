@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- j3cub
+<!-- J3Cub
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License as
  published by the Free Software Foundation; either version 2 of the
@@ -61,7 +61,7 @@
 
     <hrule/>
 
-    <!--group>
+    <group>
         <layout>vbox</layout>
         <padding>6</padding>
 
@@ -78,7 +78,7 @@
                 </binding>
             </checkbox>
 
-            <checkbox>
+            <!--checkbox>
                 <halign>left</halign>
                 <label>Complex start up procedures</label>
                 <property>/fdm/jsbsim/complex</property>
@@ -131,7 +131,7 @@
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
+            </checkbox-->
             
             <checkbox>
                 <halign>left</halign>
@@ -168,7 +168,7 @@
             </checkbox>
         </group>
 
-        <hrule/>
+        <!--hrule/>
 
         <group>
             <layout>hbox</layout>
@@ -195,10 +195,14 @@
                 </visible>
                 <binding>
                     <command>nasal</command>
-                    <script>j3cub.repair_damage();electrical.reset_battery_and_circuit_breakers();j3cub.click("engine-repair", 6.0)</script>
+                    <script>
+                        j3cub.repair_damage();
+                        #electrical.reset_battery_and_circuit_breakers();
+                        j3cub.click("engine-repair", 6.0)
+                    </script>
                 </binding>
             </button>
-        </group>
+        </group-->
 
         <hrule/>
 
@@ -318,7 +322,7 @@
                 </binding>
             </checkbox>
 
-            <checkbox>
+            <!--checkbox>
                 <halign>left</halign>
                 <label>Enable frost and fog</label>
                 <property>/sim/model/j3cub/enable-fog-frost</property>
@@ -336,12 +340,12 @@
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
+            </checkbox-->
         </group>
 
         <hrule/>
 
-        <group>
+        <!--group>
             <layout>vbox</layout>
 
             <text>
@@ -416,9 +420,9 @@
                     </binding>
                 </radio>
             </group>
-        </group>
+        </group-->
 
-        <hrule/-->
+        <hrule/>
 
         <group>
             <layout>vbox</layout>
@@ -527,7 +531,7 @@
                             #setprop("sim/model/j3cub/engine_flag_1", 1);
                         </script>
                     </binding>
-                    <!--binding>
+                    <binding>
                         <command>property-assign</command>
                         <property>sim/model/j3cub/securing/chock</property>
                         <value>false</value>
@@ -546,7 +550,7 @@
                         <command>property-assign</command>
                         <property>sim/model/j3cub/securing/tiedownT-visible</property>
                         <value>false</value>
-                    </binding-->
+                    </binding>
                 </radio>
             </group>
 
@@ -581,11 +585,11 @@
                             #setprop("sim/model/j3cub/engine_flag_1", 1);
                         </script>
                     </binding>
-                    <!--binding>
+                    <binding>
                         <command>property-assign</command>
                         <property>sim/model/j3cub/securing/chock</property>
                         <value>false</value>
-                    </binding-->
+                    </binding>
                 </radio>
             </group>
 
@@ -620,11 +624,11 @@
                             #setprop("sim/model/j3cub/engine_flag_1", 1);
                         </script>
                     </binding>
-                    <!--binding>
+                    <binding>
                         <command>property-assign</command>
                         <property>sim/model/j3cub/securing/chock</property>
                         <value>false</value>
-                    </binding-->
+                    </binding>
                 </radio>
             </group>
             

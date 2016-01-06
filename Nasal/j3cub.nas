@@ -1,4 +1,67 @@
 ##########################################
+# Autostart
+##########################################
+
+var autostart = func (msg=1) {
+    if (getprop("/engines/engine/running")) {
+        if (msg)
+            gui.popupTip("Engine already running", 5);
+        return;
+    }
+
+    setprop("/controls/engines/engine/magnetos", 3);
+    setprop("/controls/engines/engine/throttle", 0.2);
+    setprop("/controls/engines/engine/mixture", 1.0);
+    setprop("/controls/flight/elevator-trim", 0.0);
+    setprop("/controls/engines/engine/master-bat", 1);
+    setprop("/controls/engines/engine/master-alt", 1);
+
+    # if empty get fuel or warn
+    # setprop("/consumables/fuel/tank[0]/empty", 1);
+   
+
+    # Set the altimeter
+    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
+    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
+
+    # Pre-flight inspection
+    setprop("/sim/model/j3cub/brake-parking", 0);
+    setprop("/sim/model/j3cub/securing/chock", 0);
+    setprop("/sim/model/j3cub/securing/pitot-cover-visible", 0);
+    setprop("/sim/model/j3cub/securing/tiedownL-visible", 0);
+    setprop("/sim/model/j3cub/securing/tiedownR-visible", 0);
+    setprop("/sim/model/j3cub/securing/tiedownT-visible", 0);
+    #setprop("/engines/active-engine/oil-level", 7.0);
+    #setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
+    
+    if (msg)
+        gui.popupTip("Hold down \"s\" to start the engine", 5);
+};
+
+##########################################
+# Brakes
+##########################################
+
+controls.applyBrakes = func (v, which = 0) {
+    if (which <= 0 and !getprop("/fdm/jsbsim/gear/unit[1]/broken")) {
+        interpolate("/controls/gear/brake-left", v, controls.fullBrakeTime);
+    }
+    if (which >= 0 and !getprop("/fdm/jsbsim/gear/unit[2]/broken")) {
+        interpolate("/controls/gear/brake-right", v, controls.fullBrakeTime);
+    }
+};
+
+controls.applyParkingBrake = func (v) {
+    if (!v) {
+        return;
+    }
+
+    var p = "/sim/model/j3cub/brake-parking";
+    setprop(p, var i = !getprop(p));
+    return i;
+};
+
+##########################################
 # Click Sounds
 ##########################################
 
@@ -82,19 +145,24 @@ var thunder = func (name) {
 };
 
 var reset_system = func {
-    # Note: these separate flags exist because PUI's <radio> element
-    #       only accepts booleans.
-    var p = getprop("fdm/jsbsim/bushkit");
-    setprop("/sim/model/j3cub/bushkit_flag_0",0);
-    setprop("/sim/model/j3cub/bushkit_flag_1",0);
-    setprop("/sim/model/j3cub/bushkit_flag_2",0);
-    setprop("/sim/model/j3cub/bushkit_flag_3",0);
-    setprop("/sim/model/j3cub/bushkit_flag_4",0);
-    if (p == 0) { setprop("/sim/model/j3cub/bushkit_flag_0",1); }
-    if (p == 1) { setprop("/sim/model/j3cub/bushkit_flag_1",1); }
-    if (p == 2) { setprop("/sim/model/j3cub/bushkit_flag_2",1); }
-    if (p == 3) { setprop("/sim/model/j3cub/bushkit_flag_3",1); }
-    if (p == 4) { setprop("/sim/model/j3cub/bushkit_flag_4",1); }
+    if (getprop("/fdm/jsbsim/running")) {
+        Cub.autostart(0);
+        setprop("/controls/engines/engine/starter", 1);
+    }
+
+    # These properties are aliased to MP properties in /sim/multiplay/generic/.
+    # This aliasing seems to work in both ways, because the two properties below
+    # appear to receive the random values from the MP properties during initialization.
+    # Therefore, override these random values with the proper values we want.
+    props.globals.getNode("/fdm/jsbsim/crash", 0).setBoolValue(0);
+    props.globals.getNode("/fdm/jsbsim/gear/unit[0]/broken", 0).setBoolValue(0);
+    props.globals.getNode("/fdm/jsbsim/gear/unit[1]/broken", 0).setBoolValue(0);
+    props.globals.getNode("/fdm/jsbsim/gear/unit[2]/broken", 0).setBoolValue(0);
+    props.globals.getNode("/fdm/jsbsim/pontoon-damage/left-pontoon", 0).setIntValue(0);
+    props.globals.getNode("/fdm/jsbsim/pontoon-damage/right-pontoon", 0).setIntValue(0);
+
+    setprop("/engines/active-engine/kill-engine", 0);
+
 }
 
 ############################################
@@ -103,7 +171,55 @@ var reset_system = func {
 ############################################
 var global_system_loop = func {
     Cub.physics_loop();
+    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
+        setprop("/controls/engines/engine/starter", 0);
+    }
 }
+
+var update_pax = func {
+    var state = 0;
+    state = bits.switch(state, 0, getprop("pax/pilot/present"));
+    state = bits.switch(state, 1, getprop("pax/passenger/present"));
+    setprop("/payload/pax-state", state);
+};
+
+setlistener("/pax/pilot/present", update_pax, 0, 0);
+setlistener("/pax/passenger/present", update_pax, 0, 0);
+update_pax();
+
+var update_securing = func {
+    var state = 0;
+    state = bits.switch(state, 0, getprop("/sim/model/j3cub/securing/pitot-cover-visible"));
+    state = bits.switch(state, 1, getprop("/sim/model/j3cub/securing/chock-visible"));
+    state = bits.switch(state, 2, getprop("/sim/model/j3cub/securing/tiedownL-visible"));
+    state = bits.switch(state, 3, getprop("/sim/model/j3cub/securing/tiedownR-visible"));
+    state = bits.switch(state, 4, getprop("/sim/model/j3cub/securing/tiedownT-visible"));
+    setprop("/payload/securing-state", state);
+};
+
+setlistener("/sim/model/j3cub/securing/pitot-cover-visible", update_securing, 0, 0);
+setlistener("/sim/model/j3cub/securing/chock-visible", update_securing, 0, 0);
+setlistener("/sim/model/j3cub/securing/tiedownL-visible", update_securing, 0, 0);
+setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
+setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
+update_securing();
+
+#var log_cabin_temp = func {
+#    if (getprop("/sim/model/j3cub/enable-fog-frost")) {
+#        var temp_degc = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc");
+#        if (temp_degc >= 32)
+#            logger.screen.red("Cabin temperature exceeding 90F/32C!");
+#        elsif (temp_degc <= 0)
+#            logger.screen.red("Cabin temperature falling below 32F/0C!");
+#    }
+#};
+#var cabin_temp_timer = maketimer(30.0, log_cabin_temp);
+#var log_fog_frost = func {
+#    if (getprop("/sim/model/j3cub/enable-fog-frost")) {
+#        logger.screen.white("Wait until fog/frost clears up or decrease cabin air temperature");
+#    }
+#};
+#var fog_frost_timer = maketimer(30.0, log_fog_frost);
 
 ##########################################
 # SetListerner must be at the end of this file

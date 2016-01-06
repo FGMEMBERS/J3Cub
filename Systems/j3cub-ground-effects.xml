@@ -303,7 +303,7 @@
 
     </channel>
 
-    <!--channel name="tiedowns">
+    <channel name="tiedowns">
 
         <fcs_function name="tiedown-left-x">
             <output>external_reactions/tiedown-left/x</output>
@@ -497,6 +497,6 @@
             </test>
         </switch>
 
-    </channel-->
+    </channel>
 
 </system>

@@ -17,24 +17,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-
-<!-- NEED TO ACCOUNT FOR JUST OPENING THE INDOW AND NOT BOTH DOOR AND WINDOW -->
-
 <PropertyList>
 
-    <!--params>
-        <doors>
-            <left>/sim/multiplay/generic/float[1]</left>
-            <right>/sim/multiplay/generic/float[0]</right>
-        </doors>
-        <windows>
-            <left>/sim/multiplay/generic/float[3]</left>
-            <right>/sim/multiplay/generic/float[4]</right>
-        </windows>
-    </params-->
+    <params>
+        <door>/sim/multiplay/generic/float[0]</door>
+        <window>/sim/multiplay/generic/float[1]</window>
+    </params>
 
     <!-- Return a factor (>= 1.0) to boost the volume when one or both
-         doors are open.
+         window and door are open.
     -->
     <filter>
         <name>Volume Boost Door Factor</name>
@@ -52,17 +43,17 @@
 								
                                     <min>
                                         <sum>
-                                            <!-- Right door fully open is 1.0. Fully closed is 0.0 -->
+                                            <!-- Door fully open is 1.0. Fully closed is 0.0 -->
                                             <table>
-                                                <property alias="/params/doors/right"/>
+                                                <property alias="/params/door"/>
                                                 <entry><ind>0.5</ind><dep>0.0</dep></entry>
                                                 <entry><ind>0.65</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
                                             </table>
 
-                                            <!-- Right window fully open is 1.0. Fully closed is 0.0 -->
+                                            <!-- Window fully open is 1.0. Fully closed is 0.0 -->
                                             <table>
-                                                <property alias="/params/windows/right"/>
+                                                <property alias="/params/window"/>
                                                 <entry><ind>0.5</ind><dep>0.0</dep></entry>
                                                 <entry><ind>0.65</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
@@ -72,8 +63,8 @@
                                     </min>
 
                                     <!-- Prevents math domain error because log2
-                                         requires value >= 1.0.
-                                    -->
+                                                                                    requires value >= 1.0.
+                                                                                  -->
                                     <value>1.0</value>
                                 </sum>
                             </log>
@@ -83,7 +74,7 @@
                             </log>
                         </div>
 
-                        <!-- 20 % extra volume if one door is open, 32 % if both -->
+                        <!-- 20 % extra volume if door is open, 32 % if door and window -->
                         <value>0.2</value>
                     </product>
                     <value>1.0</value>
@@ -168,7 +159,7 @@
                                         <sum>
                                             <!-- Right door fully open is 1.0. Fully closed is 0.0 -->
                                             <table>
-                                                <property alias="/params/doors/right"/>
+                                                <property alias="/params/door"/>
                                                 <entry><ind>0.5</ind><dep>0.0</dep></entry>
                                                 <entry><ind>0.65</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
@@ -176,7 +167,7 @@
 
                                             <!-- Right window fully open is 1.0. Fully closed is 0.0 -->
                                             <table>
-                                                <property alias="/params/windows/right"/>
+                                                <property alias="/params/window"/>
                                                 <entry><ind>0.5</ind><dep>0.0</dep></entry>
                                                 <entry><ind>0.65</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
@@ -213,7 +204,7 @@
         </output>
     </filter>
 
-    <!--filter>
+    <filter>
         <name>Spray Wake Speed</name>
         <type>noise-spike</type>
         <input>
@@ -221,13 +212,13 @@
         </input>
         <output>
             <property>/sim/model/j3cub/sound/spray-wake-speed</property>
-        </output-->
+        </output>
 
         <!-- High rate of change to give a quick, but not abrupt cut off
              of the pontoon wake sounds when the aircraft starts climbing
              during a takeoff from the water.
         -->
-        <!--max-rate-of-change>20.0</max-rate-of-change>
-    </filter-->
+        <max-rate-of-change>20.0</max-rate-of-change>
+    </filter>
 
 </PropertyList>
