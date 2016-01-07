@@ -22,7 +22,6 @@
   <ixx> 1.51492 </ixx>
   <diameter unit="IN"> 74 </diameter>
   <numblades> 2 </numblades>
-  <gearratio> 0.75592 </gearratio>
   <cp_factor> 1.00 </cp_factor>
   <ct_factor> 1.00 </ct_factor>
 
