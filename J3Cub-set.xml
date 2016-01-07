@@ -166,7 +166,7 @@ version 2.0  090410-->
             </property-rule>
 
             <property-rule n="102">
-                <path>Aircraft/j3cub/Systems/als-lights.xml</path>
+                <path>Aircraft/J3Cub/Systems/als-lights.xml</path>
             </property-rule>
 
             <property-rule n="104">
