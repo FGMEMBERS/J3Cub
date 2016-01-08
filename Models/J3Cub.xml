@@ -1821,41 +1821,21 @@
         </hovered>
     </animation>
 
-    <!-- Small wheel chock -->
+    <!-- Chocks -->
     <model>
-        <name>chock1</name>
         <path>Exterior/chock/chock.xml</path>
         <offsets>
-            <x-m>-0.1625</x-m>
-            <y-m> 0.9157</y-m>
-            <z-m>-1.7764</z-m>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
         </offsets>
     </model>
-    <model>
-        <name>chock2</name>
-        <path>Exterior/chock/chock.xml</path>
-        <offsets>
-            <x-m> 0.2231</x-m>
-            <y-m> 0.9157</y-m>
-            <z-m>-1.7764</z-m>
-        </offsets>
-    </model>    
-    <animation>
-        <type>translate</type>
-        <object-name>chock1</object-name>
-        <object-name>chock2</object-name>
-        <property>gear/gear[0]/compression-norm</property>
-        <factor>0.30</factor>
-        <axis>
-            <x>0.3</x>
-            <y>0</y>
-            <z>1.0</z>
-        </axis>
-    </animation>        
+
+    <!-- Small wheel chock -->
     <animation>
         <type>select</type>
-        <object-name>chock1</object-name>
-        <object-name>chock2</object-name>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
         <condition>
             <and>
                 <property alias="/params/securing/chocks"/>
@@ -1868,29 +1848,10 @@
     </animation>
 
     <!-- Wooden chocks -->
-    <model>
-        <name>woodenchock</name>
-        <path>Exterior/wooden-chock/woodenchock.xml</path>
-        <offsets>
-            <x-m> 0 </x-m>
-            <y-m> 0 </y-m>
-            <z-m> 0 </z-m>
-        </offsets>
-    </model>
-    <animation>
-        <type>translate</type>
-        <object-name>woodenchock</object-name>
-        <property>gear/gear[0]/compression-norm</property>
-        <factor>0.30</factor>
-        <axis>
-            <x>0.3</x>
-            <y>0</y>
-            <z>1.0</z>
-        </axis>
-    </animation>        
     <animation>
         <type>select</type>
-        <object-name>woodenchock</object-name>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
         <condition>
             <and>
                 <property alias="/params/securing/chocks"/>
@@ -1899,21 +1860,33 @@
                         <property alias="/params/bushkit"/>
                         <value>1</value>
                     </equals>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>2</value>
-                    </equals>
                 </or>
             </and>
         </condition>
     </animation>
 
+    <animation>
+        <type>translate</type>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
+        <property>gear/gear[0]/compression-norm</property>
+        <factor>0.30</factor>
+        <axis>
+            <x>0.3</x>
+            <y>0</y>
+            <z>1.0</z>
+        </axis>
+    </animation>
+
     <!-- Pick animations to show/hide chocks -->
     <animation>
         <type>pick</type>
-        <object-name>chock1</object-name>
-        <object-name>chock2</object-name>
-        <object-name>woodenchock</object-name>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
