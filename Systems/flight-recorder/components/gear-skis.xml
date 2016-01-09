@@ -46,13 +46,5 @@
         <type>float</type>
         <property type="string">/fdm/jsbsim/gear/unit[24]/z-position</property>
     </signal>
-   <signal>
-        <type>bool</type>
-        <property type="string">/fdm/jsbsim/gear/unit[25]/WOW</property>
-    </signal>
-    <signal>
-        <type>float</type>
-        <property type="string">/fdm/jsbsim/gear/unit[25]/z-position</property>
-    </signal>
 
 </PropertyList>

@@ -112,7 +112,6 @@
         </gear_right_broken>
         <bushkit>sim/model/variant</bushkit>
         <gear-ski>
-            <ski-tail-rollspeed-ms>rotors/main/blade[0]/position-deg</ski-tail-rollspeed-ms>
             <ski-left-rollspeed-ms>rotors/main/blade[1]/position-deg</ski-left-rollspeed-ms>
             <ski-right-rollspeed-ms>rotors/main/blade[2]/position-deg</ski-right-rollspeed-ms>
         </gear-ski>
@@ -1147,8 +1146,12 @@
         <type>spin</type>
         <object-name>tyre_l</object-name>
         <object-name>tyre_l_bush</object-name>
-        <property>gear/gear[0]/rollspeed-ms</property>
-        <factor>15</factor>
+        <expression>
+            <product>
+                <property alias="/params/gear/left-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-left</property>
+            </product>
+        </expression>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -1164,8 +1167,12 @@
         <type>spin</type>
         <object-name>tyre_r</object-name>
         <object-name>tyre_r_bush</object-name>
-        <property>gear/gear[0]/rollspeed-ms</property>
-        <factor>15</factor>
+        <expression>
+            <product>
+                <property alias="/params/gear/right-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-right</property>
+            </product>
+        </expression>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -1181,8 +1188,12 @@
         <type>spin</type>
         <object-name>tail_wheel</object-name>
         <object-name>tail_wheel_bush</object-name>
-        <property>gear/gear[0]/rollspeed-ms</property>
-        <factor>18</factor>
+        <expression>
+            <product>
+                <property alias="/params/gear/tail-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-tail</property>
+            </product>
+        </expression>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -1206,9 +1217,9 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>1.24648</x-m>
-            <y-m>-1.30575</y-m>
-            <z-m>-1.48968</z-m>
+            <x-m> 0.74759</x-m>
+            <y-m>-1.00857</y-m>
+            <z-m>-1.98311</z-m>
         </center>
     </animation>
     <animation>
@@ -1222,9 +1233,9 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>1.24648</x-m>
-            <y-m>1.33153</y-m>
-            <z-m>-1.48274</z-m>
+            <x-m> 0.74511</x-m>
+            <y-m> 1.01623</y-m>
+            <z-m>-1.97812</z-m>
         </center>
     </animation>
 

@@ -21,7 +21,7 @@ io.include("Aircraft/Generic/updateloop.nas");
 var point_coords = {
     left: {
         x:  0.2609,
-        y: -2.2998,
+        y: -3.4362,
         z:  0.0088,
         offset: 90.0
     },
@@ -42,8 +42,8 @@ var point_coords = {
 };
 
 # Values must be the same as in Models/J3Cub.xml
-var model_offsets_pitch_deg = -3.0;
-var model_offsets_z_m = -0.065;
+var model_offsets_pitch_deg = 0.0;
+var model_offsets_z_m = 0.0;
 
 var TiedownPositionUpdater = {
 

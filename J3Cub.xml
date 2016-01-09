@@ -544,31 +544,15 @@
             <retractable>1</retractable>
         </contact>
 
-        <!-- contact 23 = 2 wheels on nose ski.
-             The ski wheels friction would have a
+        <!-- The ski wheels friction would have a
              rolling friction on a hard surface and
              slide or drag on snow -->
-        <!-- contact 23, 24, 25 -->
-        <contact type="BOGEY" name="NOSE_SKI">
-            <location unit="IN">
-                <x>  18.44 </x>
-                <y> 0 </y>
-                <z> -10 </z>
-            </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1800 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 600 </damping_coeff>
-            <max_steer unit="DEG"> 10 </max_steer>
-            <brake_group> NONE </brake_group>
-            <retractable>0</retractable>
-        </contact>
+        <!-- contact 23, 24-->
         <contact type="BOGEY" name="LEFT_SKI">
             <location unit="IN">
-                <x> 93 </x>
-                <y> -51 </y>
-                <z> -10 </z>
+                <x>  29.43 </x>
+                <y> -39.70 </y>
+                <z> -81.30 </z>
             </location>
             <static_friction> 0.8 </static_friction>
             <dynamic_friction> 0.5 </dynamic_friction>
@@ -581,9 +565,9 @@
         </contact>
         <contact type="BOGEY" name="RIGHT_SKI">
             <location unit="IN">
-                <x> 93 </x>
-                <y> 52 </y>
-                <z> -10 </z>
+                <x>  29.33 </x>
+                <y>  40.00 </y>
+                <z> -81.30 </z>
             </location>
             <static_friction> 0.8 </static_friction>
             <dynamic_friction> 0.5 </dynamic_friction>
