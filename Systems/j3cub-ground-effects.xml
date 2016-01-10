@@ -436,34 +436,34 @@
 
         <pid name="fcs/tiedown-left-magnitude-pid">
             <input>fcs/tiedown-left-mag-error</input>
-            <kp>7000.0</kp>
+            <kp>100.0</kp>
             <ki>0.0</ki>
             <kd>0.0</kd>
             <clipto>
-                <min>-50</min>
-                <max>1000</max>
+                <min>-100</min>
+                <max>100</max>
             </clipto>
         </pid>
 
         <pid name="fcs/tiedown-right-magnitude-pid">
             <input>fcs/tiedown-right-mag-error</input>
-            <kp>7000.0</kp>
+            <kp>100.0</kp>
             <ki>0.0</ki>
             <kd>0.0</kd>
             <clipto>
-                <min>-50</min>
-                <max>1000</max>
+                <min>-100</min>
+                <max>100</max>
             </clipto>
         </pid>
 
         <pid name="fcs/tiedown-tail-magnitude-pid">
             <input>fcs/tiedown-tail-mag-error</input>
-            <kp>7000.0</kp>
+            <kp>100.0</kp>
             <ki>0.0</ki>
             <kd>0.0</kd>
             <clipto>
-                <min>-50</min>
-                <max>1000</max>
+                <min>-100</min>
+                <max>100</max>
             </clipto>
         </pid>
 
