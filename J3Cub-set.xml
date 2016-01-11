@@ -152,15 +152,8 @@ version 2.0  090410-->
             <autopilot>
                 <path>Systems/glass-rain.xml</path>
             </autopilot>
-            <!-- FDM level updates 
-            <autopilot>
-            <path>Aircraft/BushCub/Systems/gearAGL3d.xml</path>
-            </autopilot>
 
-            <property-rule n="101">
-            <name>gear_agl_m</name>
-            <path>Aircraft/BushCub/Systems/gearAGL3d.xml</path>
-            </property-rule>-->
+            <!-- FDM level updates  -->
             <property-rule n="101">
                 <path>Aircraft/J3Cub/Systems/ground-effects.xml</path>
             </property-rule>
@@ -350,9 +343,7 @@ version 2.0  090410-->
             <file>Nasal/tiedowns.nas</file>
         </j3cub>
         <Cub>
-            <!--file>Nasal/shadow.nas</file-->
             <!--file>Nasal/weather.nas</file-->
-            <!--file>Nasal/glass.nas</file-->
             <file>Nasal/aircraft-dialog.nas</file>
             <file>Nasal/flashlight.nas</file>
             <file>Nasal/physics.nas</file>

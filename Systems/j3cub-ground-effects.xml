@@ -90,6 +90,46 @@
             </function>
         </fcs_function>
 
+        <fcs_function name="z-position-ski-left-wheel">
+            <output>gear/unit[23]/z-position</output>
+            <function>
+                <ifthen>
+                    <property>gear/unit[1]/broken</property>
+                    <value>0.0</value>
+                    <switch>
+                        <property>bushkit</property>
+
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value>   0.00 </value>
+                        <value>   0.00</value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -71.29 </value>
+                    </switch>
+                </ifthen>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="z-position-ski-right-wheel">
+            <output>gear/unit[24]/z-position</output>
+            <function>
+                <ifthen>
+                    <property>gear/unit[2]/broken</property>
+                    <value>0.0</value>
+                    <switch>
+                        <property>bushkit</property>
+
+                        <!-- Default/35"/pontoon/amphibious/skis -->
+                        <value>   0.00 </value>
+                        <value>   0.00</value>
+                        <value>   0.00 </value>
+                        <value>   0.00 </value>
+                        <value> -71.41 </value>
+                    </switch>
+                </ifthen>
+            </function>
+        </fcs_function>
+
         <fcs_function name="z-position-effect-nose-gear">
             <output>contact/unit[6]/z-position</output>
             <function>

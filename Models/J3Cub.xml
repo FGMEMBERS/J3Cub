@@ -309,6 +309,8 @@
         <object-name>roof_strut_r</object-name>
         <object-name>roof_strut_long_l</object-name>
         <object-name>roof_strut_long_r</object-name>
+        <object-name>rudderpedal_rear_l</object-name>
+        <object-name>rudderpedal_rear_r</object-name>
         <object-name>seat_front</object-name>
         <object-name>seat_rear</object-name>
         <object-name>solo_placard</object-name>
@@ -330,19 +332,17 @@
         <object-name>throttle_base_rear</object-name>
         <object-name>throttle_front</object-name>
         <object-name>trim_handle</object-name>
-        <object-name>rudderpedal_rear_l</object-name>
-        <object-name>rudderpedal_rear_r</object-name>
         <object-name>window_rear_l_1</object-name>
         <object-name>window_rear_r_1</object-name>
         <object-name>window_l_1</object-name>
         <object-name>window_r_1</object-name>
         <object-name>window_strut_l</object-name>
         <object-name>window_strut_r</object-name>
-        <object-name>wing_l</object-name>
-        <object-name>wing_r</object-name>
+        <object-name>wing_l_interior</object-name>
+        <object-name>wing_r_interior</object-name>
     </effect>
 
-    <effect>
+    <!--effect>
         <inherits-from>Effects/interior/interior-glass-shadow</inherits-from>
         <object-name>screen</object-name>
         <object-name>window_top</object-name>
@@ -350,7 +350,7 @@
         <object-name>window_rear_r_0</object-name>
         <object-name>window_l_0</object-name>
         <object-name>window_r_0</object-name>
-    </effect> 
+    </effect--> 
 
     <effect>
         <inherits-from>Effects/interior/interior-glass-reflection-front</inherits-from>
