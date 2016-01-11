@@ -354,6 +354,7 @@ version 2.0  090410-->
             <!--file>Nasal/weather.nas</file-->
             <!--file>Nasal/glass.nas</file-->
             <file>Nasal/aircraft-dialog.nas</file>
+            <file>Nasal/flashlight.nas</file>
             <file>Nasal/physics.nas</file>
             <file>Nasal/j3cub.nas</file>
             <file>Nasal/tiedowns.nas</file>

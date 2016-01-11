@@ -31,8 +31,24 @@
                     <dialog-name>registration-dialog</dialog-name>
                 </binding>
 			</item>
+
+            <item>
+                <label>Flashlight</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>Cub.toggle_flashlight()</script>
+                </binding>
+            </item>
+
+            <item>
+                <label>Autostart</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>Cub.autostart()</script>
+                </binding>
+            </item>
 		</menu>
-		
-	</default>
+
+    </default>
 
 </PropertyList>

@@ -3,6 +3,22 @@
 
  <path>oil.ac</path>
 
+    <effect>
+        <inherits-from>Effects/interior/j3cub-flashlight</inherits-from>
+        <object-name>Needle1</object-name>
+        <object-name>Needle2</object-name>
+        <object-name>Needle1</object-name>
+        <object-name>Face</object-name>
+        <object-name>bezelinside</object-name>
+        <object-name>bezeloutside</object-name>
+        <object-name>Face2bottom</object-name>
+        <object-name>Face2top</object-name>
+        <object-name>screw_1</object-name>
+        <object-name>screw_2</object-name>
+        <object-name>screw_3</object-name>
+        <object-name>screw_4</object-name>
+    </effect>
+ 
  <animation>
   <type>rotate</type>
   <object-name>Needle1</object-name>
