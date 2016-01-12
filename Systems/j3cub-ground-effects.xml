@@ -101,7 +101,7 @@
 
                         <!-- Default/35"/pontoon/amphibious/skis -->
                         <value>   0.00 </value>
-                        <value>   0.00</value>
+                        <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value> -71.29 </value>
@@ -121,7 +121,7 @@
 
                         <!-- Default/35"/pontoon/amphibious/skis -->
                         <value>   0.00 </value>
-                        <value>   0.00</value>
+                        <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value> -71.41 </value>
@@ -130,7 +130,7 @@
             </function>
         </fcs_function>
 
-        <fcs_function name="z-position-effect-nose-gear">
+        <fcs_function name="z-position-effect-tail-gear">
             <output>contact/unit[6]/z-position</output>
             <function>
                 <ifthen>
@@ -476,34 +476,34 @@
 
         <pid name="fcs/tiedown-left-magnitude-pid">
             <input>fcs/tiedown-left-mag-error</input>
-            <kp>100.0</kp>
+            <kp>7000.0</kp>
             <ki>0.0</ki>
-            <kd>0.0</kd>
+            <kd>500</kd>
             <clipto>
-                <min>-100</min>
-                <max>100</max>
+                <min>-50</min>
+                <max>1000</max>
             </clipto>
         </pid>
 
         <pid name="fcs/tiedown-right-magnitude-pid">
             <input>fcs/tiedown-right-mag-error</input>
-            <kp>100.0</kp>
+            <kp>7000.0</kp>
             <ki>0.0</ki>
-            <kd>0.0</kd>
+            <kd>500</kd>
             <clipto>
-                <min>-100</min>
-                <max>100</max>
+                <min>-50</min>
+                <max>1000</max>
             </clipto>
         </pid>
 
         <pid name="fcs/tiedown-tail-magnitude-pid">
             <input>fcs/tiedown-tail-mag-error</input>
-            <kp>100.0</kp>
+            <kp>7000.0</kp>
             <ki>0.0</ki>
-            <kd>0.0</kd>
+            <kd>500</kd>
             <clipto>
-                <min>-100</min>
-                <max>100</max>
+                <min>-50</min>
+                <max>1000</max>
             </clipto>
         </pid>
 

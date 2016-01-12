@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PropertyList>
-  <name>CubOS-interior-glass-reflection-front</name>
+  <name>interior-glass-reflection-front</name>
   <inherits-from>Effects/glass</inherits-from>
   <parameters>
 	<texture n="3">

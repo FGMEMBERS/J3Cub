@@ -175,19 +175,6 @@
             </electrical>
         </cockpit>
     </params>
-    
-    <!-- Register transparent objects for Rembrandt effects
-    <effect>
-        <inherits-from>Effects/model-transparent</inherits-from>
-        <object-name>screen</object-name>
-        <object-name>window_top</object-name>
-        <object-name>window_rear_l_0</object-name>
-        <object-name>window_rear_r_0</object-name>
-        <object-name>window_l_0</object-name>
-        <object-name>window_r_0</object-name>
-        <object-name>propeller_fast</object-name>
-        <object-name>propeller_slow</object-name>
-    </effect> -->
 
  <!--effect>
 	<inherits-from>Effects/grain/rust</inherits-from>
@@ -251,10 +238,46 @@
 	<object-name>tyre_l</object-name>
  </effect-->
 
+    <!-- Register transparent objects for Rembrandt effects 
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>screen</object-name>
+        <object-name>window_top</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_r_0</object-name>
+        <object-name>propeller_fast</object-name>
+        <object-name>propeller_slow</object-name>
+    </effect>-->
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <!--object-name>navlight_left</object-name>
+        <object-name>navlight_right</object-name>
+        <object-name>navlight_back</object-name>
+        <object-name>strobe1</object-name>
+        <object-name>strobe2</object-name>
+        <object-name>navlight_back</object-name>
+        <object-name>BeaconOffX</object-name-->
+        <object-name>propeller_slow</object-name>
+        <object-name>propeller_fast</object-name>
+    </effect>
+  
+	<effect>
+        <inherits-from>Effects/exterior/exterior-glass-reflection</inherits-from>
+        <object-name>screen</object-name>
+        <object-name>window_top</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_r_0</object-name>
+    </effect>
+
     <!-- interior effects -->
 
     <effect>
-        <inherits-from>Effects/interior/j3cub-interior</inherits-from>
+        <inherits-from>Effects/interior/interior</inherits-from>
         <object-name>brake_cable_l</object-name>
         <object-name>brake_cable_r</object-name>
         <object-name>bulkhead_strut_l</object-name>
