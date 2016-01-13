@@ -13,16 +13,18 @@
 
     <PropertyList>
 
-      <path>3dpontoonshadow.ac</path>
+      <path>floatshadow.ac</path>
       <nopreview/>
 	  
 	  <offsets>
-        <pitch-deg>3.75</pitch-deg>
-        <z-m>-0.1</z-m>
+        <pitch-deg>-1</pitch-deg>
+        <x-m> 0.00</x-m>
+        <y-m> 0.00</y-m>
+        <z-m>-0.73</z-m>
       </offsets>
       
       <animation>
-        <object-name>3dpontoonshadow</object-name>
+        <object-name>floatshadow</object-name>
         <type>select</type>
         <condition>
 		<and>
@@ -53,18 +55,18 @@
 	
       <effect>
         <inherits-from>Effects/shadow-vol</inherits-from>
-        <object-name>3dpontoonshadow</object-name>
+        <object-name>floatshadow</object-name>
       </effect>
 	
       <animation>
         <type>noshadow</type>
-        <object-name>3dpontoonshadow</object-name>
+        <object-name>floatshadow</object-name>
       </animation>
 
       <!-- pitch -->
       <animation>
         <type>rotate</type>
-        <object-name>3dpontoonshadow</object-name>
+        <object-name>floatshadow</object-name>
         <property>/orientation/pitch-deg</property>
         <factor>-1.0</factor>
         <center>
@@ -82,7 +84,7 @@
       <!-- roll -->
       <animation>
         <type>rotate</type>
-        <object-name>3dpontoonshadow</object-name>
+        <object-name>floatshadow</object-name>
         <property>/orientation/roll-deg</property>
         <factor>1.0</factor>
         <center>
