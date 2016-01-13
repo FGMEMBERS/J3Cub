@@ -33,7 +33,7 @@
           <property>sim/rendering/shadow-volume</property>
 		  <equals>
 		    <property>/fdm/jsbsim/bushkit</property>
-		    <value>4</value>
+		    <value>3</value>
 		  </equals>
 		  <not>
 			<property>/fdm/jsbsim/unit[12]/WOW</property>
