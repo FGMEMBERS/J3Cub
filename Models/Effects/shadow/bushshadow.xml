@@ -11,95 +11,95 @@
     the shadow seems to disappear into the ground.
     -->
 
-    <PropertyList>
+<PropertyList>
 
-      <path>bushshadow.ac</path>
-      <nopreview/>
-	  
-	  <offsets>
+    <path>bushshadow.ac</path>
+    <nopreview/>
+
+    <offsets>
         <pitch-deg>-1</pitch-deg>
-        <x-m>-.65</x-m>
-        <y-m>-2.5</y-m>
-        <z-m>-0.83</z-m>
-      </offsets>
-      
-      <animation>
+        <x-m> 0.00</x-m>
+        <y-m> 0.00</y-m>
+        <z-m>-0.73</z-m>
+    </offsets>
+
+    <animation>
         <object-name>bushshadow</object-name>
         <type>select</type>
         <condition>
-		<and>
-          <not>
-            <property>/sim/rendering/rembrandt/enabled</property>
-          </not>
-          <property>/sim/rendering/shaders/skydome</property>
-          <property>sim/rendering/shadow-volume</property>
-	      <equals>
-		    <property>/fdm/jsbsim/bushkit</property>
-		    <value>1</value>
-		  </equals>
-		  <not>
-			<property>/sim/rendering/shadow</property>
-		  </not>
-		  <not>
-			<property>/fdm/jsbsim/unit[12]/WOW</property>
-		  </not>
-		  <not>
-			<property>/fdm/jsbsim/crash</property>
-		  </not>
-		  <not>
-			<property>/fdm/jsbsim/wing-damage/left-wing</property>
-		  </not>
-		  <not>
-			<property>/fdm/jsbsim/wing-damage/right-wing</property>
-		  </not>
-		 </and>
+            <and>
+                <not>
+                    <property>/sim/rendering/rembrandt/enabled</property>
+                </not>
+                <property>/sim/rendering/shaders/skydome</property>
+                <property>sim/rendering/shadow-volume</property>
+                <equals>
+                    <property>/fdm/jsbsim/bushkit</property>
+                    <value>1</value>
+                </equals>
+                <not>
+                    <property>/sim/rendering/shadow</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/unit[12]/WOW</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/crash</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/wing-damage/left-wing</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/wing-damage/right-wing</property>
+                </not>
+            </and>
         </condition>
-      </animation>
-	
-      <effect>
+    </animation>
+
+    <effect>
         <inherits-from>Effects/shadow-vol</inherits-from>
         <object-name>bushshadow</object-name>
-      </effect>
-	
-      <animation>
+    </effect>
+
+    <animation>
         <type>noshadow</type>
         <object-name>bushshadow</object-name>
-      </animation>
+    </animation>
 
-      <!-- pitch -->
-      <animation>
+    <!-- pitch -->
+    <animation>
         <type>rotate</type>
         <object-name>bushshadow</object-name>
         <property>/orientation/pitch-deg</property>
         <factor>-1.0</factor>
         <center>
-          <x-m>0</x-m>
-          <y-m>0</y-m>
-          <z-m>0</z-m>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
         </center>
         <axis>
-          <x>0</x>
-          <y>1</y>
-          <z>0</z>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
         </axis>
-      </animation>
+    </animation>
 
-      <!-- roll -->
-      <animation>
+    <!-- roll -->
+    <animation>
         <type>rotate</type>
         <object-name>bushshadow</object-name>
         <property>/orientation/roll-deg</property>
         <factor>1.0</factor>
         <center>
-          <x-m>0</x-m>
-          <y-m>0</y-m>
-          <z-m>0</z-m>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
         </center>
         <axis>
-          <x>1</x>
-          <y>0</y>
-          <z>0</z>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
         </axis>
-      </animation>
+    </animation>
 
-    </PropertyList>
+</PropertyList>

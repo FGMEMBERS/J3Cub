@@ -18,9 +18,9 @@
 
     <offsets>
         <pitch-deg>-1</pitch-deg>
-        <x-m>-.7</x-m>
-        <y-m>-2.6</y-m>
-        <z-m>-0.83</z-m>
+        <x-m> 0.00</x-m>
+        <y-m> 0.00</y-m>
+        <z-m>-0.7</z-m>
     </offsets>
 
     <animation>
