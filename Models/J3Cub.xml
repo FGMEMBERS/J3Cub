@@ -253,13 +253,6 @@
 
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
-        <!--object-name>navlight_left</object-name>
-        <object-name>navlight_right</object-name>
-        <object-name>navlight_back</object-name>
-        <object-name>strobe1</object-name>
-        <object-name>strobe2</object-name>
-        <object-name>navlight_back</object-name>
-        <object-name>BeaconOffX</object-name-->
         <object-name>propeller_slow</object-name>
         <object-name>propeller_fast</object-name>
     </effect>
@@ -301,7 +294,6 @@
         <object-name>cable_wheel_l</object-name>
         <object-name>cable_wheel_r</object-name>
         <object-name>Cube</object-name>
-        <object-name>Cube</object-name>
         <object-name>Cylinder_0</object-name>
         <object-name>Cylinder_1</object-name>
         <object-name>Cylinder.001</object-name>
@@ -312,7 +304,7 @@
         <object-name>Cylinder.006</object-name>
         <object-name>Cylinder.007</object-name>
         <object-name>Cylinder.008</object-name>
-        <object-name>door</object-name>
+        <object-name>door_interior</object-name>
         <object-name>door_handle</object-name>
         <object-name>floor_lever_l</object-name>
         <object-name>floor_lever_r</object-name>
@@ -355,12 +347,12 @@
         <object-name>throttle_base_rear</object-name>
         <object-name>throttle_front</object-name>
         <object-name>trim_handle</object-name>
-        <object-name>window_rear_l_1</object-name>
-        <object-name>window_rear_r_1</object-name>
-        <object-name>window_l_1</object-name>
-        <object-name>window_r_1</object-name>
-        <object-name>window_strut_l</object-name>
-        <object-name>window_strut_r</object-name>
+        <object-name>window_rear_l_1_interior</object-name>
+        <object-name>window_rear_r_1_interior</object-name>
+        <object-name>window_l_1_interior</object-name>
+        <object-name>window_r_1_interior</object-name>
+        <object-name>window_strut_l_interior</object-name>
+        <object-name>window_strut_r_interior</object-name>
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
     </effect>
@@ -1446,6 +1438,7 @@
  <animation>
   <type>rotate</type>
   <object-name>door</object-name>
+  <object-name>door_interior</object-name>
   <property>controls/door[0]</property>
   <factor>-130.0</factor>
   <center>
