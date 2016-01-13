@@ -1937,25 +1937,18 @@
  </offsets>
 </model>
 
-
-<!-- registration (Fr - immatriculation)   -->
-
-  <model>
-    <path>Aircraft/J3Cub/Models/Immat/immat.xml</path>
-    <offsets>
-      <x-m> 0.0 </x-m>
-      <y-m> 0.0 </y-m>
-      <z-m> 0.0 </z-m>
-      <roll-deg>    0.0 </roll-deg>
-      <pitch-deg>   0.0 </pitch-deg>
-      <heading-deg> 0.0 </heading-deg>
-    </offsets>
-  </model>
-
-    <!--  non-als ground shadow -->
-    <!--model-->
-        <!--path>Aircraft/J3Cub/Models/Effects/shadow.xml</path-->
-    <!--/model-->
+    <!-- registration (Fr - immatriculation)   -->
+    <model>
+        <path>Aircraft/J3Cub/Models/Immat/immat.xml</path>
+        <offsets>
+            <x-m> 0.0 </x-m>
+            <y-m> 0.0 </y-m>
+            <z-m> 0.0 </z-m>
+            <roll-deg>    0.0 </roll-deg>
+            <pitch-deg>   0.0 </pitch-deg>
+            <heading-deg> 0.0 </heading-deg>
+        </offsets>
+    </model>
 
     <!-- Pitot tube cover "remove before flight" -->
     <model>
@@ -1963,8 +1956,8 @@
         <path>Exterior/rbf/rbf.xml</path>
         <offsets>
             <x-m> 0.3376</x-m>
-            <y-m>-2.0794</y-m>
-            <z-m>-0.2499</z-m>
+            <y-m>-2.08</y-m>
+            <z-m>-0.2495</z-m>
         </offsets>
     </model>
     <animation>
