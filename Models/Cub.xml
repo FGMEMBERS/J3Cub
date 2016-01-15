@@ -714,7 +714,7 @@
 <!-- exhaust smoke; just a little pollution -->
 
 <model>
- <path>Aircraft/J3Cub/Models/Effects/exhaustsmoke.xml</path>
+ <path>Aircraft/J3Cub/Models/Effects/exhaustsmoke/exhaustsmoke.xml</path>
   <offsets>
    <x-m>-0.25</x-m>
    <y-m>0.25</y-m>
@@ -743,7 +743,7 @@
 <!--  ground shadow  -->
 
  <model>
-  <path>Aircraft/J3Cub/Models/Effects/shadow.xml</path>
+  <path>Aircraft/J3Cub/Models/Effects/shadow/shadow.xml</path>
  </model>
 
 

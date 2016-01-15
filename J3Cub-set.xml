@@ -22,15 +22,30 @@ version 2.0  090410-->
         <status>advanced production</status>
         <aircraft-version>3.7</aircraft-version>
         <rating>
-            <FDM type="int">4</FDM>
-            <systems type="int">4</systems>
+            <FDM type="int">3</FDM>
+            <systems type="int">3</systems>
             <model type="int">4</model>
-            <cockpit type="int">4</cockpit>
+            <cockpit type="int">3</cockpit>
         </rating>
 
         <flight-model archive="y">jsb</flight-model>
         <aero archive="y">J3Cub</aero>
         <fuel-fraction>0.8</fuel-fraction>
+
+        <!-- Position the pilot viewpoint and angle -->
+        <view>
+            <internal type="bool" archive="y">true</internal>
+            <config>
+                <!--y-->
+                <x-offset-m archive="y" type="double">-0.0 </x-offset-m>
+                <!--z-->
+                <y-offset-m archive="y" type="double"> -0.08 </y-offset-m>
+                <!--x-->
+                <z-offset-m archive="y" type="double"> 0.65 </z-offset-m>
+                <!--pitch-offset-deg type="double">-12</pitch-offset-deg-->
+                <default-field-of-view-deg>90</default-field-of-view-deg>
+            </config>
+        </view>
 
         <model>
             <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>

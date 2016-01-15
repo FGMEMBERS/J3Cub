@@ -151,7 +151,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
         </switch>
     </channel>
 
-    <channel name="JSBSim hydrodynamics integration">
+    <!--channel name="JSBSim hydrodynamics integration">
         <fcs_function name="tmp/floats-enabled-norm">
             <function>
                 <product>
@@ -177,11 +177,11 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                 </product>
             </function>
             <output>floats-enabled-norm</output>
-        </fcs_function>
+        </fcs_function-->
 
         <!-- FIXME: The delayed activation isn't pretty but, apparently,
                     the solid property isn't reliable at the begining. -->
-        <switch name="left-pontoon/contact-z-pos-in[0]">
+        <!--switch name="left-pontoon/contact-z-pos-in[0]">
             <default value="38.5"/>
             <test logic="AND" value="-50.0">
                 simulation/sim-time-sec GT 0.25
@@ -244,7 +244,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                 contact/unit[18]/solid NE 0
             </test>
             <output>contact/unit[18]/z-position</output>
-        </switch>
+        </switch-->
 
         <!--fcs_function name="left-pontoon/leakage-lbs_sec">
             <function>
@@ -317,7 +317,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                 <min>0.0</min>
                 <max>2500.0</max--> <!-- FIXME: Too much? Or too little? -->
             <!--/clipto>
-        </pid-->
-    </channel>
+        </pid>
+    </channel-->
 
 </system>
