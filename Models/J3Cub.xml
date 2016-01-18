@@ -775,15 +775,38 @@
         </condition>
     </animation>
 
-    <!-- tail gear rotate animation-->    
     <animation>
-        <type>rotate</type>
+        <name>TGear</name>
         <object-name>tail_wheel</object-name>
         <object-name>tail_wheel_strut_end</object-name>
         <object-name>tail_wheel_axle</object-name>
         <object-name>tail_wheel_bush</object-name>
         <object-name>tail_wheel_strut_end_bush</object-name>
         <object-name>tail_wheel_axle_bush</object-name>
+    </animation>
+
+    <!-- tail gear compression animation-->
+    <animation>
+        <type>rotate</type>
+        <object-name>TGear</object-name>
+        <property>gear/gear[0]/compression-norm</property>
+        <factor>-33.0</factor>
+        <center>
+            <x-m>5.05</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.63</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- tail gear rotate animation-->
+    <animation>
+        <type>rotate</type>
+        <object-name>TGear</object-name>
         <property>surface-positions/rudder-pos-norm</property>
         <factor>20.0</factor>
         <center>
@@ -2153,7 +2176,7 @@
     <animation>
         <type>pick</type>
         <object-name>tiedownL</object-name>
-        <object-name>TieDownLeft</object-name> <!-- tiedown handle -->
+        <object-name>TieDownLeft</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -2229,7 +2252,7 @@
     <animation>
         <type>pick</type>
         <object-name>tiedownR</object-name>
-        <object-name>TieDownRight</object-name> <!-- tiedown handle -->
+        <object-name>TieDownRight</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -2305,7 +2328,7 @@
     <animation>
         <type>pick</type>
         <object-name>tiedownT</object-name>
-        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
+        <object-name>TieDownTail</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>

@@ -36,14 +36,11 @@ version 2.0  090410-->
         <view>
             <internal type="bool" archive="y">true</internal>
             <config>
-                <!--y-->
-                <x-offset-m archive="y" type="double">-0.0 </x-offset-m>
-                <!--z-->
-                <y-offset-m archive="y" type="double"> -0.08 </y-offset-m>
-                <!--x-->
-                <z-offset-m archive="y" type="double"> 0.65 </z-offset-m>
-                <!--pitch-offset-deg type="double">-12</pitch-offset-deg-->
-                <default-field-of-view-deg>90</default-field-of-view-deg>
+                <x-offset-m archive="y" type="double">-0.0 </x-offset-m><!--y-->
+                <y-offset-m archive="y" type="double">-0.08 </y-offset-m><!--z-->
+                <z-offset-m archive="y" type="double"> 0.5 </z-offset-m><!--x-->
+                <pitch-offset-deg type="double">12</pitch-offset-deg>
+                <default-field-of-view-deg>95</default-field-of-view-deg>
             </config>
         </view>
 
