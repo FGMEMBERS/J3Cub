@@ -790,7 +790,7 @@
         <type>rotate</type>
         <object-name>TGear</object-name>
         <property>gear/gear[0]/compression-norm</property>
-        <factor>-33.0</factor>
+        <factor>-45.0</factor>
         <center>
             <x-m>5.05</x-m>
             <y-m>0.0</y-m>
