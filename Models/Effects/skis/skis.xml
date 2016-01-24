@@ -10,11 +10,11 @@
         <pitch-deg>0.0</pitch-deg>
     </offsets>
 
-    <effect>
+    <!--effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/skis/effectsMetal</inherits-from>
         <object-name>LeftSki</object-name>
         <object-name>RightSki</object-name>
-    </effect>
+    </effect-->
     <!--  Specularity fix -->
     <animation>
         <type>material</type>
