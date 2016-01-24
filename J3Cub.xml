@@ -847,6 +847,10 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <value> 0.0040 </value>
+           <property>gear/drag-coef[1]</property> <!-- bush wheels 36" -->
+           <property>gear/drag-coef[3]</property> <!-- Floats -->
+           <property>gear/drag-coef[4]</property> <!-- Amphibious -->
+           <property>gear/drag-coef[5]</property> <!-- Ski -->
          </product>
     </function>
 
