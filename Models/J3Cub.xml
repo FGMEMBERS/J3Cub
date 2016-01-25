@@ -381,7 +381,7 @@
         <object-name>window_r_0_interior</object-name>
     </effect> 
  
-     <!-- Hide interior glass when in exterior view
+     <!-- Hide interior glass when in exterior view -->
     <animation>
         <type>select</type>
         <object-name>window_top_interior</object-name>
@@ -391,9 +391,12 @@
         <object-name>window_l_0_interior</object-name>
         <object-name>window_r_0_interior</object-name>
         <condition>
-            <property>/sim/current-view/internal</property>
+            <or>
+                <property>/sim/current-view/internal</property>
+                <property>/environment/rain-norm</property>
+            </or>
         </condition>
-    </animation> -->
+    </animation>
 
     <!--  INSTRUMENTS  ***************************************************  -->
     <!-- panel models -->

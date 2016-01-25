@@ -6,7 +6,7 @@ MATERIAL "ac3dmat1.000" rgb 1.0000 1.0000 1.0000  amb 1.0000 1.0000 1.0000  emis
 MATERIAL "WhitePaint.003" rgb 0.9000 0.9000 0.9000  amb 0.9000 0.9000 0.9000  emis 0.0000 0.0000 0.0000  spec 0.1600 0.1600 0.1600  shi 50 trans 0.0000
 MATERIAL "wheel_mat" rgb 1.0000 1.0000 1.0000  amb 1.0000 1.0000 1.0000  emis 0.0000 0.0000 0.0000  spec 0.0000 0.0000 0.0000  shi 50 trans 0.0000
 OBJECT world
-name "Blender_export__j3cub-skisn.ac"
+name "Blender_export__j3cub-skis.ac"
 kids 26
 OBJECT poly
 name "LeftCableConnectB"
