@@ -47,6 +47,11 @@ version 2.0  090410-->
         <model>
             <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
 
+            <!-- Default livery -->
+            <livery>
+                <name type="string">Default</name>
+            </livery>
+
             <!-- The bushkit variants: default/35"/pontoons/amphibious/skis -->
             <variant alias="/fdm/jsbsim/bushkit"/>
 
@@ -353,6 +358,7 @@ version 2.0  090410-->
         </math_ext>
         <j3cub>
             <file>Nasal/tiedowns.nas</file>
+            <file>Nasal/liveries.nas</file>
         </j3cub>
         <Cub>
             <!--file>Nasal/weather.nas</file-->
