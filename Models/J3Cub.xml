@@ -1,0 +1,2554 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <path>Cub.ac</path>
+    
+    <model>
+        <name>Bushkit</name>
+        <path>Effects/bushkit/bushkit.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>Skis</name>
+        <path>Effects/skis/skis.xml</path>
+        <offsets>
+            <x-m>-0.499</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.10</z-m>
+            <pitch-deg>-18.8</pitch-deg>
+        </offsets>
+    </model>
+    
+    <nasal>
+        <load>
+
+            var rplayer = cmdarg();
+
+            io.include("Aircraft/j3cub/Nasal/registration_number.nas");
+
+            # Registration number
+            var regnum_path = rplayer.getNode("sim/multiplay/generic/string[0]").getPath();
+            setlistener(regnum_path, func (node) {
+                set_registration_number(rplayer, node.getValue());
+            }, 1, 0);
+
+            # Passengers
+            var pax_state_path = rplayer.getNode("sim/multiplay/generic/int[16]").getPath();
+
+            var passenger = rplayer.initNode("pax/passenger/present", 0, "BOOL");
+            var pilot = rplayer.initNode("pax/pilot/present", 0, "BOOL");
+
+            setlistener(pax_state_path, func (node) {
+                var state = node.getValue();
+                   pilot.setBoolValue(bits.test(state, 0));
+                passenger.setBoolValue(bits.test(state, 1));
+            }, 1, 0);
+
+            # Securing attributes
+            var securing_state_path = rplayer.getNode("sim/multiplay/generic/int[9]").getPath();
+
+            var pitot_cover   = rplayer.initNode("sim/model/j3cub/securing/pitot-cover-visible", 0, "BOOL");
+            var wheel_chock   = rplayer.initNode("sim/model/j3cub/securing/chock-visible", 0, "BOOL");
+            var left_tiedown  = rplayer.initNode("sim/model/j3cub/securing/tiedownL-visible", 0, "BOOL");
+            var right_tiedown = rplayer.initNode("sim/model/j3cub/securing/tiedownR-visible", 0, "BOOL");
+            var tail_tiedown  = rplayer.initNode("sim/model/j3cub/securing/tiedownT-visible", 0, "BOOL");
+
+            setlistener(securing_state_path, func (node) {
+                var state = node.getValue();
+                pitot_cover.setBoolValue(bits.test(state, 0));
+                wheel_chock.setBoolValue(bits.test(state, 1));
+                left_tiedown.setBoolValue(bits.test(state, 2));
+                right_tiedown.setBoolValue(bits.test(state, 3));
+                tail_tiedown.setBoolValue(bits.test(state, 4));
+            }, 1, 0);
+
+            # Make sure human occupants are always visible in remote aircraft
+            rplayer.initNode("sim/model/occupants", 1, "BOOL");
+
+            # Disable ALS 3D shadow for remote aircraft because of issue #387
+            rplayer.initNode("sim/rendering/shadow-volume", 0, "BOOL");
+
+            # Gear
+            rplayer.initNode("sim/multiplay/generic/int[6]", 0, "BOOL");
+            rplayer.initNode("sim/multiplay/generic/int[7]", 0, "BOOL");
+            rplayer.initNode("sim/multiplay/generic/int[8]", 0, "BOOL");
+
+            # Bush kit
+            rplayer.initNode("sim/model/variant", 0, "INT");
+
+            # Damage
+            rplayer.initNode("sim/multiplay/generic/int[14]", 0, "INT");
+            rplayer.initNode("sim/multiplay/generic/int[18]", 0, "INT");
+            rplayer.initNode("sim/multiplay/generic/int[19]", 0, "INT");
+
+            <![CDATA[
+                var livery_update = aircraft.livery_update.new("Aircraft/J3Cub/Models/Liveries");
+            ]]>
+
+        </load>
+
+        <unload>
+            <![CDATA[
+                livery_update.stop();
+            ]]>
+        </unload>
+
+    </nasal>
+
+    <params>
+        <door>
+            <property>sim/multiplay/generic/float[0]</property>
+        </door>
+        <windows>
+            <property>sim/multiplay/generic/float[1]</property>
+        </windows>
+        <crash>
+            <property>sim/multiplay/generic/int[15]</property>
+        </crash>
+        <gear_tail_broken>
+            <property>sim/multiplay/generic/int[6]</property>
+        </gear_tail_broken>
+        <gear_left_broken>
+            <property>sim/multiplay/generic/int[7]</property>
+        </gear_left_broken>
+        <gear_right_broken>
+            <property>sim/multiplay/generic/int[8]</property>
+        </gear_right_broken>
+        <bushkit>sim/model/variant</bushkit>
+        <gear-ski>
+            <ski-left-rollspeed-ms>rotors/main/blade[1]/position-deg</ski-left-rollspeed-ms>
+            <ski-right-rollspeed-ms>rotors/main/blade[2]/position-deg</ski-right-rollspeed-ms>
+        </gear-ski>
+
+        <!-- 0 = normal, 1 = broken, 2 = damaged -->
+        <pontoon_left_damaged>
+            <property>sim/multiplay/generic/int[10]</property>
+        </pontoon_left_damaged>
+        <pontoon_right_damaged>
+            <property>sim/multiplay/generic/int[11]</property>
+        </pontoon_right_damaged>
+
+        <!-- 0 = normal, 1 = broken, 2 = damaged -->
+        <wing_left_damaged>
+            <property>sim/multiplay/generic/int[18]</property>
+        </wing_left_damaged>
+        <wing_right_damaged>
+            <property>sim/multiplay/generic/int[19]</property>
+        </wing_right_damaged>
+
+        <gear>
+            <tail-rollspeed-ms>engines/engine[7]/rpm</tail-rollspeed-ms>  
+            <left-rollspeed-ms>engines/engine[7]/n1</left-rollspeed-ms>
+            <right-rollspeed-ms>engines/engine[7]/n2</right-rollspeed-ms>
+        </gear>
+        <gear-amphibious>
+            <front-left-compression-ft>engines/engine[3]/n1</front-left-compression-ft>
+            <front-left-position-norm>engines/engine[3]/n2</front-left-position-norm>
+            <front-left-rollspeed-ms>engines/engine[3]/rpm</front-left-rollspeed-ms>
+            <front-right-compression-ft>engines/engine[4]/n1</front-right-compression-ft>
+            <front-right-position-norm>engines/engine[4]/n2</front-right-position-norm>
+            <front-right-rollspeed-ms>engines/engine[4]/rpm</front-right-rollspeed-ms>
+            <rear-left-compression-ft>engines/engine[5]/n1</rear-left-compression-ft>
+            <rear-left-position-norm>engines/engine[5]/n2</rear-left-position-norm>
+            <rear-left-rollspeed-ms>engines/engine[5]/rpm</rear-left-rollspeed-ms>
+            <rear-right-compression-ft>engines/engine[6]/n1</rear-right-compression-ft>
+            <rear-right-position-norm>engines/engine[6]/n2</rear-right-position-norm>
+            <rear-right-rollspeed-ms>engines/engine[6]/rpm</rear-right-rollspeed-ms>
+        </gear-amphibious>
+
+        <water-rudder-norm>sim/multiplay/generic/float[5]</water-rudder-norm>
+
+        <securing>
+            <pitot-cover>sim/model/j3cub/securing/pitot-cover-visible</pitot-cover>
+            <chocks>sim/model/j3cub/securing/chock-visible</chocks>
+            <tiedowns>
+                <left>
+                    <visible>sim/model/j3cub/securing/tiedownL-visible</visible>
+                </left>
+                <right>
+                    <visible>sim/model/j3cub/securing/tiedownR-visible</visible>
+                </right>
+                <tail>
+                    <visible>sim/model/j3cub/securing/tiedownT-visible</visible>
+                </tail>
+            </tiedowns>
+        </securing>
+        <cockpit>
+            <electrical>
+                <gear-amphibious>/sim/model/j3cub/lighting/amphibious</gear-amphibious>
+            </electrical>
+        </cockpit>
+    </params>
+
+ <!--effect>
+	<inherits-from>Effects/grain/rust</inherits-from>
+	<object-name>fuselage</object-name>
+	<object-name>rudder</object-name>
+	<object-name>elevator</object-name>
+	<object-name>aileron_r</object-name>
+	<object-name>aileron_l</object-name>
+	<object-name>wing_r</object-name>
+	<object-name>wing_l</object-name>
+	<object-name>tailplane</object-name>
+	<object-name>wheel_strut_r</object-name>
+	<object-name>wheel_strut_l</object-name>
+	<object-name>cowl_top</object-name>
+	<object-name>cowl_under</object-name>
+	<object-name>bulkhead_strut_r</object-name>
+	<object-name>bulkhead_strut_l</object-name>
+	<object-name>bulkhead_top</object-name>
+	<object-name>door</object-name>
+	<object-name>nose</object-name>
+	<object-name>nose_strut_r</object-name>
+	<object-name>nose_strut_l</object-name>
+	<object-name>nose_top_1</object-name>
+	<object-name>nose_under</object-name>
+	<object-name>roof_strut_r</object-name>
+	<object-name>roof_strut_l</object-name>
+	<object-name>roof_strut_long_r</object-name>
+	<object-name>roof_strut_long_l</object-name>
+	<object-name>roof_strut_cross</object-name>
+	<object-name>step</object-name>
+	<object-name>spar</object-name>
+	<object-name>strut_vert_rear_r</object-name>
+	<object-name>strut_vert_rear_l</object-name>
+	<object-name>strut_vert_fr_r</object-name>
+	<object-name>strut_vert_fr_l</object-name>
+	<object-name>strut_tie_r</object-name>
+	<object-name>strut_tie_l</object-name>
+	<object-name>strut_rear_r</object-name>
+	<object-name>strut_rear_l</object-name>
+	<object-name>strut_front_r</object-name>
+	<object-name>strut_front_l</object-name>
+	<object-name>strut_fix_r</object-name>
+	<object-name>strut_fix_l</object-name>
+	<object-name>strut_fix_rear_1_</object-name>
+	<object-name>strut_fix_rear_1_l</object-name>
+	<object-name>strut_fix_rear_2_</object-name>
+	<object-name>strut_fix_rear_2_l</object-name>
+ </effect-->
+	
+ <!--effect>
+	<inherits-from>Effects/grain/dirt</inherits-from>
+	<object-name>tail_struts</object-name>
+	<object-name>tail_wheel_strut</object-name>
+	<object-name>wheel_strut_r</object-name>
+	<object-name>wheel_strut_l</object-name>
+	<object-name>wheel_strut_link_r</object-name>
+	<object-name>wheel_strut_link_l</object-name>
+	<object-name>wheel_hub_r</object-name>
+	<object-name>wheel_hub_l</object-name>
+	<object-name>tyre_r</object-name>
+	<object-name>tyre_l</object-name>
+ </effect-->
+
+    <!-- Register transparent objects for Rembrandt effects 
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>screen</object-name>
+        <object-name>window_top</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_r_0</object-name>
+        <object-name>propeller_fast</object-name>
+        <object-name>propeller_slow</object-name>
+    </effect>-->
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>propeller_slow</object-name>
+        <object-name>propeller_fast</object-name>
+    </effect>
+  
+	<effect>
+        <inherits-from>Effects/exterior/exterior-glass-reflection</inherits-from>
+        <object-name>screen</object-name>
+        <object-name>window_top</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_r_0</object-name>
+    </effect>
+
+    <!-- interior effects -->
+
+    <effect>
+        <inherits-from>Effects/interior/interior</inherits-from>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <object-name>bulkhead_strut_l</object-name>
+        <object-name>bulkhead_strut_r</object-name>
+        <object-name>bulkhead_top</object-name>
+        <object-name>cabin_cable_l</object-name>
+        <object-name>cabin_cable_r</object-name>
+        <object-name>cabin_heat</object-name>
+        <object-name>cabin_rudder_cable_l</object-name>
+        <object-name>cabin_rudder_cable_r</object-name>
+        <object-name>cable_guide_1_l</object-name>
+        <object-name>cable_guide_1_r</object-name>
+        <object-name>cable_guide_2_l</object-name>
+        <object-name>cable_guide_2_r</object-name>
+        <object-name>cable_guide_3_l</object-name>
+        <object-name>cable_guide_3_r</object-name>
+        <object-name>cable_guide_4_l</object-name>
+        <object-name>cable_guide_4_r</object-name>
+        <object-name>cable_l</object-name>
+        <object-name>cable_r</object-name>
+        <object-name>cable_wheel_l</object-name>
+        <object-name>cable_wheel_r</object-name>
+        <object-name>Cube</object-name>
+        <object-name>Cylinder_0</object-name>
+        <object-name>Cylinder_1</object-name>
+        <object-name>Cylinder.001</object-name>
+        <object-name>Cylinder.002</object-name>
+        <object-name>Cylinder.003</object-name>
+        <object-name>Cylinder.004</object-name>
+        <object-name>Cylinder.005</object-name>
+        <object-name>Cylinder.006</object-name>
+        <object-name>Cylinder.007</object-name>
+        <object-name>Cylinder.008</object-name>
+        <object-name>door_interior</object-name>
+        <object-name>door_handle</object-name>
+        <object-name>floor_lever_l</object-name>
+        <object-name>floor_lever_r</object-name>
+        <object-name>fuel_gauge</object-name>
+        <object-name>fuel_gauge_cap</object-name>
+        <object-name>fuel_pipe</object-name>
+        <object-name>fuel_tank</object-name>
+        <object-name>FuelCutoff</object-name>
+        <object-name>panel</object-name>
+        <object-name>pedal_rest_l</object-name>
+        <object-name>pedal_rest_l.001</object-name>
+        <object-name>pitot</object-name>
+        <object-name>placard</object-name>
+        <object-name>primer</object-name>
+        <object-name>roof_strut_cross</object-name>
+        <object-name>roof_strut_l</object-name>
+        <object-name>roof_strut_r</object-name>
+        <object-name>roof_strut_long_l</object-name>
+        <object-name>roof_strut_long_r</object-name>
+        <object-name>rudderpedal_rear_l</object-name>
+        <object-name>rudderpedal_rear_r</object-name>
+        <object-name>seat_front</object-name>
+        <object-name>seat_rear</object-name>
+        <object-name>solo_placard</object-name>
+        <object-name>spar</object-name>
+        <object-name>step</object-name>
+        <object-name>stick_back</object-name>
+        <object-name>stick_front</object-name>
+        <object-name>window_strut_l</object-name>
+        <object-name>window_strut_r</object-name>
+        <object-name>screen_strut_l</object-name>
+        <object-name>screen_strut_r</object-name>
+        <object-name>strut_tie_r</object-name>
+        <object-name>strut_vert_fr_l</object-name>
+        <object-name>strut_vert_fr_r</object-name>
+        <object-name>strut_vert_rear_l</object-name>
+        <object-name>strut_vert_rear_r</object-name>
+        <object-name>throttle_back</object-name>
+        <object-name>throttle_base_fr</object-name>
+        <object-name>throttle_base_rear</object-name>
+        <object-name>throttle_front</object-name>
+        <object-name>trim_handle</object-name>
+        <object-name>window_rear_l_1_interior</object-name>
+        <object-name>window_rear_r_1_interior</object-name>
+        <object-name>window_l_1_interior</object-name>
+        <object-name>window_r_1_interior</object-name>
+        <object-name>window_strut_l_interior</object-name>
+        <object-name>window_strut_r_interior</object-name>
+        <object-name>wing_l_interior</object-name>
+        <object-name>wing_r_interior</object-name>
+    </effect>
+
+    <!--effect>
+        <inherits-from>Effects/interior/interior-glass-shadow</inherits-from>
+        <object-name>screen</object-name>
+        <object-name>window_top</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_r_0</object-name>
+    </effect--> 
+
+    <effect>
+        <inherits-from>Effects/interior/interior-glass-reflection-front</inherits-from>
+        <object-name>window_top_interior</object-name>
+        <object-name>screen_interior</object-name>  
+    </effect>
+
+    <effect>
+        <inherits-from>Effects/interior/interior-glass-reflection-side</inherits-from>
+        <object-name>window_rear_l_0_interior</object-name>
+        <object-name>window_rear_r_0_interior</object-name>
+        <object-name>window_l_0_interior</object-name>
+        <object-name>window_r_0_interior</object-name>
+    </effect> 
+ 
+     <!-- Hide interior glass when in exterior view -->
+    <animation>
+        <type>select</type>
+        <object-name>window_top_interior</object-name>
+        <object-name>screen_interior</object-name>
+        <object-name>window_rear_l_0_interior</object-name>
+        <object-name>window_rear_r_0_interior</object-name>
+        <object-name>window_l_0_interior</object-name>
+        <object-name>window_r_0_interior</object-name>
+        <condition>
+            <or>
+                <property>/sim/current-view/internal</property>
+                <property>/environment/rain-norm</property>
+            </or>
+        </condition>
+    </animation>
+
+    <!--  INSTRUMENTS  ***************************************************  -->
+    <!-- panel models -->
+    <model>
+        <path>Aircraft/J3Cub/Models/alt.xml</path>
+        <offsets>
+            <x-m>-0.172</x-m>
+            <y-m> 0.095</y-m>
+            <z-m>-0.46</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Aircraft/J3Cub/Models/compass.xml</path>
+        <offsets>
+            <x-m>-0.165</x-m>
+            <y-m> 0.0</y-m>
+            <z-m>-0.45</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Aircraft/J3Cub/Models/asi.xml</path>
+        <offsets>
+            <x-m>-0.172</x-m>
+            <y-m> -0.095</y-m>
+            <z-m>-0.46</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Aircraft/J3Cub/Models/tach.xml</path>
+        <offsets>
+            <x-m>-0.172</x-m>
+            <y-m> -0.19</y-m>
+            <z-m>-0.46</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Aircraft/J3Cub/Models/oil.xml</path>
+        <offsets>
+            <x-m>-0.172</x-m>
+            <y-m> 0.19</y-m>
+            <z-m>-0.46</z-m>
+        </offsets>
+    </model>
+
+<!--  fuel gauge: the stick in front of windscreen  -->
+  
+ <animation>
+        <type>translate</type>
+        <object-name>fuel_gauge</object-name>
+        <property>consumables/fuel/total-fuel-gals</property>
+        <factor>0.01</factor>
+     <center>
+        <x-m>-0.597</x-m>
+        <y-m>0.0</y-m>
+        <z-m>-0.185</z-m>
+    </center>        
+    <axis>
+         <x>0.0</x>
+         <y>0.0</y>
+         <z>1.0</z>
+       </axis>
+    </animation>
+
+ <!-- Despite being a single-sided mesh, the screen still seems opaque from
+     inside the aircraft, so we fudge it -->
+  <animation>
+    <type>select</type>
+    <object-name>screen</object-name>
+    <condition>
+      <not-equals>
+        <property>sim/current-view/view-number</property>
+        <value>0</value>
+      </not-equals>
+    </condition>
+  </animation>
+<!--  BASIC AIRCRAFT FEATURES  **********************************************************  -->
+
+<!-- propeller -->
+
+  <animation>
+    <type>select</type>
+    <object-name>propeller</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>300</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propeller_slow</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine/rpm</property>
+        <value>1500</value>
+      </less-than>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>200</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propeller_fast</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>1500</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>propeller</object-name>
+    <object-name>propeller_slow</object-name>
+    <object-name>propeller_fast</object-name>
+    <property>engines/engine[0]/rpm</property>
+    <factor>-1</factor>
+    <center>
+   <x-m>-1.39</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.508</z-m>
+  </center>
+   <axis>
+    <x>1.0</x>
+    <y>0.0</y>
+    <z>0.0</z>
+   </axis>
+  </animation>
+
+<!--  control surfaces   -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>aileron_l</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <factor>-18.0</factor>
+  <axis>
+    <x1-m>1.219</x1-m>
+    <y1-m>-2.350</y1-m>
+    <z1-m>0.059</z1-m>
+    <x2-m>1.219</x2-m>
+    <y2-m>-4.473</y2-m>
+    <z2-m>0.090</z2-m>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>aileron_r</object-name>
+  <property>surface-positions/right-aileron-pos-norm</property>
+  <factor>18.0</factor>
+  <axis>
+    <x1-m>1.219</x1-m>
+    <y1-m>2.324</y1-m>
+    <z1-m>0.061</z1-m>
+    <x2-m>1.219</x2-m>
+    <y2-m>4.438</y2-m>
+    <z2-m>0.095</z2-m>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>elevator</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1</ind>
+    <dep>-29</dep>
+   </entry>
+   <entry>
+    <ind>1</ind>
+    <dep>34</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>4.892</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.198</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>30.0</factor>
+  <center>
+   <x-m>4.895</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.29</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+</animation>
+
+	<!-- Tail Gear No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tail_wheel_strut_end</object-name>
+        <object-name>tail_wheel_axle</object-name>
+        <object-name>tail_wheel</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_tail_broken/property"/>
+                </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <!-- bush and ski -->
+    <animation>
+        <type>select</type>
+        <object-name>tail_wheel_strut_end_bush</object-name>
+        <object-name>tail_wheel_axle_bush</object-name>
+        <object-name>tail_wheel_bush</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_tail_broken/property"/>
+                </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Gear No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_l</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_left_broken/property"/>
+                </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <!-- bush and ski -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_l_bush</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_left_broken/property"/>
+                </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Gear No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_r</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_right_broken/property"/>
+                </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <!-- bush and ski -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_r_bush</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_right_broken/property"/>
+                </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Ski No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxle</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftCableConnectT</object-name>
+        <object-name>LeftSkiSpring</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+       <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_left_broken/property"/>
+                </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Ski No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxle</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <object-name>RightSkiWireB</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+        <object-name>RightCableConnectT</object-name>
+        <object-name>RightSkiSpring</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_right_broken/property"/>
+                </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <name>TGear</name>
+        <object-name>tail_wheel</object-name>
+        <object-name>tail_wheel_strut_end</object-name>
+        <object-name>tail_wheel_axle</object-name>
+        <object-name>tail_wheel_bush</object-name>
+        <object-name>tail_wheel_strut_end_bush</object-name>
+        <object-name>tail_wheel_axle_bush</object-name>
+    </animation>
+
+    <!-- tail gear compression animation-->
+    <animation>
+        <type>rotate</type>
+        <object-name>TGear</object-name>
+        <property>gear/gear[0]/compression-norm</property>
+        <factor>-45.0</factor>
+        <center>
+            <x-m>5.05</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.63</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- tail gear rotate animation-->
+    <animation>
+        <type>rotate</type>
+        <object-name>TGear</object-name>
+        <property>surface-positions/rudder-pos-norm</property>
+        <factor>20.0</factor>
+        <center>
+            <x-m>5.05</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.572</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+        </axis>
+    </animation>
+
+    <!-- suspension left gear-->
+    <animation>
+        <name>LGear</name>
+        <object-name>tyre_l</object-name>
+        <object-name>tyre_l_bush</object-name>
+        <object-name>axle_l</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>suspension_lower_l</object-name>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxle</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+        <object-name>LeftSkiSpring</object-name>
+    </animation> 
+
+    <animation>
+        <type>rotate</type>
+        <object-name>LGear</object-name>
+        <property>gear/gear[1]/compression-norm</property>
+        <factor>-5.0</factor>
+        <center>
+            <x-m>0.300</x-m>
+            <y-m>-0.360</y-m>
+            <z-m>-1.175</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- suspension right gear-->
+    <animation>
+        <name>RGear</name>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_r_bush</object-name>
+        <object-name>axle_r</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>suspension_lower_r</object-name>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxle</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <object-name>RightSkiWireB</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <object-name>RightSkiSpring</object-name>
+    </animation> 
+
+    <animation>
+        <type>rotate</type>
+        <object-name>RGear</object-name>
+        <property>gear/gear[1]/compression-norm</property>
+        <factor>-4.8</factor>
+        <center>
+            <x-m>0.300</x-m>
+            <y-m>0.360</y-m>
+            <z-m>-1.175</z-m>
+        </center>
+        <axis>
+            <x>-1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- account for tail dragger roll-out pitch change -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+        <object-name>LeftSkiSpring</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <condition>
+            <less-than>
+               <property>/position/altitude-agl-m</property>
+               <value>1.4779</value>
+            </less-than>
+        </condition>
+        <property>/orientation/pitch-deg</property>
+        <interpolation>
+            <entry>
+                <ind>13.97</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.0</ind>
+                <dep>13.97</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.02994</x-m>
+            <y-m>-0.87903</y-m>
+            <z-m>-1.60842</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left ski atan above-equal 1.78 agl -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+        <object-name>LeftSkiSpring</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>10.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.02994</x-m>
+            <y-m>-0.87903</y-m>
+            <z-m>-1.60842</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left front bungee (top) ski wire(agl-atan) 
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>7.5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.1913</x-m>
+            <y-m>-0.3447</y-m>
+            <z-m>-1.1786</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-2</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.1913</x-m>
+            <y-m>-0.3447</y-m>
+            <z-m>-1.1786</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>-->
+
+    <!-- rotate left front bottom ski wire (alg-atan)
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-1.5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-1.3481</x-m>
+            <y-m>-0.6568</y-m>
+            <z-m>-1.6507</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-1</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-1.3481</x-m>
+            <y-m>-0.6568</y-m>
+            <z-m>-1.6507</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>-->
+
+    <!-- rotate left back ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireB</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-3</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 1.4231</x-m>
+            <y-m>-0.9603</y-m>
+            <z-m>-1.3955</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation> -->
+
+    <!-- account for tail dragger roll-out pitch change -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <object-name>RightSkiWireB</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <object-name>RightSkiSpring</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <condition>
+            <less-than>
+               <property>/position/altitude-agl-m</property>
+               <value>1.4779</value>
+            </less-than>
+        </condition>
+        <property>/orientation/pitch-deg</property>
+        <interpolation>
+            <entry>
+                <ind>13.97</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.0</ind>
+                <dep>13.97</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.03000</x-m>
+            <y-m> 1.86823</y-m>
+            <z-m>-1.60836</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    
+    <!-- rotate right ski atan above-equal 1.78 agl -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <object-name>RightSkiWireB</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <object-name>RightSkiSpring</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>10.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 0.03000</x-m>
+            <y-m> 1.86823</y-m>
+            <z-m>-1.60836</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate right front bungee (top) ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>2</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.1540</x-m>
+            <y-m> 0.3487</y-m>
+            <z-m>-1.1909</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.1540</x-m>
+            <y-m> 0.3487</y-m>
+            <z-m>-1.1909</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.1540</x-m>
+            <y-m> 0.3487</y-m>
+            <z-m>-1.1909</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+        </axis>
+    </animation> -->
+
+    <!-- rotate right front bottom ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-1.5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-1.3472</x-m>
+            <y-m> 0.6593</y-m>
+            <z-m>-1.6495</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>2</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.844</x-m>
+            <y-m> 0.9575</y-m>
+            <z-m>-1.1582</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation> -->
+
+    <!-- rotate right rear ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireB</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-3.5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 1.4278</x-m>
+            <y-m> 0.9737</y-m>
+            <z-m>-1.3889</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation> -->
+
+    <!-- wheel spin animation -->
+    <animation>
+        <type>spin</type>
+        <object-name>tyre_l</object-name>
+        <object-name>tyre_l_bush</object-name>
+        <expression>
+            <product>
+                <property alias="/params/gear/left-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-left</property>
+            </product>
+        </expression>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.030</x-m>
+            <y-m>-0.907</y-m>
+            <z-m>-1.608</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_r_bush</object-name>
+        <expression>
+            <product>
+                <property alias="/params/gear/right-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-right</property>
+            </product>
+        </expression>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+         <center>
+            <x-m> 0.030</x-m>
+            <y-m> 0.907</y-m>
+            <z-m>-1.608</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>tail_wheel</object-name>
+        <object-name>tail_wheel_bush</object-name>
+        <expression>
+            <product>
+                <property alias="/params/gear/tail-rollspeed-ms"/>
+                <property>/fdm/jsbsim/gear/gear-spin-tail</property>
+            </product>
+        </expression>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+         <center>
+            <x-m>  5.15522 </x-m>
+            <y-m> -0.0003  </y-m>
+            <z-m> -0.66759 </z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>LeftSkiWheel</object-name>
+        <property alias="/params/gear-ski/ski-left-rollspeed-ms"/>
+        <factor>18</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.74759</x-m>
+            <y-m>-1.00857</y-m>
+            <z-m>-1.98311</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>RightSkiWheel</object-name>
+        <property alias="/params/gear-ski/ski-right-rollspeed-ms"/>
+        <factor>18</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.74511</x-m>
+            <y-m> 1.01623</y-m>
+            <z-m>-1.97812</z-m>
+        </center>
+    </animation>
+
+<!--  INTERNAL EFFECTS  *************************************************  -->
+
+ <!-- door and window  -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>door</object-name>
+  <object-name>door_interior</object-name>
+  <property>controls/door[0]</property>
+  <factor>-130.0</factor>
+  <center>
+   <x-m>0.17</x-m>
+   <y-m>0.352</y-m>
+   <z-m>-0.823</z-m>
+  </center>
+  <axis>
+   <x>1.00</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>door_handle</object-name>
+  <property>controls/door[0]</property>
+  <factor>-130</factor>
+  <center>
+   <x-m>0.17</x-m>
+   <y-m>0.352</y-m>
+   <z-m>-0.823</z-m>
+  </center>
+  <axis>
+   <x>1.00</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>pick</type>
+  <object-name>door_handle</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>
+       if(getprop("controls/door[0]") > 0) {
+         interpolate("controls/door[0]", 0, 1);
+       } else {
+         interpolate("controls/door[0]", 1, 1);
+       }
+      </script>
+    </binding>
+  </action>    
+</animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>door_handle</object-name>
+  <property>controls/door[0]</property>
+  <factor>90</factor>
+  <center>
+   <x-m>0.415</x-m>
+   <y-m>0.345</y-m>
+   <z-m>-0.521</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1.00</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>pick</type>
+  <object-name>FuelCutoff</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-toggle</command>
+      <property>consumables/fuel/tank/selected</property>
+    </binding>
+  </action>    
+</animation>
+
+<animation>
+  <type>translate</type>
+  <object-name>FuelCutoff</object-name>
+  <property>consumables/fuel/tank/selected</property>
+  <factor>-0.06</factor>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+
+ <animation>
+  <type>rotate</type>
+  <object-name>window_r</object-name>
+  <property>controls/door[0]</property>
+  <factor>89</factor>
+  <center>
+   <x-m>0.55</x-m>
+   <y-m>0.352</y-m>
+   <z-m>-0.025</z-m>
+  </center>
+  <axis>
+   <x>1.00</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>trim_handle</object-name>
+  <property>controls/flight/elevator-trim</property>
+  <factor>500</factor>
+  <center>
+    <x-m>0.414</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-0.804</z-m>
+  </center>
+  <axis>
+    <y>1</y>
+  </axis>
+</animation>
+
+
+<!-- pilot (and safety belts)  -->
+
+  <model>
+    <name>pilot</name>
+    <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+    <offsets>
+      <x-m>0.617</x-m>
+      <y-m>0.0</y-m>
+      <z-m>-0.776</z-m>
+    </offsets>
+  </model>
+
+  <!--  animation>
+    <type>select</type>
+    <object-name>pilot</object-name>
+    <object-name>pilot_belt</object-name>
+    <condition>
+      <not-equals>
+        <property>sim/current-view/view-number</property>
+        <value>0</value>
+      </not-equals>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>copilot_belt</object-name>
+    <condition>
+      <not-equals>
+        <property>sim/current-view/name</property>
+        <value>Co-Pilot View</value>
+      </not-equals>
+    </condition>
+  </animation  -->
+
+<!-- joysticks  -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>stick_front</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>-8</factor>
+  <center>
+   <x-m>-0.050</x-m>
+   <y-m>0.00</y-m>
+   <z-m>-1.135</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>stick_front</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>-8</factor>
+  <center>
+   <x-m>-0.050</x-m>
+   <y-m>0.00</y-m>
+   <z-m>-1.135</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>stick_back</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>-8</factor>
+  <center>
+   <x-m>0.655</x-m>
+   <y-m>0.00</y-m>
+   <z-m>-1.135</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>stick_back</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>-8</factor>
+  <center>
+   <x-m>0.655</x-m>
+   <y-m>0.00</y-m>
+   <z-m>-1.135</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<!-- throttle    -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_front</object-name>
+  <property>controls/engines/engine/throttle</property>
+  <factor>36</factor>
+  <center>
+   <x-m>0.058</x-m>
+   <y-m>-0.332</y-m>
+   <z-m>-0.582</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_back</object-name>
+  <property>controls/engines/engine/throttle</property>
+  <factor>36</factor>
+  <center>
+   <x-m>0.718</x-m>
+   <y-m>-0.332</y-m>
+   <z-m>-0.582</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<!-- rudder pedals; front only and just token movement -->
+
+<animation>
+  <type>rotate</type>
+  <object-name>rudderpedal_l</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>15</factor>
+  <center>
+   <x-m>-0.563</x-m>
+   <y-m>-0.256</y-m>
+   <z-m>-1.050</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>rudderpedal_r</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>15</factor>
+  <center>
+   <x-m>-0.563</x-m>
+   <y-m>-0.256</y-m>
+   <z-m>-1.050</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<!--  EXTERNAL EFFECTS **********************************************************  -->
+
+<!-- water spray (tyre smoke if you want it) -->
+  <!--model>
+    <path>Aircraft/Generic/Effects/rain-port.xml</path>
+    <name>rain-port</name>
+    <offsets>
+      <x-m>0.1</x-m>
+      <y-m>-0.9</y-m>
+      <z-m>-1.85</z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Generic/Effects/rain-stbd.xml</path>
+    <name>rain-stbd</name>
+    <offsets>
+      <x-m>0.1</x-m>
+      <y-m>0.9</y-m>
+      <z-m>-1.85</z-m>
+    </offsets>
+  </model>
+  
+ <model>
+    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-port.xml</path>
+    <name>tyre-smoke-port</name>
+    <offsets>
+      <x-m>0.1</x-m>
+      <y-m>-0.9</y-m>
+      <z-m>-1.85</z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-stbd.xml</path>
+    <name>tyre-smoke-stbd</name>
+    <offsets>
+      <x-m>0.1</x-m>
+      <y-m>0.9</y-m>
+      <z-m>-1.85</z-m>
+    </offsets>
+  </model    -->
+  
+  
+    <!-- MOD: Tyre smoke -->
+    <model>
+        <path>Effects/tyresmoke/tyre-smoke-tail.xml</path>
+        <object-name>tyre-smoke-n</object-name>
+        <offsets>
+            <x-m> -1. </x-m>
+            <y-m>  0.0 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/tyresmoke/tyre-smoke-port.xml</path>
+        <object-name>tyre-smoke-p</object-name>
+        <offsets>
+            <x-m> .3 </x-m>
+            <y-m> -1.15 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/tyresmoke/tyre-smoke-stbd.xml</path>
+        <object-name>tyre-smoke-s</object-name>
+        <offsets>
+            <x-m> .3 </x-m>
+            <y-m> 1.15 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+    <!-- MODEND: Tyre smoke -->
+
+    <!-- MOD: Tyre Spray -->
+    <model>
+        <path>Effects/tyrespray/rain-tail.xml</path>
+        <name>rain-tail</name>
+        <offsets>
+            <x-m> -1. </x-m>
+            <y-m>  0.0 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/tyrespray/rain-port.xml</path>
+        <name>rain-port</name>
+        <offsets>
+            <x-m> .3 </x-m>
+            <y-m> -1.15 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/tyrespray/rain-stbd.xml</path>
+        <name>rain-stbd</name>
+        <offsets>
+            <x-m>0.1</x-m>
+            <y-m>0.9</y-m>
+            <z-m>-1.85</z-m>
+        </offsets>
+    </model>
+    <!-- MODEND: Tyre Spray -->
+
+    <!-- MOD: Floats Spray-->
+    <model>
+        <path>Effects/pontoon/left-spray.xml</path>
+        <name>spray-left</name>
+        <offsets>
+            <x-m>-1.0</x-m>
+            <y-m>-1.5</y-m>
+            <z-m>-2.0</z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/pontoon/right-spray.xml</path>
+        <name>spray-right</name>
+        <offsets>
+            <x-m>-1.0</x-m>
+            <y-m>1.5</y-m>
+            <z-m>-2.0</z-m>
+        </offsets>
+    </model>
+    <!-- MODEND: Floats Spray-->
+
+    <!-- MOD: Floats Wake-->
+    <model>
+        <path>Effects/pontoon/left-wake.xml</path>
+        <name>spray-wake</name>
+        <offsets>
+            <x-m>1</x-m>
+            <y-m>-1.5</y-m>
+            <z-m>-4.25</z-m>
+            <pitch-deg> -50 </pitch-deg>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/pontoon/right-wake.xml</path>
+        <name>spray-wake</name>
+        <offsets>
+            <x-m>1</x-m>
+            <y-m>1.5</y-m>
+            <z-m>-4.25</z-m>
+            <pitch-deg> -50 </pitch-deg>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/pontoon/middle-wake.xml</path>
+        <name>spray-wake</name>
+        <offsets>
+            <x-m>1</x-m>
+            <y-m>0</y-m>
+            <z-m>-4.25</z-m>
+            <pitch-deg> -55 </pitch-deg>
+        </offsets>
+    </model>
+
+    <animation>
+        <type>material</type>
+        <object-name>fuselage</object-name>
+        <object-name>rudder</object-name>
+        <object-name>elevator</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>tailplane</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>cowl_top</object-name>
+        <object-name>cowl_under</object-name>
+        <object-name>bulkhead_strut_r</object-name>
+        <object-name>bulkhead_strut_l</object-name>
+        <object-name>bulkhead_top</object-name>
+        <object-name>door</object-name>
+        <object-name>door_interior</object-name>
+        <object-name>nose</object-name>
+        <object-name>nose_strut_r</object-name>
+        <object-name>nose_strut_l</object-name>
+        <object-name>nose_top_1</object-name>
+        <object-name>nose_under</object-name>
+        <object-name>roof_strut_r</object-name>
+        <object-name>roof_strut_l</object-name>
+        <object-name>roof_strut_long_r</object-name>
+        <object-name>roof_strut_long_l</object-name>
+        <object-name>roof_strut_cross</object-name>
+        <object-name>step</object-name>
+        <object-name>spar</object-name>
+        <object-name>strut_vert_rear_r</object-name>
+        <object-name>strut_vert_rear_l</object-name>
+        <object-name>strut_vert_fr_r</object-name>
+        <object-name>strut_vert_fr_l</object-name>
+        <object-name>strut_tie_r</object-name>
+        <object-name>strut_tie_l</object-name>
+        <object-name>strut_rear_r</object-name>
+        <object-name>strut_rear_l</object-name>
+        <object-name>strut_front_r</object-name>
+        <object-name>strut_front_l</object-name>
+        <object-name>strut_fix_r</object-name>
+        <object-name>strut_fix_l</object-name>
+        <object-name>strut_fix_rear_1_</object-name>
+        <object-name>strut_fix_rear_1_l</object-name>
+        <object-name>strut_fix_rear_2_</object-name>
+        <object-name>strut_fix_rear_2_l</object-name>
+        <object-name>window_l_0</object-name>
+        <object-name>window_l_0_interior</object-name>
+        <object-name>window_l_1</object-name>
+        <object-name>window_l_1_interior</object-name>
+        <object-name>window_r_0</object-name>
+        <object-name>window_r_0_interior</object-name>
+        <object-name>window_r_1</object-name>
+        <object-name>window_r_1_interior</object-name>
+        <object-name>window_rear_l_0</object-name>
+        <object-name>window_rear_l_0_interior</object-name>
+        <object-name>window_rear_l_1</object-name>
+        <object-name>window_rear_l_1_interior</object-name>
+        <object-name>window_rear_r_0</object-name>
+        <object-name>window_rear_r_0_interior</object-name>
+        <object-name>window_rear_r_1</object-name>
+        <object-name>window_rear_r_1_interior</object-name>
+        <object-name>tyre_l</object-name>
+        <object-name>tyre_r</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>suspension_low_2_l</object-name>
+        <object-name>suspension_low_2_r</object-name>
+        <object-name>suspension_lower_l</object-name>
+        <object-name>suspension_lower_r</object-name>
+        <object-name>suspension_tie</object-name>
+        <object-name>suspension_upper_l</object-name>
+        <object-name>suspension_upper_r</object-name>
+        <object-name>window_strut_l</object-name>
+        <object-name>window_strut_l_interior</object-name>
+        <object-name>window_strut_r</object-name>
+        <object-name>window_strut_r_interior</object-name>
+        <object-name>screen_strut_l</object-name>
+        <object-name>screen_strut_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>wing_l_interior</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_r_interior</object-name>
+        <object-name>Cylinder_0</object-name>
+        <object-name>Cylinder_1</object-name>
+        <object-name>handle_l</object-name>
+        <object-name>handle_r</object-name>
+        <object-name>tail_struts</object-name>
+        <object-name>tail_wheel_axle</object-name>
+        <object-name>tail_wheel_strut</object-name>
+        <object-name>tail_wheel_strut_end</object-name>
+        <object-name>air_scoop_l</object-name>
+        <object-name>air_scoop_r</object-name>
+        <object-name>tail_wheel_strut_end_bush</object-name>
+        <object-name>tail_wheel_axle_bush</object-name>
+        <object-name>tyre_l_bush</object-name>
+        <object-name>tyre_r_bush</object-name>
+        <property-base>sim/model/livery/</property-base>
+        <texture-prop>texture</texture-prop>
+        <texture>texture.png</texture>
+    </animation>
+
+    <animation>
+        <type>material</type>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxle</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftSkiWireF</object-name>
+        <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftCableConnectT</object-name>
+        <object-name>LeftSkiSpring</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxle</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightSkiWireF</object-name>
+        <object-name>RightSkiWireB</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+        <object-name>RightCableConnectT</object-name>
+        <object-name>RightSkiSpring</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <property-base>sim/model/liveryfloat/</property-base>
+        <texture-prop>texture</texture-prop>
+        <texture>floats.png</texture>
+    </animation>
+
+    <!-- ALS volume shadows  -->
+    <model>
+        <path>Effects/shadow/defshadow.xml</path>
+    </model>
+    <model>
+        <path>Effects/shadow/bushshadow.xml</path>
+    </model>
+    <model>
+        <path>Effects/shadow/floatshadow.xml</path>
+    </model>
+    <model>
+        <path>Effects/shadow/amphshadow.xml</path>
+    </model>
+    <model>
+        <path>Effects/shadow/skishadow.xml</path>
+    </model>
+
+<!-- exhaust smoke; just a little pollution -->
+
+<model>
+ <path>Aircraft/J3Cub/Models/Effects/exhaustsmoke/exhaustsmoke.xml</path>
+  <offsets>
+   <x-m>-0.25</x-m>
+   <y-m>0.25</y-m>
+   <z-m>-1.25</z-m>
+  <heading-deg>0</heading-deg>
+   <roll-deg>    0 </roll-deg>
+   <pitch-deg>   0 </pitch-deg>
+ </offsets>
+</model>
+
+    <!-- registration (Fr - immatriculation)   -->
+    <model>
+        <path>Aircraft/J3Cub/Models/Immat/immat.xml</path>
+        <offsets>
+            <x-m> 0.0 </x-m>
+            <y-m> 0.0 </y-m>
+            <z-m> 0.0 </z-m>
+            <roll-deg>    0.0 </roll-deg>
+            <pitch-deg>   0.0 </pitch-deg>
+            <heading-deg> 0.0 </heading-deg>
+        </offsets>
+    </model>
+
+    <!-- Pitot tube cover "remove before flight" -->
+    <model>
+        <name>rbf-pitot</name>
+        <path>Exterior/rbf/rbf.xml</path>
+        <offsets>
+            <x-m> 0.3376</x-m>
+            <y-m>-2.08</y-m>
+            <z-m>-0.2495</z-m>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>rbf-pitot</object-name>
+        <condition>
+            <property alias="/params/securing/pitot-cover"/>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>rbf-pitot</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/pitot-cover-removable</property>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/pitot-cover"/>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/pitot-cover-removable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-pitot-tube-cap</tooltip-id>
+                <label>Remove Pitot Tube Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>pitot</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/pitot-cover-addable</property>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/pitot-cover"/>
+                <value>true</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                <value>0.0</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/pitot-cover-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>put-pitot-tube-cap</tooltip-id>
+                <label>Put Pitot Tube Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <!-- Chocks -->
+    <model>
+        <path>Exterior/chock/chock.xml</path>
+        <offsets>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
+        </offsets>
+    </model>
+
+    <!-- Small wheel chock -->
+    <animation>
+        <type>select</type>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
+        <condition>
+            <and>
+                <property alias="/params/securing/chocks"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wooden chocks -->
+    <animation>
+        <type>select</type>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
+        <condition>
+            <and>
+                <property alias="/params/securing/chocks"/>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
+        <property>gear/gear[0]/compression-norm</property>
+        <factor>0.30</factor>
+        <axis>
+            <x>0.3</x>
+            <y>0</y>
+            <z>1.0</z>
+        </axis>
+    </animation>
+
+    <!-- Pick animations to show/hide chocks -->
+    <animation>
+        <type>pick</type>
+        <object-name>ChockFront</object-name>
+        <object-name>ChockBack</object-name>
+        <object-name>WoodChockFront</object-name>
+        <object-name>WoodChockBack</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/model/j3cub/securing/chock</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/chock</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-wheel-chock</tooltip-id>
+                <label>Remove Wheel Chock</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tyre_l</object-name>
+        <object-name>tyre_l_bush</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/chock-addable</property>
+                </condition>
+                <command>property-assign</command>
+                <property>sim/model/j3cub/securing/chock</property>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/chock-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-wheel-chock</tooltip-id>
+                <label>Secure With Wheel Chock</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+     <!-- Left Tiedowns -->
+    <model>
+        <name>tiedownL</name>
+        <path>Exterior/tiedowns/tiedownL.xml</path>
+        <offsets>
+            <x-m> 0.2609</x-m>
+            <y-m>-3.4362</y-m>
+            <z-m> 0.0088</z-m>
+            <heading-deg>-90.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownL</object-name>
+        <condition>
+            <property alias="/params/securing/tiedowns/left/visible"/>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownL</object-name>
+        <object-name>TieDownLeft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/left/visible"/>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property alias="/params/securing/tiedowns/left/visible"/>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-left-tiedowns</tooltip-id>
+                <label>Remove Left Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>    
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <condition>
+            <property>/sim/model/j3cub/securing/tiedownL-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownL-addable</property>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/left/visible"/>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownL-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-left-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- Right Tiedowns -->
+    <model>
+        <name>tiedownR</name>
+        <path>Exterior/tiedowns/tiedownR.xml</path>
+        <offsets>
+            <x-m>0.2713</x-m>
+            <y-m>3.3659</y-m>
+            <z-m>0.0089</z-m>
+            <heading-deg>90.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownR</object-name>
+        <condition>
+            <property alias="/params/securing/tiedowns/right/visible"/>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownR</object-name>
+        <object-name>TieDownRight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/right/visible"/>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property alias="/params/securing/tiedowns/right/visible"/>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-right-tiedowns</tooltip-id>
+                <label>Remove Right Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>    
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <condition>
+            <property>/sim/model/j3cub/securing/tiedownR-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownR-addable</property>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/right/visible"/>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownR-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-right-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <!-- Tail Tiedowns -->
+    <model>
+        <name>tiedownT</name>
+        <path>Exterior/tiedowns/tiedownT.xml</path>
+        <offsets>
+            <x-m> 3.7930</x-m>
+            <y-m>-0.1710</y-m>
+            <z-m>-0.6867</z-m>
+            <heading-deg>180.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownT</object-name>
+        <condition>
+            <property alias="/params/securing/tiedowns/tail/visible"/>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownT</object-name>
+        <object-name>TieDownTail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/tail/visible"/>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property alias="/params/securing/tiedowns/tail/visible"/>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-tail-tiedowns</tooltip-id>
+                <label>Remove Tail Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <condition>
+            <property>/sim/model/j3cub/securing/tiedownT-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownT-addable</property>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/tail/visible"/>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/j3cub/securing/tiedownT-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-tail-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+</PropertyList>
