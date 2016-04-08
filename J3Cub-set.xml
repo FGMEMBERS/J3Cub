@@ -10,7 +10,7 @@ version 2.0  090410-->
 <PropertyList include="Cub-shared.xml">
     <sim>
 
-        <description>Piper J-3 Cub (J3C-65, 1946 model) (JBSSim)</description>
+        <description>Piper J-3 Cub (J3C-65, 1946 model) (JSBSim)</description>
         <tags>
             <tag>ga</tag>
             <tag>j3cub</tag>
