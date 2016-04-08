@@ -108,7 +108,7 @@
         <pointmass name="Pilot">
             <weight unit="LBS"> 180 </weight>
             <location name="POINTMASS" unit="IN">
-                <x>   9.94 </x>
+                <x>  37.44 </x>
                 <y>   0.00 </y>
                 <z> -38.99 </z>
             </location>
@@ -116,7 +116,7 @@
         <pointmass name="Passenger">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
-                <x>  37.44 </x>
+                <x>   9.94 </x>
                 <y>   0.00 </y>
                 <z> -38.99 </z>
             </location>

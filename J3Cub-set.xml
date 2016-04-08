@@ -37,10 +37,10 @@ version 2.0  090410-->
             <internal type="bool" archive="y">true</internal>
             <config>
                 <x-offset-m archive="y" type="double">-0.0 </x-offset-m><!--y-->
-                <y-offset-m archive="y" type="double">-0.08 </y-offset-m><!--z-->
-                <z-offset-m archive="y" type="double"> 0.5 </z-offset-m><!--x-->
+                <y-offset-m archive="y" type="double">-0.2 </y-offset-m><!--z-->
+                <z-offset-m archive="y" type="double"> 1.0 </z-offset-m><!--x-->
                 <pitch-offset-deg type="double">12</pitch-offset-deg>
-                <default-field-of-view-deg>95</default-field-of-view-deg>
+                <default-field-of-view-deg>100</default-field-of-view-deg>
             </config>
         </view>
 
