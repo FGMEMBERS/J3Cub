@@ -74,6 +74,7 @@ version 2.0  090410-->
                 <lighting>
                     <taxi type="bool">false</taxi>
                     <landing type="bool">false</landing>
+                    <amphibious type="bool">false</amphibious>
                 </lighting>
 
                 <!-- Damage type (0 = normal, 1 = broken, 2 = damaged) used by model -->
@@ -256,8 +257,15 @@ version 2.0  090410-->
         </rendering>
 
     </sim>
- 
-     <engines>
+
+    <controls>
+        <gear>
+            <water-rudder type="bool">0</water-rudder>
+            <water-rudder-down type="double">0</water-rudder-down>
+        </gear>
+    </controls>
+
+    <engines>
         <!-- Following properties are part of a static list of properties
                             that FlightGear transmits during multiplay. Because the number
                             of properties in /sim/multiplay/generic/ is quite limited and
@@ -371,9 +379,9 @@ version 2.0  090410-->
         <tyresmoke>
             <file>Nasal/tyresmoke.nas</file>
         </tyresmoke>
-        <!--hydrodynamics-->
-            <!--file>Nasal/jsbsim-hydrodynamics.nas</file-->
-        <!--/hydrodynamics-->
+        <hydrodynamics>
+            <file>Nasal/jsbsim-hydrodynamics.nas</file>
+        </hydrodynamics>
     </nasal>
 
     <payload>

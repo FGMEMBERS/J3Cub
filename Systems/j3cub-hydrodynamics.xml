@@ -22,16 +22,16 @@
 
 -->
 
-<system name="c172p hydrodynamics">
+<system name="j3cub hydrodynamics">
 
     <!-- Model parameters -->
     <!-- HRP location -->
     <!-- NOTE: The HRP has been moved forward by 10 in to improve the
         static/idling attitude.
-    -->
-    <property value="32.6">metrics/hydro-rp-x-in</property>
+    --> 
+    <property value="38.6">metrics/hydro-rp-x-in</property>
     <property value="0.0">metrics/hydro-rp-y-in</property>
-    <property value="38.5">metrics/hydro-rp-z-in</property>
+    <property value="-2">metrics/hydro-rp-z-in</property>
     <property value="9.8">metrics/hydro-beam-ft</property>
     <property value="18.3">metrics/hydro-length-ft</property>
 
@@ -334,7 +334,7 @@
             </description>
             <function>
                 <sum>
-                    <value>-3.0</value> <!-- The float model is 3 deg offset in pitch. -->
+                    <value>-13.0</value> <!-- The float model is 3 deg offset in pitch. -->
                     <property>hydro/pitch-deg</property>
                     <product>
                         <value>1.0</value>

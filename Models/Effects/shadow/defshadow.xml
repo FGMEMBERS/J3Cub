@@ -41,7 +41,19 @@
                     <property>/sim/rendering/shadow</property>
                 </not>
                 <not>
-                    <property>/fdm/jsbsim/unit[12]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[9]/WOW</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/contact/unit[11]/WOW</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/contact/unit[12]/WOW</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/contact/unit[4]/WOW</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/contact/unit[5]/WOW</property>
                 </not>
                 <not>
                     <property>/fdm/jsbsim/crash</property>

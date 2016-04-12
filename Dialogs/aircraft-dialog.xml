@@ -499,7 +499,7 @@
                 </radio>
             </group>
 
-            <!--group>
+            <group>
                 <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
@@ -590,7 +590,7 @@
                         <value>false</value>
                     </binding>
                 </radio>
-            </group-->
+            </group>
 
             <group>
                 <layout>hbox</layout>

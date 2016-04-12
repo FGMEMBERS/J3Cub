@@ -90,55 +90,16 @@
             </function>
         </fcs_function>
 
-        <fcs_function name="z-position-ski-left-wheel">
-            <output>gear/unit[23]/z-position</output>
-            <function>
-                <ifthen>
-                    <property>gear/unit[1]/broken</property>
-                    <value>0.0</value>
-                    <switch>
-                        <property>bushkit</property>
-
-                        <!-- Default/35"/pontoon/amphibious/skis -->
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value> -71.29 </value>
-                    </switch>
-                </ifthen>
-            </function>
-        </fcs_function>
-
-        <fcs_function name="z-position-ski-right-wheel">
-            <output>gear/unit[24]/z-position</output>
-            <function>
-                <ifthen>
-                    <property>gear/unit[2]/broken</property>
-                    <value>0.0</value>
-                    <switch>
-                        <property>bushkit</property>
-
-                        <!-- Default/35"/pontoon/amphibious/skis -->
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value> -71.41 </value>
-                    </switch>
-                </ifthen>
-            </function>
-        </fcs_function>
-
-        <!--fcs_function name="z-position-effect-tail-gear">
+        <!--
+              <fcs_function name="z-position-effect-tail-gear">
             <output>contact/unit[6]/z-position</output>
             <function>
                 <ifthen>
                     <property>gear/unit[0]/broken</property>
                     <switch>
-                        <property>bushkit</property>
-
-                        <value> -10.00 </value>
+                        <property>bushkit</property-->
+                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
+                        <!--value> -10.00 </value>
                         <value> -17.70 </value>
                         <value>   0.00 </value>
                         <value>   0.00 </value>
@@ -155,13 +116,15 @@
                 <ifthen>
                     <property>gear/unit[1]/broken</property>
                     <switch>
-                        <property>bushkit</property>
+                        <property>bushkit</property-->
 
-                        <value>  -9.50 </value>
-                        <value> -16.00 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value> -21.00 </value>
+                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
+                        <!--value> -9.5</value>
+                        <value>-14.5</value>
+                        <value>-16.0</value>
+                        <value>  0.0</value>
+                        <value>  0.0</value>
+                        <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
@@ -174,19 +137,176 @@
                 <ifthen>
                     <property>gear/unit[2]/broken</property>
                     <switch>
-                        <property>bushkit</property>
+                        <property>bushkit</property-->
 
-                        <value>  -8.00 </value>
-                        <value> -17.40 </value>
-                        <value>   0.00 </value>
-                        <value>   0.00 </value>
-                        <value> -21.00 </value>
+                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
+                        <!--value> -8.0</value>
+                        <value>-15.5</value>
+                        <value>-17.4</value>
+                        <value>  0.0</value>
+                        <value>  0.0</value>
+                        <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
             </function>
-        </fcs_function-->
+        </fcs_function>
+        -->
+        <!-- ================================================================== -->
+        <!-- Contact points wing tips                                           -->
+        <!-- ================================================================== -->
 
+        <switch name="z-position-left-wing-tip">
+            <output>contact/unit[4]/z-position</output>
+            <default value="5"/>
+            <!-- use when damage states activated
+            <test logic="AND" value="48">
+                crash EQ 1
+            </test-->>
+
+            <!-- -10 when on/above water -->
+            <!--test logic="AND" value="-10">
+                contact/unit[4]/solid EQ 0
+            </test>
+
+            <test logic="AND" value="40">
+                wing-damage/left-wing EQ 1.0
+                contact/unit[12]/WOW EQ
+            </test-->
+            <test logic="AND" value="5">
+                contact/unit[4]/WOW EQ 1
+            </test>
+        </switch>
+
+        <switch name="z-position-right-wing-tip">
+            <output>contact/unit[5]/z-position</output>
+            <default value="5"/>
+
+                        <!-- use when damage states activated
+            <test logic="AND" value="48">
+                crash EQ 1
+            </test-->
+
+            <!-- -10 when on/above water -->
+            <!--test logic="AND" value="-10">
+                contact/unit[5]/solid EQ 0
+            </test>
+
+            <test logic="AND" value="40">
+                wing-damage/right-wing EQ 1.0
+                contact/unit[12]/WOW EQ 1
+            </test-->
+            <test logic="AND" value="5">
+                contact/unit[5]/WOW EQ 1
+            </test>
+        </switch>
+
+        <!-- ================================================================== -->
+        <!-- Contact points top of fuselage and empennage                       -->
+        <!-- ================================================================== -->
+
+        <switch name="z-position-nose-top">
+            <output>contact/unit[9]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-17">
+                contact/unit[9]/solid EQ 0
+            </test>
+        </switch>
+
+        <switch name="z-position-nose">
+            <output>contact/unit[10]/z-position</output>
+            <default value="-3"/>
+
+            <test logic="AND" value="-10">
+                contact/unit[10]/solid EQ 0
+            </test>
+        </switch>
+
+        <switch name="z-position-cockpit-top">
+            <output>contact/unit[11]/z-position</output>
+            <default value="5"/>
+
+            <test logic="AND" value="-15">
+                contact/unit[11]/solid EQ 0
+            </test>
+        </switch>
+
+        <switch name="z-position-top-vertical-stabilizer">
+            <output>contact/unit[12]/z-position</output>
+            <default value="71"/>
+
+            <!-- 160 puts tail higher in the air when upside down -->
+            <test logic="AND" value="130">
+                contact/unit[12]/solid EQ 0
+            </test>
+        </switch>
+
+        <!-- ================================================================== -->
+        <!-- Contact points skis                                                -->
+        <!-- ================================================================== -->
+
+        <switch name="z-position-left-ski">
+            <output>gear/unit[24]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-71.29">
+                bushkit EQ 4
+                gear/unit[1]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-right-ski">
+            <output>gear/unit[25]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-71.41">
+                bushkit EQ 4
+                gear/unit[2]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <!-- ================================================================== -->
+        <!-- Contact points amphibious                                          -->
+        <!-- ================================================================== -->
+
+        <switch name="z-position-left-fwd-pontoon">
+            <output>gear/unit[19]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-117.5">
+                bushkit EQ 3
+            </test>
+        </switch>
+
+        <switch name="z-position-right-fwd-pontoon">
+            <output>gear/unit[20]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-117.5">
+                bushkit EQ 3
+            </test>
+        </switch>
+
+        <switch name="z-position-left-aft-pontoon">
+            <output>gear/unit[21]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-110.5">
+                bushkit EQ 3
+            </test>
+        </switch>
+
+        <switch name="z-position-right-aft-pontoon">
+            <output>gear/unit[22]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-110.5">
+                bushkit EQ 3
+            </test>
+        </switch>
     </channel>
 
     <channel name="groundeffects">
