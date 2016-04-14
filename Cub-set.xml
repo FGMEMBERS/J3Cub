@@ -10,7 +10,7 @@ version 2.0  090410-->
 <PropertyList include="Cub-shared.xml">
  <sim>
 
-  <description>Piper J-3 Cub (J3C-65, 1946 model) (Yasim)</description>
+  <description>Piper J-3 Cub (J3C-65, 1946 model) (YASim)</description>
   <author>David Megginson (3D, FDM), Jim Wilson (Instruments), Don Lavelle (3D remodel, instrument mods, pilot mods, effects, livery)</author>
   <status>early-production</status>
   <rating>

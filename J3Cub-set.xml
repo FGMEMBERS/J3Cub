@@ -10,7 +10,7 @@ version 2.0  090410-->
 <PropertyList include="Cub-shared.xml">
     <sim>
 
-        <description>Piper J-3 Cub (J3C-65, 1946 model) (JBSSim)</description>
+        <description>Piper J-3 Cub (J3C-65, 1946 model) (JSBSim)</description>
         <tags>
             <tag>ga</tag>
             <tag>j3cub</tag>
@@ -37,10 +37,10 @@ version 2.0  090410-->
             <internal type="bool" archive="y">true</internal>
             <config>
                 <x-offset-m archive="y" type="double">-0.0 </x-offset-m><!--y-->
-                <y-offset-m archive="y" type="double">-0.08 </y-offset-m><!--z-->
-                <z-offset-m archive="y" type="double"> 0.5 </z-offset-m><!--x-->
+                <y-offset-m archive="y" type="double">-0.2 </y-offset-m><!--z-->
+                <z-offset-m archive="y" type="double"> 1.0 </z-offset-m><!--x-->
                 <pitch-offset-deg type="double">12</pitch-offset-deg>
-                <default-field-of-view-deg>95</default-field-of-view-deg>
+                <default-field-of-view-deg>100</default-field-of-view-deg>
             </config>
         </view>
 
@@ -74,6 +74,7 @@ version 2.0  090410-->
                 <lighting>
                     <taxi type="bool">false</taxi>
                     <landing type="bool">false</landing>
+                    <amphibious type="bool">false</amphibious>
                 </lighting>
 
                 <!-- Damage type (0 = normal, 1 = broken, 2 = damaged) used by model -->
@@ -256,8 +257,15 @@ version 2.0  090410-->
         </rendering>
 
     </sim>
- 
-     <engines>
+
+    <controls>
+        <gear>
+            <water-rudder type="bool">0</water-rudder>
+            <water-rudder-down type="double">0</water-rudder-down>
+        </gear>
+    </controls>
+
+    <engines>
         <!-- Following properties are part of a static list of properties
                             that FlightGear transmits during multiplay. Because the number
                             of properties in /sim/multiplay/generic/ is quite limited and
@@ -371,9 +379,9 @@ version 2.0  090410-->
         <tyresmoke>
             <file>Nasal/tyresmoke.nas</file>
         </tyresmoke>
-        <!--hydrodynamics-->
-            <!--file>Nasal/jsbsim-hydrodynamics.nas</file-->
-        <!--/hydrodynamics-->
+        <hydrodynamics>
+            <file>Nasal/jsbsim-hydrodynamics.nas</file>
+        </hydrodynamics>
     </nasal>
 
     <payload>

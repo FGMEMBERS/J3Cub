@@ -51,7 +51,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[13]</output>
         </switch-->
 
-        <!--fcs_function name="extra-weight-left-float">
+        <fcs_function name="extra-weight-left-float">
             <function>
                 <product>
                     <eq>
@@ -113,7 +113,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                 </product>
             </function>
             <output>inertia/pointmass-weight-lbs[12]</output>
-        </fcs_function-->
+        </fcs_function>
     </channel>
 
     <channel name="extra-drag">
@@ -151,7 +151,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
         </switch>
     </channel>
 
-    <!--channel name="JSBSim hydrodynamics integration">
+    <channel name="JSBSim hydrodynamics integration">
         <fcs_function name="tmp/floats-enabled-norm">
             <function>
                 <product>
@@ -177,13 +177,13 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                 </product>
             </function>
             <output>floats-enabled-norm</output>
-        </fcs_function-->
+        </fcs_function>
 
         <!-- FIXME: The delayed activation isn't pretty but, apparently,
                     the solid property isn't reliable at the begining. -->
-        <!--switch name="left-pontoon/contact-z-pos-in[0]">
+        <switch name="left-pontoon/contact-z-pos-in[0]">
             <default value="38.5"/>
-            <test logic="AND" value="-50.0">
+            <test logic="AND" value="-100.0">
                 simulation/sim-time-sec GT 0.25
                 bushkit GE 2
                 bushkit LE 3
@@ -194,7 +194,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="left-pontoon/contact-z-pos-in[1]">
             <default value="38.5"/>
-            <test logic="AND" value="-44.2">
+            <test logic="AND" value="-97.91">
                 simulation/sim-time-sec GT 0.25
                 bushkit GE 2
                 bushkit LE 3
@@ -205,7 +205,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="left-pontoon/contact-z-pos-in[2]">
             <default value="38.5"/>
-            <test logic="AND" value="-24.5">
+            <test logic="AND" value="-95.86">
                 simulation/sim-time-sec GT 0.25
                 bushkit GE 2
                 bushkit LE 3
@@ -216,7 +216,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="right-pontoon/contact-z-pos-in[0]">
             <default value="38.5"/>
-            <test logic="AND" value="-50.0">
+            <test logic="AND" value="-100.0">
                 simulation/sim-time-sec GT 0.25
                 bushkit GE 2
                 bushkit LE 3
@@ -227,7 +227,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="right-pontoon/contact-z-pos-in[1]">
             <default value="38.5"/>
-            <test logic="AND" value="-44.2">
+            <test logic="AND" value="-97.91">
                 bushkit GE 2
                 bushkit LE 3
                 contact/unit[16]/solid NE 0
@@ -237,16 +237,16 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="right-pontoon/contact-z-pos-in[2]">
             <default value="38.5"/>
-            <test logic="AND" value="-24.5">
+            <test logic="AND" value="-95.86">
                 simulation/sim-time-sec GT 0.25
                 bushkit GE 2
                 bushkit LE 3
                 contact/unit[18]/solid NE 0
             </test>
             <output>contact/unit[18]/z-position</output>
-        </switch-->
+        </switch>
 
-        <!--fcs_function name="left-pontoon/leakage-lbs_sec">
+        <fcs_function name="left-pontoon/leakage-lbs_sec">
             <function>
                 <product>
                     <property>hydro/active-norm</property>
@@ -258,19 +258,19 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                     </switch>
                 </product>
             </function>
-        </fcs_function-->
+        </fcs_function>
 
         <!-- No water leakage as long as pontoon is not damaged or broken -->
-        <!--switch name="left-pontoon/leaked-water-windup-trigger">
+        <switch name="left-pontoon/leaked-water-windup-trigger">
             <default value="-1"/>
 
             <test logic="AND" value="0">
                 pontoon-damage/left-pontoon GT 0
             </test>
-        </switch-->
+        </switch>
 
         <!-- If trigger is negative then the integrator is reset to 0 -->
-        <!--pid name="left-pontoon/leaked-water-lbs">
+        <pid name="left-pontoon/leaked-water-lbs">
             <input>left-pontoon/leakage-lbs_sec</input>
             <trigger>left-pontoon/leaked-water-windup-trigger</trigger>
             <kp>0.0</kp>
@@ -278,8 +278,8 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <kd>0.0</kd>
             <clipto>
                 <min>0.0</min>
-                <max>2500.0</max--> <!-- FIXME: Too much? Or too little? -->
-            <!--/clipto>
+                <max>2500.0</max> <!-- FIXME: Too much? Or too little? -->
+            </clipto>
         </pid>
 
         <fcs_function name="right-pontoon/leakage-lbs_sec">
@@ -294,19 +294,19 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                     </switch>
                 </product>
             </function>
-        </fcs_function-->
+        </fcs_function>
 
         <!-- No water leakage as long as pontoon is not damaged or broken -->
-        <!--switch name="right-pontoon/leaked-water-windup-trigger">
+        <switch name="right-pontoon/leaked-water-windup-trigger">
             <default value="-1"/>
 
             <test logic="AND" value="0">
                 pontoon-damage/right-pontoon GT 0
             </test>
-        </switch-->
+        </switch>
 
         <!-- If trigger is negative then the integrator is reset to 0 -->
-        <!--pid name="right-pontoon/leaked-water-lbs">
+        <pid name="right-pontoon/leaked-water-lbs">
             <input>right-pontoon/leakage-lbs_sec</input>
             <trigger>right-pontoon/leaked-water-windup-trigger</trigger>
             <kp>0.0</kp>
@@ -315,9 +315,25 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <kd>0.0</kd>
             <clipto>
                 <min>0.0</min>
-                <max>2500.0</max--> <!-- FIXME: Too much? Or too little? -->
-            <!--/clipto>
+                <max>2500.0</max> <!-- FIXME: Too much? Or too little? -->
+            </clipto>
         </pid>
-    </channel-->
+
+    </channel>
+
+    <channel name="Amphibious Electrical">
+
+        <!-- Electrical power to amphibious gear -->
+        <switch name="amphibious/gear/electrical">
+            <default value="0"/>
+
+            <test logic="AND" value="1">
+               bushkit EQ 3
+               /systems/electrical/volts GT 12
+            </test>
+            <output>/sim/model/j3cub/lighting/amphibious</output>
+        </switch>
+
+    </channel>
 
 </system>
