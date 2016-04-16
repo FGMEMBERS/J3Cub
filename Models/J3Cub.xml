@@ -377,26 +377,6 @@
         <object-name>window_strut_r_interior</object-name>
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
-        <object-name>nosedn1</object-name>
-        <object-name>nosedn2</object-name>
-        <object-name>maindn1</object-name>
-        <object-name>maindn2</object-name>
-        <object-name>noseup1</object-name>
-        <object-name>noseup2</object-name>
-        <object-name>mainup1</object-name>
-        <object-name>mainup2</object-name>
-        <object-name>pump</object-name>
-        <object-name>Gearswitch</object-name>
-        <object-name>Switch.nut</object-name>
-        <object-name>Dim.bezel</object-name>
-        <object-name>Dim.toggle</object-name>
-        <object-name>Plane</object-name>
-        <object-name>Wgear.bezel</object-name>
-        <object-name>bezeloutside</object-name>
-        <object-name>screw_1</object-name>
-        <object-name>screw_2</object-name>
-        <object-name>screw_3</object-name>
-        <object-name>screw_4</object-name>
     </effect>
 
     <!--effect>
@@ -486,16 +466,6 @@
             <z-m>-0.46</z-m>
         </offsets>
     </model>
-
-    <!--model>
-        <name>Gear</name>
-        <path>Interior/Panel/gear/gear-ctl.xml</path>
-        <offsets>
-            <x-m>0</x-m>
-            <y-m>0</y-m>
-            <z-m>0</z-m>
-        </offsets>
-    </model-->
 
 <!--  fuel gauge: the stick in front of windscreen  -->
   
@@ -3271,6 +3241,11 @@
         <object-name>Plane</object-name>
         <object-name>Wgear.bezel</object-name>
         <object-name>Gearswitch</object-name>
+        <object-name>bezeloutside</object-name>
+        <object-name>screw_1</object-name>
+        <object-name>screw_2</object-name>
+        <object-name>screw_3</object-name>
+        <object-name>screw_4</object-name>
         <condition>
             <equals>
                <property alias="/params/bushkit"/>
