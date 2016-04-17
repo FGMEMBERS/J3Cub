@@ -273,12 +273,122 @@
         <object-name>propeller_slow</object-name>
     </effect>-->
 
+     <!--effect>
+        <inherits-from>Aircraft/j3cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>fuselage</object-name>
+        <object-name>rudder</object-name>
+        <object-name>elevator</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>tailplane</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>cowl_top</object-name>
+        <object-name>cowl_under</object-name>
+        <object-name>door</object-name>
+        <object-name>nose</object-name>
+        <object-name>nose_strut_r</object-name>
+        <object-name>nose_strut_l</object-name>
+        <object-name>nose_top_1</object-name>
+        <object-name>nose_under</object-name>
+        <object-name>step</object-name>
+        <object-name>strut_vert_rear_r</object-name>
+        <object-name>strut_vert_rear_l</object-name>
+        <object-name>strut_vert_fr_r</object-name>
+        <object-name>strut_vert_fr_l</object-name>
+        <object-name>strut_tie_r</object-name>
+        <object-name>strut_tie_l</object-name>
+        <object-name>strut_rear_r</object-name>
+        <object-name>strut_rear_l</object-name>
+        <object-name>strut_front_r</object-name>
+        <object-name>strut_front_l</object-name>
+        <object-name>strut_fix_r</object-name>
+        <object-name>strut_fix_l</object-name>
+        <object-name>strut_fix_rear_1_</object-name>
+        <object-name>strut_fix_rear_1_l</object-name>
+        <object-name>strut_fix_rear_2_</object-name>
+        <object-name>strut_fix_rear_2_l</object-name>
+        <object-name>tail_struts</object-name>
+        <object-name>tail_wheel_strut</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>wheel_strut_link_r</object-name>
+        <object-name>wheel_strut_link_l</object-name>
+        <object-name>wheel_hub_r</object-name>
+        <object-name>wheel_hub_l</object-name>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_l</object-name>
+     </effect-->
+
+    <!--  Specularity fix -->
+    <animation>
+        <type>material</type>
+        <object-name>fuselage</object-name>
+        <object-name>rudder</object-name>
+        <object-name>elevator</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>tailplane</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>cowl_top</object-name>
+        <object-name>cowl_under</object-name>
+        <object-name>door</object-name>
+        <object-name>nose</object-name>
+        <object-name>nose_strut_r</object-name>
+        <object-name>nose_strut_l</object-name>
+        <object-name>nose_top_1</object-name>
+        <object-name>nose_under</object-name>
+        <object-name>step</object-name>
+        <object-name>strut_vert_rear_r</object-name>
+        <object-name>strut_vert_rear_l</object-name>
+        <object-name>strut_vert_fr_r</object-name>
+        <object-name>strut_vert_fr_l</object-name>
+        <object-name>strut_tie_r</object-name>
+        <object-name>strut_tie_l</object-name>
+        <object-name>strut_rear_r</object-name>
+        <object-name>strut_rear_l</object-name>
+        <object-name>strut_front_r</object-name>
+        <object-name>strut_front_l</object-name>
+        <object-name>strut_fix_r</object-name>
+        <object-name>strut_fix_l</object-name>
+        <object-name>strut_fix_rear_1_</object-name>
+        <object-name>strut_fix_rear_1_l</object-name>
+        <object-name>strut_fix_rear_2_</object-name>
+        <object-name>strut_fix_rear_2_l</object-name>
+        <object-name>tail_struts</object-name>
+        <object-name>tail_wheel_strut</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
+        <object-name>wheel_strut_link_r</object-name>
+        <object-name>wheel_strut_link_l</object-name>
+        <object-name>wheel_hub_r</object-name>
+        <object-name>wheel_hub_l</object-name>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_l</object-name>
+        <shininess>128</shininess>
+        <specular>
+            <r>1</r>
+            <g>1</g>
+            <b>1</b>
+        </specular>
+        <ambient>
+            <r>1</r>
+            <g>1</g>
+            <b>1</b>
+        </ambient>
+     </animation>
+
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
         <object-name>propeller_slow</object-name>
         <object-name>propeller_fast</object-name>
     </effect>
-  
+
 	<effect>
         <inherits-from>Effects/exterior/exterior-glass-reflection</inherits-from>
         <object-name>screen</object-name>
@@ -352,18 +462,12 @@
         <object-name>seat_rear</object-name>
         <object-name>solo_placard</object-name>
         <object-name>spar</object-name>
-        <object-name>step</object-name>
         <object-name>stick_back</object-name>
         <object-name>stick_front</object-name>
         <object-name>window_strut_l</object-name>
         <object-name>window_strut_r</object-name>
         <object-name>screen_strut_l</object-name>
         <object-name>screen_strut_r</object-name>
-        <object-name>strut_tie_r</object-name>
-        <object-name>strut_vert_fr_l</object-name>
-        <object-name>strut_vert_fr_r</object-name>
-        <object-name>strut_vert_rear_l</object-name>
-        <object-name>strut_vert_rear_r</object-name>
         <object-name>throttle_back</object-name>
         <object-name>throttle_base_fr</object-name>
         <object-name>throttle_base_rear</object-name>
