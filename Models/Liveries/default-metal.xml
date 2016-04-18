@@ -6,14 +6,14 @@
 
             <livery>
                 <name type="string">Defaul-Metal</name>
-                <index type="int">1</index>
-                <texture>Liveries/default-metal/texture.png</texture>
+                <index type="int">9</index>
+                <texture>Liveries/default-texture.png</texture>
             </livery>
 
             <liveryfloat>
                 <name type="string">Default-Metal</name>
-                <index type="int">1</index>
-                <texture>Liveries/default-metal/floats.png</texture>
+                <index type="int">9</index>
+                <texture>Liveries/metal-floats.png</texture>
             </liveryfloat>
 
             <Cub>

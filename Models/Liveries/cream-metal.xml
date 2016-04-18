@@ -6,14 +6,14 @@
 
             <livery>
                 <name type="string">Cream-Metal</name>
-                <index type="int">2</index>
-                <texture>Liveries/cream-metal/texture.png</texture>
+                <index type="int">10</index>
+                <texture>Liveries/cream-texture.png</texture>
             </livery>
 
             <liveryfloat>
                 <name type="string">Cream-Metal</name>
-                <index type="int">2</index>
-                <texture>Liveries/cream-metal/floats.png</texture>
+                <index type="int">10</index>
+                <texture>Liveries/metal-floats.png</texture>
             </liveryfloat>
 
             <Cub>
