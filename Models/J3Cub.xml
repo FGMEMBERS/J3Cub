@@ -273,8 +273,19 @@
         <object-name>propeller_slow</object-name>
     </effect>-->
 
-     <!--effect>
-        <inherits-from>Aircraft/j3cub/Models/Effects/exterior/bumpspec</inherits-from>
+    <!--effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
+        <object-name>fuselage</object-name>
+        <object-name>rudder</object-name>
+        <object-name>elevator</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>tailplane</object-name>
+    </effect-->
+     <effect>
+        <inherits-from>Aircraft/j3cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
@@ -293,7 +304,12 @@
         <object-name>nose_strut_l</object-name>
         <object-name>nose_top_1</object-name>
         <object-name>nose_under</object-name>
-        <object-name>step</object-name>
+        <object-name>window_rear_r_1</object-name>
+        <object-name>window_rear_l_1</object-name>
+        <object-name>window_1_1</object-name>
+        <object-name>window_r_1</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
         <object-name>strut_vert_rear_r</object-name>
         <object-name>strut_vert_rear_l</object-name>
         <object-name>strut_vert_fr_r</object-name>
@@ -304,6 +320,9 @@
         <object-name>strut_rear_l</object-name>
         <object-name>strut_front_r</object-name>
         <object-name>strut_front_l</object-name>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_l</object-name>
+        <!--object-name>step</object-name>
         <object-name>strut_fix_r</object-name>
         <object-name>strut_fix_l</object-name>
         <object-name>strut_fix_rear_1_</object-name>
@@ -312,15 +331,9 @@
         <object-name>strut_fix_rear_2_l</object-name>
         <object-name>tail_struts</object-name>
         <object-name>tail_wheel_strut</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
         <object-name>wheel_strut_link_r</object-name>
-        <object-name>wheel_strut_link_l</object-name>
-        <object-name>wheel_hub_r</object-name>
-        <object-name>wheel_hub_l</object-name>
-        <object-name>tyre_r</object-name>
-        <object-name>tyre_l</object-name>
-     </effect-->
+        <object-name>wheel_strut_link_l</object-name-->
+     </effect>
 
     <!--  Specularity fix -->
     <animation>
@@ -343,7 +356,12 @@
         <object-name>nose_strut_l</object-name>
         <object-name>nose_top_1</object-name>
         <object-name>nose_under</object-name>
-        <object-name>step</object-name>
+        <object-name>window_rear_r_1</object-name>
+        <object-name>window_rear_l_1</object-name>
+        <object-name>window_1_1</object-name>
+        <object-name>window_r_1</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>wheel_strut_l</object-name>
         <object-name>strut_vert_rear_r</object-name>
         <object-name>strut_vert_rear_l</object-name>
         <object-name>strut_vert_fr_r</object-name>
@@ -354,6 +372,9 @@
         <object-name>strut_rear_l</object-name>
         <object-name>strut_front_r</object-name>
         <object-name>strut_front_l</object-name>
+        <object-name>tyre_r</object-name>
+        <object-name>tyre_l</object-name>
+        <object-name>step</object-name>
         <object-name>strut_fix_r</object-name>
         <object-name>strut_fix_l</object-name>
         <object-name>strut_fix_rear_1_</object-name>
