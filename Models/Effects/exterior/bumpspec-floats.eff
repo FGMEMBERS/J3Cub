@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Bump and specular effect -->
 <PropertyList>
-  <name>Aircraft/j3cub/Models/Effects/exterior/bumpspec-floats</name>
-  <inherits-from>Aircraft/j3cub/Models/Effects/exterior/bumpspec</inherits-from>
+  <name>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-floats</name>
+  <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
   <parameters>
     <texture n="2">
-      <image>Aircraft/j3cub/Models/floats-normal.png</image>
+      <!--image>Aircraft/J3Cub/Models/floats-normal.png</image-->
       <filter>linear-mipmap-linear</filter>
       <wrap-s>repeat</wrap-s>
       <wrap-t>repeat</wrap-t>

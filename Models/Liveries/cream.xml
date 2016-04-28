@@ -7,13 +7,13 @@
             <livery>
                 <name type="string">Cream</name>
                 <index type="int">2</index>
-                <texture>Liveries/cream/texture.png</texture>
+                <texture>Liveries/cream-texture.png</texture>
             </livery>
 
             <liveryfloat>
                 <name type="string">Cream</name>
                 <index type="int">2</index>
-                <texture>Liveries/cream/floats.png</texture>
+                <texture>Liveries/cream-floats.png</texture>
             </liveryfloat>
 
             <Cub>

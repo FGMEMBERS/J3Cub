@@ -7,13 +7,13 @@
             <livery>
                 <name type="string">Red</name>
                 <index type="int">3</index>
-                <texture>Liveries/red/texture.png</texture>
+                <texture>Liveries/red-texture.png</texture>
             </livery>
 
             <liveryfloat>
                 <name type="string">Red</name>
-                <index type="int">4</index>
-                <texture>Liveries/red/floats.png</texture>
+                <index type="int">3</index>
+                <texture>Liveries/red-floats.png</texture>
             </liveryfloat>
 
             <Cub>
