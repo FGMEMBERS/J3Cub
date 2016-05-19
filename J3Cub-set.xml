@@ -476,5 +476,9 @@ version 2.0  090410-->
             </settings>
         </jsbsim>
     </fdm>
-
+    <systems>
+        <electrical>
+            <volts type="double">0.0</volts>
+        </electrical>
+    </systems>
 </PropertyList>

@@ -3,7 +3,7 @@
 <PropertyList>
 
     <path>Cub.ac</path>
-    
+
     <model>
         <name>Bushkit</name>
         <path>Effects/bushkit/bushkit.xml</path>
@@ -285,7 +285,7 @@
         <object-name>tailplane</object-name>
     </effect-->
      <effect>
-        <inherits-from>Aircraft/j3cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
