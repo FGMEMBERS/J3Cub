@@ -1727,6 +1727,8 @@
     <animation>
         <type>rotate</type>
         <object-name>TGear</object-name>
+        <object-name>RearSkiL</object-name>
+        <object-name>RearSkiAxleL</object-name>
         <property>surface-positions/rudder-pos-norm</property>
         <factor>20.0</factor>
         <center>
