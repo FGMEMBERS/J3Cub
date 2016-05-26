@@ -99,7 +99,8 @@
         <ixx unit="SLUG*FT2"> 538.01 </ixx>
         <iyy unit="SLUG*FT2"> 386.81 </iyy>
         <izz unit="SLUG*FT2"> 871.03 </izz>
-        <emptywt unit="LBS" > 765.00 </emptywt>
+        <!-- wihtout any rims or tires, default rims and tires 12.5 X 2 = 25 lb-->
+        <emptywt unit="LBS" > 760.00 </emptywt>
         <location name="CG" unit="IN">
             <x>    -2.60 </x>
             <y>     0.00 </y>
@@ -121,9 +122,10 @@
                 <z> -38.99 </z>
             </location>
         </pointmass>
-        <!-- Gear configurations 0 to 4, pointmass [2] to [9]  -->
+        <!-- Gear configurations 0 to 5, pointmass [2] to [9]  and [11] to [14] -->
         <!-- Weight and drag are managed by Systems/bushkit.xml -->
         <pointmass name="Left bush wheel 35 inches">
+            <!-- 25 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -132,6 +134,7 @@
             </location>
         </pointmass>
         <pointmass name="Right bush wheel 35 inches">
+            <!-- 25 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -172,6 +175,7 @@
             </location>
         </pointmass>
         <pointmass name="Left ski">
+            <!-- ski, 36 "tire and rim 37 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -180,6 +184,7 @@
             </location>
         </pointmass>
         <pointmass name="Right ski">
+            <!-- ski, 36 "tire and rim 37 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -195,6 +200,42 @@
                 <x>    30.60 </x>
                 <y>     0.00 </y>
                 <z>   -33.73 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Left ski lite">
+            <!-- 8 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y> -35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Right ski lite">
+            <!-- 8 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y>  35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Default left wheel">
+            <!-- 12.5 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y> -35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Defaut right wheel">
+            <!-- 12.5 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y>  35.43 </y>
+                <z> -63.32 </z>
             </location>
         </pointmass>
     </mass_balance>
@@ -896,6 +937,7 @@
            <property>gear/drag-coef[2]</property> <!-- Floats -->
            <property>gear/drag-coef[3]</property> <!-- Amphibious -->
            <property>gear/drag-coef[4]</property> <!-- Ski -->
+           <property>gear/drag-coef[5]</property> <!-- Ski Lite -->
          </product>
     </function>
 

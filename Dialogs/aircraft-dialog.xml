@@ -29,6 +29,7 @@
             setprop("/sim/model/j3cub/bushkit_flag_2", 0);
             setprop("/sim/model/j3cub/bushkit_flag_3", 0);
             setprop("/sim/model/j3cub/bushkit_flag_4", 0);
+            setprop("/sim/model/j3cub/bushkit_flag_5", 0);
             setprop("/sim/model/j3cub/bushkit_flag_" ~ p, 1);
 
             # Engine power
@@ -133,42 +134,7 @@
                 </binding>
             </checkbox-->
             
-            <checkbox>
-                <halign>left</halign>
-                <label>Allow securing aircraft</label>
-                <property>/sim/model/j3cub/securing/allow-securing-aircraft</property>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>sim/model/j3cub/securing/pitot-cover-visible</property>
-                    <value>false</value>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>sim/model/j3cub/securing/chock</property>
-                    <value>false</value>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>sim/model/j3cub/securing/tiedownL-visible</property>
-                    <value>false</value>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>sim/model/j3cub/securing/tiedownR-visible</property>
-                    <value>false</value>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>sim/model/j3cub/securing/tiedownT-visible</property>
-                    <value>false</value>
-                </binding>
-            </checkbox>
-        </group>
-
-        <!--hrule/>
+                   <!--hrule/>
 
         <group>
             <layout>hbox</layout>
@@ -203,8 +169,52 @@
                 </binding>
             </button>
         </group-->
+        </group>
 
         <hrule/>
+
+        <group>
+            <layout>vbox</layout>
+
+            <text>
+                <label>Secure Aircraft</label>
+                <halign>center</halign>
+            </text>
+            
+            <checkbox>
+                <halign>left</halign>
+                <label>Allow securing aircraft</label>
+                <property>/sim/model/j3cub/securing/allow-securing-aircraft</property>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/j3cub/securing/pitot-cover-visible</property>
+                    <value>false</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/j3cub/securing/chock</property>
+                    <value>false</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/j3cub/securing/tiedownL-visible</property>
+                    <value>false</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/j3cub/securing/tiedownR-visible</property>
+                    <value>false</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/j3cub/securing/tiedownT-visible</property>
+                    <value>false</value>
+                </binding>
+            </checkbox>
+        </group>
 
         <group>
             <layout>vbox</layout>
@@ -342,6 +352,43 @@
             </checkbox-->
         </group>
 
+        <group>
+            <layout>hbox</layout>
+            <group>
+                <layout>vbox</layout>
+                <halign>left</halign>
+                <text>
+                    <halign>left</halign>
+                    <label>Dirt</label>
+                    <enable>
+                        <not>
+                            <property>/sim/rendering/rembrandt/enabled</property>
+                        </not>
+                    </enable>
+                </text>
+            </group>
+            <group>
+                <layout>vbox</layout>
+                <slider>
+                    <name>dirt</name>
+                    <enable>
+                        <not>
+                            <property>/sim/rendering/rembrandt/enabled</property>
+                        </not>
+                    </enable>
+                    <min>0.0</min>
+                    <max>1.0</max>
+                    <step>.1</step>
+                    <live>true</live>
+                    <property>/environment/aircraft-effects/dirt</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                        <object-name>dirt</object-name>
+                    </binding>
+                </slider>
+            </group>
+        </group>
+        
         <hrule/>
 
         <!--group>
@@ -421,8 +468,6 @@
             </group>
         </group-->
 
-        <hrule/>
-
         <group>
             <layout>vbox</layout>
 
@@ -455,6 +500,7 @@
                             setprop("sim/model/j3cub/bushkit_flag_2",0);
                             setprop("sim/model/j3cub/bushkit_flag_3",0);
                             setprop("sim/model/j3cub/bushkit_flag_4",0);
+                            setprop("sim/model/j3cub/bushkit_flag_5",0);
 
                             # Select 160 HP engine
                             #setprop("/controls/engines/active-engine", 0);
@@ -489,6 +535,8 @@
                             setprop("sim/model/j3cub/bushkit_flag_2",0);
                             setprop("sim/model/j3cub/bushkit_flag_3",0);
                             setprop("sim/model/j3cub/bushkit_flag_4",0);
+                            setprop("sim/model/j3cub/bushkit_flag_5",0);
+
 
                             # Select 160 HP engine
                             #setprop("/controls/engines/active-engine", 0);
@@ -523,6 +571,7 @@
                             setprop("sim/model/j3cub/bushkit_flag_2",1);
                             setprop("sim/model/j3cub/bushkit_flag_3",0);
                             setprop("sim/model/j3cub/bushkit_flag_4",0);
+                            setprop("sim/model/j3cub/bushkit_flag_5",0);
 
                             # Select 180 HP engine
                             #setprop("/controls/engines/active-engine", 1);
@@ -577,6 +626,7 @@
                             setprop("sim/model/j3cub/bushkit_flag_2",0);
                             setprop("sim/model/j3cub/bushkit_flag_3",1);
                             setprop("sim/model/j3cub/bushkit_flag_4",0);
+                            setprop("sim/model/j3cub/bushkit_flag_5",0);
 
                             # Select 180 HP engine
                             #setprop("/controls/engines/active-engine", 1);
@@ -616,6 +666,47 @@
                             setprop("sim/model/j3cub/bushkit_flag_2",0);
                             setprop("sim/model/j3cub/bushkit_flag_3",0);
                             setprop("sim/model/j3cub/bushkit_flag_4",1);
+                            setprop("sim/model/j3cub/bushkit_flag_5",0);
+
+                            # Select 180 HP engine
+                            #setprop("/controls/engines/active-engine", 1);
+                            #setprop("sim/model/j3cub/engine_flag_0", 0);
+                            #setprop("sim/model/j3cub/engine_flag_1", 1);
+                        </script>
+                    </binding>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>sim/model/j3cub/securing/chock</property>
+                        <value>false</value>
+                    </binding>
+                </radio>
+            </group>
+
+            <group>
+                <layout>hbox</layout>
+                <radio>
+                    <halign>left</halign>
+                    <label>Snow Skis (Lite)</label>
+                    <property>sim/model/j3cub/bushkit_flag_5</property>
+                    <live>true</live>
+                    <enable>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            setprop("fdm/jsbsim/bushkit", 5);
+                            setprop("sim/model/j3cub/bushkit_flag_0",0);
+                            setprop("sim/model/j3cub/bushkit_flag_1",0);
+                            setprop("sim/model/j3cub/bushkit_flag_2",0);
+                            setprop("sim/model/j3cub/bushkit_flag_3",0);
+                            setprop("sim/model/j3cub/bushkit_flag_4",0);
+                            setprop("sim/model/j3cub/bushkit_flag_5",1);
 
                             # Select 180 HP engine
                             #setprop("/controls/engines/active-engine", 1);
