@@ -32,19 +32,27 @@
     </signal>
     <signal>
         <type>bool</type>
-        <property type="string">/fdm/jsbsim/gear/unit[23]/WOW</property>
+        <property type="string">/fdm/jsbsim/contact/unit[23]/WOW</property>
     </signal>
     <signal>
         <type>float</type>
-        <property type="string">/fdm/jsbsim/gear/unit[23]/z-position</property>
+        <property type="string">/fdm/jsbsim/contact/unit[23]/z-position</property>
     </signal>
    <signal>
         <type>bool</type>
-        <property type="string">/fdm/jsbsim/gear/unit[24]/WOW</property>
+        <property type="string">/fdm/jsbsim/contact/unit[24]/WOW</property>
     </signal>
     <signal>
         <type>float</type>
-        <property type="string">/fdm/jsbsim/gear/unit[24]/z-position</property>
+        <property type="string">/fdm/jsbsim/contact/unit[24]/z-position</property>
+    </signal>
+       <signal>
+        <type>bool</type>
+        <property type="string">/fdm/jsbsim/contact/unit[25]/WOW</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/contact/unit[25]/z-position</property>
     </signal>
 
 </PropertyList>

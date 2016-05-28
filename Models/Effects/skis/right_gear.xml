@@ -32,6 +32,9 @@
         <right_gear_ground_effect_speed_kt>
             <property>sim/multiplay/generic/float[14]</property>
         </right_gear_ground_effect_speed_kt>
+        <right_ski_lite_ground_effect_speed_kt>
+            <property>sim/multiplay/generic/float[4]</property>
+        </right_ski_lite_ground_effect_speed_kt>
     </params>
 
     <particlesystem>
@@ -47,14 +50,29 @@
 
         <condition>
             <and>
-                <greater-than>
-                    <property alias="/params/right_gear_ground_effect_speed_kt/property"/>
-                    <value>8</value>
-                </greater-than>
-                <equals>
-                    <property>/fdm/jsbsim/bushkit</property>
-                    <value>4</value>
-                </equals>
+                <or>
+                    <greater-than>
+                        <property alias="/params/right_gear_ground_effect_speed_kt/property"/>
+                        <value>8</value>
+                    </greater-than>
+                    <greater-than>
+                        <property alias="/params/right_ski_lite_ground_effect_speed_kt/property"/>
+                        <value>8</value>
+                    </greater-than>
+                </or>
+                <or>
+                    <and>
+                        <equals>
+                            <property>/fdm/jsbsim/bushkit</property>
+                            <value>4</value>
+                        </equals>
+                        <property>/fdm/jsbsim/gear/unit[2]/broken</property>
+                    </and>
+                    <equals>
+                        <property>/fdm/jsbsim/bushkit</property>
+                        <value>5</value>
+                    </equals>
+                </or>
             </and>
         </condition>
 

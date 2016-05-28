@@ -45,7 +45,8 @@
                         <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value> -36.00 </value>
-                        <value> -34.00 </value>
+                        <value>   0.00 </value>
+                        <!--value> -34.00 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -66,7 +67,8 @@
                         <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value> -86.30 </value>
-                        <value> -79.30 </value>
+                        <value>   0.00 </value>
+                        <!--value> -79.30 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -87,7 +89,8 @@
                         <value>   0.00 </value>
                         <value>   0.00 </value>
                         <value> -86.30 </value>
-                        <value> -79.30 </value>
+                        <value>   0.00 </value>
+                        <!--value> -79.30 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -246,64 +249,12 @@
         </switch>
 
         <!-- ================================================================== -->
-        <!-- Contact points skis                                                -->
-        <!-- ================================================================== -->
-
-        <switch name="z-position-left-ski">
-            <output>gear/unit[24]/z-position</output>
-            <default value="0"/>
-
-            <test logic="AND" value="-71.29">
-                bushkit EQ 4
-                gear/unit[1]/broken EQ 0
-            </test>
-
-        </switch>
-
-        <switch name="z-position-right-ski">
-            <output>gear/unit[25]/z-position</output>
-            <default value="0"/>
-
-            <test logic="AND" value="-71.41">
-                bushkit EQ 4
-                gear/unit[2]/broken EQ 0
-            </test>
-
-        </switch>
-
-        <!-- ================================================================== -->
-        <!-- Contact points skis  lite                                             -->
-        <!-- ================================================================== -->
-
-        <switch name="z-position-left-ski-lite">
-            <output>gear/unit[24]/z-position</output>
-            <default value="0"/>
-
-            <test logic="AND" value="-79.29">
-                bushkit EQ 5
-                gear/unit[1]/broken EQ 0
-            </test>
-
-        </switch>
-
-        <switch name="z-position-right-ski-lite">
-            <output>gear/unit[25]/z-position</output>
-            <default value="0"/>
-
-            <test logic="AND" value="-79.41">
-                bushkit EQ 5
-                gear/unit[2]/broken EQ 0
-            </test>
-
-        </switch>
-
-        <!-- ================================================================== -->
         <!-- Contact points amphibious                                          -->
         <!-- ================================================================== -->
 
         <switch name="z-position-left-fwd-pontoon">
             <output>gear/unit[19]/z-position</output>
-            <default value="0"/>
+            <default value="30"/>
 
             <test logic="AND" value="-117.5">
                 bushkit EQ 3
@@ -312,7 +263,7 @@
 
         <switch name="z-position-right-fwd-pontoon">
             <output>gear/unit[20]/z-position</output>
-            <default value="0"/>
+            <default value="30"/>
 
             <test logic="AND" value="-117.5">
                 bushkit EQ 3
@@ -321,7 +272,7 @@
 
         <switch name="z-position-left-aft-pontoon">
             <output>gear/unit[21]/z-position</output>
-            <default value="0"/>
+            <default value="30"/>
 
             <test logic="AND" value="-110.5">
                 bushkit EQ 3
@@ -330,11 +281,51 @@
 
         <switch name="z-position-right-aft-pontoon">
             <output>gear/unit[22]/z-position</output>
-            <default value="0"/>
+            <default value="30"/>
 
             <test logic="AND" value="-110.5">
                 bushkit EQ 3
             </test>
+        </switch>
+
+        <!-- ================================================================== -->
+        <!-- Contact points skis lite                                             -->
+        <!-- ================================================================== -->
+
+        <switch name="z-position-left-ski-lite">
+            <output>contact/unit[23]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-83">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[1]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-right-ski-lite">
+            <output>contact/unit[24]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-82">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[2]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-tail-ski-lite">
+            <output>contact/unit[25]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-32.0">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[2]/broken EQ 0
+            </test>
+
         </switch>
     </channel>
 
@@ -402,7 +393,8 @@
             </function>
         </fcs_function>
 
-        <!--fcs_function name="ground/nose-gear-ground-effect-speed-kt">
+        <!-- broken gear sparks unit 6, 7, and 8-->
+        <fcs_function name="ground/tail-gear-ground-effect-speed-kt">
             <function>
                 <product>
                     <property>/fdm/jsbsim/contact/unit[6]/WOW</property>
@@ -427,7 +419,35 @@
                     <property>/velocities/groundspeed-kt</property>
                 </product>
             </function>
-        </fcs_function-->
+        </fcs_function>
+
+        <!-- ski lite sparks unit 23, 24, and 25 on anything but snow, ice or water.-->
+        <fcs_function name="ground/left-ski-lite-ground-effect-speed-kt">
+            <function>
+                <product>
+                    <property>/fdm/jsbsim/contact/unit[23]/WOW</property>
+                    <property>/velocities/groundspeed-kt</property>
+                </product>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="ground/right-ski-lite-ground-effect-speed-kt">
+            <function>
+                <product>
+                    <property>/fdm/jsbsim/contact/unit[24]/WOW</property>
+                    <property>/velocities/groundspeed-kt</property>
+                </product>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="ground/tail-ski-lite-ground-effect-speed-kt">
+            <function>
+                <product>
+                    <property>/fdm/jsbsim/contact/unit[25]/WOW</property>
+                    <property>/velocities/groundspeed-kt</property>
+                </product>
+            </function>
+        </fcs_function>
 
         <!-- touchdown smoke not damage-->
         <fcs_function name="ground/nose-tyre-smoke-ground-effect-speed-kt">
