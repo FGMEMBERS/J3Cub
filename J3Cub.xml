@@ -463,8 +463,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -474,8 +474,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -485,8 +485,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -496,8 +496,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -507,8 +507,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -518,8 +518,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.9 </static_friction>
-            <dynamic_friction> 0.1 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
