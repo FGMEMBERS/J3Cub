@@ -1712,7 +1712,7 @@
         <object-name>RearSkiAxleL</object-name-->
     </animation>
 
-    <!-- tail ski lite compression animation-->
+    <!-- tail ski strut compression animation-->
     <animation>
         <type>rotate</type>
         <object-name>TSki</object-name>
@@ -1722,6 +1722,25 @@
             <x-m>5.05</x-m>
             <y-m>0.0</y-m>
             <z-m>-0.63</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+        
+    <!-- tail ski lite compression animation-->
+    <animation>
+        <type>rotate</type>
+        <object-name>RearSkiL</object-name>
+        <object-name>RearSkiAxleL</object-name>
+        <property>gear/gear[25]/compression-norm</property>
+        <factor>-45.0</factor>
+        <center>
+            <x-m>5.1507</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-2.3369</z-m>
         </center>
         <axis>
             <x>0.0</x>
@@ -1848,7 +1867,7 @@
     <animation>
         <type>rotate</type>
         <object-name>LSki</object-name>
-        <property>gear/gear[1]/compression-norm</property>
+        <property>gear/gear[23]/compression-norm</property>
         <factor>-5.0</factor>
         <center>
             <x-m>0.300</x-m>

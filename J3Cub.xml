@@ -614,7 +614,7 @@
             <location unit="IN">
                 <x> 199.90</x>
                 <y>   0.00</y>
-                <z> -32.0 </z>
+                <z> -32.5.0 </z>
             </location>
             <static_friction>  0.6 </static_friction>
             <dynamic_friction> 0.05 </dynamic_friction>

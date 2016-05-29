@@ -320,7 +320,7 @@
             <output>contact/unit[25]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-32.0">
+            <test logic="AND" value="-32.5">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[2]/broken EQ 0
