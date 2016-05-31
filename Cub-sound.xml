@@ -348,7 +348,7 @@
             </volume>
             <volume>
                 <factor>1.142857142857143</factor> <!-- (1.0+0.6)/1.4 (offset = -0.6, max boost: 1.4) -->
-                <property>/sim/model/j3cub/sound/volume-boost-left-door</property>
+                <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
                 <offset>-0.6</offset>
             </volume>
         </pontoon-fast-left>
@@ -451,7 +451,7 @@
             <path>Sounds/thunder1.wav</path>
             <property>/sim/model/j3cub/sound/click-thunder1</property>
             <volume>
-                <property>/sim/model/j3cub/sound/volume-boost-doors-thunder1</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door-thunder1</property>
             </volume>
         </thunder1>
         <thunder2>
@@ -460,7 +460,7 @@
             <path>Sounds/thunder2.wav</path>
             <property>/sim/model/j3cub/sound/click-thunder2</property>
             <volume>
-                <property>/sim/model/j3cub/sound/volume-boost-doors-thunder2</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door-thunder2</property>
             </volume>
         </thunder2>
         <thunder3>
@@ -469,7 +469,7 @@
             <path>Sounds/thunder3.wav</path>
             <property>/sim/model/j3cub/sound/click-thunder3</property>
             <volume>
-                <property>/sim/model/j3cub/sound/volume-boost-doors-thunder3</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door-thunder3</property>
             </volume>
         </thunder3>
 
@@ -485,7 +485,7 @@
             </condition>
             <volume>
                 <factor>0.7</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
                 <offset>-0.6</offset>
             </volume>
         </rain>
@@ -539,7 +539,7 @@
             </position>
             <volume>
                 <factor>0.7143</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <reference-dist>3.0</reference-dist>
             <max-dist>200.0</max-dist>
@@ -570,7 +570,7 @@
             </position>
             <volume>
                 <factor>0.7143</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <reference-dist>2.5</reference-dist>
             <max-dist>200.0</max-dist>
@@ -601,7 +601,7 @@
             </position>
             <volume>
                 <factor>0.7143</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <reference-dist>2.5</reference-dist>
             <max-dist>200.0</max-dist>
@@ -628,7 +628,7 @@
             </position>
             <volume>
                 <factor>0.7143</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <reference-dist>3.0</reference-dist>
             <max-dist>200.0</max-dist>
@@ -655,7 +655,7 @@
             </position>
             <volume>
                 <factor>0.7143</factor>
-                <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <reference-dist>3.0</reference-dist>
             <max-dist>200.0</max-dist>

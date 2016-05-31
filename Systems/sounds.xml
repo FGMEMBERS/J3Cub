@@ -86,58 +86,58 @@
             <value>1.4</value>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door</property>
         </output>
     </filter>
 
     <filter>
-        <name>Volume Boost Doors plus thunder1</name>
+        <name>Volume Boost Door plus thunder1</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist1</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder1</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder1</property>
         </output>
     </filter>
 
     <filter>
-        <name>Volume Boost Doors plus thunder2</name>
+        <name>Volume Boost Door plus thunder2</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist2</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder2</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder2</property>
         </output>
     </filter>
 
     <filter>
-        <name>Volume Boost Doors plus thunder3</name>
+        <name>Volume Boost Door plus thunder3</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist3</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder3</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder3</property>
         </output>
     </filter>
 

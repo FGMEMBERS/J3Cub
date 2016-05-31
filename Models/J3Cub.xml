@@ -2198,7 +2198,6 @@
 <!--  INTERNAL EFFECTS  *************************************************  -->
 
  <!-- door and window  -->
-
  <animation>
   <type>rotate</type>
   <object-name>door</object-name>
@@ -2248,9 +2247,10 @@
        } else {
          interpolate("controls/door[0]", 1, 1);
        }
+       j3cub.rightDoor.toggle();
       </script>
     </binding>
-  </action>    
+  </action>
 </animation>
 
 <animation>

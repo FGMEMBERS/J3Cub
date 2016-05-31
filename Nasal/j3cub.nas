@@ -234,6 +234,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/environment/lightning/lightning-pos-y", thunder);
 
     reset_system();
+    j3cub.rightDoor.toggle();
     var j3cub_timer = maketimer(0.25, func{global_system_loop()});
     j3cub_timer.start();
 });
