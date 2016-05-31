@@ -6,6 +6,9 @@
     <right_tyre_smoke_ground_effect_speed_kt>
       <property>sim/multiplay/generic/float[17]</property>
     </right_tyre_smoke_ground_effect_speed_kt>
+    <right_ski_lite_ground_effect_speed_kt>
+      <property>sim/multiplay/generic/float[4]</property>
+    </right_ski_lite_ground_effect_speed_kt>
   </params>
 
   <particlesystem>
@@ -15,7 +18,13 @@
     <lighting>false</lighting>
 
     <condition>
-	    <property alias="/params/right_tyre_smoke_ground_effect_speed_kt/property"/>
+        <or>
+            <property alias="/params/right_tyre_smoke_ground_effect_speed_kt/property"/>
+            <greater-than>
+                <property alias="/params/right_ski_lite_ground_effect_speed_kt/property"/>
+                <value>8</value>
+            </greater-than>
+        </or>
     </condition>
 
     <attach>world</attach>

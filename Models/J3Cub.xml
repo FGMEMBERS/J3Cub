@@ -2509,50 +2509,26 @@
   </axis>
  </animation>
 
-<!--  EXTERNAL EFFECTS **********************************************************  -->
+<!-- External Effects -->
+    <!-- Wing Scrape -->
+    <model>
+        <path>Effects/damage/wing-left.xml</path>
+        <offsets>
+            <x-m> .59 </x-m>
+            <y-m> -5.21 </y-m>
+            <z-m> 0.10 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/damage/wing-right.xml</path>
+        <offsets>
+            <x-m> .59 </x-m>
+            <y-m> 5.21 </y-m>
+            <z-m> 0.10 </z-m>
+        </offsets>
+    </model>
 
-<!-- water spray (tyre smoke if you want it) -->
-  <!--model>
-    <path>Aircraft/Generic/Effects/rain-port.xml</path>
-    <name>rain-port</name>
-    <offsets>
-      <x-m>0.1</x-m>
-      <y-m>-0.9</y-m>
-      <z-m>-1.85</z-m>
-    </offsets>
-  </model>
-
-  <model>
-    <path>Aircraft/Generic/Effects/rain-stbd.xml</path>
-    <name>rain-stbd</name>
-    <offsets>
-      <x-m>0.1</x-m>
-      <y-m>0.9</y-m>
-      <z-m>-1.85</z-m>
-    </offsets>
-  </model>
-  
- <model>
-    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-port.xml</path>
-    <name>tyre-smoke-port</name>
-    <offsets>
-      <x-m>0.1</x-m>
-      <y-m>-0.9</y-m>
-      <z-m>-1.85</z-m>
-    </offsets>
-  </model>
-
-  <model>
-    <path>Aircraft/J3Cub/Models/Effects/tyre-smoke-stbd.xml</path>
-    <name>tyre-smoke-stbd</name>
-    <offsets>
-      <x-m>0.1</x-m>
-      <y-m>0.9</y-m>
-      <z-m>-1.85</z-m>
-    </offsets>
-  </model    -->
-
-    <!-- MOD: Tyre smoke -->
+    <!-- Tyre smoke -->
     <model>
         <path>Effects/tyresmoke/tyre-smoke-tail.xml</path>
         <object-name>tyre-smoke-n</object-name>
@@ -2580,9 +2556,8 @@
             <z-m> -1.5 </z-m>
         </offsets>
     </model>
-    <!-- MODEND: Tyre smoke -->
 
-    <!-- MOD: Tyre Spray -->
+    <!-- Tyre Spray -->
     <model>
         <path>Effects/tyrespray/rain-tail.xml</path>
         <name>rain-tail</name>
@@ -2610,9 +2585,8 @@
             <z-m>-1.85</z-m>
         </offsets>
     </model>
-    <!-- MODEND: Tyre Spray -->
 
-    <!-- MOD: Floats Spray-->
+    <!-- Floats Spray-->
     <model>
         <path>Effects/pontoon/left-spray.xml</path>
         <name>spray-left</name>
@@ -2631,9 +2605,8 @@
             <z-m>-2.0</z-m>
         </offsets>
     </model>
-    <!-- MODEND: Floats Spray-->
 
-    <!-- MOD: Floats Wake-->
+    <!-- Floats Wake-->
     <model>
         <path>Effects/pontoon/left-wake.xml</path>
         <name>spray-wake</name>
@@ -2665,7 +2638,7 @@
         </offsets>
     </model>
     
-    <!-- Ski Damage Spark and Ski (Lite) Scrape
+    <!-- Ski Damage Spark and Ski (Lite) Scrape -->
     <model>
         <path>Effects/skis/tail_gear.xml</path>
         <offsets>
@@ -2689,7 +2662,7 @@
             <y-m>  0.9 </y-m>
             <z-m> -1.9 </z-m>
         </offsets>
-    </model> -->
+    </model>
 
     <animation>
         <type>material</type>

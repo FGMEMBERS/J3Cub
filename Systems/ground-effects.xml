@@ -182,6 +182,7 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- broken gear sparks unit 6, 7, and 8-->
     <filter>
         <name>Right Wing Ground Effect</name>
         <type>gain</type>
@@ -308,6 +309,7 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- touchdown smoke not damage-->
     <filter>
         <name>Tail Off Road Tyre Smoke Ground Effect</name>
         <type>gain</type>
