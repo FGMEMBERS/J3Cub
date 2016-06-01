@@ -202,7 +202,7 @@ version 2.0  090410-->
             <chat_display>1</chat_display>
             <generic>
                 <float n="0" alias="/sim/model/door-positions/rightDoor/position-norm"/>
-                <float n="1" alias="/sim/model/window-positions/rightWindow/position-norm"/>
+                <float n="1" alias="/sim/model/door-positions/rightWindow/position-norm"/>
                 <float n="2" alias="/fdm/jsbsim/ground/tail-ski-lite-ground-effect-speed-kt-actual"/>
                 <float n="3" alias="/fdm/jsbsim/ground/left-ski-lite-ground-effect-speed-kt-actual"/>
                 <float n="4" alias="/fdm/jsbsim/ground/right-ski-lite-ground-effect-speed-kt-actual"/>

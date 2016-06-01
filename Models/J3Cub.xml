@@ -128,9 +128,9 @@
         <door>
             <property>sim/multiplay/generic/float[0]</property>
         </door>
-        <windows>
+        <window>
             <property>sim/multiplay/generic/float[1]</property>
-        </windows>
+        </window>
         <crash>
             <property>sim/multiplay/generic/int[15]</property>
         </crash>
@@ -472,6 +472,7 @@
         <object-name>stick_front</object-name>
         <object-name>window_strut_l</object-name>
         <object-name>window_strut_r</object-name>
+        <object-name>window_handle</object-name>
         <object-name>screen_strut_l</object-name>
         <object-name>screen_strut_r</object-name>
         <object-name>throttle_back</object-name>
@@ -2197,13 +2198,43 @@
 
 <!--  INTERNAL EFFECTS  *************************************************  -->
 
+    <animation>
+      <type>pick</type>
+      <object-name>door_handle</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            if (getprop("sim/multiplay/generic/float[1]") == 0)
+                j3cub.rightWindow.toggle();
+            j3cub.rightDoor.toggle();
+          </script>
+        </binding>
+      </action>
+    </animation>
+
  <!-- door and window  -->
  <animation>
   <type>rotate</type>
   <object-name>door</object-name>
   <object-name>door_interior</object-name>
-  <property>controls/door[0]</property>
-  <factor>-130.0</factor>
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>0</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>-130</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.17</x-m>
    <y-m>0.352</y-m>
@@ -2219,8 +2250,21 @@
 <animation>
   <type>rotate</type>
   <object-name>door_handle</object-name>
-  <property>controls/door[0]</property>
-  <factor>-130</factor>
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>0</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>-130</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.17</x-m>
    <y-m>0.352</y-m>
@@ -2232,32 +2276,26 @@
    <z>0</z>
   </axis>
  </animation>
-
-<animation>
-  <type>pick</type>
-  <object-name>door_handle</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>false</repeatable>
-    <binding>
-      <command>nasal</command>
-      <script>
-       if(getprop("controls/door[0]") > 0) {
-         interpolate("controls/door[0]", 0, 1);
-       } else {
-         interpolate("controls/door[0]", 1, 1);
-       }
-       j3cub.rightDoor.toggle();
-      </script>
-    </binding>
-  </action>
-</animation>
-
+ 
 <animation>
   <type>rotate</type>
   <object-name>door_handle</object-name>
-  <property>controls/door[0]</property>
-  <factor>90</factor>
+  <!--property>controls/door[0]</property-->
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>90</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>90.0</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.415</x-m>
    <y-m>0.345</y-m>
@@ -2266,6 +2304,39 @@
   <axis>
    <x>0</x>
    <y>1.00</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+    <animation>
+      <type>pick</type>
+      <object-name>window_handle</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+           j3cub.rightWindow.toggle();
+          </script>
+        </binding>
+      </action>
+    </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>window_r</object-name>
+  <object-name>window_handle</object-name>
+  <property alias="../../params/window/property"/>
+  <factor>89</factor>
+  <center>
+   <x-m>0.55</x-m>
+   <y-m>0.352</y-m>
+   <z-m>-0.025</z-m>
+  </center>
+  <axis>
+   <x>1.00</x>
+   <y>0</y>
    <z>0</z>
   </axis>
  </animation>
@@ -2290,24 +2361,6 @@
   <factor>-0.06</factor>
   <axis>
    <x>1</x>
-   <y>0</y>
-   <z>0</z>
-  </axis>
- </animation>
-
-
- <animation>
-  <type>rotate</type>
-  <object-name>window_r</object-name>
-  <property>controls/door[0]</property>
-  <factor>89</factor>
-  <center>
-   <x-m>0.55</x-m>
-   <y-m>0.352</y-m>
-   <z-m>-0.025</z-m>
-  </center>
-  <axis>
-   <x>1.00</x>
    <y>0</y>
    <z>0</z>
   </axis>

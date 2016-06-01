@@ -60,9 +60,7 @@
                 <max>1.5</max>
             </volume>
             <volume>
-                <property>/sim/current-view/internal</property>
-                <offset>1.0</offset>
-                <factor>-0.7</factor>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <pitch>
                 <property>/engines/engine/rpm</property>
@@ -278,49 +276,68 @@
             <position>
                 <x>0.75</x>
                 <y>-0.6</y>
-                <z>-0.35</z>
+                <z>-0.05</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>50.0</max-dist>
         </right-door-closing>
 
-        <baggage-door-opening>
-            <name>baggage-door-opening</name>
+        <window-opening-one>
+            <name>window-opening-one</name>
             <mode>once</mode>
-            <path>Sounds/door-opening.wav</path>
+            <path>Sounds/window-opening-one.wav</path>
             <condition>
                 <greater-than>
-                    <property>/sim/model/door-positions/baggageDoor/position-norm</property>
-                    <value>0.4</value>
+                    <property>/sim/model/door-positions/rightWindow/position-norm</property>
+                    <value>0.0</value>
                 </greater-than>
             </condition>
             <position>
-                <x>1.85</x>
-                <y>0.6</y>
+                <x>0.75</x>
+                <y>-0.6</y>
                 <z>-0.35</z>
-            </position>
+            </position>a
             <reference-dist>0.2</reference-dist>
             <max-dist>50.0</max-dist>
-        </baggage-door-opening>
+        </window-opening-one>
 
-        <baggage-door-closing>
-            <name>baggage-door-closing</name>
+        <window-opening>
+            <name>window-opening</name>
             <mode>once</mode>
-            <path>Sounds/door-closing.wav</path>
+            <path>Sounds/window-opening.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/sim/model/door-positions/rightWindow/position-norm</property>
+                    <value>0.9</value>
+                </greater-than>
+            </condition>
+            <position>
+                <x>0.75</x>
+                <y>-0.6</y>
+                <z>-0.75</z>
+            </position>a
+            <reference-dist>0.2</reference-dist>
+            <max-dist>50.0</max-dist>
+        </window-opening>
+
+        <window-closing>
+            <name>window-closing</name>
+            <mode>once</mode>
+            <path>Sounds/window-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>/sim/model/door-positions/baggageDoor/position-norm</property>
-                    <value>0.06</value>
+                    <property>/sim/model/door-positions/rightWindow/position-norm</property>
+                    <value>0.01</value>
                 </less-than>
             </condition>
             <position>
-                <x>1.85</x>
-                <y>0.6</y>
+                <x>0.75</x>
+                <y>-0.6</y>
                 <z>-0.35</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>50.0</max-dist>
-        </baggage-door-closing>
+        </window-closing>
 
         <pontoon-fast-left>
             <name>pontoon-fast-left</name>
@@ -348,7 +365,7 @@
             </volume>
             <volume>
                 <factor>1.142857142857143</factor> <!-- (1.0+0.6)/1.4 (offset = -0.6, max boost: 1.4) -->
-                <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
                 <offset>-0.6</offset>
             </volume>
         </pontoon-fast-left>
@@ -379,7 +396,7 @@
             </volume>
             <volume>
                 <factor>1.142857142857143</factor> <!-- (1.0+0.6)/1.4 (offset = -0.6, max boost: 1.4) -->
-                <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
                 <offset>-0.6</offset>
             </volume>
         </pontoon-fast-right>
@@ -406,7 +423,7 @@
             </volume>
             <volume>
                 <factor>1.142857142857143</factor> <!-- (1.0+0.6)/1.4 (offset = -0.6, max boost: 1.4) -->
-                <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
                 <offset>-0.6</offset>
             </volume>
         </pontoons-in-water-left>
@@ -433,7 +450,7 @@
             </volume>
             <volume>
                 <factor>1.142857142857143</factor> <!-- (1.0+0.6)/1.4 (offset = -0.6, max boost: 1.4) -->
-                <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
                 <offset>-0.6</offset>
             </volume>
         </pontoons-in-water-right>
