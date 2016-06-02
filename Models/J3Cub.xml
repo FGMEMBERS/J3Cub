@@ -2365,21 +2365,39 @@
    <z>0</z>
   </axis>
  </animation>
-
-<animation>
-  <type>rotate</type>
-  <object-name>trim_handle</object-name>
-  <property>controls/flight/elevator-trim</property>
-  <factor>500</factor>
-  <center>
-    <x-m>0.414</x-m>
-    <y-m>0.0</y-m>
-    <z-m>-0.804</z-m>
-  </center>
-  <axis>
-    <y>1</y>
-  </axis>
-</animation>
+ 
+    <animation>
+        <type>knob</type>
+        <object-name>trim_handle</object-name>
+        <property>controls/flight/elevator-trim</property>
+        <factor>500</factor>
+        <center>
+            <x-m>0.414</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.804</z-m>
+        </center>
+        <axis>
+            <y>1</y>
+        </axis>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/flight/elevator-trim</property>
+                <factor>.01</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>trim_handle</tooltip-id>
+                <label>Trim Elevator: %s</label>
+                <property>controls/flight/elevator-trim</property>
+            </binding>
+        </hovered>
+    </animation>
 
 
 <!-- pilot (and safety belts)  -->
