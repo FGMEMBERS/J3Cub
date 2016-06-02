@@ -1778,7 +1778,6 @@
         <object-name>LeftCableConnectB</object-name>
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
-        <object-name>LeftSkiSpring</object-name>
     </animation> 
 
     <animation>
@@ -1794,6 +1793,137 @@
         <axis>
             <x>1.0</x>
             <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left front bungee (top) ski wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>1</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.6362</x-m>
+            <y-m>-0.5327</y-m>
+            <z-m>-0.1468</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-6</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.6362</x-m>
+            <y-m>-0.5327</y-m>
+            <z-m>-0.1468</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left front bottom ski wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-8</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.8426</x-m>
+            <y-m>-0.9569</y-m>
+            <z-m>-1.1537</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-6</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.8426</x-m>
+            <y-m>-0.9569</y-m>
+            <z-m>-1.1537</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left back ski wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireB</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>3</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.93042</x-m>
+            <y-m>-0.65784</y-m>
+            <z-m>-1.89149</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
             <z>0.0</z>
         </axis>
     </animation>
@@ -1838,6 +1968,33 @@
         </axis>
     </animation>
 
+    <!-- rotate right rear ski wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireB</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>3</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.9266</x-m>
+            <y-m>0.65496</y-m>
+            <z-m>-1.8898</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
     <!-- suspension left ski lite-->
     <animation>
         <name>LSki</name>
@@ -1862,6 +2019,60 @@
             <x-m>0.300</x-m>
             <y-m>-0.360</y-m>
             <z-m>-1.175</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate left back ski (lite) wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireBL</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.86392</x-m>
+            <y-m>-0.87659</y-m>
+            <z-m>-1.75712</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    
+    <!-- rotate left back ski (lite) wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LeftSkiWireBL</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>11</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.86392</x-m>
+            <y-m>-0.87659</y-m>
+            <z-m>-1.75712</z-m>
         </center>
         <axis>
             <x>1.0</x>
@@ -1897,6 +2108,60 @@
         </center>
         <axis>
             <x>-1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate right rear ski (lite) wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireBL</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-5</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.86445</x-m>
+            <y-m>0.8515</y-m>
+            <z-m>-1.76291</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- rotate right rear ski (lite) wire -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireBL</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-11</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>0.86445</x-m>
+            <y-m>0.8515</y-m>
+            <z-m>-1.76291</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
             <y>0.0</y>
             <z>0.0</z>
         </axis>
@@ -2715,7 +2980,7 @@
         <offsets>
             <x-m> 4.9 </x-m>
             <y-m> 0.0 </y-m>
-            <z-m>  -1.1 </z-m>
+            <z-m>  -0.95 </z-m>
         </offsets>
     </model>
     <model>

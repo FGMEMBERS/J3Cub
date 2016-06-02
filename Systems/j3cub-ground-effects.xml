@@ -288,12 +288,13 @@
         <!-- ================================================================== -->
         <!-- Contact points skis                                                -->
         <!-- ================================================================== -->
-
+        
         <switch name="z-position-left-ski">
             <output>gear/unit[24]/z-position</output>
             <default value="0"/>
 
             <test logic="AND" value="-71.29">
+                simulation/sim-time-sec GT 0.25
                 bushkit EQ 4
                 gear/unit[1]/broken EQ 0
             </test>
@@ -305,7 +306,30 @@
             <default value="0"/>
 
             <test logic="AND" value="-71.41">
+                simulation/sim-time-sec GT 0.25
                 bushkit EQ 4
+                gear/unit[2]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-left-ski-alt">
+            <output>gear/unit[24]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="0">
+                bushkit EQ 5
+                gear/unit[1]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-right-ski-alt">
+            <output>gear/unit[25]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="0">
+                bushkit EQ 5
                 gear/unit[2]/broken EQ 0
             </test>
 
