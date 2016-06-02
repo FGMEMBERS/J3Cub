@@ -1724,7 +1724,7 @@
         <type>rotate</type>
         <object-name>RearSkiL</object-name>
         <object-name>RearSkiAxleL</object-name>
-        <property>gear/gear[25]/compression-norm</property>
+        <property>gear/gear[28]/compression-norm</property>
         <factor>-45.0</factor>
         <center>
             <x-m>5.1507</x-m>

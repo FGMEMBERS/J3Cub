@@ -46,7 +46,6 @@
                         <value>   0.00 </value>
                         <value> -36.00 </value>
                         <value>   0.00 </value>
-                        <!--value> -34.00 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -68,7 +67,6 @@
                         <value>   0.00 </value>
                         <value> -86.30 </value>
                         <value>   0.00 </value>
-                        <!--value> -79.30 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -90,7 +88,6 @@
                         <value>   0.00 </value>
                         <value> -86.30 </value>
                         <value>   0.00 </value>
-                        <!--value> -79.30 </value-->
                     </switch>
                 </ifthen>
             </function>
@@ -289,11 +286,37 @@
         </switch>
 
         <!-- ================================================================== -->
+        <!-- Contact points skis                                                -->
+        <!-- ================================================================== -->
+
+        <switch name="z-position-left-ski">
+            <output>gear/unit[24]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-71.29">
+                bushkit EQ 4
+                gear/unit[1]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <switch name="z-position-right-ski">
+            <output>gear/unit[25]/z-position</output>
+            <default value="0"/>
+
+            <test logic="AND" value="-71.41">
+                bushkit EQ 4
+                gear/unit[2]/broken EQ 0
+            </test>
+
+        </switch>
+
+        <!-- ================================================================== -->
         <!-- Contact points skis lite                                             -->
         <!-- ================================================================== -->
 
         <switch name="z-position-left-ski-lite">
-            <output>contact/unit[23]/z-position</output>
+            <output>contact/unit[26]/z-position</output>
             <default value="0"/>
 
             <test logic="AND" value="-83">
@@ -305,7 +328,7 @@
         </switch>
 
         <switch name="z-position-right-ski-lite">
-            <output>contact/unit[24]/z-position</output>
+            <output>contact/unit[27]/z-position</output>
             <default value="0"/>
 
             <test logic="AND" value="-82">
@@ -317,7 +340,7 @@
         </switch>
 
         <switch name="z-position-tail-ski-lite">
-            <output>contact/unit[25]/z-position</output>
+            <output>contact/unit[28]/z-position</output>
             <default value="0"/>
 
             <test logic="AND" value="-32.5">
@@ -421,11 +444,11 @@
             </function>
         </fcs_function>
 
-        <!-- ski lite sparks unit 23, 24, and 25 on anything but snow, ice or water.-->
+        <!-- ski lite sparks unit 26, 27, and 28 on anything but snow, ice or water.-->
         <fcs_function name="ground/left-ski-lite-ground-effect-speed-kt">
             <function>
                 <product>
-                    <property>/fdm/jsbsim/contact/unit[23]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[26]/WOW</property>
                     <property>/velocities/groundspeed-kt</property>
                 </product>
             </function>
@@ -434,7 +457,7 @@
         <fcs_function name="ground/right-ski-lite-ground-effect-speed-kt">
             <function>
                 <product>
-                    <property>/fdm/jsbsim/contact/unit[24]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[27]/WOW</property>
                     <property>/velocities/groundspeed-kt</property>
                 </product>
             </function>
@@ -443,7 +466,7 @@
         <fcs_function name="ground/tail-ski-lite-ground-effect-speed-kt">
             <function>
                 <product>
-                    <property>/fdm/jsbsim/contact/unit[25]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[28]/WOW</property>
                     <property>/velocities/groundspeed-kt</property>
                 </product>
             </function>
