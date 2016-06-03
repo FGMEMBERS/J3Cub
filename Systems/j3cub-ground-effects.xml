@@ -313,7 +313,7 @@
 
         </switch>
 
-        <switch name="z-position-left-ski-alt">
+        <switch name="z-position-left-ski-lite">
             <output>gear/unit[24]/z-position</output>
             <default value="0"/>
 
@@ -324,7 +324,7 @@
 
         </switch>
 
-        <switch name="z-position-right-ski-alt">
+        <switch name="z-position-right-ski-lite">
             <output>gear/unit[25]/z-position</output>
             <default value="0"/>
 

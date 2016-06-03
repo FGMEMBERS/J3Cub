@@ -296,7 +296,7 @@
             <static_friction>  0.60 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff  unit="LBS/FT">   300.00 </spring_coeff>
+            <spring_coeff  unit="LBS/FT">   250.00 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 150.00 </damping_coeff>
             <steerability> STEERABLE </steerability>
             <max_steer unit="DEG"> -30.00 </max_steer>

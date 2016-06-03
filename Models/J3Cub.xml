@@ -1797,7 +1797,7 @@
         </axis>
     </animation>
 
-    <!-- rotate left front bungee (top) ski wire -->
+    <!-- rotate left front bungee (top) ski wire
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiSpring</object-name>
@@ -1847,9 +1847,9 @@
             <y>0.0</y>
             <z>0.0</z>
         </axis>
-    </animation>
+    </animation> -->
 
-    <!-- rotate left front bottom ski wire -->
+    <!-- rotate left front bottom ski wire
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiWireF</object-name>
@@ -1899,7 +1899,7 @@
             <y>0.0</y>
             <z>0.0</z>
         </axis>
-    </animation>
+    </animation> -->
 
     <!-- rotate left back ski wire -->
     <animation>
@@ -1967,6 +1967,110 @@
             <z>0.0</z>
         </axis>
     </animation>
+
+    <!-- rotate right front bungee (top) ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>2</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.6344</x-m>
+            <y-m>0.5495</y-m>
+            <z-m>-0.1629</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiSpring</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>6</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.6344</x-m>
+            <y-m>0.5495</y-m>
+            <z-m>-0.1629</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation> -->
+
+    <!-- rotate right front bottom ski wire
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+             <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>-8</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.844</x-m>
+            <y-m> 0.9575</y-m>
+            <z-m>-1.1582</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RightSkiWireF</object-name>
+        <property>/fdm/jsbsim/ski/atan-actual</property>
+        <interpolation>
+            <entry>
+                <ind>0.6517</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.493</ind>
+                <dep>6</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.844</x-m>
+            <y-m> 0.9575</y-m>
+            <z-m>-1.1582</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation> -->
 
     <!-- rotate right rear ski wire -->
     <animation>
@@ -3192,6 +3296,9 @@
     </model>
     <model>
         <path>Effects/shadow/skishadow.xml</path>
+    </model>
+    <model>
+        <path>Effects/shadow/skiliteshadow.xml</path>
     </model>
 
 <!-- exhaust smoke; just a little pollution -->
