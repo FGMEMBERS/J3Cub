@@ -38,9 +38,37 @@ version 2.0  090410-->
             <config>
                 <x-offset-m archive="y" type="double">-0.0 </x-offset-m><!--y-->
                 <y-offset-m archive="y" type="double">-0.2 </y-offset-m><!--z-->
-                <z-offset-m archive="y" type="double"> 1.0 </z-offset-m><!--x-->
+                <z-offset-m archive="y" type="double"> 0.98 </z-offset-m><!--x-->
                 <pitch-offset-deg type="double">12</pitch-offset-deg>
                 <default-field-of-view-deg>100</default-field-of-view-deg>
+            </config>
+        </view>
+
+        <view n="100">
+            <name>Cockpit Front Seat View</name>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <from-model-idx type="int">0</from-model-idx>
+                <x-offset-m type="double">-0.0 </x-offset-m><!--y-->
+                <y-offset-m type="double">-0.2 </y-offset-m><!--z-->
+                <z-offset-m type="double"> 0.32 </z-offset-m><!--x-->
+                <pitch-offset-deg type="double">-12</pitch-offset-deg>
+                <default-field-of-view-deg>100</default-field-of-view-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">140</heading-max-deg>
+                        <x-offset-max-m type="double">0.15</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">140</heading-max-deg>
+                        <x-offset-max-m type="double">0.15</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
             </config>
         </view>
 
@@ -130,6 +158,7 @@ version 2.0  090410-->
                 </securing>
 
                 <enable-fog-frost type="bool">true</enable-fog-frost>
+                <garmin196-visible type="bool">false</garmin196-visible>
             </j3cub>
 
             <!-- An exit for the walker -->
@@ -158,6 +187,7 @@ version 2.0  090410-->
             <path>/sim/model/j3cub/securing/tiedownR-visible</path>
             <path>/sim/model/j3cub/securing/tiedownT-visible</path>
             <path>/sim/model/j3cub/brake-parking</path>
+            <path>/sim/model/j3cub/garmin196-visible</path>
             <path>/fdm/jsbsim/bushkit</path>
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/dirt</path>
@@ -388,6 +418,9 @@ version 2.0  090410-->
         <environment>
             <file>Nasal/terrain.nas</file>
         </environment>
+        <garmin196>
+            <file>Aircraft/Instruments-3d/garmin196/garmin196.nas</file>
+        </garmin196>
     </nasal>
 
     <payload>

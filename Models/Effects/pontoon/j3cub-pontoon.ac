@@ -12,7 +12,7 @@ name "Blender_export__j3cub-pontoon.ac"
 kids 49
 OBJECT poly
 name "bezeloutsideAmp"
-loc 0.7161541 -0.6556684 0.3447036
+loc 0.4119249 -0.6985449 0.3447036
 numvert 128
 -0.0433059 0.0003143 -0.0066157
 -0.0424807 0.0088933 -0.0066592
@@ -594,7 +594,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Dim.bezel"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 19
@@ -741,7 +741,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Dim.toggle"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -1796,7 +1796,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Gearswitch"
-loc 0.7005617 -0.6723898 0.3318932
+loc 0.3963325 -0.7152663 0.3318932
 texture "gear.png"
 texrep 1 1
 numvert 24
@@ -17006,7 +17006,7 @@ refs 4
 kids 0
 OBJECT poly
 name "maindn1"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -17255,7 +17255,7 @@ refs 4
 kids 0
 OBJECT poly
 name "maindn2"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -17504,7 +17504,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mainup1"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -17753,7 +17753,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mainup2"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -18002,7 +18002,7 @@ refs 4
 kids 0
 OBJECT poly
 name "nosedn1"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -18251,7 +18251,7 @@ refs 4
 kids 0
 OBJECT poly
 name "nosedn2"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -18500,7 +18500,7 @@ refs 4
 kids 0
 OBJECT poly
 name "noseup1"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -18749,7 +18749,7 @@ refs 4
 kids 0
 OBJECT poly
 name "noseup2"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -18998,7 +18998,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Plane"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 4
@@ -19017,7 +19017,7 @@ refs 4
 kids 0
 OBJECT poly
 name "pump"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 33
@@ -37751,7 +37751,7 @@ refs 4
 kids 0
 OBJECT poly
 name "screw_1Amp"
-loc 0.7161541 -0.6556684 0.3447036
+loc 0.4119249 -0.6985449 0.3447036
 numvert 33
 0.0336272 0.0356265 -0.0069360
 0.0330052 0.0360418 -0.0069241
@@ -37998,7 +37998,7 @@ refs 4
 kids 0
 OBJECT poly
 name "screw_2Amp"
-loc 0.7161541 -0.6556684 0.3447036
+loc 0.4119249 -0.6985449 0.3447036
 numvert 33
 -0.0312410 0.0355944 -0.0055586
 -0.0318640 0.0360098 -0.0055466
@@ -38245,7 +38245,7 @@ refs 4
 kids 0
 OBJECT poly
 name "screw_3Amp"
-loc 0.7161541 -0.6556684 0.3447036
+loc 0.4119249 -0.6985449 0.3447036
 numvert 33
 -0.0312036 -0.0314128 -0.0053566
 -0.0318266 -0.0309974 -0.0053446
@@ -38492,7 +38492,7 @@ refs 4
 kids 0
 OBJECT poly
 name "screw_4Amp"
-loc 0.7161541 -0.6556684 0.3447036
+loc 0.4119249 -0.6985449 0.3447036
 numvert 33
 0.0340510 -0.0313805 -0.0067422
 0.0334280 -0.0309652 -0.0067302
@@ -38739,7 +38739,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Switch.nut"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 13
@@ -38838,7 +38838,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Wgear.bezel"
-loc 0.7161916 -0.6550584 0.3404580
+loc 0.4119624 -0.6979349 0.3404580
 texture "gear.png"
 texrep 1 1
 numvert 52
