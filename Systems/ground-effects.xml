@@ -92,6 +92,9 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- ================================================================== -->
+    <!-- Ground and water effects                                           -->
+    <!-- ================================================================== -->
     <filter>
         <name>Spray and Wakes Effect for Pontoons</name>
         <type>gain</type>

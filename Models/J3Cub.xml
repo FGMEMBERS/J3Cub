@@ -3077,7 +3077,25 @@
             <pitch-deg> -55 </pitch-deg>
         </offsets>
     </model>
-    
+
+    <!-- Pontoon Damage Spark and Smoke Mod -->
+    <model>
+        <path>Effects/pontoon/left_ground.xml</path>
+        <offsets>
+            <x-m> -0.7 </x-m>
+            <y-m> -1.9 </y-m>
+            <z-m> -2.2 </z-m>
+        </offsets>
+    </model>
+    <model>
+        <path>Effects/pontoon/right_ground.xml</path>
+        <offsets>
+            <x-m> -0.7 </x-m>
+            <y-m>  1.9 </y-m>
+            <z-m> -2.2 </z-m>
+        </offsets>
+    </model>
+
     <!-- Ski Damage Spark and Ski (Lite) Scrape -->
     <model>
         <path>Effects/skis/tail_gear.xml</path>
