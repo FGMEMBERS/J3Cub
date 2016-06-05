@@ -238,6 +238,15 @@
                 <z> -63.32 </z>
             </location>
         </pointmass>
+        <pointmass name="Hopper" >
+        <!-- max 350 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>  37.44 </x>
+                <y>   0.00 </y>
+                <z> -38.99 </z>
+            </location>
+        </pointmass>
     </mass_balance>
 
  <propulsion>
@@ -989,11 +998,12 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <value> 0.0040 </value>
-           <property>gear/drag-coef[1]</property> <!-- bush wheels 36" -->
+           <property>gear/drag-coef[1]</property> <!-- 36 Bush Wheels" -->
            <property>gear/drag-coef[2]</property> <!-- Floats -->
            <property>gear/drag-coef[3]</property> <!-- Amphibious -->
            <property>gear/drag-coef[4]</property> <!-- Ski -->
            <property>gear/drag-coef[5]</property> <!-- Ski Lite -->
+           <property>gear/drag-coef[6]</property> <!-- Sprayer -->
          </product>
     </function>
 

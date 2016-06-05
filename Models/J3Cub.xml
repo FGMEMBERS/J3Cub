@@ -47,6 +47,17 @@
             <pitch-deg>0</pitch-deg>
         </offsets>
     </model>
+
+    <model>
+        <name>Pontoon</name>
+        <path>Effects/sprayer/sprayer.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
     
     <nasal>
         <load>
@@ -604,9 +615,9 @@
         <name>Garmin196-GPS</name>
         <path>Interior/Panel/garmin196/garmin196.xml</path>
         <offsets>        
-            <x-m>-0.4</x-m>
-            <y-m>0.36</y-m>
-            <z-m>0.205</z-m>
+           <x-m>-0.21</x-m>
+            <y-m> 0.19</y-m>
+            <z-m>-.30</z-m>
             <heading-deg>-12.0</heading-deg>
         </offsets>
     </model>
@@ -614,10 +625,10 @@
         <name>Garmin196-GPS-support</name>
         <path>Interior/Panel/garmin196/garmin196_support.xml</path>
         <offsets>
-            <x-m>-0.4</x-m>
-            <y-m>0.36</y-m>
-            <z-m>0.205</z-m>
-            <heading-deg>-12.0</heading-deg>
+           <x-m>-0.21</x-m>
+            <y-m> 0.19</y-m>
+            <z-m>-.30</z-m>
+            <heading-deg>-17.0</heading-deg>
         </offsets>
     </model>
     <animation>
@@ -625,7 +636,7 @@
         <object-name>Garmin196-GPS</object-name>
         <object-name>Garmin196-GPS-support</object-name>
         <condition>
-            <property>/sim/model/c172p/garmin196-visible</property>
+            <property>/sim/model/j3cub/garmin196-visible</property>
         </condition>
     </animation>-->
 
@@ -2616,7 +2627,28 @@
         </center>
     </animation>
 
-<!--  INTERNAL EFFECTS  *************************************************  -->
+    <!-- Sprayer -->
+    <animation>
+        <type>select</type>
+        <object-name>sprayer</object-name>
+        <object-name>container</object-name>
+        <condition>
+            <property>sim/model/sprayer</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>seat_rear</object-name>
+        <object-name>stick_back</object-name>
+        <condition>
+            <not-equals>
+                <property>sim/model/sprayer</property>
+                <value>1</value>
+            </not-equals>
+        </condition>
+    </animation>
+
+<!--  Interior Effects  *************************************************  -->
 
     <animation>
       <type>pick</type>

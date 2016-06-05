@@ -165,6 +165,21 @@ var reset_system = func {
 
 }
 
+##############
+# Insecticid
+##############
+var capacity = 0.01;
+var insecticidRelease = func {
+    if (getprop("/controls/armament/trigger")) {
+        var weight = getprop("/payload/weight[15]/weight-lb");
+        if (weight > 0) {
+            var velocity = getprop("/velocities/airspeed-kt");
+            weight = weight - capacity * velocity;
+            setprop("/payload/weight[15]/weight-lb", weight);
+        }
+    }
+}
+
 ############################################
 # Global loop function
 # If you need to run nasal as loop, add it in this function
@@ -174,6 +189,7 @@ var global_system_loop = func {
     if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
         setprop("/controls/engines/engine/starter", 0);
     }
+    insecticidRelease();
 }
 
 var update_pax = func {

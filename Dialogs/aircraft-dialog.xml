@@ -321,6 +321,43 @@
                 </binding>
             </checkbox>
 
+            <group>
+                <layout>hbox</layout>
+                <group>
+                    <layout>vbox</layout>
+                    <halign>left</halign>
+                    <text>
+                        <halign>left</halign>
+                        <label>Dirt</label>
+                        <enable>
+                            <not>
+                                <property>/sim/rendering/rembrandt/enabled</property>
+                            </not>
+                        </enable>
+                    </text>
+                </group>
+                <group>
+                    <layout>vbox</layout>
+                    <slider>
+                        <name>dirt</name>
+                        <enable>
+                            <not>
+                                <property>/sim/rendering/rembrandt/enabled</property>
+                            </not>
+                        </enable>
+                        <min>0.0</min>
+                        <max>1.0</max>
+                        <step>.1</step>
+                        <live>true</live>
+                        <property>/environment/aircraft-effects/dirt</property>
+                        <binding>
+                            <command>dialog-apply</command>
+                            <object-name>dirt</object-name>
+                        </binding>
+                    </slider>
+                </group>
+            </group>
+
             <checkbox>
                 <halign>left</halign>
                 <label>Human models</label>
@@ -341,6 +378,52 @@
                 </binding>
             </checkbox>
 
+            <checkbox>
+                <halign>left</halign>
+                <label>Sprayer</label>
+                <property>sim/model/sprayer</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+            <group>
+                <layout>hbox</layout>
+                <group>
+                    <layout>vbox</layout>
+                    <halign>left</halign>
+                    <text>
+                        <halign>left</halign>
+                        <label>Hopper Fill</label>
+                        <enable>
+                            <not>
+                                <property>/sim/rendering/rembrandt/enabled</property>
+                            </not>
+                        </enable>
+                    </text>
+                </group>
+                <group>
+                    <layout>vbox</layout>
+                    <slider>
+                        <name>hopper</name>
+                        <enable>
+                            <not>
+                                <property>/sim/rendering/rembrandt/enabled</property>
+                            </not>
+                        </enable>
+                        <min>0.0</min>
+                        <max>350.0</max>
+                        <step>.1</step>
+                        <live>true</live>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <binding>
+                            <command>dialog-apply</command>
+                            <object-name>hopper</object-name>
+                        </binding>
+                    </slider>
+                </group>
+            </group>
+
             <!--checkbox>
                 <halign>left</halign>
                 <label>Enable frost and fog</label>
@@ -360,43 +443,6 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox-->
-        </group>
-
-        <group>
-            <layout>hbox</layout>
-            <group>
-                <layout>vbox</layout>
-                <halign>left</halign>
-                <text>
-                    <halign>left</halign>
-                    <label>Dirt</label>
-                    <enable>
-                        <not>
-                            <property>/sim/rendering/rembrandt/enabled</property>
-                        </not>
-                    </enable>
-                </text>
-            </group>
-            <group>
-                <layout>vbox</layout>
-                <slider>
-                    <name>dirt</name>
-                    <enable>
-                        <not>
-                            <property>/sim/rendering/rembrandt/enabled</property>
-                        </not>
-                    </enable>
-                    <min>0.0</min>
-                    <max>1.0</max>
-                    <step>.1</step>
-                    <live>true</live>
-                    <property>/environment/aircraft-effects/dirt</property>
-                    <binding>
-                        <command>dialog-apply</command>
-                        <object-name>dirt</object-name>
-                    </binding>
-                </slider>
-            </group>
         </group>
         
         <hrule/>

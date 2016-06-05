@@ -184,10 +184,17 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="drag-Ski-lite">
             <default value="1"/>
-            <test logic="AND" value="1.02"> <!--  lite ski -->
+            <test logic="AND" value="1.02">
                 bushkit EQ 5
             </test>
             <output>gear/drag-coef[5]</output>
+        </switch>
+        <switch name="drag-Sprayer">
+            <default value="1"/>
+            <test logic="AND" value="1.12">
+                /sim/model/sprayer EQ 1
+            </test>
+            <output>gear/drag-coef[6]</output>
         </switch>
         
     </channel>
