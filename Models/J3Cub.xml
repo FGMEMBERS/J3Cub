@@ -2632,6 +2632,7 @@
         <type>select</type>
         <object-name>sprayer</object-name>
         <object-name>container</object-name>
+        <object-name>prop</object-name>
         <condition>
             <property>sim/model/sprayer</property>
         </condition>
@@ -2646,6 +2647,22 @@
                 <value>1</value>
             </not-equals>
         </condition>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>prop</object-name>
+        <property>/velocities/airspeed-kt</property>
+        <factor>10</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 1.09625</x-m>
+            <y-m> 0.60743</y-m>
+            <z-m>-0.89849</z-m>
+        </center>
     </animation>
 
 <!--  Interior Effects  *************************************************  -->

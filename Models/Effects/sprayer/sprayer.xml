@@ -6,6 +6,29 @@
   <texture-path>../../../Models</texture-path>
   <nopreview/>
 
+    <animation>
+        <type>material</type>
+        <object-name>prop</object-name>
+        <object-name>sprayer</object-name>
+        <object-name>hopper</object-name>
+        <shininess>128</shininess>
+        <specular>
+            <r>1</r>
+            <g>1</g>
+            <b>1</b>
+        </specular>
+        <ambient>
+            <r>1</r>
+            <g>1</g>
+            <b>1</b>
+        </ambient>
+    </animation>
+
+    <effect>
+        <inherits-from>Effects/grain/dirt</inherits-from>
+        <object-name>sprayer</object-name>
+     </effect>
+  
   <!-- Left -->
   <model>
     <path>insecticid.xml</path>
