@@ -170,13 +170,11 @@ var reset_system = func {
 ##############
 var capacity = 0.01;
 var insecticidRelease = func {
-    if (getprop("/controls/armament/trigger")) {
+    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb")) {
         var weight = getprop("/payload/weight[15]/weight-lb");
-        if (weight > 0) {
-            var velocity = getprop("/velocities/airspeed-kt");
-            weight = weight - capacity * velocity;
-            setprop("/payload/weight[15]/weight-lb", weight);
-        }
+        var velocity = getprop("/velocities/airspeed-kt");
+        weight = weight - capacity * velocity;
+        setprop("/payload/weight[15]/weight-lb", weight); 
     }
 }
 

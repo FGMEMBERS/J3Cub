@@ -62,10 +62,10 @@
 
                         <!-- Default/35"/pontoon/amphibious/skis -->
                         <value> -78.50 </value>
-                        <value> -86.30 </value>
+                        <value> -86.28 </value>
                         <value>   0.00 </value>
                         <value>   0.00 </value>
-                        <value> -86.30 </value>
+                        <value> -86.28 </value>
                         <value>   0.00 </value>
                     </switch>
                 </ifthen>
@@ -83,10 +83,10 @@
 
                         <!-- Default/35"/pontoon/amphibious/skis -->
                         <value> -78.50 </value>
-                        <value> -86.30 </value>
+                        <value> -86.28 </value>
                         <value>   0.00 </value>
                         <value>   0.00 </value>
-                        <value> -86.30 </value>
+                        <value> -86.28 </value>
                         <value>   0.00 </value>
                     </switch>
                 </ifthen>
