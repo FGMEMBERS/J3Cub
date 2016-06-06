@@ -99,7 +99,8 @@
         <ixx unit="SLUG*FT2"> 538.01 </ixx>
         <iyy unit="SLUG*FT2"> 386.81 </iyy>
         <izz unit="SLUG*FT2"> 871.03 </izz>
-        <emptywt unit="LBS" > 765.00 </emptywt>
+        <!-- wihtout any rims or tires, default rims and tires 12.5 X 2 = 25 lb-->
+        <emptywt unit="LBS" > 760.00 </emptywt>
         <location name="CG" unit="IN">
             <x>    -2.60 </x>
             <y>     0.00 </y>
@@ -121,9 +122,10 @@
                 <z> -38.99 </z>
             </location>
         </pointmass>
-        <!-- Gear configurations 0 to 4, pointmass [2] to [9]  -->
+        <!-- Gear configurations 0 to 5, pointmass [2] to [9]  and [11] to [14] -->
         <!-- Weight and drag are managed by Systems/bushkit.xml -->
         <pointmass name="Left bush wheel 35 inches">
+            <!-- 25 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -132,6 +134,7 @@
             </location>
         </pointmass>
         <pointmass name="Right bush wheel 35 inches">
+            <!-- 25 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -172,6 +175,7 @@
             </location>
         </pointmass>
         <pointmass name="Left ski">
+            <!-- ski, 36 "tire and rim 37 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -180,6 +184,7 @@
             </location>
         </pointmass>
         <pointmass name="Right ski">
+            <!-- ski, 36 "tire and rim 37 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -195,6 +200,51 @@
                 <x>    30.60 </x>
                 <y>     0.00 </y>
                 <z>   -33.73 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Left ski lite">
+            <!-- 8 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y> -35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Right ski lite">
+            <!-- 8 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y>  35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Default left wheel">
+            <!-- 12.5 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y> -35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Defaut right wheel">
+            <!-- 12.5 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>   1.17 </x>
+                <y>  35.43 </y>
+                <z> -63.32 </z>
+            </location>
+        </pointmass>
+        <pointmass name="Hopper" >
+        <!-- max 350 lb -->
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x>  37.44 </x>
+                <y>   0.00 </y>
+                <z> -38.99 </z>
             </location>
         </pointmass>
     </mass_balance>
@@ -243,6 +293,9 @@
 
     <ground_reactions>
 
+        <!-- The ski wheels friction would have a
+             rolling friction on a hard surface and
+             slide or drag on snow -->
         <contact type="BOGEY" name="TAIL">
             <location unit="IN">
                 <x> 199.90 </x>
@@ -252,8 +305,8 @@
             <static_friction>  0.60 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff  unit="LBS/FT">   150.00 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 50.00 </damping_coeff>
+            <spring_coeff  unit="LBS/FT">   250.00 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 150.00 </damping_coeff>
             <steerability> STEERABLE </steerability>
             <max_steer unit="DEG"> -30.00 </max_steer>
             <brake_group> NONE </brake_group>
@@ -279,9 +332,9 @@
 
         <contact type="BOGEY" name="RIGHT_MAIN">
             <location unit="IN">
-                <x>  -10.65 </x>
-                <y>   35.43 </y>
-                <z>  -78.50 </z>
+                <x> -10.65 </x>
+                <y>  35.43 </y>
+                <z> -78.50 </z>
             </location>
             <static_friction>  0.80 </static_friction>
             <dynamic_friction> 0.50 </dynamic_friction>
@@ -419,8 +472,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -430,8 +483,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -441,8 +494,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -452,8 +505,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -463,8 +516,8 @@
                 <y>-56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -474,8 +527,8 @@
                 <y>56.889</y>
                 <z>38.5</z>
             </location>
-            <static_friction>  0.6 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
             <spring_coeff unit="LBS/FT">       1830.15 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">   366.03 </damping_coeff>
         </contact>
@@ -542,39 +595,92 @@
             <retractable>1</retractable>
         </contact>
 
-        <!-- The ski wheels friction would have a
+        <!-- contact 23 = 2 wheels on nose ski.
+            The ski wheels friction would have a
              rolling friction on a hard surface and
              slide or drag on snow -->
-        <!-- contact 23, 24-->
-        <contact type="BOGEY" name="LEFT_SKI">
+        <!-- contact 23, 24, 25 -->
+        <!-- 23 is not used at this time but needed to keep contact positions following it -->
+        <contact type="BOGEY" name="TAIL_SKI">
             <location unit="IN">
-                <x>  29.43 </x>
-                <y> -39.70 </y>
-                <z> -71.29 </z>
+                <x>  18.44 </x>
+                <y> 0 </y>
+                <z> 0 </z>
             </location>
             <static_friction> 0.8 </static_friction>
             <dynamic_friction> 0.5 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff  unit="LBS/FT">     220.00 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 110.00 </damping_coeff>
+            <spring_coeff unit="LBS/FT"> 1800 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 600 </damping_coeff>
+            <max_steer unit="DEG"> 10 </max_steer>
+            <brake_group> NONE </brake_group>
+            <retractable>0</retractable>
+        </contact>
+        <contact type="BOGEY" name="LEFT_SKI">
+            <location unit="IN">
+                <x> 93 </x>
+                <y> -51 </y>
+                <z> -10 </z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.5 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 400 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
         </contact>
         <contact type="BOGEY" name="RIGHT_SKI">
             <location unit="IN">
-                <x>  29.33 </x>
-                <y>  40.00 </y>
-                <z> -71.41 </z>
+                <x> 93 </x>
+                <y> 52 </y>
+                <z> -10 </z>
             </location>
             <static_friction> 0.8 </static_friction>
             <dynamic_friction> 0.5 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff  unit="LBS/FT">     220.00 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 110.00 </damping_coeff>
+            <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 400 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group>NONE </brake_group>
             <retractable>0</retractable>
+        </contact>
+
+        <!-- contact 26, 27, 28-->
+        <contact type="STRUCTURE" name="LEFT_SKI_LITE">
+            <location unit="IN">
+                <x> -29.43</x>
+                <y> -65   </y>
+                <z> -83   </z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <spring_coeff  unit="LBS/FT">     1200.00 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">  400.00 </damping_coeff>
+        </contact>
+        <contact type="STRUCTURE" name="RIGHT_SKI_LITE">
+            <location unit="IN">
+                <x> -29.33</x>
+                <y>  65   </y>
+                <z> -82.4 </z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <spring_coeff  unit="LBS/FT">     1200.00 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">  400.00 </damping_coeff>
+        </contact>
+
+        <contact type="STRUCTURE" name="TAIL_SKI_LITE">
+            <location unit="IN">
+                <x> 199.90</x>
+                <y>   0.00</y>
+                <z> -32.5.0 </z>
+            </location>
+            <static_friction>  0.6 </static_friction>
+            <dynamic_friction> 0.05 </dynamic_friction>
+            <spring_coeff  unit="LBS/FT">   600.00 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 300.00 </damping_coeff>
         </contact>
 
     </ground_reactions>
@@ -892,10 +998,12 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <value> 0.0040 </value>
-           <property>gear/drag-coef[1]</property> <!-- bush wheels 36" -->
+           <property>gear/drag-coef[1]</property> <!-- 36 Bush Wheels" -->
            <property>gear/drag-coef[2]</property> <!-- Floats -->
            <property>gear/drag-coef[3]</property> <!-- Amphibious -->
            <property>gear/drag-coef[4]</property> <!-- Ski -->
+           <property>gear/drag-coef[5]</property> <!-- Ski Lite -->
+           <property>gear/drag-coef[6]</property> <!-- Sprayer -->
          </product>
     </function>
 

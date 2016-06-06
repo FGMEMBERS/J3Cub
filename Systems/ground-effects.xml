@@ -92,6 +92,9 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- ================================================================== -->
+    <!-- Ground and water effects                                           -->
+    <!-- ================================================================== -->
     <filter>
         <name>Spray and Wakes Effect for Pontoons</name>
         <type>gain</type>
@@ -182,6 +185,7 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- broken gear sparks unit 6, 7, and 8-->
     <filter>
         <name>Right Wing Ground Effect</name>
         <type>gain</type>
@@ -254,6 +258,61 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <filter>
+        <name>Tail Ski Lite Ground Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/ground/tail-ski-lite-ground-effect-speed-kt</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/ground/tail-ski-lite-ground-effect-speed-kt-actual</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Left Ski Lite Ground Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/ground/left-ski-lite-ground-effect-speed-kt</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/ground/left-ski-lite-ground-effect-speed-kt-actual</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Right Ski Lite Ground Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/ground/right-ski-lite-ground-effect-speed-kt</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/ground/right-ski-lite-ground-effect-speed-kt-actual</property>
+        </output>
+    </filter>
+
+    <!-- touchdown smoke not damage-->
     <filter>
         <name>Tail Off Road Tyre Smoke Ground Effect</name>
         <type>gain</type>

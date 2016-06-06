@@ -33,13 +33,28 @@
         <binding>
             <command>nasal</command>
             <script>
-                if(getprop("controls/door[0]") > 0) {
-                    interpolate("controls/door[0]", 0, 1);
-                } else {
-                    interpolate("controls/door[0]", 1, 1);
-                }
+                if (getprop("sim/multiplay/generic/float[1]") == 0)
+                    j3cub.rightWindow.toggle();
+                j3cub.rightDoor.toggle();
             </script>
         </binding>
+    </key>
+
+    <key n="101">
+        <name>e</name>
+        <desc>Release Hopper Contents</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>controls/armament/trigger</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+        <binding>
+            <command>property-assign</command>
+            <property>controls/armament/trigger</property>
+            <value>0</value>
+        </binding> 
+        </mod-up>
     </key>
 
     <key n="111">

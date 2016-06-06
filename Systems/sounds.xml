@@ -24,126 +24,60 @@
         <window>/sim/multiplay/generic/float[1]</window>
     </params>
 
-    <!-- Return a factor (>= 1.0) to boost the volume when one or both
-         window and door are open.
-    -->
     <filter>
-        <name>Volume Boost Door Factor</name>
-        <type>gain</type>
-        <input>
-            <condition>
-                <property>/sim/current-view/internal</property>
-            </condition>
-            <expression>
-                <sum>
-                    <product>
-                        <div>
-                            <log>
-                                <sum>
-								
-                                    <min>
-                                        <sum>
-                                            <!-- Door fully open is 1.0. Fully closed is 0.0 -->
-                                            <table>
-                                                <property alias="/params/door"/>
-                                                <entry><ind>0.5</ind><dep>0.0</dep></entry>
-                                                <entry><ind>0.65</ind><dep>0.7</dep></entry>
-                                                <entry><ind>1.0</ind><dep>1.0</dep></entry>
-                                            </table>
-
-                                            <!-- Window fully open is 1.0. Fully closed is 0.0 -->
-                                            <table>
-                                                <property alias="/params/window"/>
-                                                <entry><ind>0.5</ind><dep>0.0</dep></entry>
-                                                <entry><ind>0.65</ind><dep>0.7</dep></entry>
-                                                <entry><ind>1.0</ind><dep>1.0</dep></entry>
-                                            </table>
-                                        </sum>
-                                        <value>1.0</value>
-                                    </min>
-
-                                    <!-- Prevents math domain error because log2
-                                                                                    requires value >= 1.0.
-                                                                                  -->
-                                    <value>1.0</value>
-                                </sum>
-                            </log>
-                            <log>
-                                <!-- log(x)/log(2) = log2(x) -->
-                                <value>2.0</value>
-                            </log>
-                        </div>
-
-                        <!-- 20 % extra volume if door is open, 32 % if door and window -->
-                        <value>0.2</value>
-                    </product>
-                    <value>1.0</value>
-                </sum>
-            </expression>
-        </input>
-        <input>
-            <!-- 40 % extra volume if outside the aircraft -->
-            <value>1.4</value>
-        </input>
-        <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors</property>
-        </output>
-    </filter>
-
-    <filter>
-        <name>Volume Boost Doors plus thunder1</name>
+        <name>Volume Boost Door plus thunder1</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist1</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder1</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder1</property>
         </output>
     </filter>
 
     <filter>
-        <name>Volume Boost Doors plus thunder2</name>
+        <name>Volume Boost Door plus thunder2</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist2</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder2</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder2</property>
         </output>
     </filter>
 
     <filter>
-        <name>Volume Boost Doors plus thunder3</name>
+        <name>Volume Boost Door plus thunder3</name>
         <type>gain</type>
         <input>
             <expression>
                 <product>
-                    <property>/sim/model/j3cub/sound/volume-boost-doors</property>
+                    <property>/sim/model/j3cub/sound/volume-boost-door</property>
                     <property>/sim/model/j3cub/sound/lightning/dist3</property>
                     <value>0.7142857142857143</value>
                 </product>
             </expression>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-doors-thunder3</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door-thunder3</property>
         </output>
     </filter>
 
     <!-- Return a factor (>= 1.0) to boost the volume when right door is open -->
     <filter>
-        <name>Volume Boost Right Door Factor</name>
+        <name>Volume Boost Door Factor</name>
         <type>gain</type>
         <input>
             <condition>
@@ -168,17 +102,15 @@
                                             <!-- Right window fully open is 1.0. Fully closed is 0.0 -->
                                             <table>
                                                 <property alias="/params/window"/>
-                                                <entry><ind>0.5</ind><dep>0.0</dep></entry>
-                                                <entry><ind>0.65</ind><dep>0.7</dep></entry>
+                                                <entry><ind>0.0</ind><dep>0.0</dep></entry>
+                                                <entry><ind>0.3</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
                                             </table>
                                         </sum>
                                         <value>1.0</value>
                                     </min>
 
-                                    <!-- Prevents math domain error because log2
-                                         requires value >= 1.0.
-                                    -->
+                                    <!-- Prevents math domain error because log2 requires value >= 1.0. -->
                                     <value>1.0</value>
                                 </sum>
                             </log>
@@ -189,7 +121,7 @@
                         </div>
 
                         <!-- 20 % extra volume if door is open -->
-                        <value>0.2</value>
+                        <value>1.0</value>
                     </product>
                     <value>1.0</value>
                 </sum>
@@ -197,10 +129,10 @@
         </input>
         <input>
             <!-- 40 % extra volume if outside the aircraft -->
-            <value>1.4</value>
+            <value>1.75</value>
         </input>
         <output>
-            <property>/sim/model/j3cub/sound/volume-boost-right-door</property>
+            <property>/sim/model/j3cub/sound/volume-boost-door</property>
         </output>
     </filter>
 

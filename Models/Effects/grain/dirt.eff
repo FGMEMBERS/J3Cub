@@ -6,10 +6,9 @@
     <parameters>
 	<!-- enable the texture with 2, using true geometry xy map rather than uv map -->
     <grain-texture-enabled type="int">2</grain-texture-enabled>
-	<grain-magnification type="float">2.1</grain-magnification>
-    <rain-enabled type="int">2</rain-enabled>
+	<grain-magnification type="float"><use>/environment/aircraft-effects/dirt</use></grain-magnification>
 	<texture n="7">
-		<image>Textures/Terrain/Kansas/ground/mud_texture.png</image>
+		<image>Models/Geometry/Nimitz/rust_texture.png</image>
 		<type>2d</type>
 		<filter>linear-mipmap-linear</filter>
 		<wrap-s>repeat</wrap-s>

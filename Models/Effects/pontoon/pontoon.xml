@@ -10,11 +10,26 @@
         <x-m>0.0</x-m>
         <pitch-deg>0.0</pitch-deg>
     </offsets>
-    <!--effect>
-        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-floats</inherits-from>
+    
+    <effect>
+        <inherits-from>Effects/grain/dirt</inherits-from>
+        <object-name>FloatStruts</object-name>
+        <object-name>LRtarm</object-name>
+        <object-name>RRtarm</object-name>
+        <object-name>L-Float</object-name>
+        <object-name>R-Float</object-name>
         <object-name>L-FloatC</object-name>
         <object-name>R-FloatC</object-name>
-    </effect-->
+        <object-name>Ldamper</object-name>
+        <object-name>Rdamper</object-name>
+        <object-name>Lstrut.001</object-name>
+        <object-name>Lstrut.002</object-name>
+        <object-name>Rstrut.001</object-name>
+        <object-name>Rstrut.002</object-name>
+        <object-name>LHrudder</object-name>
+        <object-name>RHrudder</object-name>
+    </effect>
+
      <effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-floats</inherits-from>
         <object-name>FloatStruts</object-name>

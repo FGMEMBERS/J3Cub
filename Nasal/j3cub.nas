@@ -165,6 +165,19 @@ var reset_system = func {
 
 }
 
+##############
+# Insecticid
+##############
+var capacity = 0.01;
+var insecticidRelease = func {
+    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb")) {
+        var weight = getprop("/payload/weight[15]/weight-lb");
+        var velocity = getprop("/velocities/airspeed-kt");
+        weight = weight - capacity * velocity;
+        setprop("/payload/weight[15]/weight-lb", weight); 
+    }
+}
+
 ############################################
 # Global loop function
 # If you need to run nasal as loop, add it in this function
@@ -174,6 +187,7 @@ var global_system_loop = func {
     if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
         setprop("/controls/engines/engine/starter", 0);
     }
+    insecticidRelease();
 }
 
 var update_pax = func {
@@ -234,6 +248,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/environment/lightning/lightning-pos-y", thunder);
 
     reset_system();
+    j3cub.rightWindow.toggle();
+    j3cub.rightDoor.toggle();
     var j3cub_timer = maketimer(0.25, func{global_system_loop()});
     j3cub_timer.start();
 });

@@ -28,7 +28,7 @@
     <!-- Gear smoke and spark-->
     <signal>
         <type>float</type>
-        <property type="string">/fdm/jsbsim/ground/nose-gear-ground-effect-speed-kt-actual</property>
+        <property type="string">/fdm/jsbsim/ground/tail-gear-ground-effect-speed-kt-actual</property>
     </signal>
     <signal>
         <type>float</type>
@@ -37,6 +37,20 @@
     <signal>
         <type>float</type>
         <property type="string">/fdm/jsbsim/ground/right-gear-ground-effect-speed-kt-actual</property>
+    </signal>
+
+    <!-- Ski lite smoke and spark-->
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/ground/tail-ski-lite-ground-effect-speed-kt-actual</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/ground/left-ski-lite-ground-effect-speed-kt-actual</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/ground/right-ski-lite-ground-effect-speed-kt-actual</property>
     </signal>
 
     <!-- Wing smoke and spark-->
@@ -58,7 +72,7 @@
     <!-- Off Road Tyre smoke-->
     <signal>
         <type>float</type>
-        <property type="string">/fdm/jsbsim/ground/nose-tyre-smoke-ground-effect-speed-kt-actual</property>
+        <property type="string">/fdm/jsbsim/ground/tail-tyre-smoke-ground-effect-speed-kt-actual</property>
     </signal>
     <signal>
         <type>float</type>
