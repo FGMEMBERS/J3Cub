@@ -14,8 +14,8 @@
 
     <texture>wake.png</texture>
 
-    <emissive>false</emissive>
-    <lighting>true</lighting>
+    <emissive>true</emissive>
+    <lighting>false</lighting>
 
 	<condition>
 		<and>
@@ -69,10 +69,16 @@
    <particle>
       <start>
         <color>
-          <red><value>0.95</value></red>
-		  <green><value>0.95</value></green>
-		  <blue><value>0.95</value></blue>
-	      <alpha><value>0.5</value></alpha>
+            <red>
+                <property>/rendering/scene/diffuse/red</property>
+            </red>
+            <green>
+                <property>/rendering/scene/diffuse/red</property>
+            </green>
+            <blue>
+                <property>/rendering/scene/diffuse/red</property>
+            </blue>
+            <alpha><value>0.5</value></alpha>
         </color>
         <size>
           <value>0.4</value>
@@ -80,10 +86,16 @@
       </start>
       <end>
         <color>
-          <red><value>1</value></red>
-          <green><value>1</value></green>
-          <blue><value>1</value></blue>
-          <alpha><value>0.001</value></alpha>
+            <red>
+                <property>/rendering/scene/diffuse/red</property>
+            </red>
+            <green>
+                <property>/rendering/scene/diffuse/red</property>
+            </green>
+            <blue>
+                <property>/rendering/scene/diffuse/red</property>
+            </blue>
+            <alpha><value>0.001</value></alpha>
         </color>
         <size>
           <value>3.5</value>

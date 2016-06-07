@@ -10,7 +10,7 @@
 	<particlesystem>
 		<name>rain-s</name>
 		<texture>smoke.png</texture>
-		<emissive>false</emissive>
+		<emissive>true</emissive>
 		<lighting>false</lighting>
 
 		<offsets>
@@ -81,15 +81,15 @@
 		<particle>
 			<start>
 				<color>
-					<red>
-						<value>0.95</value>
-					</red>
-					<green>
-						<value>0.95</value>
-					</green>
-					<blue>
-						<value>0.95</value>
-					</blue>
+                    <red>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </red>
+                    <green>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </green>
+                    <blue>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </blue>
 					<alpha>
 						<value>0.05</value>
 					</alpha>
@@ -100,15 +100,15 @@
 			</start>
 			<end>
 				<color>
-					<red>
-						<value>1</value>
-					</red>
-					<green>
-						<value>1</value>
-					</green>
-					<blue>
-						<value>1</value>
-					</blue>
+                    <red>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </red>
+                    <green>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </green>
+                    <blue>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </blue>
 					<alpha>
 						<value>0.020</value>
 					</alpha>

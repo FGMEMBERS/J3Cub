@@ -12,7 +12,7 @@
     <particlesystem>
         <name>left-float</name>
         <texture>spray.png</texture>
-        <emissive>false</emissive>
+        <emissive>true</emissive>
         <lighting>false</lighting>
 
 	<condition>
@@ -59,9 +59,15 @@
         <particle>
             <start>
                 <color>
-                    <red><value>0.95</value></red>
-                    <green><value>0.95</value></green>
-                    <blue><value>0.95</value></blue>
+                    <red>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </red>
+                    <green>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </green>
+                    <blue>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </blue>
                     <alpha><value>0.5</value></alpha>
                 </color>
                 <size>
@@ -70,9 +76,15 @@
             </start>
             <end>
                 <color>
-                    <red><value>1</value></red>
-                    <green><value>1</value></green>
-                    <blue><value>1</value></blue>
+                    <red>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </red>
+                    <green>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </green>
+                    <blue>
+                        <property>/rendering/scene/diffuse/red</property>
+                    </blue>
                     <alpha><value>0.001</value></alpha>
                 </color>
                 <size>
