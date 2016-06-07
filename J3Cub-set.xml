@@ -252,7 +252,7 @@ version 2.0  090410-->
                 <float n="15" alias="/fdm/jsbsim/ground/tail-tyre-smoke-ground-effect-speed-kt-actual"/>
                 <float n="16" alias="/fdm/jsbsim/ground/left-tyre-smoke-ground-effect-speed-kt-actual"/>
                 <float n="17" alias="/fdm/jsbsim/ground/right-tyre-smoke-ground-effect-speed-kt-actual"/>
-                <!-- 18 unused -->
+                <float n="18" alias="/fdm/jsbsim/sprayer/release-payload-actual"/>
                 <!-- 19 unused -->
 
                 <!--  0 unused -->
@@ -297,6 +297,9 @@ version 2.0  090410-->
             <water-rudder type="bool">0</water-rudder>
             <water-rudder-down type="double">0</water-rudder-down>
         </gear>
+        <armament>
+            <trigger type ="bool">0</trigger>
+        </armament>
     </controls>
 
     <engines>

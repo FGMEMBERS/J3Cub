@@ -499,6 +499,8 @@
         <object-name>window_strut_r_interior</object-name>
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
+        <object-name>Garmin196-GPS-non-Canvas</object-name>
+        <object-name>GPSMount</object-name>
     </effect>
 
     <!--effect>
@@ -595,9 +597,12 @@
         <name>Garmin196-GPS-non-Canvas</name>
         <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
         <offsets>
-            <x-m>-0.21</x-m>
+            <!--x-m>-0.21</x-m>
             <y-m> 0.19</y-m>
-            <z-m>-.30</z-m>
+            <z-m>-.30</z-m-->
+            <x-m>-0.03692</x-m>
+            <y-m>0.28598</y-m>
+            <z-m>-0.23994</z-m>
             <!--z-m>-.85</z-m-->
             <heading-deg>-17.0</heading-deg>
         </offsets>
@@ -605,6 +610,7 @@
     <animation>
         <type>select</type>
         <object-name>Garmin196-GPS-non-Canvas</object-name>
+        <object-name>GPSMount</object-name>
         <condition>
             <property>/sim/model/j3cub/garmin196-visible</property>
         </condition>

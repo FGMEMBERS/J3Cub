@@ -187,6 +187,8 @@ var global_system_loop = func {
     if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
         setprop("/controls/engines/engine/starter", 0);
     }
+    if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
+        setprop("/instrumentation/garmin196/antenne-deg", 180);
     insecticidRelease();
 }
 
@@ -250,6 +252,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     reset_system();
     j3cub.rightWindow.toggle();
     j3cub.rightDoor.toggle();
+
     var j3cub_timer = maketimer(0.25, func{global_system_loop()});
     j3cub_timer.start();
 });
