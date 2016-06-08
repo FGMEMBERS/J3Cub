@@ -192,6 +192,13 @@ var global_system_loop = func {
     insecticidRelease();
 }
 
+var viewchange = func {
+    if (getprop("/sim/current-view/view-number") == 0 and getprop("/sim/model/sprayer") == 1) {
+        setprop("/sim/current-view/view-number", 8);
+        gui.popupTip("Not allowed to sit on hopper", 5);
+    }
+}
+
 var update_pax = func {
     var state = 0;
     state = bits.switch(state, 0, getprop("pax/pilot/present"));
@@ -248,6 +255,9 @@ setlistener("/sim/signals/fdm-initialized", func {
 
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
+    
+    # Listen for view change
+    setlistener("/sim/current-view/view-number", viewchange);
 
     reset_system();
     j3cub.rightWindow.toggle();

@@ -381,6 +381,12 @@
             <checkbox>
                 <halign>left</halign>
                 <label>Sprayer</label>
+                <enable>
+                    <not-equals>
+                            <property>/sim/current-view/name</property>
+                            <value>Cockpit View</value>
+                    </not-equals>
+                </enable>
                 <property>sim/model/sprayer</property>
                 <live>true</live>
                 <binding>

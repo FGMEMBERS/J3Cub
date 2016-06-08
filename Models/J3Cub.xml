@@ -500,7 +500,8 @@
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
         <object-name>Garmin196-GPS-non-Canvas</object-name>
-        <object-name>GPSMount</object-name>
+        <object-name>GPSMountFront</object-name>
+        <object-name>GPSMountBack</object-name>
     </effect>
 
     <!--effect>
@@ -594,27 +595,65 @@
     <!-- non-Canvas remote Garmin 196 GPS (FGDATA) -->
     <!-- TODO Remove this old version, unhide and implement the Canvas version below -->
     <model>
-        <name>Garmin196-GPS-non-Canvas</name>
+        <name>Garmin196-GPS-non-Canvas-Front</name>
         <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
         <offsets>
-            <!--x-m>-0.21</x-m>
-            <y-m> 0.19</y-m>
-            <z-m>-.30</z-m-->
             <x-m>-0.03692</x-m>
             <y-m>0.28598</y-m>
             <z-m>-0.23994</z-m>
-            <!--z-m>-.85</z-m-->
             <heading-deg>-17.0</heading-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>Garmin196-GPS-non-Canvas-Back</name>
+        <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+        <offsets>
+            <x-m> 0.52978</x-m>
+            <y-m>-0.26589</y-m>
+            <z-m>-0.44722</z-m>
+            <heading-deg>17.0</heading-deg>
         </offsets>
     </model>
     <animation>
         <type>select</type>
-        <object-name>Garmin196-GPS-non-Canvas</object-name>
-        <object-name>GPSMount</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Front</object-name>
+        <object-name>GPSMountFront</object-name>
         <condition>
-            <property>/sim/model/j3cub/garmin196-visible</property>
+            <and>
+                <property>/sim/model/j3cub/garmin196-visible</property>
+                <or>
+                    <equals>
+                        <property>/sim/current-view/name</property>
+                        <value>Cockpit Front Seat View</value>
+                    </equals>
+                    <equals>
+                        <property>/sim/model/sprayer</property>
+                        <value>1</value>
+                    </equals>
+                </or>
+            </and>
         </condition>
-    </animation>    
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>Garmin196-GPS-non-Canvas-Back</object-name>
+        <object-name>GPSMountBack</object-name>
+        <condition>
+            <and>
+                <property>/sim/model/j3cub/garmin196-visible</property>
+                <and>
+                    <not-equals>
+                        <property>/sim/current-view/name</property>
+                        <value>Cockpit Front Seat View</value>
+                    </not-equals>
+                    <equals>
+                        <property>/sim/model/sprayer</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </and>
+        </condition>
+    </animation>  
     
     <!-- Canvas local Garmin 196 GPS -->
     <!--<model>
@@ -2874,44 +2913,62 @@
         </hovered>
     </animation>
 
-
-<!-- pilot (and safety belts)  -->
-
-  <model>
-    <name>pilot</name>
-    <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
-    <offsets>
-      <x-m>0.617</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.776</z-m>
-    </offsets>
-  </model>
+    <!-- pilot rear seat-->
+    <model>
+        <name>pilot</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>0.617</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.776</z-m>
+        </offsets>
+    </model>
+    
+    <!-- pilot front seat-->    
+    <model>
+        <name>pilot-front</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>-0.050</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.79083</z-m>
+        </offsets>
+    </model>
 
     <animation>
         <type>select</type>
         <object-name>pilot</object-name>
-        <!--object-name>pilot_belt</object-name-->
         <condition>
             <and>
                 <not-equals>
                     <property>sim/current-view/view-number</property>
                     <value>0</value>
                 </not-equals>
+                <not-equals>
+                    <property>/sim/model/sprayer</property>
+                    <value>1</value>
+                </not-equals>
                 <property>sim/model/occupants</property>
             </and>
         </condition>
     </animation>
-
-    <!-- <animation>
-    <type>select</type>
-    <object-name>copilot_belt</object-name>
-    <condition>
-      <not-equals>
-        <property>sim/current-view/name</property>
-        <value>Co-Pilot View</value>
-      </not-equals>
-    </condition>
-  </animation  -->
+    <animation>
+        <type>select</type>
+        <object-name>pilot-front</object-name>
+        <condition>
+            <and>
+                <not-equals>
+                    <property>sim/current-view/view-number</property>
+                    <value>8</value>
+                </not-equals>
+                <equals>
+                    <property>/sim/model/sprayer</property>
+                    <value>1</value>
+                </equals>
+                <property>sim/model/occupants</property>
+            </and>
+        </condition>
+    </animation>
 
 <!-- joysticks  -->
 
