@@ -49,8 +49,8 @@
     </model>
 
     <model>
-        <name>Pontoon</name>
-        <path>Effects/sprayer/sprayer.xml</path>
+        <name>Packages</name>
+        <path>Effects/packages/packages.xml</path>
         <offsets>
             <x-m>0.0</x-m>
             <y-m>0.0</y-m>
@@ -142,6 +142,9 @@
         <window>
             <property>sim/multiplay/generic/float[1]</property>
         </window>
+        <drums>
+            <property>sim/multiplay/generic/float[18]</property>
+        </drums>
         <crash>
             <property>sim/multiplay/generic/int[15]</property>
         </crash>
@@ -222,6 +225,20 @@
 	
     <effect>
         <inherits-from>Effects/grain/dirt</inherits-from>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <object-name>cable_guide_1_l</object-name>
+        <object-name>cable_guide_1_r</object-name>
+        <object-name>cable_guide_2_l</object-name>
+        <object-name>cable_guide_2_r</object-name>
+        <object-name>cable_guide_3_l</object-name>
+        <object-name>cable_guide_3_r</object-name>
+        <object-name>cable_guide_4_l</object-name>
+        <object-name>cable_guide_4_r</object-name>
+        <object-name>cable_l</object-name>
+        <object-name>cable_r</object-name>
+        <object-name>cable_wheel_l</object-name>
+        <object-name>cable_wheel_r</object-name>
         <object-name>strut_rear_r</object-name>
         <object-name>strut_rear_l</object-name>
         <object-name>strut_front_r</object-name>
@@ -282,6 +299,20 @@
 
     <effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <object-name>cable_guide_1_l</object-name>
+        <object-name>cable_guide_1_r</object-name>
+        <object-name>cable_guide_2_l</object-name>
+        <object-name>cable_guide_2_r</object-name>
+        <object-name>cable_guide_3_l</object-name>
+        <object-name>cable_guide_3_r</object-name>
+        <object-name>cable_guide_4_l</object-name>
+        <object-name>cable_guide_4_r</object-name>
+        <object-name>cable_l</object-name>
+        <object-name>cable_r</object-name>
+        <object-name>cable_wheel_l</object-name>
+        <object-name>cable_wheel_r</object-name>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
@@ -334,6 +365,20 @@
     <!--  Specularity fix -->
     <animation>
         <type>material</type>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <object-name>cable_guide_1_l</object-name>
+        <object-name>cable_guide_1_r</object-name>
+        <object-name>cable_guide_2_l</object-name>
+        <object-name>cable_guide_2_r</object-name>
+        <object-name>cable_guide_3_l</object-name>
+        <object-name>cable_guide_3_r</object-name>
+        <object-name>cable_guide_4_l</object-name>
+        <object-name>cable_guide_4_r</object-name>
+        <object-name>cable_l</object-name>
+        <object-name>cable_r</object-name>
+        <object-name>cable_wheel_l</object-name>
+        <object-name>cable_wheel_r</object-name>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
@@ -419,9 +464,7 @@
     <!-- interior effects -->
 
     <effect>
-        <inherits-from>Effects/interior/interior</inherits-from>
-        <object-name>brake_cable_l</object-name>
-        <object-name>brake_cable_r</object-name>
+        <inherits-from>Effects/interior/j3cub-interior</inherits-from>
         <object-name>bulkhead_strut_l</object-name>
         <object-name>bulkhead_strut_r</object-name>
         <object-name>bulkhead_top</object-name>
@@ -430,18 +473,6 @@
         <object-name>cabin_heat</object-name>
         <object-name>cabin_rudder_cable_l</object-name>
         <object-name>cabin_rudder_cable_r</object-name>
-        <object-name>cable_guide_1_l</object-name>
-        <object-name>cable_guide_1_r</object-name>
-        <object-name>cable_guide_2_l</object-name>
-        <object-name>cable_guide_2_r</object-name>
-        <object-name>cable_guide_3_l</object-name>
-        <object-name>cable_guide_3_r</object-name>
-        <object-name>cable_guide_4_l</object-name>
-        <object-name>cable_guide_4_r</object-name>
-        <object-name>cable_l</object-name>
-        <object-name>cable_r</object-name>
-        <object-name>cable_wheel_l</object-name>
-        <object-name>cable_wheel_r</object-name>
         <object-name>Cube</object-name>
         <object-name>Cylinder_0</object-name>
         <object-name>Cylinder_1</object-name>
@@ -499,6 +530,8 @@
         <object-name>window_strut_r_interior</object-name>
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Front</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Back</object-name>
         <object-name>Garmin196-GPS-non-Canvas</object-name>
         <object-name>GPSMountFront</object-name>
         <object-name>GPSMountBack</object-name>
@@ -626,10 +659,16 @@
                         <property>/sim/current-view/name</property>
                         <value>Cockpit Front Seat View</value>
                     </equals>
-                    <equals>
-                        <property>/sim/model/sprayer</property>
-                        <value>1</value>
-                    </equals>
+                    <and>
+                        <not-equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>2</value>
+                        </not-equals>
+                        <equals>
+                            <property>/sim/model/payload</property>
+                            <value>1</value>
+                        </equals>
+                    </and>       
                 </or>
             </and>
         </condition>
@@ -641,16 +680,26 @@
         <condition>
             <and>
                 <property>/sim/model/j3cub/garmin196-visible</property>
-                <and>
-                    <not-equals>
-                        <property>/sim/current-view/name</property>
-                        <value>Cockpit Front Seat View</value>
-                    </not-equals>
+                <not-equals>
+                    <property>/sim/current-view/name</property>
+                    <value>Cockpit Front Seat View</value>
+                </not-equals>
+                <or>
+                    <and>
+                        <equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>2</value>
+                        </equals>
+                        <equals>
+                            <property>/sim/model/payload</property>
+                            <value>1</value>
+                        </equals>
+                    </and>
                     <equals>
-                        <property>/sim/model/sprayer</property>
+                        <property>/sim/model/payload</property>
                         <value>0</value>
                     </equals>
-                </and>
+                </or>
             </and>
         </condition>
     </animation>  
@@ -2676,21 +2725,67 @@
     <animation>
         <type>select</type>
         <object-name>sprayer</object-name>
-        <object-name>container</object-name>
         <object-name>prop</object-name>
         <condition>
-            <property>sim/model/sprayer</property>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>                
+            </and>
         </condition>
     </animation>
+
+    <!-- Hopper -->
+    <animation>
+        <type>select</type>
+        <object-name>container</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>1</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>                
+            </and>
+        </condition>
+    </animation>
+            
+    
     <animation>
         <type>select</type>
         <object-name>seat_rear</object-name>
         <object-name>stick_back</object-name>
         <condition>
-            <not-equals>
-                <property>sim/model/sprayer</property>
-                <value>1</value>
-            </not-equals>
+            <or>
+                <and>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property>sim/model/payload</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>0</value>
+                </equals> 
+            </or>                
         </condition>
     </animation>
     <animation>
@@ -2710,6 +2805,197 @@
         </center>
     </animation>
 
+    <!-- water drop -->
+    <animation>
+        <type>select</type>
+        <object-name>ReleaseDoor</object-name>
+        <object-name>ReleaseTube</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ReleaseDoor</object-name>
+        <property>controls/armament/trigger</property>
+        <factor>23</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.5994 </x-m>
+            <y-m>-0.00003</y-m>
+            <z-m>-1.1649 </z-m>
+        </center>
+    </animation>
+
+    <!--barrel drop -->
+    <animation>
+        <type>select</type>
+        <object-name>drumMountLeft</object-name>
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <object-name>drumMountRight</object-name>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property>fdm/jsbsim/bushkit</property>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property>fdm/jsbsim/bushkit</property>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>67.5</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>135</dep>
+            </entry>
+        </interpolation>
+        <!--factor>135</factor-->
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.62561 </x-m>
+            <y-m>-1.02684 </y-m>
+            <z-m>-1.4633  </z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>drumLeftDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.6</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>72</dep>
+            </entry>
+        </interpolation>
+        <!--factor>72</factor-->
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.6296 </x-m>
+            <y-m>-1.1166 </y-m>
+            <z-m>-1.2525 </z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>67.5</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>135</dep>
+            </entry>
+        </interpolation>
+        <!--factor>135</factor-->
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.62561 </x-m>
+            <y-m> 1.03244 </y-m>
+            <z-m>-1.45254 </z-m>
+        </center>
+    </animation>
+   <animation>
+        <type>rotate</type>
+        <object-name>drumRightDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.6</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>67</dep>
+            </entry>
+        </interpolation>
+        <!--factor>67</factor-->
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.6296 </x-m>
+            <y-m> 1.1248 </y-m>
+            <z-m>-1.2435 </z-m>
+        </center>
+    </animation>
+    
 <!--  Interior Effects  *************************************************  -->
 
     <animation>
@@ -2944,10 +3230,22 @@
                     <property>sim/current-view/view-number</property>
                     <value>0</value>
                 </not-equals>
-                <not-equals>
-                    <property>/sim/model/sprayer</property>
-                    <value>1</value>
-                </not-equals>
+                <or>
+                    <and>
+                        <not-equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>0</value>
+                        </not-equals>
+                        <not-equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>1</value>
+                        </not-equals>
+                    </and>
+                    <equals>
+                        <property>/sim/model/payload</property>
+                        <value>0</value>
+                    </equals>
+                </or>
                 <property>sim/model/occupants</property>
             </and>
         </condition>
@@ -2961,8 +3259,24 @@
                     <property>sim/current-view/view-number</property>
                     <value>8</value>
                 </not-equals>
+                <and>
+                    <or>
+                        <equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>0</value>
+                        </equals>
+                        <equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>1</value>
+                        </equals>
+                    </or>
+                    <equals>
+                        <property>/sim/model/payload</property>
+                        <value>1</value>
+                    </equals>
+                </and>
                 <equals>
-                    <property>/sim/model/sprayer</property>
+                    <property>/sim/model/payload</property>
                     <value>1</value>
                 </equals>
                 <property>sim/model/occupants</property>

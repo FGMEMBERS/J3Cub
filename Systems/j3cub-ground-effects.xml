@@ -555,14 +555,187 @@
         </fcs_function>
 
         <!-- release liqued payload-->
-        <fcs_function name="sprayer/release-payload">
+        <fcs_function name="payload/release-payload">
             <function>
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
                         <property>/payload/weight[15]/weight-lb</property>
-                        <value>0.3</value>
+                        <value>0.1</value>
                     </gt>
+                </and>
+            </function>
+        </fcs_function>
+
+        <!-- release drum payload-->
+        <fcs_function name="payload/release-payload-drum">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.63</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum1">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.66</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum2">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.69</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum3">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.73</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum4">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.76</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum5">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.79</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum6">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.83</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum7">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.86</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum8">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/payload/weight[15]/weight-lb</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.89</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
                 </and>
             </function>
         </fcs_function>

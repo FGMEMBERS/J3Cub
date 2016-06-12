@@ -378,10 +378,28 @@ Under the GPL. Used by shadows under ALS -->
             </condition>
         </enable>
         <input>
-            <property>/fdm/jsbsim/sprayer/release-payload</property>
+            <property>/fdm/jsbsim/payload/release-payload</property>
         </input>
         <output>
-            <property>/fdm/jsbsim/sprayer/release-payload-actual</property>
+            <property>/fdm/jsbsim/payload/release-payload-actual</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Drum Water Drop Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/payload/release-payload-drum</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/payload/release-payload-drum-actual</property>
         </output>
     </filter>
 

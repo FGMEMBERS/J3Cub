@@ -30,7 +30,7 @@
         <object-name>RHrudder</object-name>
     </effect>
 
-     <effect>
+    <effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-floats</inherits-from>
         <object-name>FloatStruts</object-name>
         <object-name>LRtarm</object-name>
@@ -110,11 +110,6 @@
         <object-name>screw_2</object-name>
         <object-name>screw_3</object-name>
         <object-name>screw_4</object-name>
-        <object-name>RuddWires</object-name>
-        <object-name>FloatStruts</object-name>
-        <object-name>FloatReinforceLeft</object-name>
-        <object-name>FloatReinforceRight</object-name>
-        <object-name>FloatReinforceJoin</object-name>
         <object-name>RudderCatch</object-name>
         <object-name>RudderHandle</object-name>
         <object-name>RudderScrews</object-name>

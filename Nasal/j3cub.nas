@@ -166,18 +166,55 @@ var reset_system = func {
 }
 
 ##############
-# Insecticid
+# Payload
 ##############
-var capacity = 0.01;
-var insecticidRelease = func {
-    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb")) {
-        var weight = getprop("/payload/weight[15]/weight-lb");
-        var velocity = getprop("/velocities/airspeed-kt");
+var capacity = 0.0;
+var weight = 0.0;
+var velocity = 0; 
+var payload_release = func {
+    if (getprop("/controls/armament/trigger") and getprop("/sim/model/payload") and (!getprop("/payload/weight[15]/weight-lb") or getprop("/payload/weight[15]/weight-lb") < .01)) {
+        logger.screen.white("Hopper is empy");
+        setprop("/payload/weight[15]/weight-lb", 0);
+        return;
+    }
+    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb") and getprop("/sim/model/payload-package") == 0 and getprop("/sim/model/payload")) {
+        capacity = 0.01;
+        weight = getprop("/payload/weight[15]/weight-lb");
+        velocity = getprop("/velocities/airspeed-kt");
         weight = weight - capacity * velocity;
-        setprop("/payload/weight[15]/weight-lb", weight); 
+        setprop("/payload/weight[15]/weight-lb", weight);
+    }
+    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb") and getprop("/sim/model/payload-package") == 1 and getprop("/sim/model/payload")) {
+        capacity = .75;
+        weight = getprop("/payload/weight[15]/weight-lb");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/payload/weight[15]/weight-lb", weight);
+    }
+    if (getprop("/controls/armament/trigger") and 
+        getprop("/payload/weight[15]/weight-lb") and 
+        getprop("/sim/model/payload-package") == 2 and 
+        getprop("/sim/model/payload") and
+        getprop("/sim/model/drums/rotate/position-norm") > .633) {
+        capacity = 5;
+        weight = getprop("/payload/weight[15]/weight-lb");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/payload/weight[15]/weight-lb", weight);
     }
 }
 
+var payload_package = func {   
+    if (getprop("/sim/current-view/view-number") == 0 and getprop("/sim/model/payload") == 1 and getprop("/sim/model/payload-package") < 2) {
+        setprop("/sim/current-view/view-number", 8);
+        logger.screen.white("Your not allowed to sit on hopper");
+    }
+}
+
+var drum_release = func {
+    j3cub.drums.toggle();
+}
+ 
 ############################################
 # Global loop function
 # If you need to run nasal as loop, add it in this function
@@ -189,14 +226,7 @@ var global_system_loop = func {
     }
     if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
         setprop("/instrumentation/garmin196/antenne-deg", 180);
-    insecticidRelease();
-}
-
-var viewchange = func {
-    if (getprop("/sim/current-view/view-number") == 0 and getprop("/sim/model/sprayer") == 1) {
-        setprop("/sim/current-view/view-number", 8);
-        gui.popupTip("Not allowed to sit on hopper", 5);
-    }
+    payload_release();
 }
 
 var update_pax = func {
@@ -244,6 +274,7 @@ update_securing();
 #};
 #var fog_frost_timer = maketimer(30.0, log_fog_frost);
 
+
 ##########################################
 # SetListerner must be at the end of this file
 ##########################################
@@ -257,7 +288,13 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/environment/lightning/lightning-pos-y", thunder);
     
     # Listen for view change
-    setlistener("/sim/current-view/view-number", viewchange);
+    setlistener("/sim/current-view/view-number", payload_package);
+    setlistener("/sim/model/payload-package", payload_package);
+    setlistener("/sim/model/payload", payload_package);
+    setlistener("controls/armament/trigger", drum_release);
+    
+    # Initialization of wheight to eliminate null error in FDM
+    setprop("/payload/weight[15]/weight-lb", .01);
 
     reset_system();
     j3cub.rightWindow.toggle();

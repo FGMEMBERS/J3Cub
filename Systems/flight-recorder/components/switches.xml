@@ -104,5 +104,9 @@
         <type>float</type>
         <property type="string">/sim/model/door-positions/rightWindow/position-norm</property>
     </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/sim/model/drums/rotate/position-norm</property>
+    </signal>
 
 </PropertyList>

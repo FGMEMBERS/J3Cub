@@ -4,12 +4,15 @@
 
   <params>
     <release_payload>
-      <property>sim/multiplay/generic/float[18]</property>
+        <property>sim/multiplay/generic/int[17]</property>
     </release_payload>
+    <release_timing>
+        <property>/fdm/jsbsim/payload/release-payload-drum2</property>
+    </release_timing>
   </params>
 
   <particlesystem>
-    <name>insecticid</name>
+    <name>fishdrop</name>
     <type>normal</type>
 
     <texture>smoke.png</texture>
@@ -18,30 +21,54 @@
     <lighting>false</lighting>
     
     <offsets>
-        <x-m>  1.60</x-m>
-        <y-m>  0</y-m>
-        <z-m>  -0.10</z-m>
+        <x-m>  0.25 </x-m><!--smaller moves shooter forward / moving it back lowers the z-->
+        <y-m> -1.2 </y-m>
+        <z-m> -0.5 </z-m><!--smaller lowers shooter -->
     </offsets>
 
     <condition>
-        <property alias="/params/release_payload/property"/>
+        <and>
+            <property alias="/params/release_payload/property"/>
+            <property alias="/params/release_timing/property"/>
+            <equals>
+                <property>sim/model/payload-package</property>
+                <value>2</value>
+            </equals>
+            <equals>
+                <property>sim/model/payload</property>
+                <value>1</value>
+            </equals>
+            
+        </and>
     </condition>
 
     <attach>world</attach>
     <align>billboard</align>
 
-    <placer>
-      <type>point</type>
+    <placer>  
+        <type>segments</type>
+        <vertex>
+          <x-m>  1.5 </x-m>
+          <y-m> -0.1 </y-m>
+          <z-m> -1.0 </z-m>
+        </vertex>
+        <vertex>
+          <x-m>  2.25 </x-m>
+          <y-m> -0.1 </y-m>
+          <z-m> -1.5 </z-m>
+        </vertex>
     </placer>
 
     <shooter>
-      <theta-min-deg> -80 </theta-min-deg>
-      <theta-max-deg>  80 </theta-max-deg>
-      <phi-min-deg>   -80 </phi-min-deg>
-      <phi-max-deg>    80 </phi-max-deg>
+      <!-- vertical -->
+      <theta-min-deg>  90 </theta-min-deg>
+      <theta-max-deg> 135 </theta-max-deg>
+      <!-- horizontal -->
+      <phi-min-deg> -45 </phi-min-deg>
+      <phi-max-deg>-135 </phi-max-deg>
       <speed-mps>
-        <value>  0 </value>
-        <spread> 1 </spread>
+        <value>3</value>
+        <spread>3</spread>
       </speed-mps>
       <rotation-speed>
         <x-min-deg-sec> 0 </x-min-deg-sec>
@@ -54,12 +81,10 @@
     </shooter>
 
     <counter>
-      <particles-per-sec>
-        <property>velocities/airspeed-kt</property>
-        <factor> 0.8 </factor>
-        <offset> -30 </offset>
-        <spread>  15 </spread>
-      </particles-per-sec>
+        <particles-per-sec>
+            <value> 2550 </value>
+            <spread> 850 </spread>
+        </particles-per-sec>
     </counter>
 
     <particle>
@@ -99,12 +124,14 @@
             </alpha>
         </color>
         <size>
-          <value> 2 </value>
+          <value>  1 </value>
+          <spread> 1 </spread>
         </size>
       </end>
 
       <life-sec>
-        <value> 5 </value>
+        <value>  1.5 </value>
+        <spread> 1.5 </spread>
       </life-sec>
 
       <mass-kg>   5.00 </mass-kg>
@@ -113,8 +140,8 @@
 
     <program>
       <fluid>   water </fluid>
-      <gravity>  true </gravity>
-      <wind>     true </wind>
+      <gravity> true </gravity>
+      <wind>    true </wind>
     </program>
 
   </particlesystem>
