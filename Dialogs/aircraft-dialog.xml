@@ -390,7 +390,7 @@
                 <layout>vbox</layout>
 
                 <text>
-                    <label>Liquid Deployment Equipment</label>
+                    <label>Utility Equipment Packages</label>
                     <halign>center</halign>
                 </text>
                 <checkbox>
