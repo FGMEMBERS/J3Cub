@@ -112,4 +112,5 @@
         <type>int8</type>
         <property type="string">/sim/model/payload-package</property>
     </signal>
+
 </PropertyList>

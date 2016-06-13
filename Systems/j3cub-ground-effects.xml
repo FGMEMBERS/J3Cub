@@ -253,7 +253,7 @@
             <output>gear/unit[19]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-117.5">
+            <test logic="AND" value="-108">
                 bushkit EQ 3
             </test>
         </switch>
@@ -262,7 +262,7 @@
             <output>gear/unit[20]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-117.5">
+            <test logic="AND" value="-108">
                 bushkit EQ 3
             </test>
         </switch>
@@ -271,7 +271,7 @@
             <output>gear/unit[21]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-110.5">
+            <test logic="AND" value="-106.5">
                 bushkit EQ 3
             </test>
         </switch>
@@ -280,7 +280,7 @@
             <output>gear/unit[22]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-110.5">
+            <test logic="AND" value="-106.5">
                 bushkit EQ 3
             </test>
         </switch>
