@@ -21,9 +21,9 @@
     <lighting>false</lighting>
     
     <offsets>
-        <x-m>  0.0 </x-m><!--smaller moves shooter forward / moving it back lowers the z-->
+        <x-m>  0.25 </x-m><!--smaller moves shooter forward / moving it back lowers the z-->
         <y-m> -1.2 </y-m>
-        <z-m>  0.0 </z-m><!--smaller lowers shooter -->
+        <z-m> -0.5 </z-m><!--smaller lowers shooter -->
     </offsets>
 
     <condition>
@@ -130,8 +130,8 @@
       </end>
 
       <life-sec>
-        <value>  .5 </value>
-        <spread> .5 </spread>
+        <value>  2 </value>
+        <spread> 2 </spread>
       </life-sec>
 
       <mass-kg>   5.00 </mass-kg>

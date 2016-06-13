@@ -196,7 +196,6 @@ version 2.0  090410-->
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/dirt</path>
             <path>/fdm/jsbsim/running</path>
-            <path>/payload/weight[15]/weight-lb</path>
             <!--path>/sim/model/j3cub/enable-fog-frost</path>
             <path>/fdm/jsbsim/settings/damage</path>
             <path>/fdm/jsbsim/complex</path-->

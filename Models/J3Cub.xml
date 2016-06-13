@@ -2892,7 +2892,6 @@
                 <dep>135</dep>
             </entry>
         </interpolation>
-        <!--factor>135</factor-->
         <axis>
             <x>1</x>
             <y>0</y>
@@ -2919,18 +2918,17 @@
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>72</dep>
+                <dep>45</dep>
             </entry>
         </interpolation>
-        <!--factor>72</factor-->
         <axis>
-            <x>1</x>
+            <x>-1</x>
             <y>0</y>
             <z>0</z>
         </axis>
         <center>
             <x-m> 0.6296 </x-m>
-            <y-m>-1.1166 </y-m>
+            <y-m>-0.9359 </y-m>
             <z-m>-1.2525 </z-m>
         </center>
     </animation>
@@ -2953,7 +2951,6 @@
                 <dep>135</dep>
             </entry>
         </interpolation>
-        <!--factor>135</factor-->
         <axis>
             <x>-1</x>
             <y>0</y>
@@ -2980,19 +2977,18 @@
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>67</dep>
+                <dep>45</dep>
             </entry>
         </interpolation>
-        <!--factor>67</factor-->
         <axis>
-            <x>-1</x>
+            <x>1</x>
             <y>0</y>
             <z>0</z>
         </axis>
         <center>
             <x-m> 0.6296 </x-m>
-            <y-m> 1.1248 </y-m>
-            <z-m>-1.2435 </z-m>
+            <y-m> 0.9401 </y-m>
+            <z-m>-1.2425 </z-m>
         </center>
     </animation>
     

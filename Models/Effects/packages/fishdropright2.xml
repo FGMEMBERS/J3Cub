@@ -129,8 +129,8 @@
       </end>
 
       <life-sec>
-        <value>  1.5 </value>
-        <spread> 1.5 </spread>
+        <value>  2 </value>
+        <spread> 2 </spread>
       </life-sec>
 
       <mass-kg>   5.00 </mass-kg>
