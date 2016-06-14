@@ -168,7 +168,8 @@
                 <property>/rendering/scene/diffuse/red</property>
             </blue>
             <alpha>
-                <value>0.10</value>
+                <value>  0.10 </value>
+                <spread> 0.05 </spread>
             </alpha>
         </color>
         <size>
@@ -189,7 +190,8 @@
                 <property>/rendering/scene/diffuse/red</property>
             </blue>
             <alpha>
-                <value>0.0</value>
+                <value>  0.20</value>
+                <spread> 0.10</spread>
             </alpha>
         </color>
         <size>

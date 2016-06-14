@@ -32,46 +32,6 @@ version 2.0  090410-->
         <aero archive="y">J3Cub</aero>
         <fuel-fraction>0.8</fuel-fraction>
 
-        <!-- Position the pilot viewpoint and angle -->
-        <view>
-            <internal type="bool" archive="y">true</internal>
-            <config>
-                <x-offset-m archive="y" type="double">-0.0 </x-offset-m><!--y-->
-                <y-offset-m archive="y" type="double">-0.2 </y-offset-m><!--z-->
-                <z-offset-m archive="y" type="double"> 0.98 </z-offset-m><!--x-->
-                <pitch-offset-deg type="double">12</pitch-offset-deg>
-                <default-field-of-view-deg>100</default-field-of-view-deg>
-            </config>
-        </view>
-
-        <view n="100">
-            <name>Cockpit Front Seat View</name>
-            <type>lookfrom</type>
-            <internal type="bool">true</internal>
-            <config>
-                <from-model type="bool">true</from-model>
-                <from-model-idx type="int">0</from-model-idx>
-                <x-offset-m type="double">-0.0 </x-offset-m><!--y-->
-                <y-offset-m type="double">-0.2 </y-offset-m><!--z-->
-                <z-offset-m type="double"> 0.32 </z-offset-m><!--x-->
-                <pitch-offset-deg type="double">-12</pitch-offset-deg>
-                <default-field-of-view-deg>100</default-field-of-view-deg>
-                <limits>
-                    <enabled type="bool">true</enabled>
-                    <left>
-                        <heading-max-deg type="double">140</heading-max-deg>
-                        <x-offset-max-m type="double">0.15</x-offset-max-m>
-                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                    </left>
-                    <right>
-                        <heading-max-deg type="double">140</heading-max-deg>
-                        <x-offset-max-m type="double">0.15</x-offset-max-m>
-                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                    </right>
-                </limits>
-            </config>
-        </view>
-
         <model>
             <path archive="y">Aircraft/J3Cub/Models/J3Cub.xml</path>
 
@@ -170,7 +130,13 @@ version 2.0  090410-->
             </map>
             <payload type="bool">false</payload>
             <payload-package type="int">0</payload-package>
+
         </model>
+
+        <submodels>
+            <serviceable type="bool">true</serviceable>
+            <path>Aircraft/J3Cub/Models/retardant_drop-submodel.xml</path>
+        </submodels>
 
         <!-- Walker settings -->
         <walker>
@@ -265,12 +231,12 @@ version 2.0  090410-->
                 <!--  9 unused -->
                 <!-- 12 unused -->
                 <!-- 13 unused -->
-                <!-- 14 unused -->
                 <int n="6" alias="/fdm/jsbsim/gear/unit[0]/broken"/>
                 <int n="7" alias="/fdm/jsbsim/gear/unit[1]/broken"/>
                 <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
                 <int n="10" alias="/fdm/jsbsim/pontoon-damage/left-pontoon"/>
                 <int n="11" alias="/fdm/jsbsim/pontoon-damage/right-pontoon"/>
+                <int n="14" alias="/payload/pax-state"/>
                 <int n="15" alias="/fdm/jsbsim/crash"/>
                 <int n="16" alias="/fdm/jsbsim/payload/release-payload-drum-actual"/>
                 <int n="17" alias="/fdm/jsbsim/payload/release-payload-actual"/>
@@ -410,11 +376,11 @@ version 2.0  090410-->
         </j3cub>
         <Cub>
             <!--file>Nasal/weather.nas</file-->
-            <file>Nasal/aircraft-dialog.nas</file>
             <file>Nasal/flashlight.nas</file>
             <file>Nasal/physics.nas</file>
             <file>Nasal/j3cub.nas</file>
             <file>Nasal/tiedowns.nas</file>
+            <file>Nasal/aircraft-dialog.nas</file>
         </Cub>
         <tyresmoke>
             <file>Nasal/tyresmoke.nas</file>
@@ -460,6 +426,7 @@ version 2.0  090410-->
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">350.0</max-lb>
         </weight>
+        <pax-state type="int">0</pax-state>
     </payload>
 
     <input>

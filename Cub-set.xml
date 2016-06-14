@@ -20,6 +20,14 @@ version 2.0  090410-->
     <cockpit type="int">4</cockpit>
   </rating>
 
+    <multiplay>
+        <chat_display>1</chat_display>
+        <generic>
+            <float n="0" alias="/sim/model/door-positions/rightDoor/position-norm"/>
+            <float n="1" alias="/sim/model/door-positions/rightWindow/position-norm"/>
+        </generic>
+    </multiplay>
+
     <menubar>
         <default>
             <menu n="10">
@@ -37,6 +45,13 @@ version 2.0  090410-->
                     <binding>
                         <command>dialog-show</command>
                         <dialog-name>registration-dialog</dialog-name>
+                    </binding>
+                </item>
+                <item>
+                    <label>Aircraft Options</label>
+                    <binding>
+                        <command>dialog-show</command>
+                        <dialog-name>aircraft-dialog-cub</dialog-name>
                     </binding>
                 </item>
             </menu>
@@ -78,7 +93,18 @@ version 2.0  090410-->
 
   <model>
    <path archive="y">Aircraft/J3Cub/Models/Cub.xml</path>
+   <j3cub>
+    <garmin196-visible type="bool">false</garmin196-visible>
+   </j3cub>
   </model>
+
+    <!-- persistent properties -->
+    <aircraft-data>
+        <path>/sim/rendering/shadow-volume</path>
+        <path>/sim/model/occupants</path>
+        <path>/sim/model/j3cub/garmin196-visible</path>
+        <path>/fdm/jsbsim/running</path>
+    </aircraft-data>
 
   <!-- Payload -->
   <weight>
@@ -112,11 +138,9 @@ version 2.0  090410-->
                 <binding>
                     <command>nasal</command>
                     <script>
-                        if(getprop("controls/door[0]") > 0) {
-                        interpolate("controls/door[0]", 0, 1);
-                        } else {
-                        interpolate("controls/door[0]", 1, 1);
-                        }
+                        if (getprop("sim/multiplay/generic/float[1]") == 0)
+                            j3cub.rightWindow.toggle();
+                        j3cub.rightDoor.toggle();
                     </script>
                 </binding>
             </key>
@@ -139,4 +163,17 @@ version 2.0  090410-->
   </Cub>
  </yasim>
 
+ <nasal>
+   <Cub>
+     <file>Nasal/cub.nas</file>
+     <file>Nasal/aircraft-dialog.nas</file>
+   </Cub>
+   <j3cub>
+     <file>Nasal/doors.nas</file>
+   </j3cub>
+   <garmin196>
+     <file>Aircraft/Instruments-3d/garmin196/garmin196.nas</file>
+   </garmin196>
+ </nasal>
+ 
 </PropertyList>

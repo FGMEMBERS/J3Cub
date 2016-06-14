@@ -229,16 +229,16 @@ var global_system_loop = func {
     payload_release();
 }
 
-var update_pax = func {
-    var state = 0;
-    state = bits.switch(state, 0, getprop("pax/pilot/present"));
-    state = bits.switch(state, 1, getprop("pax/passenger/present"));
-    setprop("/payload/pax-state", state);
-};
+#var update_pax = func {
+#    var state = 0;
+#    state = bits.switch(state, 0, getprop("pax/pilot/present"));
+#    state = bits.switch(state, 1, getprop("pax/passenger/present"));
+#    setprop("/payload/pax-state", state);
+#};
 
-setlistener("/pax/pilot/present", update_pax, 0, 0);
-setlistener("/pax/passenger/present", update_pax, 0, 0);
-update_pax();
+#setlistener("/pax/pilot/present", update_pax, 0, 0);
+#setlistener("/pax/passenger/present", update_pax, 0, 0);
+#update_pax();
 
 var update_securing = func {
     var state = 0;
@@ -274,6 +274,17 @@ update_securing();
 #};
 #var fog_frost_timer = maketimer(30.0, log_fog_frost);
 
+var resolve_impact = func (n) {
+    #print("Retardant impact!");
+    var node = props.globals.getNode(n.getValue());
+    var pos  = geo.Coord.new().set_latlon
+                   (node.getNode("impact/latitude-deg").getValue(),
+                    node.getNode("impact/longitude-deg").getValue(),
+                    node.getNode("impact/elevation-m").getValue());
+    # The arguments are: position, radius and volume (currently unused).
+    wildfire.resolve_foam_drop(pos, 10, 0);
+    #wildfire.resolve_retardant_drop(pos, 10, 0);
+}
 
 ##########################################
 # SetListerner must be at the end of this file
@@ -289,11 +300,18 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Listen for view change
     setlistener("/sim/current-view/view-number", payload_package);
+    
+    # Listen for payload or package change
     setlistener("/sim/model/payload-package", payload_package);
     setlistener("/sim/model/payload", payload_package);
+    
+    # Listen for release of payload
     setlistener("controls/armament/trigger", drum_release);
     
-    # Initialization of wheight to eliminate null error in FDM
+    # Listen for view impact of released payload
+    setlistener("/sim/ai/aircraft/impact/retardant", resolve_impact);
+    
+    # Initialization of weight to eliminate null error in FDM
     setprop("/payload/weight[15]/weight-lb", .01);
 
     reset_system();
