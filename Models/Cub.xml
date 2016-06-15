@@ -622,6 +622,7 @@
                     <value>0</value>
                 </not-equals>
                 <property>sim/model/occupants</property>
+                <property>sim/weight/weight-lb</property>
             </and>
         </condition>
     </animation>
@@ -635,6 +636,7 @@
                     <value>8</value>
                 </not-equals>
                 <property>sim/model/occupants</property>
+                <property>sim/weight[1]/weight-lb</property>
             </and>
         </condition>
     </animation>

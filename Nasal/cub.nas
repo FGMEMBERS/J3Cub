@@ -35,7 +35,7 @@ var reset_system = func {
     }
     setprop("/engines/active-engine/kill-engine", 0);
 }
- 
+
 ############################################
 # Global loop function
 # If you need to run nasal as loop, add it in this function
