@@ -229,16 +229,12 @@ var global_system_loop = func {
     payload_release();
 }
 
-#var update_pax = func {
-#    var state = 0;
-#    state = bits.switch(state, 0, getprop("pax/pilot/present"));
-#    state = bits.switch(state, 1, getprop("pax/passenger/present"));
-#    setprop("/payload/pax-state", state);
-#};
-
-#setlistener("/pax/pilot/present", update_pax, 0, 0);
-#setlistener("/pax/passenger/present", update_pax, 0, 0);
-#update_pax();
+var update_pax = func {
+    var state = 0;
+    state = bits.switch(state, 0, getprop("pax/pilot/present"));
+    state = bits.switch(state, 1, getprop("pax/passenger/present"));
+    setprop("/payload/pax-state", state);
+};
 
 var update_securing = func {
     var state = 0;
@@ -249,13 +245,6 @@ var update_securing = func {
     state = bits.switch(state, 4, getprop("/sim/model/j3cub/securing/tiedownT-visible"));
     setprop("/payload/securing-state", state);
 };
-
-setlistener("/sim/model/j3cub/securing/pitot-cover-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/chock-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownL-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
-update_securing();
 
 #var log_cabin_temp = func {
 #    if (getprop("/sim/model/j3cub/enable-fog-frost")) {
@@ -300,10 +289,11 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Listen for view change
     setlistener("/sim/current-view/view-number", payload_package);
-    
+      
     # Listen for payload or package change
     setlistener("/sim/model/payload-package", payload_package);
     setlistener("/sim/model/payload", payload_package);
+    payload_package();
     
     # Listen for release of payload
     setlistener("controls/armament/trigger", drum_release);
@@ -313,6 +303,17 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Initialization of weight to eliminate null error in FDM
     setprop("/payload/weight[15]/weight-lb", .01);
+
+    setlistener("/pax/pilot/present", update_pax, 0, 0);
+    setlistener("/pax/passenger/present", update_pax, 0, 0);
+    update_pax();
+    
+    setlistener("/sim/model/j3cub/securing/pitot-cover-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/chock-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownL-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
+    update_securing();
 
     reset_system();
     j3cub.rightWindow.toggle();

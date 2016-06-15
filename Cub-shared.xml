@@ -67,7 +67,7 @@ version 2.0  090410-->
             </limits>
         </config>
     </view>
- 
+
   <hitches>
    <!-- make sure some properties do exist, when the list for multiplayer transfer is defined-->
    <!-- they need to be in the same value, as they are initilized in the FDM, to get the same values after reset
@@ -142,7 +142,6 @@ version 2.0  090410-->
  <nasal>
    <Cub>
      <file>Aircraft/J3Cub/Nasal/immat.nas</file>
-
    </Cub>
    <failures>
      <file>Aircraft/Generic/limits.nas</file>

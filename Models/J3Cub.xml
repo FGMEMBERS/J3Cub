@@ -73,7 +73,7 @@
             }, 1, 0);
 
             # Passengers
-            var pax_state_path = rplayer.getNode("sim/multiplay/generic/int[16]").getPath();
+            var pax_state_path = rplayer.getNode("sim/multiplay/generic/int[14]").getPath();
 
             var passenger = rplayer.initNode("pax/passenger/present", 0, "BOOL");
             var pilot = rplayer.initNode("pax/pilot/present", 0, "BOOL");
@@ -3226,23 +3226,26 @@
                     <property>sim/current-view/view-number</property>
                     <value>0</value>
                 </not-equals>
-                <or>
-                    <and>
-                        <not-equals>
-                            <property>/sim/model/payload-package</property>
+                <and>
+                    <or>
+                        <and>
+                            <not-equals>
+                                <property>/sim/model/payload-package</property>
+                                <value>0</value>
+                            </not-equals>
+                            <not-equals>
+                                <property>/sim/model/payload-package</property>
+                                <value>1</value>
+                            </not-equals>
+                        </and>
+                        <equals>
+                            <property>/sim/model/payload</property>
                             <value>0</value>
-                        </not-equals>
-                        <not-equals>
-                            <property>/sim/model/payload-package</property>
-                            <value>1</value>
-                        </not-equals>
-                    </and>
-                    <equals>
-                        <property>/sim/model/payload</property>
-                        <value>0</value>
-                    </equals>
-                </or>
+                        </equals>
+                    </or>
+                </and>
                 <property>sim/model/occupants</property>
+                <property>pax/pilot/present</property>
             </and>
         </condition>
     </animation>
@@ -3250,33 +3253,44 @@
         <type>select</type>
         <object-name>pilot-front</object-name>
         <condition>
-            <and>
-                <not-equals>
-                    <property>sim/current-view/view-number</property>
-                    <value>8</value>
-                </not-equals>
+            <or>
                 <and>
-                    <or>
+                    <not-equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>8</value>
+                    </not-equals>
+                    <and>
+                        <or>
+                            <equals>
+                                <property>/sim/model/payload-package</property>
+                                <value>0</value>
+                            </equals>
+                            <equals>
+                                <property>/sim/model/payload-package</property>
+                                <value>1</value>
+                            </equals>
+                        </or>
                         <equals>
-                            <property>/sim/model/payload-package</property>
-                            <value>0</value>
-                        </equals>
-                        <equals>
-                            <property>/sim/model/payload-package</property>
+                            <property>/sim/model/payload</property>
                             <value>1</value>
                         </equals>
-                    </or>
+                    </and>
                     <equals>
                         <property>/sim/model/payload</property>
                         <value>1</value>
                     </equals>
+                    <property>sim/model/occupants</property>
+                    <property>pax/pilot/present</property>
                 </and>
-                <equals>
-                    <property>/sim/model/payload</property>
-                    <value>1</value>
-                </equals>
-                <property>sim/model/occupants</property>
-            </and>
+                <and>
+                    <not-equals>
+                        <property>sim/current-view/view-number</property>
+                        <value>8</value>
+                    </not-equals>
+                    <property>pax/passenger/present</property>
+                    <property>sim/model/occupants</property>
+                </and>
+            </or>
         </condition>
     </animation>
 
