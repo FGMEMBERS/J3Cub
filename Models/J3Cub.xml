@@ -3223,7 +3223,7 @@
         <condition>
             <and>
                 <not-equals>
-                    <property>sim/current-view/view-number</property>
+                    <property>/sim/current-view/view-number</property>
                     <value>0</value>
                 </not-equals>
                 <and>
@@ -3248,8 +3248,8 @@
                         </equals>
                     </or>
                 </and>
-                <property>sim/model/occupants</property>
-                <property>pax/pilot/present</property>
+                <property>/sim/model/occupants</property>
+                <property>/pax/pilot/present</property>
             </and>
         </condition>
     </animation>
@@ -3260,7 +3260,7 @@
             <or>
                 <and>
                     <not-equals>
-                        <property>sim/current-view/view-number</property>
+                        <property>/sim/current-view/view-number</property>
                         <value>8</value>
                     </not-equals>
                     <and>
@@ -3279,19 +3279,19 @@
                             <value>1</value>
                         </equals>
                     </and>
-                    <property>sim/model/occupants</property>
-                    <property>pax/pilot/present</property>
+                    <property>/sim/model/occupants</property>
+                    <property>/pax/pilot/present</property>
                 </and>
                 <and>
                     <not>
                         <property>/sim/model/payload</property>
                     </not>
                     <not-equals>
-                        <property>sim/current-view/view-number</property>
+                        <property>/sim/current-view/view-number</property>
                         <value>8</value>
                     </not-equals>
-                    <property>pax/passenger/present</property>
-                    <property>sim/model/occupants</property>
+                    <property>/pax/passenger/present</property>
+                    <property>/sim/model/occupants</property>
                 </and>
             </or>
         </condition>
