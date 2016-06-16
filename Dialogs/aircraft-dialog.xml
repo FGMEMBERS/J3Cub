@@ -542,7 +542,7 @@
                             <max>350.0</max>
                             <step>.1</step>
                             <live>true</live>
-                            <property>/payload/weight[15]/weight-lb</property>
+                            <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                             <binding>
                                 <command>dialog-apply</command>
                                 <object-name>hopper</object-name>

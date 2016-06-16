@@ -172,35 +172,39 @@ var capacity = 0.0;
 var weight = 0.0;
 var velocity = 0; 
 var payload_release = func {
-    if (getprop("/controls/armament/trigger") and getprop("/sim/model/payload") and (!getprop("/payload/weight[15]/weight-lb") or getprop("/payload/weight[15]/weight-lb") < .01)) {
-        logger.screen.white("Hopper is empy");
-        setprop("/payload/weight[15]/weight-lb", 0);
+    if (!getprop("/sim/model/payload")) {
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0.0);  
         return;
     }
-    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb") and getprop("/sim/model/payload-package") == 0 and getprop("/sim/model/payload")) {
+    if (getprop("/controls/armament/trigger") and getprop("/sim/model/payload") and (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") or getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") < .01)) {
+        logger.screen.white("Hopper is empy");
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0);
+        return;
+    }
+    if (getprop("/controls/armament/trigger") and getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and getprop("/sim/model/payload-package") == 0 and getprop("/sim/model/payload")) {
         capacity = 0.01;
-        weight = getprop("/payload/weight[15]/weight-lb");
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
         velocity = getprop("/velocities/airspeed-kt");
         weight = weight - capacity * velocity;
-        setprop("/payload/weight[15]/weight-lb", weight);
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
     }
-    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb") and getprop("/sim/model/payload-package") == 1 and getprop("/sim/model/payload")) {
+    if (getprop("/controls/armament/trigger") and getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and getprop("/sim/model/payload-package") == 1 and getprop("/sim/model/payload")) {
         capacity = .75;
-        weight = getprop("/payload/weight[15]/weight-lb");
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
         velocity = 9.8;
         weight = weight - capacity * velocity;
-        setprop("/payload/weight[15]/weight-lb", weight);
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
     }
     if (getprop("/controls/armament/trigger") and 
-        getprop("/payload/weight[15]/weight-lb") and 
+        getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and 
         getprop("/sim/model/payload-package") == 2 and 
         getprop("/sim/model/payload") and
         getprop("/sim/model/drums/rotate/position-norm") > .633) {
         capacity = 5;
-        weight = getprop("/payload/weight[15]/weight-lb");
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
         velocity = 9.8;
         weight = weight - capacity * velocity;
-        setprop("/payload/weight[15]/weight-lb", weight);
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
     }
 }
 
@@ -246,6 +250,18 @@ var update_securing = func {
     setprop("/payload/securing-state", state);
 };
 
+var resolve_impact = func (n) {
+    #print("Retardant impact!");
+    var node = props.globals.getNode(n.getValue());
+    var pos  = geo.Coord.new().set_latlon
+                   (node.getNode("impact/latitude-deg").getValue(),
+                    node.getNode("impact/longitude-deg").getValue(),
+                    node.getNode("impact/elevation-m").getValue());
+    # The arguments are: position, radius and volume (currently unused).
+    wildfire.resolve_foam_drop(pos, 10, 0);
+    #wildfire.resolve_retardant_drop(pos, 10, 0);
+}
+
 #var log_cabin_temp = func {
 #    if (getprop("/sim/model/j3cub/enable-fog-frost")) {
 #        var temp_degc = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc");
@@ -263,17 +279,30 @@ var update_securing = func {
 #};
 #var fog_frost_timer = maketimer(30.0, log_fog_frost);
 
-var resolve_impact = func (n) {
-    #print("Retardant impact!");
-    var node = props.globals.getNode(n.getValue());
-    var pos  = geo.Coord.new().set_latlon
-                   (node.getNode("impact/latitude-deg").getValue(),
-                    node.getNode("impact/longitude-deg").getValue(),
-                    node.getNode("impact/elevation-m").getValue());
-    # The arguments are: position, radius and volume (currently unused).
-    wildfire.resolve_foam_drop(pos, 10, 0);
-    #wildfire.resolve_retardant_drop(pos, 10, 0);
-}
+#var set_limits = func () {
+   
+#    var limits = props.globals.getNode("/limits/mass-and-balance");
+#    var ac_limits = props.globals.getNode("/limits/mass-and-balance");
+
+    # Get the mass limits of the current engine
+#    var ramp_mass = limits.getNode("maximum-ramp-mass-lbs");
+#    var takeoff_mass = limits.getNode("maximum-takeoff-mass-lbs");
+#    var landing_mass = limits.getNode("maximum-landing-mass-lbs");
+
+    # Get the actual mass limit nodes of the aircraft
+#    var ac_ramp_mass = ac_limits.getNode("maximum-ramp-mass-lbs");
+#    var ac_takeoff_mass = ac_limits.getNode("maximum-takeoff-mass-lbs");
+#    var ac_landing_mass = ac_limits.getNode("maximum-landing-mass-lbs");
+
+    # Set the mass limits of the aircraft
+#    ac_ramp_mass.unalias();
+#    ac_takeoff_mass.unalias();
+#    ac_landing_mass.unalias();
+
+#    ac_ramp_mass.alias(ramp_mass);
+#    ac_takeoff_mass.alias(takeoff_mass);
+#    ac_landing_mass.alias(landing_mass);
+#};
 
 ##########################################
 # SetListerner must be at the end of this file
@@ -293,6 +322,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     # Listen for payload or package change
     setlistener("/sim/model/payload-package", payload_package);
     setlistener("/sim/model/payload", payload_package);
+    setlistener("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", payload_package);
     payload_package();
     
     # Listen for release of payload
@@ -300,9 +330,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Listen for view impact of released payload
     setlistener("/sim/ai/aircraft/impact/retardant", resolve_impact);
-    
-    # Initialization of weight to eliminate null error in FDM
-    setprop("/payload/weight[15]/weight-lb", .01);
 
     setlistener("/pax/pilot/present", update_pax, 0, 0);
     setlistener("/pax/passenger/present", update_pax, 0, 0);
@@ -314,7 +341,10 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
     setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
     update_securing();
-
+    
+    # Initialize mass limits
+    #set_limits();
+  
     reset_system();
     j3cub.rightWindow.toggle();
     j3cub.rightDoor.toggle();

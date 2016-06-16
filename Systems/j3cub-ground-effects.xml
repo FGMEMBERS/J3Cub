@@ -560,7 +560,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                 </and>
@@ -573,7 +573,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -592,7 +592,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -611,7 +611,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -630,7 +630,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -649,7 +649,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -668,7 +668,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -687,7 +687,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -706,7 +706,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>
@@ -725,7 +725,7 @@
                 <and>
                     <property>/controls/armament/trigger</property>
                     <gt>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
                         <value>0.1</value>
                     </gt>
                     <gt>

@@ -238,7 +238,7 @@
                 <z> -63.32 </z>
             </location>
         </pointmass>
-        <pointmass name="Hopper" >
+        <pointmass name="Hopper">
         <!-- max 350 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">

@@ -3237,6 +3237,10 @@
                                 <property>/sim/model/payload-package</property>
                                 <value>1</value>
                             </not-equals>
+                            <equals>
+                                <property>/sim/model/payload</property>
+                                <value>1</value>
+                            </equals>
                         </and>
                         <equals>
                             <property>/sim/model/payload</property>
@@ -3275,14 +3279,13 @@
                             <value>1</value>
                         </equals>
                     </and>
-                    <equals>
-                        <property>/sim/model/payload</property>
-                        <value>1</value>
-                    </equals>
                     <property>sim/model/occupants</property>
                     <property>pax/pilot/present</property>
                 </and>
                 <and>
+                    <not>
+                        <property>/sim/model/payload</property>
+                    </not>
                     <not-equals>
                         <property>sim/current-view/view-number</property>
                         <value>8</value>

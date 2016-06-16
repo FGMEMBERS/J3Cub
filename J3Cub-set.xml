@@ -407,14 +407,14 @@ version 2.0  090410-->
         <weight>
             <name type="string">Passenger</name>
             <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
-            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[0]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[1]"/>
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">210.0</max-lb>
         </weight>
        <weight>
             <name type="string">Baggage</name>
             <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
-            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[0]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[10]"/>
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">150.0</max-lb>
             <!-- WARNING: Max baggage "by the book" is 120lbs or less! -->
@@ -422,13 +422,13 @@ version 2.0  090410-->
         <weight>
             <name type="string">Hopper</name>
             <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[15]"/>
-            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[0]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[15]"/>
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">350.0</max-lb>
         </weight>
         <pax-state type="int">0</pax-state>
     </payload>
-
+    
     <input>
         <keyboard include="J3Cub-keyboard.xml"/>
     </input>
