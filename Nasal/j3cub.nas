@@ -165,74 +165,6 @@ var reset_system = func {
 
 }
 
-##############
-# Payload
-##############
-var capacity = 0.0;
-var weight = 0.0;
-var velocity = 0; 
-var payload_release = func {
-    if (!getprop("/sim/model/payload")) {
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0.0);  
-        return;
-    }
-    if (getprop("/controls/armament/trigger") and getprop("/sim/model/payload") and (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") or getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") < .01)) {
-        logger.screen.white("Hopper is empy");
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0);
-        return;
-    }
-    if (getprop("/controls/armament/trigger") and getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and getprop("/sim/model/payload-package") == 0 and getprop("/sim/model/payload")) {
-        capacity = 0.01;
-        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
-        velocity = getprop("/velocities/airspeed-kt");
-        weight = weight - capacity * velocity;
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
-    }
-    if (getprop("/controls/armament/trigger") and getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and getprop("/sim/model/payload-package") == 1 and getprop("/sim/model/payload")) {
-        capacity = .75;
-        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
-        velocity = 9.8;
-        weight = weight - capacity * velocity;
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
-    }
-    if (getprop("/controls/armament/trigger") and 
-        getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and 
-        getprop("/sim/model/payload-package") == 2 and 
-        getprop("/sim/model/payload") and
-        getprop("/sim/model/drums/rotate/position-norm") > .633) {
-        capacity = 5;
-        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
-        velocity = 9.8;
-        weight = weight - capacity * velocity;
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
-    }
-}
-
-var payload_package = func {   
-    if (getprop("/sim/current-view/view-number") == 0 and getprop("/sim/model/payload") == 1 and getprop("/sim/model/payload-package") < 2) {
-        setprop("/sim/current-view/view-number", 8);
-        logger.screen.white("Your not allowed to sit on hopper");
-    }
-}
-
-var drum_release = func {
-    j3cub.drums.toggle();
-}
- 
-############################################
-# Global loop function
-# If you need to run nasal as loop, add it in this function
-############################################
-var global_system_loop = func {
-    Cub.physics_loop();
-    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
-        setprop("/controls/engines/engine/starter", 0);
-    }
-    if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
-        setprop("/instrumentation/garmin196/antenne-deg", 180);
-    payload_release();
-}
-
 var update_pax = func {
     var state = 0;
     state = bits.switch(state, 0, getprop("pax/pilot/present"));
@@ -249,6 +181,87 @@ var update_securing = func {
     state = bits.switch(state, 4, getprop("/sim/model/j3cub/securing/tiedownT-visible"));
     setprop("/payload/securing-state", state);
 };
+
+##############
+# Payload
+##############
+var capacity = 0.0;
+var weight = 0.0;
+var velocity = 0; 
+var payload_release = func {
+    if (!getprop("/sim/model/payload")) {
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0.0);  
+        return;
+    }
+    if (getprop("/controls/armament/trigger") and
+            getprop("/sim/model/payload") and 
+            (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") or
+                getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") < .01)) {
+        logger.screen.white("Hopper is empty");
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0);
+        return;
+    }
+    if (getprop("/sim/current-view/view-number") == 0 and 
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2) {
+        setprop("/sim/current-view/view-number", 8);
+        logger.screen.white("Your not allowed to sit on hopper");
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }
+    if (getprop("/sim/current-view/view-number") == 8 and
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2 and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]")) {
+        logger.screen.white("Your not allowed to sit on hopper");
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }
+    if (getprop("/sim/current-view/view-number") != 0 and
+            getprop("/sim/current-view/view-number") != 8 and
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2 and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]")) {
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }   
+    if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 0 and
+            getprop("/sim/model/payload")) {
+        capacity = 0.01;    
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = getprop("/velocities/airspeed-kt");
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    } else if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 1 and
+            getprop("/sim/model/payload")) {
+        capacity = .75;
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    } else if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 2 and
+            getprop("/sim/model/payload") and
+            getprop("/sim/model/drums/rotate/position-norm") > .633) {
+        capacity = 5;
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    }
+}
+
+var drum_release = func {
+    j3cub.drums.toggle();
+}
 
 var resolve_impact = func (n) {
     #print("Retardant impact!");
@@ -304,6 +317,20 @@ var resolve_impact = func (n) {
 #    ac_landing_mass.alias(landing_mass);
 #};
 
+############################################
+# Global loop function
+# If you need to run nasal as loop, add it in this function
+############################################
+var global_system_loop = func {
+    Cub.physics_loop();
+    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
+        setprop("/controls/engines/engine/starter", 0);
+    }
+    if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
+        setprop("/instrumentation/garmin196/antenne-deg", 180);
+    payload_release();
+}
+
 ##########################################
 # SetListerner must be at the end of this file
 ##########################################
@@ -315,15 +342,6 @@ setlistener("/sim/signals/fdm-initialized", func {
 
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
-    
-    # Listen for view change
-    setlistener("/sim/current-view/view-number", payload_package);
-      
-    # Listen for payload or package change
-    setlistener("/sim/model/payload-package", payload_package);
-    setlistener("/sim/model/payload", payload_package);
-    setlistener("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", payload_package);
-    payload_package();
     
     # Listen for release of payload
     setlistener("controls/armament/trigger", drum_release);
