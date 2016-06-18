@@ -143,6 +143,7 @@
             </location>
         </pointmass>
         <pointmass name="Left float">
+            <!--  66 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -151,6 +152,7 @@
             </location>
         </pointmass>
         <pointmass name="Right float">
+            <!--  66 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -159,6 +161,7 @@
             </location>
         </pointmass>
         <pointmass name="Left amphibious">
+            <!--  115 lb Baumann Floats, FAA TSO C-27 Approved -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -167,6 +170,7 @@
             </location>
         </pointmass>
         <pointmass name="Right amphibious">
+            <!--  115 lb Baumann Floats, FAA TSO C-27 Approved -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>   1.17 </x>
@@ -239,7 +243,7 @@
             </location>
         </pointmass>
         <pointmass name="Hopper">
-        <!-- max 350 lb -->
+        <!-- max 300 lb -->
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x>  37.44 </x>

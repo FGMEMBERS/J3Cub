@@ -539,7 +539,7 @@
                                 </and>
                             </enable>
                             <min>0.0</min>
-                            <max>350.0</max>
+                            <max>300.0</max>
                             <step>.1</step>
                             <live>true</live>
                             <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>

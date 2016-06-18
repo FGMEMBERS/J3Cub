@@ -411,7 +411,7 @@ version 2.0  090410-->
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">210.0</max-lb>
         </weight>
-       <weight>
+        <weight>
             <name type="string">Baggage</name>
             <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
             <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[10]"/>
@@ -424,7 +424,7 @@ version 2.0  090410-->
             <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[15]"/>
             <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[15]"/>
             <min-lb type="double">0.0</min-lb>
-            <max-lb type="double">350.0</max-lb>
+            <max-lb type="double">300.0</max-lb>
         </weight>
         <pax-state type="int">0</pax-state>
     </payload>
