@@ -55,8 +55,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     aircraft.data.load();
 
     reset_system();
-    j3cub.rightWindow.toggle();
-    j3cub.rightDoor.toggle();
+    Cub.rightWindow.toggle();
+    Cub.rightDoor.toggle();
 
     var cub_timer = maketimer(0.25, func{global_system_loop()});
     cub_timer.start();

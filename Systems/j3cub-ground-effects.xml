@@ -101,7 +101,7 @@
                     <property>gear/unit[0]/broken</property>
                     <switch>
                         <property>bushkit</property-->
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
                         <!--value> -10.00 </value>
                         <value> -17.70 </value>
                         <value>   0.00 </value>
@@ -111,7 +111,7 @@
                     <value>0.0</value>
                 </ifthen>
             </function>
-        </fcs_function>
+        </fcs_function-->
 
         <fcs_function name="z-position-effect-left-gear">
             <output>contact/unit[7]/z-position</output>
@@ -119,10 +119,10 @@
                 <ifthen>
                     <property>gear/unit[1]/broken</property>
                     <switch>
-                        <property>bushkit</property-->
+                        <property>bushkit</property>
 
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
-                        <!--value> -9.5</value>
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
+                        <value> -69.5</value>
                         <value>-14.5</value>
                         <value>-16.0</value>
                         <value>  0.0</value>
@@ -140,10 +140,10 @@
                 <ifthen>
                     <property>gear/unit[2]/broken</property>
                     <switch>
-                        <property>bushkit</property-->
+                        <property>bushkit</property>
 
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
-                        <!--value> -8.0</value>
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
+                        <value> -69.8</value>
                         <value>-15.5</value>
                         <value>-17.4</value>
                         <value>  0.0</value>
@@ -154,7 +154,7 @@
                 </ifthen>
             </function>
         </fcs_function>
-        -->
+
         <!-- ================================================================== -->
         <!-- Contact points wing tips                                           -->
         <!-- ================================================================== -->

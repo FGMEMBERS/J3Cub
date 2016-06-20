@@ -169,10 +169,8 @@ version 2.0  090410-->
         <Cub>
             <file>Nasal/cub.nas</file>
             <file>Nasal/aircraft-dialog.nas</file>
-        </Cub>
-        <j3cub>
             <file>Nasal/doors.nas</file>
-        </j3cub>
+        </Cub>
         <garmin196>
             <file>Aircraft/Instruments-3d/garmin196/garmin196.nas</file>
         </garmin196>

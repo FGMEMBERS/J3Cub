@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-    <path>c172p-damage.ac</path>
+    <path>j3cub-damage.ac</path>
     <texture-path>../../../Models</texture-path>
     <nopreview/>
     <offsets>
@@ -12,74 +12,31 @@
     </offsets>
 
     <effect>
-        <inherits-from>Aircraft/c172p/Models/Effects/exterior/bumpspec-wing</inherits-from>
-        <object-name>flapsD</object-name>
-        <object-name>leftaileronRD</object-name>
-        <object-name>leftaileronLD</object-name>
-        <object-name>leftaileronBD</object-name>
-        <object-name>leftaileronCollapse</object-name>
-        <object-name>leftaileronLDRB</object-name>
-        <object-name>leftaileronLGRB</object-name>
-        <object-name>rightaileronRD</object-name>
-        <object-name>rightaileronLD</object-name>
-        <object-name>rightaileronBD</object-name>
-        <object-name>rightaileronCollapse</object-name>
-        <object-name>rightaileronRDLB</object-name>
-        <object-name>rightaileronRGLB</object-name>
-        <object-name>wing_1RD</object-name>
-        <object-name>wing_1LD</object-name>
-        <object-name>wing_1BD</object-name>
-        <object-name>wing_1Collapse</object-name>
-        <object-name>wing_1BB</object-name>
-        <object-name>wing_1LGRB</object-name>
-        <object-name>wing_1RGLB</object-name>
-        <object-name>wing_1LDRB</object-name>
-        <object-name>wing_1RDLB</object-name>
-    </effect>
-
-    <effect>
-        <inherits-from>Aircraft/c172p/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
-        <object-name>LeftWheelStrutBKD</object-name>
-        <object-name>RightWheelStrutBKD</object-name>
-        <object-name>fairing1D</object-name>
-        <object-name>fairing2D</object-name>
-        <object-name>fairing3D</object-name>
-        <object-name>PropellerD</object-name>
-        <object-name>SpinnerD</object-name>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
+        <!--object-name>wing_rD</object-name-->
+        <object-name>wheel_strut_rD</object-name>       
+        <object-name>suspension_lower_rD</object-name>        
+        <object-name>suspension_upper_rD</object-name>       
+        <object-name>axle_rD</object-name>
+        <object-name>tyre_rD</object-name>
+        
+        <!--object-name>wing_lD</object-name>
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <object-name>tyre_lD</object-name-->
     </effect>
 
     <!--  Specularity fix -->
     <animation>
         <type>material</type>
-        <object-name>flapsD</object-name>
-        <object-name>leftaileronRD</object-name>
-        <object-name>leftaileronLD</object-name>
-        <object-name>leftaileronBD</object-name>
-        <object-name>leftaileronCollapse</object-name>
-        <object-name>leftaileronLDRB</object-name>
-        <object-name>leftaileronLGRB</object-name>
-        <object-name>rightaileronRD</object-name>
-        <object-name>rightaileronLD</object-name>
-        <object-name>rightaileronBD</object-name>
-        <object-name>rightaileronCollapse</object-name>
-        <object-name>rightaileronRDLB</object-name>
-        <object-name>rightaileronRGLB</object-name>
-        <object-name>wing_1RD</object-name>
-        <object-name>wing_1LD</object-name>
-        <object-name>wing_1BD</object-name>
-        <object-name>wing_1Collapse</object-name>
-        <object-name>wing_1BB</object-name>
-        <object-name>wing_1LGRB</object-name>
-        <object-name>wing_1RGLB</object-name>
-        <object-name>wing_1LDRB</object-name>
-        <object-name>wing_1RDLB</object-name>
-        <object-name>LeftWheelStrutBKD</object-name>
-        <object-name>RightWheelStrutBKD</object-name>
-        <object-name>fairing1D</object-name>
-        <object-name>fairing2D</object-name>
-        <object-name>fairing3D</object-name>
-        <object-name>PropellerD</object-name>
-        <object-name>SpinnerD</object-name>
+        <!--object-name>wing_rD</object-name-->
+        <object-name>wheel_strut_rD</object-name>       
+        <object-name>suspension_lower_rD</object-name>        
+        <object-name>suspension_upper_rD</object-name>       
+        <object-name>axle_rD</object-name>
+        <object-name>tyre_rD</object-name>
         <shininess>128</shininess>
         <specular>
             <r>1</r>

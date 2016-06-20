@@ -146,7 +146,7 @@ var thunder = func (name) {
 
 var reset_system = func {
     if (getprop("/fdm/jsbsim/running")) {
-        Cub.autostart(0);
+        j3cub.autostart(0);
         setprop("/controls/engines/engine/starter", 1);
     }
 
@@ -322,7 +322,7 @@ var resolve_impact = func (n) {
 # If you need to run nasal as loop, add it in this function
 ############################################
 var global_system_loop = func {
-    Cub.physics_loop();
+    j3cub.physics_loop();
     if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
         setprop("/controls/engines/engine/starter", 0);
     }

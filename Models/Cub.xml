@@ -103,7 +103,7 @@
         <object-name>GPSMountFront</object-name>
         <condition>
             <and>
-                <property>/sim/model/j3cub/garmin196-visible</property>
+                <property>/sim/model/cub/garmin196-visible</property>
                 <equals>
                     <property>/sim/current-view/name</property>
                     <value>Cockpit Front Seat View</value>
@@ -117,7 +117,7 @@
         <object-name>GPSMountBack</object-name>
         <condition>
             <and>
-                <property>/sim/model/j3cub/garmin196-visible</property>
+                <property>/sim/model/cub/garmin196-visible</property>
                 <not-equals>
                     <property>/sim/current-view/name</property>
                     <value>Cockpit Front Seat View</value>
@@ -152,7 +152,7 @@
         <object-name>Garmin196-GPS</object-name>
         <object-name>Garmin196-GPS-support</object-name>
         <condition>
-            <property>/sim/model/j3cub/garmin196-visible</property>
+            <property>/sim/model/cub/garmin196-visible</property>
         </condition>
     </animation>-->
 
@@ -400,8 +400,8 @@
           <command>nasal</command>
           <script>
             if (getprop("sim/multiplay/generic/float[1]") == 0)
-                j3cub.rightWindow.toggle();
-            j3cub.rightDoor.toggle();
+                Cub.rightWindow.toggle();
+            Cub.rightDoor.toggle();
           </script>
         </binding>
       </action>
@@ -508,7 +508,7 @@
         <binding>
           <command>nasal</command>
           <script>
-           j3cub.rightWindow.toggle();
+           Cub.rightWindow.toggle();
           </script>
         </binding>
       </action>

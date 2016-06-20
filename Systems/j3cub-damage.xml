@@ -31,16 +31,16 @@
             damping_coeff in the FDM for nose and main gear!
         -->
 
-        <fcs_function name="damage/force-tail-gear">
+        <!--fcs_function name="damage/force-tail-gear">
             <function>
                 <sum>
                     <product>
-                        <value>1800</value><!-- spring coefficient -->
-                        <property>gear/unit[0]/compression-ft</property>
+                        <value>1800</value--><!-- spring coefficient -->
+                        <!--property>gear/unit[0]/compression-ft</property>
                     </product>
                     <product>
-                        <value>600</value><!-- damping coefficient -->
-                        <property>gear/unit[0]/compression-velocity-fps</property>
+                        <value>600</value--><!-- damping coefficient -->
+                        <!--property>gear/unit[0]/compression-velocity-fps</property>
                     </product>
                 </sum>
             </function>
@@ -50,22 +50,22 @@
             <function>
                 <sum>
                     <product>
-                        <value>5400</value><!-- spring coefficient -->
-                        <property>gear/unit[1]/compression-ft</property>
+                        <value>5400</value--><!-- spring coefficient -->
+                        <!--property>gear/unit[1]/compression-ft</property>
                     </product>
                     <product>
-                        <value>400</value><!-- damping coefficient -->
-                        <property>gear/unit[1]/compression-velocity-fps</property>
+                        <value>400</value--><!-- damping coefficient -->
+                        <!--property>gear/unit[1]/compression-velocity-fps</property>
                     </product>
                 </sum>
             </function>
-        </fcs_function>
+        </fcs_function-->
 
         <fcs_function name="damage/force-right-gear">
             <function>
                 <sum>
                     <product>
-                        <value>5400</value><!-- spring coefficient -->
+                        <value>1200</value><!-- spring coefficient -->
                         <property>gear/unit[2]/compression-ft</property>
                     </product>
                     <product>
@@ -76,12 +76,12 @@
             </function>
         </fcs_function>
 
-        <switch name="tail-gear-broken">
+        <!--switch name="tail-gear-broken">
             <output>gear/unit[0]/broken</output>
-            <default value="gear/unit[0]/broken"/>
+            <default value="gear/unit[0]/broken"/-->
 
             <!-- No damage -->
-            <test logic="OR" value="0">
+            <!--test logic="OR" value="0">
                 settings/damage EQ 0
                 damage/repairing EQ 1
                 simulation/sim-time-sec LT 0.25
@@ -91,31 +91,31 @@
                 damage/force-tail-gear GT 1500.0
                 gear/unit[0]/compression-ft GT 0.3
             </test>
-        </switch>
+        </switch-->
 
-        <switch name="left-gear-broken">
+        <!--switch name="left-gear-broken">
             <output>gear/unit[1]/broken</output>
-            <default value="gear/unit[1]/broken"/>
+            <default value="gear/unit[1]/broken"/-->
 
             <!-- No damage -->
-            <test logic="OR" value="0">
+            <!--test logic="OR" value="0">
                 settings/damage EQ 0
                 damage/repairing EQ 1
                 simulation/sim-time-sec LT 0.25
-            </test>
+            </test-->
 
             <!-- [1] used to guess required force -->
-            <test logic="AND" value="1">
+            <!--test logic="AND" value="1">
                 damage/force-left-gear GT 6500.0
                 gear/unit[1]/compression-ft GT 0.8
-            </test>
+            </test-->
 
             <!-- Side force on left gear -->
-            <test logic="AND" value="1">
+            <!--test logic="AND" value="1">
                 forces/fby-gear-lbs GT 1500.0
                 gear/unit[1]/compression-ft GT 0.23
             </test>
-        </switch>
+        </switch-->
 
         <switch name="right-gear-broken">
             <output>gear/unit[2]/broken</output>

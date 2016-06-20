@@ -414,7 +414,7 @@
         <contact type="STRUCTURE" name="RIGHT_BROKEN_GEAR">
             <location unit="IN">
                 <x> -10.65 </x>
-                <y> -35.43 </y>
+                <y> 35.43 </y>
                 <z> 0 </z>
             </location>
             <static_friction>  0.8 </static_friction>
@@ -688,15 +688,6 @@
         </contact>
 
     </ground_reactions>
-
-    <system file="Conventional Controls.xml"/>
-    <system file="bushkit"/>
-    <system file="j3cub-ground-effects"/>
-    <system file="j3cub-skis"/>
-    <system file="hydrodynamics"/>
-    <system file="j3cub-hydrodynamics"/>
-    <!--system file="j3cub-damage"/-->
-    <!--system file="j3cub-heat"/-->
 
     <flight_control name="FCS: j3cub">
 
@@ -1463,5 +1454,14 @@
             </direction>
         </force>
     </external_reactions>
+
+    <system file="Conventional Controls.xml"/>
+    <system file="bushkit"/>
+    <system file="j3cub-ground-effects"/>
+    <system file="j3cub-skis"/>
+    <system file="hydrodynamics"/>
+    <system file="j3cub-hydrodynamics"/>
+    <system file="j3cub-damage"/>
+    <!--system file="j3cub-heat"/-->
 
 </fdm_config>

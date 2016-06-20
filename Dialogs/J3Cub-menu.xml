@@ -36,7 +36,7 @@
                 <label>Flashlight</label>
                 <binding>
                     <command>nasal</command>
-                    <script>Cub.toggle_flashlight()</script>
+                    <script>j3cub.toggle_flashlight()</script>
                 </binding>
             </item>
 
@@ -44,7 +44,7 @@
                 <label>Autostart</label>
                 <binding>
                     <command>nasal</command>
-                    <script>Cub.autostart()</script>
+                    <script>j3cub.autostart()</script>
                 </binding>
             </item>
 		</menu>

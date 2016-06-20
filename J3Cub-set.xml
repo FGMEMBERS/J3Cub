@@ -162,9 +162,9 @@ version 2.0  090410-->
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/dirt</path>
             <path>/fdm/jsbsim/running</path>
-            <!--path>/sim/model/j3cub/enable-fog-frost</path>
+            <!--path>/sim/model/j3cub/enable-fog-frost</path-->
             <path>/fdm/jsbsim/settings/damage</path>
-            <path>/fdm/jsbsim/complex</path-->
+            <!--path>/fdm/jsbsim/complex</path-->
         </aircraft-data>
 
         <systems>
@@ -373,15 +373,13 @@ version 2.0  090410-->
             <file>Nasal/tiedowns.nas</file>
             <file>Nasal/liveries.nas</file>
             <file>Nasal/doors.nas</file>
-        </j3cub>
-        <Cub>
             <!--file>Nasal/weather.nas</file-->
             <file>Nasal/aircraft-dialog.nas</file>
             <file>Nasal/flashlight.nas</file>
             <file>Nasal/physics.nas</file>
             <file>Nasal/j3cub.nas</file>
             <file>Nasal/tiedowns.nas</file>
-        </Cub>
+        </j3cub>
         <tyresmoke>
             <file>Nasal/tyresmoke.nas</file>
         </tyresmoke>
