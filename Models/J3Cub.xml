@@ -586,24 +586,25 @@
             </or>
         </condition>
     </animation>
-    
-    
-    
-    
-    <!-- Gear Damage Spark and Smoke Mod -->
-    <!--model>
+
+    <!-- Gear Damage Spark and Smoke -->
+    <model>
+        <path>Effects/damage/left_gear.xml</path>
+        <offsets>
+            <x-m> -1.4 </x-m>
+            <y-m>  1.0 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+
+    <model>
         <path>Effects/damage/right_gear.xml</path>
         <offsets>
-            <x-m> -0.7 </x-m>
-            <y-m> 1.9 </y-m>
-            <z-m> -0.95 </z-m>
+            <x-m> -1.4 </x-m>
+            <y-m> -1.0 </y-m>
+            <z-m> -1.5 </z-m>
         </offsets>
-    </model-->
-
-    
-    
-    
-    
+    </model>
 
     <!--  INSTRUMENTS  ***************************************************  -->
     <!-- panel models -->
@@ -1059,6 +1060,21 @@
         </condition>
     </animation>
 
+    <!-- Left Gear Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_lD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Left Gear Bush and Ski -->
     <animation>
         <type>select</type>
@@ -1149,6 +1165,38 @@
                 <not>
                     <property alias="/params/gear_left_broken/property"/>
                 </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Suspention Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
                 <or>
                     <equals>
                         <property alias="/params/bushkit"/>

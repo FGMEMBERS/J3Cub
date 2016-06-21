@@ -140,42 +140,7 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox-->
-            
-                   <!--hrule/>
 
-        <group>
-            <layout>hbox</layout>
-
-            <checkbox>
-                <halign>left</halign>
-                <label>Damage</label>
-                <property>/fdm/jsbsim/settings/damage</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
-
-            <button>
-                <halign>right</halign>
-                <legend>Repair</legend>
-                <pref-width>60</pref-width>
-                <pref-height>28</pref-height>
-                <visible>
-                    <not>
-                        <property>/sim/freeze/replay-state</property>
-                    </not>
-                </visible>
-                <binding>
-                    <command>nasal</command>
-                    <script>
-                        j3cub.repair_damage();
-                        #electrical.reset_battery_and_circuit_breakers();
-                        j3cub.click("engine-repair", 6.0)
-                    </script>
-                </binding>
-            </button>
-        </group-->
         </group>
 
         <hrule/>

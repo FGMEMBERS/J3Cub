@@ -18,14 +18,13 @@
         <object-name>suspension_lower_rD</object-name>        
         <object-name>suspension_upper_rD</object-name>       
         <object-name>axle_rD</object-name>
-        <object-name>tyre_rD</object-name>
-        
-        <!--object-name>wing_lD</object-name>
+        <object-name>tyre_rD</object-name>       
+        <!--object-name>wing_lD</object-name-->
         <object-name>wheel_strut_lD</object-name>       
         <object-name>suspension_lower_lD</object-name>        
         <object-name>suspension_upper_lD</object-name>       
         <object-name>axle_lD</object-name>
-        <object-name>tyre_lD</object-name-->
+        <object-name>tyre_lD</object-name>
     </effect>
 
     <!--  Specularity fix -->
@@ -37,6 +36,12 @@
         <object-name>suspension_upper_rD</object-name>       
         <object-name>axle_rD</object-name>
         <object-name>tyre_rD</object-name>
+        <!--object-name>wing_lD</object-name-->
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <object-name>tyre_lD</object-name>
         <shininess>128</shininess>
         <specular>
             <r>1</r>

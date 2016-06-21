@@ -37,12 +37,12 @@
     <particlesystem>
         <name>tyre-burn-p</name>
         <texture>tyreburn.png</texture>
-        <emissive>false</emissive>
+        <emissive>true</emissive>
         <lighting>false</lighting>
 
         <offsets>
             <x-m> 1.2 </x-m>
-            <y-m> -0.7 </y-m>
+            <y-m> 0.0 </y-m>
             <z-m> 0.0 </z-m>
         </offsets>
 
@@ -52,10 +52,16 @@
                     <property alias="/params/right_gear_ground_effect_speed_kt/property"/>
                     <value>8</value>
                 </greater-than>
-                <not-equals>
-                    <property>/fdm/jsbsim/bushkit</property>
-                    <value>5</value>
-                </not-equals>
+                <or>
+                    <equals>
+                        <property>/fdm/jsbsim/bushkit</property>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property>/fdm/jsbsim/bushkit</property>
+                        <value>1</value>
+                    </equals>
+                </or>
             </and>
         </condition>
 
