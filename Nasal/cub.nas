@@ -33,7 +33,6 @@ var reset_system = func {
         Cub.autostart(0);
         setprop("/controls/engines/engine/starter", 1);
     }
-    setprop("/engines/active-engine/kill-engine", 0);
 }
 
 ############################################

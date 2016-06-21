@@ -211,6 +211,10 @@
         </gear-amphibious>
 
         <water-rudder-norm>sim/multiplay/generic/float[5]</water-rudder-norm>
+        <engine>
+            <rpm>engines/engine[2]/rpm</rpm>
+            <crashed>sim/multiplay/generic/int[3]</crashed>
+        </engine>
 
         <securing>
             <pitot-cover>sim/model/j3cub/securing/pitot-cover-visible</pitot-cover>
@@ -793,52 +797,118 @@
       </not-equals>
     </condition>
   </animation>
-<!--  BASIC AIRCRAFT FEATURES  **********************************************************  -->
 
-<!-- propeller -->
+    <!--  BASIC AIRCRAFT FEATURES  **********************************************************  -->
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller</object-name>
-    <condition>
-      <less-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>300</value>
-      </less-than>
-    </condition>
-  </animation>
+    <!-- Propeller No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>propeller</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>300</value>
+                </less-than>
+                <not>
+                    <property alias="/params/engine/crashed"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller_slow</object-name>
-    <condition>
-      <less-than>
-        <property>engines/engine/rpm</property>
-        <value>1500</value>
-      </less-than>
-      <greater-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>200</value>
-      </greater-than>
-    </condition>
-  </animation>
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slow</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property>engines/engine/rpm</property>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>200</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+            </and>
+        </condition>
+    </animation>
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller_fast</object-name>
-    <condition>
-      <greater-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>1500</value>
-      </greater-than>
-    </condition>
-  </animation>
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fast</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>1500</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Propeller Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>propellerD</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>300</value>
+                </less-than>
+                <property alias="/params/engine/crashed"/>
+            </and>
+            
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slowD</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property>engines/engine/rpm</property>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>200</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fastD</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>1500</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+            </and>
+        </condition>
+    </animation>
 
   <animation>
     <type>spin</type>
     <object-name>propeller</object-name>
     <object-name>propeller_slow</object-name>
     <object-name>propeller_fast</object-name>
+    <object-name>propellerD</object-name>
+    <object-name>propeller_slowD</object-name>
+    <object-name>propeller_fastD</object-name>
     <property>engines/engine[0]/rpm</property>
     <factor>-1</factor>
     <center>
@@ -859,6 +929,17 @@
   <type>rotate</type>
   <object-name>aileron_l</object-name>
   <property>surface-positions/left-aileron-pos-norm</property>
+  <condition>
+    <and>
+        <not-equals>
+            <property alias="/params/wing_left_damaged/property"/>
+            <value>1</value>
+        </not-equals>
+        <not>
+            <property alias="/params/crash/property"/>
+        </not>
+    </and>
+  </condition>
   <factor>-18.0</factor>
   <axis>
     <x1-m>1.219</x1-m>
@@ -874,6 +955,17 @@
   <type>rotate</type>
   <object-name>aileron_r</object-name>
   <property>surface-positions/right-aileron-pos-norm</property>
+  <condition>
+    <and>
+        <not-equals>
+            <property alias="/params/wing_right_damaged/property"/>
+            <value>1</value>
+        </not-equals>
+        <not>
+            <property alias="/params/crash/property"/>
+        </not>
+    </and>
+  </condition>
   <factor>18.0</factor>
   <axis>
     <x1-m>1.219</x1-m>
@@ -884,6 +976,128 @@
     <z2-m>0.095</z2-m>
   </axis>
  </animation>
+ 
+    <!-- Left Wing No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_l</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>aileron_hinge_1_l</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Wing No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_r</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_hinge_1_r</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Both Collapsed -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <condition>
+            <property alias="/params/crash/property"/>
+        </condition>
+    </animation>
+
+    <!-- Right Wing Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_rB</object-name>
+        <object-name>wing_rB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Wing Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_lB</object-name>
+        <object-name>wing_lB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Left Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_lD</object-name>
+        <object-name>aileron_lD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Right Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_rD</object-name>
+        <object-name>aileron_rD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
 
  <animation>
   <type>rotate</type>
@@ -1075,7 +1289,7 @@
         </condition>
     </animation>
 
-    <!-- Left Gear Bush and Ski -->
+    <!-- Left Gear Bush and Ski No Damage -->
     <animation>
         <type>select</type>
         <object-name>tyre_l_bush</object-name>
@@ -1084,6 +1298,27 @@
                 <not>
                     <property alias="/params/gear_left_broken/property"/>
                 </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Gear Bush and Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_l_bushD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
                 <or>
                     <equals>
                         <property alias="/params/bushkit"/>
@@ -1130,7 +1365,7 @@
         </condition>
     </animation>
 
-    <!-- Right Gear Bush and Ski -->
+    <!-- Right Gear Bush and Ski No Damage -->
     <animation>
         <type>select</type>
         <object-name>tyre_r_bush</object-name>
@@ -1139,6 +1374,27 @@
                 <not>
                     <property alias="/params/gear_right_broken/property"/>
                 </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Gear Bush and Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_r_bushD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
                 <or>
                     <equals>
                         <property alias="/params/bushkit"/>

@@ -13,35 +13,59 @@
 
     <effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
-        <!--object-name>wing_rD</object-name-->
         <object-name>wheel_strut_rD</object-name>       
         <object-name>suspension_lower_rD</object-name>        
         <object-name>suspension_upper_rD</object-name>       
         <object-name>axle_rD</object-name>
-        <object-name>tyre_rD</object-name>       
-        <!--object-name>wing_lD</object-name-->
+        <object-name>tyre_rD</object-name>      
+        <object-name>tyre_r_bushD</object-name>          
         <object-name>wheel_strut_lD</object-name>       
         <object-name>suspension_lower_lD</object-name>        
         <object-name>suspension_upper_lD</object-name>       
         <object-name>axle_lD</object-name>
         <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>wing_lD</object-name>
+        <object-name>wing_rD</object-name>
+        <object-name>wing_lB</object-name>
+        <object-name>wing_rB</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <object-name>aileron_lD</object-name>
+        <object-name>aileron_rD</object-name>
+        <object-name>aileron_lB</object-name>
+        <object-name>aileron_rB</object-name>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
     </effect>
 
     <!--  Specularity fix -->
     <animation>
         <type>material</type>
-        <!--object-name>wing_rD</object-name-->
         <object-name>wheel_strut_rD</object-name>       
         <object-name>suspension_lower_rD</object-name>        
         <object-name>suspension_upper_rD</object-name>       
         <object-name>axle_rD</object-name>
         <object-name>tyre_rD</object-name>
-        <!--object-name>wing_lD</object-name-->
+        <object-name>tyre_r_bushD</object-name>
         <object-name>wheel_strut_lD</object-name>       
         <object-name>suspension_lower_lD</object-name>        
         <object-name>suspension_upper_lD</object-name>       
         <object-name>axle_lD</object-name>
         <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>wing_lD</object-name>
+        <object-name>wing_rD</object-name>
+        <object-name>wing_lB</object-name>
+        <object-name>wing_rB</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <object-name>aileron_lD</object-name>
+        <object-name>aileron_rD</object-name>
+        <object-name>aileron_lB</object-name>
+        <object-name>aileron_rB</object-name>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
         <shininess>128</shininess>
         <specular>
             <r>1</r>

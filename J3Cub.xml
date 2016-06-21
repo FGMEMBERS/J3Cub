@@ -437,9 +437,9 @@
         </contact>
         <contact type="STRUCTURE" name="NOSE">
             <location unit="IN">
-                <x> -89 </x>
-                <y> 0 </y>
-                <z> -3 </z>
+                <x> -60 </x>
+                <y>   0 </y>
+                <z> -37 </z>
             </location>
             <static_friction> 1 </static_friction>
             <dynamic_friction> 1 </dynamic_friction>
@@ -825,6 +825,17 @@
       <value>0.5</value>
     </product>
   </function>
+  
+    <function name="aero/function/total-wing-damage">
+        <description>Total damage on wings</description>
+        <product>
+            <sum>
+                <property>wing-damage/left-wing</property>
+                <property>wing-damage/right-wing</property>
+            </sum>
+            <value>0.5</value>
+        </product>
+    </function>
 
   <axis name="LIFT">
 
@@ -872,6 +883,13 @@
               0.3054   1.4272   1.6272
               0.3491   1.3138   1.4238
               1.5700   0.0000   0.0000
+            </tableData>
+          </table>
+          <table>
+            <independentVar>aero/function/total-wing-damage</independentVar>
+            <tableData>
+                  0.0000	1
+                  1.0000	0
             </tableData>
           </table>
       </product>
@@ -1220,6 +1238,28 @@
        </product>
     </function>
 
+    <function name="aero/coefficient/Cllwdmg">
+        <description>Roll_moment_due_to_damaged_left_wing</description>
+        <product>
+            <property>aero/qbar-psf</property>
+            <property>metrics/Sw-sqft</property>
+            <property>metrics/bw-ft</property>
+            <property>wing-damage/left-wing</property>
+            <value>-0.3</value>
+        </product>
+    </function>
+
+    <function name="aero/coefficient/Clrwdmg">
+        <description>Roll_moment_due_to_damaged_right_wing</description>
+        <product>
+            <property>aero/qbar-psf</property>
+            <property>metrics/Sw-sqft</property>
+            <property>metrics/bw-ft</property>
+            <property>wing-damage/right-wing</property>
+            <value>0.3</value>
+        </product>
+    </function>
+    
   </axis>
 
   <axis name="YAW">

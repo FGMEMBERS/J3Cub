@@ -161,8 +161,6 @@ var reset_system = func {
     props.globals.getNode("/fdm/jsbsim/pontoon-damage/left-pontoon", 0).setIntValue(0);
     props.globals.getNode("/fdm/jsbsim/pontoon-damage/right-pontoon", 0).setIntValue(0);
 
-    setprop("/engines/active-engine/kill-engine", 0);
-
 }
 
 var update_pax = func {

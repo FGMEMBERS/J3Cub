@@ -122,11 +122,11 @@
                         <property>bushkit</property>
 
                         <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
-                        <value> -69.5</value>
-                        <value>-14.5</value>
-                        <value>-16.0</value>
+                        <value>-69.5</value>
+                        <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
+                        <value>-49.0</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
@@ -143,11 +143,11 @@
                         <property>bushkit</property>
 
                         <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
-                        <value> -69.8</value>
-                        <value>-15.5</value>
-                        <value>-17.4</value>
+                        <value>-69.8</value>
+                        <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
+                        <value>-49.0</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
@@ -205,7 +205,7 @@
         </switch>
 
         <!-- ================================================================== -->
-        <!-- Contact points top of fuselage and empennage                       -->
+        <!-- Contact points top of fuselage and empennage for water crash                      -->
         <!-- ================================================================== -->
 
         <switch name="z-position-nose-top">
@@ -219,9 +219,9 @@
 
         <switch name="z-position-nose">
             <output>contact/unit[10]/z-position</output>
-            <default value="-3"/>
+            <default value="-37"/>
 
-            <test logic="AND" value="-10">
+            <test logic="AND" value="-3">
                 contact/unit[10]/solid EQ 0
             </test>
         </switch>

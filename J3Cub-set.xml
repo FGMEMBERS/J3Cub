@@ -225,12 +225,12 @@ version 2.0  090410-->
                 <!--  0 unused -->
                 <!--  1 unused -->
                 <!--  2 unused -->
-                <!--  3 unused -->
                 <!--  4 unused -->
                 <!--  5 unused -->
                 <!--  9 unused -->
                 <!-- 12 unused -->
                 <!-- 13 unused -->
+                <int n="3" alias="/engines/active-engine/crashed"/>
                 <int n="6" alias="/fdm/jsbsim/gear/unit[0]/broken"/>
                 <int n="7" alias="/fdm/jsbsim/gear/unit[1]/broken"/>
                 <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
@@ -267,9 +267,17 @@ version 2.0  090410-->
         <armament>
             <trigger type ="int">0</trigger>
         </armament>
+        <engines>
+            <active-engine type="int">0</active-engine>
+        </engines>
     </controls>
 
     <engines>
+    
+        <active-engine>
+            <crash-engine type="bool">false</crash-engine>
+        </active-engine>
+
         <!-- Following properties are part of a static list of properties
                             that FlightGear transmits during multiplay. Because the number
                             of properties in /sim/multiplay/generic/ is quite limited and
