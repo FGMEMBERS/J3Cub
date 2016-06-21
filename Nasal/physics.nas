@@ -18,7 +18,7 @@ var reset_all_damage = func
     setprop("/fdm/jsbsim/pontoon-damage/left-pontoon", 0);
     setprop("/fdm/jsbsim/pontoon-damage/right-pontoon", 0);
     
-    setprop("/engines/active-engine/crash-engine", 3);
+    setprop("/controls/engines/engine/magnetos", 3);
 }
 
 var repair_damage = func {
