@@ -174,4 +174,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/engines/active-engine/crashed", func (n) {
         if (n.getValue()) setprop("/controls/engines/engine/magnetos", 0); 
     }, 0, 0);
+    
+    setlistener("/fdm/jsbsim/settings/damage", func (n) {
+        if (!n.getValue()) repair_damage();
+    }, 0, 0);
 });

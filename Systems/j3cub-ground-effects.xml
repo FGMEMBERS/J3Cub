@@ -126,7 +126,7 @@
                         <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
-                        <value>-49.0</value>
+                        <value>-75.5</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
@@ -147,7 +147,7 @@
                         <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
-                        <value>-49.0</value>
+                        <value>-75.5</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
@@ -165,7 +165,7 @@
             <!-- use when damage states activated
             <test logic="AND" value="48">
                 crash EQ 1
-            </test-->>
+            </test-->
 
             <!-- -10 when on/above water -->
             <!--test logic="AND" value="-10">

@@ -16,6 +16,17 @@
     </model>
 
     <model>
+        <name>SkiDamage</name>
+        <path>Effects/damage/skidamage.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
         <name>Bushkit</name>
         <path>Effects/bushkit/bushkit.xml</path>
         <offsets>
@@ -1570,6 +1581,33 @@
         </condition>
     </animation>
 
+    <!-- Left Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Right Ski No Damage -->
     <animation>
         <type>select</type>
@@ -1598,6 +1636,33 @@
             </and>
         </condition>
     </animation>
+
+    <!-- Right Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightSkiSpringD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>    
 
     <!-- ############################# Ski Lite ####################### --> 
     <!-- Left Ski Lite No Damage -->
@@ -2341,7 +2406,7 @@
             <y>0.0</y>
             <z>1.0</z>
         </axis>
-    </animation>
+    </animation>   
 
     <!-- suspension left gear and ski -->
     <animation>
@@ -2363,6 +2428,24 @@
         <object-name>LeftCableConnectB</object-name>
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
+                
+        <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>axle_lD</object-name>
+        <object-name>wheel_strut_lD</object-name>
+        <object-name>suspension_lower_lD</object-name>
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
     </animation> 
 
     <animation>
@@ -2490,6 +2573,7 @@
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftSkiWireBD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2534,6 +2618,24 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
+
+        <object-name>tyre_rD</object-name>
+        <object-name>tyre_r_bushD</object-name>
+        <object-name>axle_rD</object-name>
+        <object-name>wheel_strut_rD</object-name>
+        <object-name>suspension_lower_rD</object-name>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
     </animation> 
 
     <animation>
@@ -2661,6 +2763,7 @@
     <animation>
         <type>rotate</type>
         <object-name>RightSkiWireB</object-name>
+        <object-name>RightSkiWireBD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2871,7 +2974,7 @@
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
         <object-name>LeftSkiSpring</object-name>
-        <object-name>LeftSkiWireF</object-name>
+
         <object-name>LeftSkiL</object-name>
         <object-name>LeftSkiAxleL</object-name>
         <object-name>LeftSkiWireFL</object-name>
@@ -2879,6 +2982,20 @@
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
         <object-name>LeftSkiSpringL</object-name>
+
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -2923,7 +3040,7 @@
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
         <object-name>LeftSkiSpring</object-name>
-        <object-name>LeftSkiWireF</object-name>
+
         <object-name>LeftSkiL</object-name>
         <object-name>LeftSkiAxleL</object-name>
         <object-name>LeftSkiWireFL</object-name>
@@ -2931,6 +3048,20 @@
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
         <object-name>LeftSkiSpringL</object-name>
+
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
@@ -2969,7 +3100,7 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
-        <object-name>RightSkiWireF</object-name>
+
         <object-name>RightSkiL</object-name>
         <object-name>RightSkiAxleL</object-name>
         <object-name>RightSkiWireFL</object-name>
@@ -2977,6 +3108,20 @@
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
         <object-name>RightSkiSpringL</object-name>
+
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiSpringD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -3021,7 +3166,7 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
-        <object-name>RightSkiWireF</object-name>
+
         <object-name>RightSkiL</object-name>
         <object-name>RightSkiAxleL</object-name>
         <object-name>RightSkiWireFL</object-name>
@@ -3029,6 +3174,20 @@
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
         <object-name>RightSkiSpringL</object-name>
+
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiSpringD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
