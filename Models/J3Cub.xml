@@ -27,6 +27,17 @@
     </model>
 
     <model>
+        <name>PontoonDamage</name>
+        <path>Effects/damage/pontoondamage.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
         <name>Bushkit</name>
         <path>Effects/bushkit/bushkit.xml</path>
         <offsets>
@@ -1268,6 +1279,63 @@
         </condition>
     </animation>
 
+    <!-- Brake Cable -->
+    <animation>
+        <type>select</type>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <condition>
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </or>
+        </condition>
+    </animation>
+
+    <!-- Upper Suspension -->
+    <animation>
+        <type>select</type>
+        <object-name>suspension_tie</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>suspension_coil_l</object-name>
+        <object-name>suspension_coil_r</object-name>
+        <object-name>suspension_low_2_l</object-name>
+        <object-name>suspension_low_2_r</object-name>
+        <object-name>wheel_strut_link_l</object-name>
+        <object-name>wheel_strut_link_r</object-name>
+        <condition>
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>5</value>
+                </equals>
+            </or>
+        </condition>
+    </animation>
+
     <!-- Left Gear No Damage -->
     <animation>
         <type>select</type>
@@ -1453,7 +1521,7 @@
             </and>
         </condition>
     </animation>
-
+    
     <!-- Left Suspention Damage -->
     <animation>
         <type>select</type>
@@ -1730,6 +1798,42 @@
         </condition>
     </animation>
 
+    <!-- Left Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Right Pontoons Not Damaged -->
     <animation>
         <type>select</type>
@@ -1748,15 +1852,74 @@
         </condition>
     </animation>
 
+    <!--Right Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LRwheel</object-name>
+        <object-name>LRAxle</object-name>
+        <object-name>LRtarm</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Left Amphibious Not Damaged -->
     <animation>
         <type>select</type>
         <object-name>L-Float</object-name>
-        <object-name>LRwheel</object-name>
-        <object-name>LRAxle</object-name>
         <object-name>LFrontWheel</object-name>
         <object-name>LAxle</object-name>
-        <object-name>LRtarm</object-name>
         <object-name>Ldamper</object-name>
         <object-name>Lstrut.001</object-name>
         <object-name>Lstrut.002</object-name>
@@ -1774,15 +1937,86 @@
         </condition>
     </animation>
 
+    <!-- Left Amphibious Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatD</object-name>
+        <object-name>LFrontWheelD</object-name>
+        <object-name>LAxleD</object-name>
+        <object-name>LdamperD</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>
+        <object-name>LFrontWheelB</object-name>
+        <object-name>LAxleB</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Rightt Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RRwheel</object-name>
+        <object-name>RRAxle</object-name>
+        <object-name>RRtarm</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Right Amphibious Not Damaged -->
     <animation>
         <type>select</type>
         <object-name>R-Float</object-name>
-        <object-name>RRwheel</object-name>
-        <object-name>RRAxle</object-name>
         <object-name>RFrontWheel</object-name>
         <object-name>RAxle</object-name>
-        <object-name>RRtarm</object-name>
         <object-name>Rdamper</object-name>
         <object-name>Rstrut.001</object-name>
         <object-name>Rstrut.002</object-name>
@@ -1800,51 +2034,70 @@
         </condition>
     </animation>
 
-    <!-- Left Float Rudder Not Damaged -->
+    <!--Right Amphibious Damaged -->
     <animation>
         <type>select</type>
-        <object-name>LHrudder</object-name>
-        <condition>
-            <and>
-                <equals>
-                    <property alias="/params/pontoon_left_damaged/property"/>
-                    <value>0</value>
-                </equals>
-                <or>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>2</value>
-                    </equals>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>3</value>
-                    </equals>
-                </or>
-            </and>
-        </condition>
-    </animation>
-
-    <!--Right Float Rudder Not Damaged -->
-    <animation>
-        <type>select</type>
-        <object-name>RHrudder</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>RFrontWheelD</object-name>
+        <object-name>RAxleD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
         <condition>
             <and>
                 <equals>
                     <property alias="/params/pontoon_right_damaged/property"/>
-                    <value>0</value>
+                    <value>2</value>
                 </equals>
-                <or>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>2</value>
-                    </equals>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>3</value>
-                    </equals>
-                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
             </and>
+        </condition>
+    </animation>
+
+    <!--Right Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>RFrontWheelB</object-name>
+        <object-name>RAxleB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Float Rudder -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudder</object-name>
+        <object-name>RHrudder</object-name>
+        <condition>     
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </or>
         </condition>
     </animation>
 
@@ -1853,9 +2106,6 @@
         <type>select</type>
         <object-name>RuddWires</object-name>
         <object-name>FloatStruts</object-name>
-        <object-name>FloatReinforceLeft</object-name>
-        <object-name>FloatReinforceRight</object-name>
-        <object-name>FloatReinforceJoin</object-name>
         <object-name>RudderCatch</object-name>
         <object-name>RudderHandle</object-name>
         <object-name>RudderScrews</object-name>
@@ -1874,7 +2124,7 @@
         </condition>
     </animation>
 
-    <!-- Rudder cable -->
+    <!-- Rudder Cable -->
     <animation>
         <type>select</type>
         <object-name>RudderCable</object-name>
@@ -4294,6 +4544,36 @@
         <object-name>tail_wheel_axle_bush</object-name>
         <object-name>tyre_l_bush</object-name>
         <object-name>tyre_r_bush</object-name>
+        
+        <object-name>wheel_strut_rD</object-name>       
+        <object-name>suspension_lower_rD</object-name>        
+        <object-name>suspension_upper_rD</object-name>       
+        <object-name>axle_rD</object-name>
+        <object-name>tyre_rD</object-name>      
+        <object-name>tyre_r_bushD</object-name>          
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>wing_lD</object-name>
+        <object-name>wing_rD</object-name>
+        <object-name>wing_lB</object-name>
+        <object-name>wing_rB</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <object-name>aileron_lD</object-name>
+        <object-name>aileron_rD</object-name>
+        <object-name>aileron_lB</object-name>
+        <object-name>aileron_rB</object-name>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
+        
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
         <property-base>sim/model/livery/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>texture.png</texture>
@@ -4366,6 +4646,52 @@
         <object-name>Rstrut.002</object-name>
         <object-name>LHrudder</object-name>
         <object-name>RHrudder</object-name>
+        
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        
+        <object-name>L-FloatCD</object-name>
+        <object-name>R-FloatCD</object-name>
+        <object-name>L-FloatCB</object-name>
+        <object-name>R-FloatCB</object-name>
+        <object-name>L-FloatD</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>L-FloatB</object-name>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>
+        <object-name>LdamperD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
         <property-base>sim/model/liveryfloat/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>floats.png</texture>

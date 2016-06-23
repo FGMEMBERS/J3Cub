@@ -162,20 +162,20 @@
         <switch name="z-position-left-wing-tip">
             <output>contact/unit[4]/z-position</output>
             <default value="5"/>
-            <!-- use when damage states activated
+
+            <!-- use when damage states activated -->
             <test logic="AND" value="48">
                 crash EQ 1
-            </test-->
-
+            </test>
             <!-- -10 when on/above water -->
-            <!--test logic="AND" value="-10">
+            <test logic="AND" value="-10">
                 contact/unit[4]/solid EQ 0
             </test>
-
             <test logic="AND" value="40">
                 wing-damage/left-wing EQ 1.0
-                contact/unit[12]/WOW EQ
-            </test-->
+                contact/unit[12]/WOW EQ 1
+            </test>
+
             <test logic="AND" value="5">
                 contact/unit[4]/WOW EQ 1
             </test>
@@ -185,20 +185,19 @@
             <output>contact/unit[5]/z-position</output>
             <default value="5"/>
 
-                        <!-- use when damage states activated
+            <!-- use when damage states activated -->
             <test logic="AND" value="48">
                 crash EQ 1
-            </test-->
-
+            </test>
             <!-- -10 when on/above water -->
-            <!--test logic="AND" value="-10">
+            <test logic="AND" value="-10">
                 contact/unit[5]/solid EQ 0
             </test>
-
             <test logic="AND" value="40">
                 wing-damage/right-wing EQ 1.0
                 contact/unit[12]/WOW EQ 1
-            </test-->
+            </test>
+
             <test logic="AND" value="5">
                 contact/unit[5]/WOW EQ 1
             </test>
@@ -239,7 +238,7 @@
             <output>contact/unit[12]/z-position</output>
             <default value="71"/>
 
-            <!-- 160 puts tail higher in the air when upside down -->
+            <!-- tail higher in the air when upside down over water -->
             <test logic="AND" value="130">
                 contact/unit[12]/solid EQ 0
             </test>
@@ -253,36 +252,96 @@
             <output>gear/unit[19]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-108">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-107">
                 bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-99">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-96.5">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-right-fwd-pontoon">
             <output>gear/unit[20]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-108">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-107">
                 bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-102">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-98">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-left-aft-pontoon">
             <output>gear/unit[21]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-106.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-105">
                 bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-105">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-100">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-right-aft-pontoon">
             <output>gear/unit[22]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-106.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-105">
                 bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-105">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-100.5">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 1
+            </test>
+
         </switch>
 
         <!-- ================================================================== -->

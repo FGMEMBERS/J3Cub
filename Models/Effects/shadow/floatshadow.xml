@@ -64,6 +64,12 @@
             <not>
                 <property>/fdm/jsbsim/wing-damage/right-wing</property>
             </not>
+            <not>
+			    <property>/fdm/jsbsim/pontoon-damage/left-pontoon</property>
+            </not>
+            <not>
+                <property>/fdm/jsbsim/pontoon-damage/right-pontoon</property>
+            </not>
 		 </and>
         </condition>
       </animation>
