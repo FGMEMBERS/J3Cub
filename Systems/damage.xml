@@ -108,6 +108,14 @@
                     <property>/fdm/jsbsim/pontoon-damage/right-pontoon</property>
                     <value>0</value>
                 </not-equals>
+                <not-equals>
+                    <property>/fdm/jsbsim/ski-damage/left-ski</property>
+                    <value>0</value>
+                </not-equals>
+                <not-equals>
+                    <property>/fdm/jsbsim/ski-damage/right-ski</property>
+                    <value>0</value>
+                </not-equals>
             </or>
         </input>
         <output>

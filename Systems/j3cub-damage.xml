@@ -413,10 +413,7 @@
                 bushkit NE 3
             </test>
 
-            <!-- ================================================================== -->
-            <!-- Broken                                                             -->
-            <!-- ================================================================== -->
-
+            <!-- Broken -->
             <test logic="OR" value="1">
                 contact/unit[13]/compression-ft GT 0.95
                 contact/unit[15]/compression-ft GT 0.95
@@ -426,10 +423,7 @@
                 pontoon-damage/left-pontoon EQ 1
             </test>
 
-            <!-- ================================================================== -->
-            <!-- Damaged                                                            -->
-            <!-- ================================================================== -->
-
+            <!-- Damaged -->
             <test logic="OR" value="2">
                 contact/unit[13]/compression-ft GT 0.75
                 contact/unit[15]/compression-ft GT 0.75
@@ -455,10 +449,7 @@
                 bushkit NE 3
             </test>
 
-            <!-- ================================================================== -->
-            <!-- Broken                                                             -->
-            <!-- ================================================================== -->
-
+            <!-- Broken -->
             <test logic="OR" value="1">
                 contact/unit[14]/compression-ft GT 0.95
                 contact/unit[16]/compression-ft GT 0.95
@@ -468,16 +459,61 @@
                 pontoon-damage/right-pontoon EQ 1
             </test>
 
-            <!-- ================================================================== -->
-            <!-- Damaged                                                            -->
-            <!-- ================================================================== -->
 
+            <!-- Damaged -->
             <test logic="OR" value="2">
                 contact/unit[14]/compression-ft GT 0.75
                 contact/unit[16]/compression-ft GT 0.75
                 contact/unit[18]/compression-ft GT 0.75
                 gear/unit[20]/compression-ft GT 0.75
                 gear/unit[22]/compression-ft GT 0.75
+            </test>
+        </switch>
+
+    </channel>
+
+    <channel name="ski-damage-lite">
+
+        <!-- Left ski damage -->
+        <switch name="left-ski-damage">
+            <output>ski-damage/left-ski</output>
+            <default value="ski-damage/left-ski"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+            <test logic="AND" value="0">
+                bushkit NE 5
+            </test>
+
+
+            <!-- Damaged -->
+            <test logic="OR" value="2">
+                contact/unit[26]/compression-ft GT 0.75
+            </test>
+        </switch>
+
+        <!-- Right ski damage -->
+        <switch name="right-ski-damage">
+            <output>ski-damage/right-ski</output>
+            <default value="ski-damage/right-ski"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+            <test logic="AND" value="0">
+                bushkit NE 5
+            </test>
+
+            <!-- Damaged -->
+            <test logic="OR" value="2">
+                contact/unit[27]/compression-ft GT 0.75
             </test>
         </switch>
 

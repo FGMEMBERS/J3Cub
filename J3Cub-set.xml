@@ -236,6 +236,8 @@ version 2.0  090410-->
                 <int n="8" alias="/fdm/jsbsim/gear/unit[2]/broken"/>
                 <int n="10" alias="/fdm/jsbsim/pontoon-damage/left-pontoon"/>
                 <int n="11" alias="/fdm/jsbsim/pontoon-damage/right-pontoon"/>
+                <int n="12" alias="/fdm/jsbsim/ski-damage/left-ski"/>
+                <int n="13" alias="/fdm/jsbsim/ski-damage/right-ski"/>
                 <int n="14" alias="/payload/pax-state"/>
                 <int n="15" alias="/fdm/jsbsim/crash"/>
                 <int n="16" alias="/fdm/jsbsim/payload/release-payload-drum-actual"/>
@@ -494,6 +496,10 @@ version 2.0  090410-->
                 <left-pontoon type="int">0</left-pontoon>
                 <right-pontoon type="int">0</right-pontoon>
             </pontoon-damage>
+            <ski-damage>
+                <left-ski type="int">0</left-ski>
+                <right-ski type="int">0</right-ski>
+            </ski-damage>
             <damage>
                 <repairing type="bool">false</repairing>
             </damage>
