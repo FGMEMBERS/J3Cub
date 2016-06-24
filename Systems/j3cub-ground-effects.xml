@@ -402,10 +402,16 @@
             <output>contact/unit[26]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-83">
+            <test logic="AND" value="-84">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[1]/broken EQ 0
+            </test>
+
+            <test logic="AND" value="-86">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[1]/broken EQ 1
             </test>
 
         </switch>
@@ -414,10 +420,16 @@
             <output>contact/unit[27]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-82">
+            <test logic="AND" value="-83.5">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[2]/broken EQ 0
+            </test>
+
+            <test logic="AND" value="-86">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[2]/broken EQ 1
             </test>
 
         </switch>
@@ -426,7 +438,7 @@
             <output>contact/unit[28]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-32.5">
+            <test logic="AND" value="-33">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[2]/broken EQ 0

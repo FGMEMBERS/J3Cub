@@ -3139,7 +3139,6 @@
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiWireBL</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -3167,7 +3166,6 @@
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiWireBL</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -3323,14 +3321,6 @@
         <object-name>LeftCableConnectBD</object-name>
         <object-name>LeftSkiWheelD</object-name>
         <object-name>LeftSkiSpringD</object-name>
-        
-        <object-name>LeftSkiLD</object-name>
-        <object-name>LeftSkiAxleLD</object-name>
-        <object-name>LeftSkiWireFLD</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
-        <object-name>LeftCableConnectFLD</object-name>
-        <object-name>LeftCableConnectBLD</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -3397,14 +3387,6 @@
         <object-name>LeftCableConnectBD</object-name>
         <object-name>LeftSkiWheelD</object-name>
         <object-name>LeftSkiSpringD</object-name>
-
-        <object-name>LeftSkiLD</object-name>
-        <object-name>LeftSkiAxleLD</object-name>
-        <object-name>LeftSkiWireFLD</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
-        <object-name>LeftCableConnectFLD</object-name>
-        <object-name>LeftCableConnectBLD</object-name>
-        <object-name>LeftSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
@@ -3465,14 +3447,6 @@
         <object-name>RightCableConnectBD</object-name>
         <object-name>RightSkiWheelD</object-name>
         <object-name>RightSkiSpringD</object-name>
-
-        <object-name>RightSkiLD</object-name>
-        <object-name>RightSkiAxleLD</object-name>
-        <object-name>RightSkiWireFLD</object-name>
-        <object-name>RightSkiWireBLD</object-name>
-        <object-name>RightCableConnectFLD</object-name>
-        <object-name>RightCableConnectBLD</object-name>
-        <object-name>RightSkiWireBLD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -3539,14 +3513,6 @@
         <object-name>RightCableConnectBD</object-name>
         <object-name>RightSkiWheelD</object-name>
         <object-name>RightSkiSpringD</object-name>
-
-        <object-name>RightSkiLD</object-name>
-        <object-name>RightSkiAxleLD</object-name>
-        <object-name>RightSkiWireFLD</object-name>
-        <object-name>RightSkiWireBLD</object-name>
-        <object-name>RightCableConnectFLD</object-name>
-        <object-name>RightCableConnectBLD</object-name>
-        <object-name>RightSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
