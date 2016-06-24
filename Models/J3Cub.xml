@@ -1947,6 +1947,114 @@
         </condition>
     </animation>
 
+    <!-- Left Pontoons orAmphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudder</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Pontoons or Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudder</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Pontoons or Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Pontoons or Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Left Amphibious Not Damaged or Damaged and not Broken -->
     <animation>
         <type>select</type>
@@ -4766,6 +4874,8 @@
         <object-name>Rstrut.002D</object-name>
         <object-name>Rstrut.001B</object-name>
         <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
         <property-base>sim/model/liveryfloat/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>floats.png</texture>

@@ -37,6 +37,8 @@
         <object-name>Rstrut.002D</object-name>
         <object-name>Rstrut.001B</object-name>
         <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
     </effect>
 
     <!--  Specularity fix -->
@@ -66,6 +68,8 @@
         <object-name>Rstrut.002D</object-name>
         <object-name>Rstrut.001B</object-name>
         <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
         <shininess>128</shininess>
         <specular>
              <r>1</r>
@@ -105,6 +109,8 @@
         <object-name>Rstrut.002D</object-name>
         <object-name>Rstrut.001B</object-name>
         <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
     </effect>
     
 </PropertyList>
