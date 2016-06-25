@@ -30,7 +30,7 @@
         <object-name>RHrudder</object-name>
     </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>FloatStruts</object-name>
@@ -67,7 +67,7 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
+    </animation> -->
 
     <effect>
         <inherits-from>Effects/interior/j3cub-flashlight</inherits-from>

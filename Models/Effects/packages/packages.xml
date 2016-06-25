@@ -19,7 +19,7 @@
         <object-name>ReleaseDoor</object-name>
     </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>prop</object-name>
@@ -44,7 +44,7 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
+    </animation>-->
 
     <model>
         <path>insecticid.xml</path>

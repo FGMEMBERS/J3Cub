@@ -272,6 +272,9 @@ version 2.0  090410-->
         <engines>
             <active-engine type="int">0</active-engine>
         </engines>
+        <!--lighting>
+            <lighting-norm type="float">1.0></lighting-norm>
+        </lighting-->
     </controls>
 
     <engines>

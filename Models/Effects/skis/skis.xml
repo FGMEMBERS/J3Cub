@@ -40,7 +40,7 @@
         <object-name>RightSkiWheel</object-name>
      </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>LeftSki</object-name>
@@ -80,6 +80,6 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
+    </animation> -->
 
 </PropertyList>

@@ -41,7 +41,7 @@
         <object-name>RHrudderB</object-name>
     </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>L-FloatCD</object-name>
@@ -81,6 +81,6 @@
              <g>1</g>
              <b>1</b>
         </ambient>
-    </animation>
+    </animation> -->
     
 </PropertyList>

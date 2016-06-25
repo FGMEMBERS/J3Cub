@@ -39,7 +39,7 @@
         <object-name>aileron_rC</object-name>
     </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>wheel_strut_rD</object-name>       
@@ -77,6 +77,6 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
+    </animation> -->
 
 </PropertyList>

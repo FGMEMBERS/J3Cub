@@ -316,7 +316,7 @@
         <object-name>suspension_lower_r</object-name>
      </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix 
     <animation>
         <type>material</type>
         <object-name>brake_cable_l</object-name>
@@ -351,7 +351,6 @@
         <object-name>nose_strut_l</object-name>
         <object-name>nose_top</object-name> 
         <object-name>nose_under</object-name>
-        <!-- need to create a window_r_1 -->
         <object-name>window_l_1</object-name>
         <object-name>window_rear_r_1</object-name>
         <object-name>window_rear_l_1</object-name>
@@ -398,17 +397,19 @@
         <object-name>tyre_r</object-name>
         <object-name>tyre_l</object-name>
         <shininess>128</shininess>
-        <specular>
-            <r>1</r>
+		<specular>
+			<r>1</r>
             <g>1</g>
             <b>1</b>
-        </specular>
-        <ambient>
-            <r>1</r>
+            <factor-prop>controls/lighting/lighting-norm</factor-prop>
+		</specular>
+		<ambient>
+		    <r>1</r>
             <g>1</g>
             <b>1</b>
+            <factor-prop>controls/lighting/lighting-norm</factor-prop>
         </ambient>
-     </animation>
+     </animation>-->
 
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
