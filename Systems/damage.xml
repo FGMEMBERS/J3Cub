@@ -100,7 +100,7 @@
                 <!-- Nose touches the ground -->
                 <property>/fdm/jsbsim/contact/unit[10]/WOW</property>
 
-                <not-equals>
+                <!--not-equals>
                     <property>/fdm/jsbsim/pontoon-damage/left-pontoon</property>
                     <value>0</value>
                 </not-equals>
@@ -115,7 +115,7 @@
                 <not-equals>
                     <property>/fdm/jsbsim/ski-damage/right-ski</property>
                     <value>0</value>
-                </not-equals>
+                </not-equals-->
             </or>
         </input>
         <output>

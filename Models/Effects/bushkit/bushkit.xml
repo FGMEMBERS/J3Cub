@@ -10,4 +10,14 @@
 		<x-m>0.0</x-m>
 		<pitch-deg>0.0</pitch-deg>
 	</offsets>
+
+
+     <effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>tail_wheel_strut_end_bush</object-name>
+        <object-name>tyre_l_bush</object-name>
+        <object-name>tyre_r_bush</object-name>
+        <object-name>tail_wheel_bush</object-name>
+     </effect>
+     
 </PropertyList>

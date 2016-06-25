@@ -103,37 +103,4 @@
         </ambient>
     </animation>
 
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>LeftSkiD</object-name>
-        <object-name>LeftSkiAxleD</object-name>
-        <object-name>LeftSkiAxleBlD</object-name>
-        <object-name>LeftSkiAxleBrD</object-name>
-        <object-name>LeftSkiBraceLD</object-name>
-        <object-name>LeftSkiBraceRD</object-name>
-        <object-name>LeftCableConnectFD</object-name>
-        <object-name>LeftCableConnectBD</object-name>
-        <object-name>LeftSkiWheelD</object-name>
-        <object-name>LeftSkiWheelAxleD</object-name>
-        <object-name>RightSkiD</object-name>
-        <object-name>RightSkiAxleD</object-name>
-        <object-name>RightSkiWheelAxleD</object-name>
-        <object-name>RightSkiAxleBlD</object-name>
-        <object-name>RightSkiAxleBrD</object-name>
-        <object-name>RightSkiBraceLD</object-name>
-        <object-name>RightSkiBraceRD</object-name>
-        <object-name>RightCableConnectFD</object-name>
-        <object-name>RightCableConnectBD</object-name>
-        <object-name>RightSkiWheelD</object-name>
-
-        <object-name>LeftSkiLD</object-name>
-        <object-name>LeftSkiAxleLD</object-name>
-        <object-name>LeftCableConnectFLD</object-name>
-        <object-name>LeftCableConnectBLD</object-name>
-        <object-name>RightSkiLD</object-name>
-        <object-name>RightSkiAxleLD</object-name>
-        <object-name>RightCableConnectFLD</object-name>
-        <object-name>RightCableConnectBLD</object-name>
-     </effect>
-
 </PropertyList>

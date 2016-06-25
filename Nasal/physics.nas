@@ -113,8 +113,8 @@ setlistener("/sim/signals/fdm-initialized", func {
             else
                 gui.popupTip("Left wing DAMAGED!", 5);
 
-            if (getprop("position/altitude-agl-m") < 10)
-                killengine();
+            #if (getprop("position/altitude-agl-m") < 10)
+            #    killengine();
         }
     }, 0, 0);
 
@@ -134,8 +134,8 @@ setlistener("/sim/signals/fdm-initialized", func {
             else
                 gui.popupTip("Right wing DAMAGED!", 5);
 
-            if (getprop("position/altitude-agl-m") < 10)
-                killengine();
+            #if (getprop("position/altitude-agl-m") < 10)
+            #    killengine();
         }
     }, 0, 0);
 

@@ -82,35 +82,5 @@
              <b>1</b>
         </ambient>
     </animation>
-
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>L-FloatCD</object-name>
-        <object-name>R-FloatCD</object-name>
-        <object-name>L-FloatCB</object-name>
-        <object-name>R-FloatCB</object-name>
-        <object-name>L-FloatD</object-name>
-        <object-name>R-FloatD</object-name>
-        <object-name>L-FloatB</object-name>
-        <object-name>R-FloatB</object-name>
-        <object-name>RRwheelB</object-name>
-        <object-name>RRtarmB</object-name>
-        <object-name>LRwheelB</object-name>
-        <object-name>LRtarmB</object-name>   
-        <object-name>LdamperD</object-name>
-        <object-name>RdamperD</object-name>
-        <object-name>LdamperB</object-name>
-        <object-name>RdamperB</object-name>
-        <object-name>Lstrut.001D</object-name>
-        <object-name>Lstrut.002D</object-name>
-        <object-name>Lstrut.001B</object-name>
-        <object-name>Lstrut.002B</object-name>
-        <object-name>Rstrut.001D</object-name>
-        <object-name>Rstrut.002D</object-name>
-        <object-name>Rstrut.001B</object-name>
-        <object-name>Rstrut.002B</object-name>
-        <object-name>LHrudderB</object-name>
-        <object-name>RHrudderB</object-name>
-    </effect>
     
 </PropertyList>

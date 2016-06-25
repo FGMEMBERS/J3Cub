@@ -6,6 +6,20 @@
   <texture-path>../../../Models</texture-path>
   <nopreview/>
 
+    <effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>drumMountLeft</object-name>
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <object-name>drumMountRight</object-name>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
+        <!--object-name>prop</object-name>
+        <object-name>sprayer</object-name-->
+        <object-name>ReleaseDoor</object-name>
+    </effect>
+
+    <!--  Specularity fix -->
     <animation>
         <type>material</type>
         <object-name>prop</object-name>
@@ -31,28 +45,6 @@
             <b>1</b>
         </ambient>
     </animation>
-
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>sprayer</object-name>
-        <object-name>ReleaseDoor</object-name>
-        <object-name>drumMountLeft</object-name>
-        <object-name>drumLeft</object-name>
-        <object-name>drumLeftDoor</object-name>
-        <object-name>drumMountRight</object-name>
-        <object-name>drumRight</object-name>
-        <object-name>drumRightDoor</object-name>
-    </effect>
-
-    <effect>
-        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-packages</inherits-from>
-        <object-name>drumMountLeft</object-name>
-        <object-name>drumLeft</object-name>
-        <object-name>drumLeftDoor</object-name>
-        <object-name>drumMountRight</object-name>
-        <object-name>drumRight</object-name>
-        <object-name>drumRightDoor</object-name>
-    </effect>
 
     <model>
         <path>insecticid.xml</path>

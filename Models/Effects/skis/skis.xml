@@ -15,6 +15,31 @@
         <object-name>LeftSki</object-name>
         <object-name>RightSki</object-name>
     </effect-->
+
+    <effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>LeftSki</object-name>
+        <object-name>LeftSkiAxle</object-name>
+        <object-name>LeftSkiAxleBl</object-name>
+        <object-name>LeftSkiAxleBr</object-name>
+        <object-name>LeftSkiBraceL</object-name>
+        <object-name>LeftSkiBraceR</object-name>
+        <object-name>LeftCableConnectF</object-name>
+        <object-name>LeftCableConnectB</object-name>
+        <object-name>LeftSkiWheel</object-name>
+        <object-name>LeftSkiWheelAxle</object-name>
+        <object-name>RightSki</object-name>
+        <object-name>RightSkiAxle</object-name>
+        <object-name>RightSkiWheelAxle</object-name>
+        <object-name>RightSkiAxleBl</object-name>
+        <object-name>RightSkiAxleBr</object-name>
+        <object-name>RightSkiBraceL</object-name>
+        <object-name>RightSkiBraceR</object-name>
+        <object-name>RightCableConnectF</object-name>
+        <object-name>RightCableConnectB</object-name>
+        <object-name>RightSkiWheel</object-name>
+     </effect>
+
     <!--  Specularity fix -->
     <animation>
         <type>material</type>
@@ -56,29 +81,5 @@
             <b>1</b>
         </ambient>
     </animation>
-
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>LeftSki</object-name>
-        <object-name>LeftSkiAxle</object-name>
-        <object-name>LeftSkiAxleBl</object-name>
-        <object-name>LeftSkiAxleBr</object-name>
-        <object-name>LeftSkiBraceL</object-name>
-        <object-name>LeftSkiBraceR</object-name>
-        <object-name>LeftCableConnectF</object-name>
-        <object-name>LeftCableConnectB</object-name>
-        <object-name>LeftSkiWheel</object-name>
-        <object-name>LeftSkiWheelAxle</object-name>
-        <object-name>RightSki</object-name>
-        <object-name>RightSkiAxle</object-name>
-        <object-name>RightSkiWheelAxle</object-name>
-        <object-name>RightSkiAxleBl</object-name>
-        <object-name>RightSkiAxleBr</object-name>
-        <object-name>RightSkiBraceL</object-name>
-        <object-name>RightSkiBraceR</object-name>
-        <object-name>RightCableConnectF</object-name>
-        <object-name>RightCableConnectB</object-name>
-        <object-name>RightSkiWheel</object-name>
-     </effect>
 
 </PropertyList>
