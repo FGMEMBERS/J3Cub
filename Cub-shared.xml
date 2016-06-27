@@ -119,7 +119,7 @@ version 2.0  090410-->
   </engine>
  </engines>
 
- <!-- An autopilot on a Cub??? -->
+ <!-- An autopilot on a Cub??? 
  <autopilot>
    <config>
      <min-climb-speed-kt type="float">48.0</min-climb-speed-kt>
@@ -131,7 +131,7 @@ version 2.0  090410-->
      <zero-pitch-throttle type="float">0.35</zero-pitch-throttle>
      <zero-pitch-trim-full-throttle type="float">0.001</zero-pitch-trim-full-throttle>
    </config>
- </autopilot>
+ </autopilot>-->
 
  <limits>
    <max-positive-g>3.5</max-positive-g>

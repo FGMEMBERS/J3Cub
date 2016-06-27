@@ -172,6 +172,10 @@ version 2.0  090410-->
                 <path>Systems/glass-rain.xml</path>
             </autopilot>
 
+            <autopilot>
+                <path>Aircraft/Generic/generic-autopilot.xml</path>
+            </autopilot>
+
             <!-- FDM level updates  -->
             <property-rule n="101">
                 <path>Aircraft/J3Cub/Systems/ground-effects.xml</path>
