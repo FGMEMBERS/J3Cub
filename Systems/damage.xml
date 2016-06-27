@@ -94,29 +94,32 @@
     <logic>
         <name>Engine Crashed</name>
         <input>
-            <or>
-                <property>/engines/active-engine/crash-engine</property>
-                
-                <!-- Nose touches the ground -->
-                <property>/fdm/jsbsim/contact/unit[10]/WOW</property>
+            <and>
+                <or>
+                    <property>/engines/active-engine/crash-engine</property>
+                    
+                    <!-- Nose touches the ground -->
+                    <property>/fdm/jsbsim/contact/unit[10]/WOW</property>
 
-                <!--not-equals>
-                    <property>/fdm/jsbsim/pontoon-damage/left-pontoon</property>
-                    <value>0</value>
-                </not-equals>
-                <not-equals>
-                    <property>/fdm/jsbsim/pontoon-damage/right-pontoon</property>
-                    <value>0</value>
-                </not-equals>
-                <not-equals>
-                    <property>/fdm/jsbsim/ski-damage/left-ski</property>
-                    <value>0</value>
-                </not-equals>
-                <not-equals>
-                    <property>/fdm/jsbsim/ski-damage/right-ski</property>
-                    <value>0</value>
-                </not-equals-->
-            </or>
+                    <!--not-equals>
+                        <property>/fdm/jsbsim/pontoon-damage/left-pontoon</property>
+                        <value>0</value>
+                    </not-equals>
+                    <not-equals>
+                        <property>/fdm/jsbsim/pontoon-damage/right-pontoon</property>
+                        <value>0</value>
+                    </not-equals>
+                    <not-equals>
+                        <property>/fdm/jsbsim/ski-damage/left-ski</property>
+                        <value>0</value>
+                    </not-equals>
+                    <not-equals>
+                        <property>/fdm/jsbsim/ski-damage/right-ski</property>
+                        <value>0</value>
+                    </not-equals-->
+                </or>
+                <property>/fdm/jsbsim/settings/damage</property>
+            </and>
         </input>
         <output>
             <property>/engines/active-engine/crashed</property>
