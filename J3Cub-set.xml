@@ -173,7 +173,7 @@ version 2.0  090410-->
             </autopilot>
 
             <autopilot>
-                <path>Aircraft/Generic/generic-autopilot.xml</path>
+                <path>Aircraft/J3Cub/Systems/j3cub-autopilot.xml</path>
             </autopilot>
 
             <!-- FDM level updates  -->
