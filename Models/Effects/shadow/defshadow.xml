@@ -64,6 +64,12 @@
                 <not>
                     <property>/fdm/jsbsim/wing-damage/right-wing</property>
                 </not>
+                <not>
+                    <property>/fdm/jsbsim/gear/unit[1]/broken</property>
+                </not>
+                <not>
+                    <property>/fdm/jsbsim/gear/unit[2]/broken</property>
+                </not>
             </and>
         </condition>
     </animation>

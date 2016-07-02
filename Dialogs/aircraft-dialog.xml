@@ -32,6 +32,13 @@
             setprop("/sim/model/j3cub/bushkit_flag_5", 0);
             setprop("/sim/model/j3cub/bushkit_flag_" ~ p, 1);
 
+            # Payload Package
+            var p = getprop("/sim/model/payload-package");
+            setprop("sim/model/j3cub/payload-package_flag_0", 0);
+            setprop("sim/model/j3cub/payload-package_flag_1", 0);
+            setprop("sim/model/j3cub/payload-package_flag_2", 0);
+            setprop("sim/model/j3cub/payload-package_flag_" ~ p, 1);
+            
             # Engine power
             #var p = getprop("/controls/engines/active-engine");
             #setprop("sim/model/j3cub/engine_flag_0", 0);
@@ -133,8 +140,10 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox-->
-            
-                   <!--hrule/>
+
+        </group>
+
+        <hrule/>
 
         <group>
             <layout>hbox</layout>
@@ -161,14 +170,9 @@
                 </visible>
                 <binding>
                     <command>nasal</command>
-                    <script>
-                        j3cub.repair_damage();
-                        #electrical.reset_battery_and_circuit_breakers();
-                        j3cub.click("engine-repair", 6.0)
-                    </script>
+                    <script>j3cub.repair_damage();j3cub.click("engine-repair", 6.0)</script>
                 </binding>
             </button>
-        </group-->
         </group>
 
         <hrule/>
@@ -303,7 +307,6 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
-
         </group>
 
         <hrule/>
@@ -312,6 +315,26 @@
             <layout>vbox</layout>
 
             <checkbox>
+                <halign>left</halign>
+                <label>Human models</label>
+                <property>/sim/model/occupants</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+
+            <checkbox>
+                <halign>left</halign>
+                <label>Equip Garmin 196 GPS</label>
+                <property>/sim/model/j3cub/garmin196-visible</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+
+           <checkbox>
                 <halign>left</halign>
                 <label>Show shadow</label>
                 <property>/sim/rendering/shadow-volume</property>
@@ -328,7 +351,7 @@
                     <halign>left</halign>
                     <text>
                         <halign>left</halign>
-                        <label>Dirt</label>
+                        <label>Dirt effect</label>
                         <enable>
                             <not>
                                 <property>/sim/rendering/rembrandt/enabled</property>
@@ -358,71 +381,173 @@
                 </group>
             </group>
 
-            <checkbox>
-                <halign>left</halign>
-                <label>Human models</label>
-                <property>/sim/model/occupants</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
+            <hrule/>
 
-            <checkbox>
-                <halign>left</halign>
-                <label>Show Garmin 196 GPS</label>
-                <property>/sim/model/j3cub/garmin196-visible</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
-
-            <checkbox>
-                <halign>left</halign>
-                <label>Sprayer</label>
-                <property>sim/model/sprayer</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
             <group>
-                <layout>hbox</layout>
-                <group>
-                    <layout>vbox</layout>
+                <layout>vbox</layout>
+
+                <text>
+                    <label>Utility Equipment Packages</label>
+                    <halign>center</halign>
+                </text>
+                <checkbox>
                     <halign>left</halign>
-                    <text>
-                        <halign>left</halign>
-                        <label>Hopper Fill</label>
-                        <enable>
-                            <not>
-                                <property>/sim/rendering/rembrandt/enabled</property>
-                            </not>
-                        </enable>
-                    </text>
-                </group>
+                    <label>Enable package</label>
+                    <property>sim/model/payload</property>
+                    <live>true</live>
+                    <enable>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                </checkbox>
+            
                 <group>
-                    <layout>vbox</layout>
-                    <slider>
-                        <name>hopper</name>
-                        <enable>
-                            <not>
-                                <property>/sim/rendering/rembrandt/enabled</property>
-                            </not>
-                        </enable>
-                        <min>0.0</min>
-                        <max>350.0</max>
-                        <step>.1</step>
+                    <layout>hbox</layout>
+                    <radio>
+                        <halign>left</halign>
+                        <label>Sprayer</label>
+                        <property>sim/model/j3cub/payload-package_flag_0</property>
                         <live>true</live>
-                        <property>/payload/weight[15]/weight-lb</property>
+                        <enable>
+                            <and>
+                                <not>
+                                    <property>/sim/freeze/replay-state</property>
+                                </not>
+                                <property>sim/model/payload</property>
+                            </and>
+                        </enable>
                         <binding>
                             <command>dialog-apply</command>
-                            <object-name>hopper</object-name>
                         </binding>
-                    </slider>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                setprop("sim/model/payload-package", 0);
+                                setprop("sim/model/j3cub/payload-package_flag_0",1);
+                                setprop("sim/model/j3cub/payload-package_flag_1",0);
+                                setprop("sim/model/j3cub/payload-package_flag_2",0);
+                            </script>
+                        </binding>
+                    </radio>
                 </group>
-            </group>
+
+                <group>
+                    <layout>hbox</layout>
+                    <radio>
+                        <halign>left</halign>
+                        <label>Burst</label>
+                        <property>sim/model/j3cub/payload-package_flag_1</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <not>
+                                    <property>/sim/freeze/replay-state</property>
+                                </not>
+                                <property>sim/model/payload</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                setprop("sim/model/payload-package", 1);
+                                setprop("sim/model/j3cub/payload-package_flag_0",0);
+                                setprop("sim/model/j3cub/payload-package_flag_1",1);
+                                setprop("sim/model/j3cub/payload-package_flag_2",0);
+                            </script>
+                        </binding>
+                    </radio>
+                </group>
+
+                <group>
+                    <layout>hbox</layout>
+                    <radio>
+                        <halign>left</halign>
+                        <label>Drum</label>
+                        <property>sim/model/j3cub/payload-package_flag_2</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <not>
+                                    <property>/sim/freeze/replay-state</property>
+                                </not>
+                                <or>
+                                    <equals>
+                                        <property>/fdm/jsbsim/bushkit</property>
+                                        <value>2</value>
+                                    </equals>
+                                    <equals>
+                                        <property>/fdm/jsbsim/bushkit</property>
+                                        <value>3</value>
+                                </equals>
+                                </or>
+                                <property>sim/model/payload</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                setprop("sim/model/payload-package", 2);
+                                setprop("sim/model/j3cub/payload-package_flag_0",0);
+                                setprop("sim/model/j3cub/payload-package_flag_1",0);
+                                setprop("sim/model/j3cub/payload-package_flag_2",1);
+                            </script>
+                        </binding>
+                    </radio>
+                </group>
+
+                <group>
+                    <layout>hbox</layout>
+                    <group>
+                        <layout>vbox</layout>
+                        <halign>left</halign>
+                        <text>
+                            <halign>left</halign>
+                            <label>Fill payload hopper</label>
+                            <enable>
+                                <and>
+                                    <not>
+                                        <property>/sim/freeze/replay-state</property>
+                                    </not>
+                                    <property>sim/model/payload</property>
+                                </and>
+                            </enable>
+                        </text>
+                    </group>
+                    <group>
+                        <layout>vbox</layout>
+                        <slider>
+                            <name>hopper</name>
+                            <enable>
+                                <and>
+                                    <not>
+                                        <property>/sim/freeze/replay-state</property>
+                                    </not>
+                                    <property>sim/model/payload</property>
+                                </and>
+                            </enable>
+                            <min>0.0</min>
+                            <max>300.0</max>
+                            <step>.1</step>
+                            <live>true</live>
+                            <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                            <binding>
+                                <command>dialog-apply</command>
+                                <object-name>hopper</object-name>
+                            </binding>
+                        </slider>
+                    </group>
+                </group>
+            </group>    
 
             <!--checkbox>
                 <halign>left</halign>
@@ -528,7 +653,7 @@
             <layout>vbox</layout>
 
             <text>
-                <label>Landing gear options</label>
+                <label>Landing Gear Options</label>
                 <halign>center</halign>
             </text>
 
@@ -536,7 +661,7 @@
                 <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
-                    <label>Default</label>
+                    <label>Default tires</label>
                     <property>sim/model/j3cub/bushkit_flag_0</property>
                     <live>true</live>
                     <enable>
@@ -571,7 +696,7 @@
                 <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
-                    <label>35" Bush</label>
+                    <label>35" Bush tires</label>
                     <property>sim/model/j3cub/bushkit_flag_1</property>
                     <live>true</live>
                     <enable>
@@ -702,7 +827,7 @@
                 <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
-                    <label>Snow Skis</label>
+                    <label>Snow skis (wheels)</label>
                     <property>sim/model/j3cub/bushkit_flag_4</property>
                     <live>true</live>
                     <enable>
@@ -742,7 +867,7 @@
                 <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
-                    <label>Snow Skis (Lite)</label>
+                    <label>Snow skis (no wheels)</label>
                     <property>sim/model/j3cub/bushkit_flag_5</property>
                     <live>true</live>
                     <enable>

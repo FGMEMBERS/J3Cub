@@ -25,9 +25,12 @@ the shadow seems to disappear into the ground.
     <object-name>shadow</object-name>
     <type>select</type>
     <condition>
-      <not>
-        <property>/sim/rendering/rembrandt/enabled</property>
-      </not>
+        <and>
+          <not>
+            <property>/sim/rendering/rembrandt/enabled</property>
+          </not>
+          <property>/sim/rendering/shadow</property>
+        </and>
     </condition>
   </animation>
 

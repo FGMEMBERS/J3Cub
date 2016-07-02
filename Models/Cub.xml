@@ -4,6 +4,15 @@
 
  <path>Cub.ac</path>
 
+    <params>
+        <door>
+            <property>sim/multiplay/generic/float[0]</property>
+        </door>
+        <window>
+            <property>sim/multiplay/generic/float[1]</property>
+        </window>
+    </params>
+
 <!-- Register transparent objects for Rembrandt effects -->
  <effect>
    <inherits-from>Effects/model-transparent</inherits-from>
@@ -65,6 +74,87 @@
    <z-m>-0.46</z-m>
   </offsets>
  </model>
+
+    <!-- non-Canvas remote Garmin 196 GPS (FGDATA) -->
+    <!-- TODO Remove this old version, unhide and implement the Canvas version below -->
+    <model>
+        <name>Garmin196-GPS-non-Canvas-Front</name>
+        <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+        <offsets>
+            <x-m>-0.023</x-m>
+            <y-m>0.275</y-m>
+            <z-m>-0.23994</z-m>
+            <heading-deg>-17.0</heading-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>Garmin196-GPS-non-Canvas-Back</name>
+        <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+        <offsets>
+            <x-m> 0.5346</x-m>
+            <y-m>-0.25</y-m>
+            <z-m>-0.41</z-m>
+            <heading-deg>17.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Garmin196-GPS-non-Canvas-Front</object-name>
+        <object-name>GPSMountFront</object-name>
+        <condition>
+            <and>
+                <property>/sim/model/cub/garmin196-visible</property>
+                <equals>
+                    <property>/sim/current-view/name</property>
+                    <value>Cockpit Front Seat View</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>Garmin196-GPS-non-Canvas-Back</object-name>
+        <object-name>GPSMountBack</object-name>
+        <condition>
+            <and>
+                <property>/sim/model/cub/garmin196-visible</property>
+                <not-equals>
+                    <property>/sim/current-view/name</property>
+                    <value>Cockpit Front Seat View</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>  
+    
+    <!-- Canvas local Garmin 196 GPS -->
+    <!--<model>
+        <name>Garmin196-GPS</name>
+        <path>Interior/Panel/garmin196/garmin196.xml</path>
+        <offsets>        
+           <x-m>-0.21</x-m>
+            <y-m> 0.19</y-m>
+            <z-m>-.30</z-m>
+            <heading-deg>-12.0</heading-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>Garmin196-GPS-support</name>
+        <path>Interior/Panel/garmin196/garmin196_support.xml</path>
+        <offsets>
+           <x-m>-0.21</x-m>
+            <y-m> 0.19</y-m>
+            <z-m>-.30</z-m>
+            <heading-deg>-17.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Garmin196-GPS</object-name>
+        <object-name>Garmin196-GPS-support</object-name>
+        <condition>
+            <property>/sim/model/cub/garmin196-visible</property>
+        </condition>
+    </animation>-->
 
 <!--  fuel gauge: the stick in front of windscreen  -->
   
@@ -300,12 +390,43 @@
 <!--  INTERNAL EFFECTS  *************************************************  -->
 
  <!-- door and window  -->
+    <animation>
+      <type>pick</type>
+      <object-name>door_handle</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+            if (getprop("sim/multiplay/generic/float[1]") == 0)
+                Cub.rightWindow.toggle();
+            Cub.rightDoor.toggle();
+          </script>
+        </binding>
+      </action>
+    </animation>
 
+ <!-- door and window  -->
  <animation>
   <type>rotate</type>
   <object-name>door</object-name>
-  <property>controls/door[0]</property>
-  <factor>-130.0</factor>
+  <object-name>door_interior</object-name>
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>0</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>-130</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.17</x-m>
    <y-m>0.352</y-m>
@@ -321,8 +442,21 @@
 <animation>
   <type>rotate</type>
   <object-name>door_handle</object-name>
-  <property>controls/door[0]</property>
-  <factor>-130</factor>
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>0</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>-130</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.17</x-m>
    <y-m>0.352</y-m>
@@ -334,31 +468,25 @@
    <z>0</z>
   </axis>
  </animation>
-
-<animation>
-  <type>pick</type>
-  <object-name>door_handle</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>false</repeatable>
-    <binding>
-      <command>nasal</command>
-      <script>
-       if(getprop("controls/door[0]") > 0) {
-         interpolate("controls/door[0]", 0, 1);
-       } else {
-         interpolate("controls/door[0]", 1, 1);
-       }
-      </script>
-    </binding>
-  </action>    
-</animation>
-
+ 
 <animation>
   <type>rotate</type>
   <object-name>door_handle</object-name>
-  <property>controls/door[0]</property>
-  <factor>90</factor>
+  <property alias="../../params/door/property"/>
+  <interpolation>
+    <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+    </entry>
+    <entry>
+        <ind>0.5</ind>
+        <dep>90</dep>
+    </entry>
+    <entry>
+        <ind>1</ind>
+        <dep>90.0</dep>
+    </entry>
+  </interpolation>
   <center>
    <x-m>0.415</x-m>
    <y-m>0.345</y-m>
@@ -367,6 +495,39 @@
   <axis>
    <x>0</x>
    <y>1.00</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+    <animation>
+      <type>pick</type>
+      <object-name>window_handle</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>
+           Cub.rightWindow.toggle();
+          </script>
+        </binding>
+      </action>
+    </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>window_r</object-name>
+  <object-name>window_handle</object-name>
+  <property alias="../../params/window/property"/>
+  <factor>89</factor>
+  <center>
+   <x-m>0.55</x-m>
+   <y-m>0.352</y-m>
+   <z-m>-0.025</z-m>
+  </center>
+  <axis>
+   <x>1.00</x>
+   <y>0</y>
    <z>0</z>
   </axis>
  </animation>
@@ -396,74 +557,89 @@
   </axis>
  </animation>
 
+    <animation>
+        <type>knob</type>
+        <object-name>trim_handle</object-name>
+        <property>controls/flight/elevator-trim</property>
+        <factor>500</factor>
+        <center>
+            <x-m>0.414</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.804</z-m>
+        </center>
+        <axis>
+            <y>1</y>
+        </axis>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/flight/elevator-trim</property>
+                <factor>.01</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>trim_handle</tooltip-id>
+                <label>Trim Elevator: %s</label>
+                <property>controls/flight/elevator-trim</property>
+            </binding>
+        </hovered>
+    </animation>
 
- <animation>
-  <type>rotate</type>
-  <object-name>window_r</object-name>
-  <property>controls/door[0]</property>
-  <factor>89</factor>
-  <center>
-   <x-m>0.55</x-m>
-   <y-m>0.352</y-m>
-   <z-m>-0.025</z-m>
-  </center>
-  <axis>
-   <x>1.00</x>
-   <y>0</y>
-   <z>0</z>
-  </axis>
- </animation>
+    <!-- pilot rear seat-->
+    <model>
+        <name>pilot</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>0.617</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.776</z-m>
+        </offsets>
+    </model>
+    
+    <!-- pilot front seat-->    
+    <model>
+        <name>pilot-front</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>-0.050</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.79083</z-m>
+        </offsets>
+    </model>
 
-<animation>
-  <type>rotate</type>
-  <object-name>trim_handle</object-name>
-  <property>controls/flight/elevator-trim</property>
-  <factor>500</factor>
-  <center>
-    <x-m>0.414</x-m>
-    <y-m>0.0</y-m>
-    <z-m>-0.804</z-m>
-  </center>
-  <axis>
-    <y>1</y>
-  </axis>
-</animation>
-
-
-<!-- pilot (and safety belts)  -->
-
-  <model>
-    <name>pilot</name>
-    <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
-    <offsets>
-      <x-m>0.617</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.776</z-m>
-    </offsets>
-  </model>
-
-  <!--  animation>
-    <type>select</type>
-    <object-name>pilot</object-name>
-    <object-name>pilot_belt</object-name>
-    <condition>
-      <not-equals>
-        <property>sim/current-view/view-number</property>
-        <value>0</value>
-      </not-equals>
-    </condition>
-  </animation>
-
-  <animation>
-    <type>select</type>
-    <object-name>copilot_belt</object-name>
-    <condition>
-      <not-equals>
-        <property>sim/current-view/name</property>
-        <value>Co-Pilot View</value>
-      </not-equals>
-    </condition>
-  </animation  -->
+    <animation>
+        <type>select</type>
+        <object-name>pilot</object-name>
+        <condition>
+            <and>
+                <not-equals>
+                    <property>sim/current-view/view-number</property>
+                    <value>0</value>
+                </not-equals>
+                <property>sim/model/occupants</property>
+                <property>sim/weight/weight-lb</property>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>pilot-front</object-name>
+        <condition>
+            <and>
+                <not-equals>
+                    <property>sim/current-view/view-number</property>
+                    <value>8</value>
+                </not-equals>
+                <property>sim/model/occupants</property>
+                <property>sim/weight[1]/weight-lb</property>
+            </and>
+        </condition>
+    </animation>
 
 <!-- joysticks  -->
 

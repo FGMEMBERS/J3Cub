@@ -15,7 +15,22 @@
         <object-name>LeftSki</object-name>
         <object-name>RightSki</object-name>
     </effect-->
-    <!--  Specularity fix -->
+
+    <effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>LeftSkiL</object-name>
+        <object-name>LeftSkiAxleL</object-name>
+        <object-name>LeftCableConnectFL</object-name>
+        <object-name>LeftCableConnectBL</object-name>
+        <object-name>RightSkiL</object-name>
+        <object-name>RightSkiAxleL</object-name>
+        <object-name>RightCableConnectFL</object-name>
+        <object-name>RightCableConnectBL</object-name>
+        <object-name>RearSkiL</object-name>
+        <object-name>RearSkiAxleL</object-name>
+    </effect> 
+
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>LeftSkiL</object-name>
@@ -45,20 +60,6 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
-
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>LeftSkiL</object-name>
-        <object-name>LeftSkiAxleL</object-name>
-        <object-name>LeftCableConnectFL</object-name>
-        <object-name>LeftCableConnectBL</object-name>
-        <object-name>RightSkiL</object-name>
-        <object-name>RightSkiAxleL</object-name>
-        <object-name>RightCableConnectFL</object-name>
-        <object-name>RightCableConnectBL</object-name>
-        <object-name>RearSkiL</object-name>
-        <object-name>RearSkiAxleL</object-name>
-     </effect>
+    </animation> -->
 
 </PropertyList>

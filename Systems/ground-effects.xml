@@ -185,7 +185,6 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
-    <!-- broken gear sparks unit 6, 7, and 8-->
     <filter>
         <name>Right Wing Ground Effect</name>
         <type>gain</type>
@@ -204,6 +203,7 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </filter>
 
+    <!-- broken gear sparks unit 6, 7, and 8-->
     <filter>
         <name>Tail Gear Ground Effect</name>
         <type>gain</type>
@@ -368,6 +368,42 @@ Under the GPL. Used by shadows under ALS -->
     </filter>
 
     <filter>
+        <name>Sprayer and Water Drop Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/payload/release-payload</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/payload/release-payload-actual</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Drum Water Drop Effect</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <property>/fdm/jsbsim/payload/release-payload-drum</property>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/payload/release-payload-drum-actual</property>
+        </output>
+    </filter>
+
+    <filter>
         <name>Aircraft Effect Fog Level</name>
         <type>noise-spike</type>
         <max-rate-of-change>0.1</max-rate-of-change>
@@ -485,8 +521,8 @@ Under the GPL. Used by shadows under ALS -->
                 <property>/fdm/jsbsim/damage/repairing</property>
 
                 <!-- A broken gear operates as a parking brake -->
-                <property>/fdm/jsbsim/gear/unit[1]/broken</property>
-                <property>/fdm/jsbsim/gear/unit[2]/broken</property>
+                <!--property>/fdm/jsbsim/gear/unit[1]/broken</property>
+                <property>/fdm/jsbsim/gear/unit[2]/broken</property-->
             </or>
         </input>
         <output>

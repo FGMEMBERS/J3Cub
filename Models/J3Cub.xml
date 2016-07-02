@@ -3,6 +3,39 @@
 <PropertyList>
 
     <path>Cub.ac</path>
+    
+    <model>
+        <name>Damage</name>
+        <path>Effects/damage/damage.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>SkiDamage</name>
+        <path>Effects/damage/skidamage.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>PontoonDamage</name>
+        <path>Effects/damage/pontoondamage.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
 
     <model>
         <name>Bushkit</name>
@@ -49,8 +82,8 @@
     </model>
 
     <model>
-        <name>Pontoon</name>
-        <path>Effects/sprayer/sprayer.xml</path>
+        <name>Packages</name>
+        <path>Effects/packages/packages.xml</path>
         <offsets>
             <x-m>0.0</x-m>
             <y-m>0.0</y-m>
@@ -73,7 +106,7 @@
             }, 1, 0);
 
             # Passengers
-            var pax_state_path = rplayer.getNode("sim/multiplay/generic/int[16]").getPath();
+            var pax_state_path = rplayer.getNode("sim/multiplay/generic/int[14]").getPath();
 
             var passenger = rplayer.initNode("pax/passenger/present", 0, "BOOL");
             var pilot = rplayer.initNode("pax/pilot/present", 0, "BOOL");
@@ -142,6 +175,9 @@
         <window>
             <property>sim/multiplay/generic/float[1]</property>
         </window>
+        <drums>
+            <property>sim/multiplay/generic/float[18]</property>
+        </drums>
         <crash>
             <property>sim/multiplay/generic/int[15]</property>
         </crash>
@@ -167,6 +203,14 @@
         <pontoon_right_damaged>
             <property>sim/multiplay/generic/int[11]</property>
         </pontoon_right_damaged>
+        
+         <!-- 0 = normal, 1 = damaged -->
+        <ski_left_damaged>
+            <property>sim/multiplay/generic/int[12]</property>
+        </ski_left_damaged>
+        <ski_right_damaged>
+            <property>sim/multiplay/generic/int[13]</property>
+        </ski_right_damaged>
 
         <!-- 0 = normal, 1 = broken, 2 = damaged -->
         <wing_left_damaged>
@@ -197,6 +241,10 @@
         </gear-amphibious>
 
         <water-rudder-norm>sim/multiplay/generic/float[5]</water-rudder-norm>
+        <engine>
+            <rpm>engines/engine[2]/rpm</rpm>
+            <crashed>sim/multiplay/generic/int[3]</crashed>
+        </engine>
 
         <securing>
             <pitot-cover>sim/model/j3cub/securing/pitot-cover-visible</pitot-cover>
@@ -219,69 +267,9 @@
             </electrical>
         </cockpit>
     </params>
-	
-    <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
-        <object-name>strut_rear_r</object-name>
-        <object-name>strut_rear_l</object-name>
-        <object-name>strut_front_r</object-name>
-        <object-name>strut_front_l</object-name>
-        <object-name>tailplane</object-name>
-        <object-name>tail_struts</object-name>
-        <object-name>tail_wheel_strut</object-name>
-        <object-name>tail_wheel_strut_end_bush</object-name>
-        <object-name>tyre_l_bush</object-name>
-        <object-name>tyre_r_bush</object-name>
-        <object-name>tail_wheel_bush</object-name>
-        <object-name>tail_wheel_axle_bush</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
-        <object-name>wheel_strut_link_r</object-name>
-        <object-name>wheel_strut_link_l</object-name>
-        <object-name>wheel_hub_r</object-name>
-        <object-name>wheel_hub_l</object-name>
-        <object-name>tyre_r</object-name>
-        <object-name>tyre_l</object-name>
-        <object-name>cowl_under</object-name>
-        <object-name>nose_under</object-name>
-        <object-name>rudder</object-name>
-        <object-name>elevator</object-name>
-        <object-name>tail_struts</object-name>
-        <object-name>handle_l</object-name>
-        <object-name>handle_r</object-name>
-        <object-name>fuselage</object-name>
-        <object-name>aileron_r</object-name>
-        <object-name>aileron_l</object-name>
-        <object-name>wing_r</object-name>
-        <object-name>wing_l</object-name>
-        <object-name>cowl_top</object-name>
-        <object-name>door</object-name>
-        <object-name>nose</object-name>
-        <object-name>nose_strut_r</object-name>
-        <object-name>nose_strut_l</object-name>
-        <object-name>nose_top_1</object-name>
-        <object-name>roof_strut_r</object-name>
-        <object-name>roof_strut_l</object-name>
-        <object-name>roof_strut_long_r</object-name>
-        <object-name>roof_strut_long_l</object-name>
-        <object-name>roof_strut_cross</object-name>
-        <object-name>step</object-name>
-        <object-name>strut_vert_rear_r</object-name>
-        <object-name>strut_vert_rear_l</object-name>
-        <object-name>strut_vert_fr_r</object-name>
-        <object-name>strut_vert_fr_l</object-name>
-        <object-name>strut_tie_r</object-name>
-        <object-name>strut_tie_l</object-name>
-        <object-name>strut_fix_r</object-name>
-        <object-name>strut_fix_l</object-name>
-        <object-name>strut_fix_rear_1_</object-name>
-        <object-name>strut_fix_rear_1_l</object-name>
-        <object-name>strut_fix_rear_2_</object-name>
-        <object-name>strut_fix_rear_2_l</object-name>
-    </effect>
 
     <effect>
-        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-fuselage</inherits-from>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
@@ -290,8 +278,6 @@
         <object-name>wing_r</object-name>
         <object-name>wing_l</object-name>
         <object-name>tailplane</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
         <object-name>cowl_top</object-name>
         <object-name>cowl_under</object-name>
         <object-name>door</object-name>
@@ -318,22 +304,35 @@
         <object-name>strut_front_l</object-name>
         <object-name>tyre_r</object-name>
         <object-name>tyre_l</object-name>
-        <!--object-name>step</object-name>
-        <object-name>strut_fix_r</object-name>
-        <object-name>strut_fix_l</object-name>
-        <object-name>strut_fix_rear_1_</object-name>
-        <object-name>strut_fix_rear_1_l</object-name>
-        <object-name>strut_fix_rear_2_</object-name>
-        <object-name>strut_fix_rear_2_l</object-name>
-        <object-name>tail_struts</object-name>
         <object-name>tail_wheel_strut</object-name>
-        <object-name>wheel_strut_link_r</object-name>
-        <object-name>wheel_strut_link_l</object-name-->
+        <object-name>tail_wheel_strut</object-name>
+        <object-name>tail_wheel_strut_end</object-name>
+        <object-name>tail_wheel</object-name>
+        <object-name>tail_struts</object-name>
+        <object-name>suspension_tie</object-name>
+        <object-name>suspension_upper_l</object-name>
+        <object-name>suspension_upper_r</object-name>
+        <object-name>suspension_lower_l</object-name>
+        <object-name>suspension_lower_r</object-name>
      </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix 
     <animation>
         <type>material</type>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <object-name>cable_guide_1_l</object-name>
+        <object-name>cable_guide_1_r</object-name>
+        <object-name>cable_guide_2_l</object-name>
+        <object-name>cable_guide_2_r</object-name>
+        <object-name>cable_guide_3_l</object-name>
+        <object-name>cable_guide_3_r</object-name>
+        <object-name>cable_guide_4_l</object-name>
+        <object-name>cable_guide_4_r</object-name>
+        <object-name>cable_l</object-name>
+        <object-name>cable_r</object-name>
+        <object-name>cable_wheel_l</object-name>
+        <object-name>cable_wheel_r</object-name>
         <object-name>fuselage</object-name>
         <object-name>rudder</object-name>
         <object-name>elevator</object-name>
@@ -350,12 +349,11 @@
         <object-name>nose</object-name>
         <object-name>nose_strut_r</object-name>
         <object-name>nose_strut_l</object-name>
-        <object-name>nose_top_1</object-name>
+        <object-name>nose_top</object-name> 
         <object-name>nose_under</object-name>
+        <object-name>window_l_1</object-name>
         <object-name>window_rear_r_1</object-name>
         <object-name>window_rear_l_1</object-name>
-        <object-name>window_1_1</object-name>
-        <object-name>window_r_1</object-name>
         <object-name>wheel_strut_r</object-name>
         <object-name>wheel_strut_l</object-name>
         <object-name>strut_vert_rear_r</object-name>
@@ -379,6 +377,17 @@
         <object-name>strut_fix_rear_2_l</object-name>
         <object-name>tail_struts</object-name>
         <object-name>tail_wheel_strut</object-name>
+        <object-name>tail_wheel</object-name>
+        <object-name>tail_wheel_strut_end</object-name>
+        <object-name>suspension_tie</object-name>
+        <object-name>suspension_upper_l</object-name>
+        <object-name>suspension_upper_r</object-name>
+        <object-name>suspension_lower_l</object-name>
+        <object-name>suspension_lower_r</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>suspension_coil_l</object-name>
+        <object-name>suspension_coil_r</object-name>
         <object-name>wheel_strut_r</object-name>
         <object-name>wheel_strut_l</object-name>
         <object-name>wheel_strut_link_r</object-name>
@@ -388,17 +397,19 @@
         <object-name>tyre_r</object-name>
         <object-name>tyre_l</object-name>
         <shininess>128</shininess>
-        <specular>
-            <r>1</r>
+		<specular>
+			<r>1</r>
             <g>1</g>
             <b>1</b>
-        </specular>
-        <ambient>
-            <r>1</r>
+            <factor-prop>controls/lighting/lighting-norm</factor-prop>
+		</specular>
+		<ambient>
+		    <r>1</r>
             <g>1</g>
             <b>1</b>
+            <factor-prop>controls/lighting/lighting-norm</factor-prop>
         </ambient>
-     </animation>
+     </animation>-->
 
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
@@ -419,9 +430,7 @@
     <!-- interior effects -->
 
     <effect>
-        <inherits-from>Effects/interior/interior</inherits-from>
-        <object-name>brake_cable_l</object-name>
-        <object-name>brake_cable_r</object-name>
+        <inherits-from>Effects/interior/j3cub-interior</inherits-from>
         <object-name>bulkhead_strut_l</object-name>
         <object-name>bulkhead_strut_r</object-name>
         <object-name>bulkhead_top</object-name>
@@ -430,18 +439,6 @@
         <object-name>cabin_heat</object-name>
         <object-name>cabin_rudder_cable_l</object-name>
         <object-name>cabin_rudder_cable_r</object-name>
-        <object-name>cable_guide_1_l</object-name>
-        <object-name>cable_guide_1_r</object-name>
-        <object-name>cable_guide_2_l</object-name>
-        <object-name>cable_guide_2_r</object-name>
-        <object-name>cable_guide_3_l</object-name>
-        <object-name>cable_guide_3_r</object-name>
-        <object-name>cable_guide_4_l</object-name>
-        <object-name>cable_guide_4_r</object-name>
-        <object-name>cable_l</object-name>
-        <object-name>cable_r</object-name>
-        <object-name>cable_wheel_l</object-name>
-        <object-name>cable_wheel_r</object-name>
         <object-name>Cube</object-name>
         <object-name>Cylinder_0</object-name>
         <object-name>Cylinder_1</object-name>
@@ -499,6 +496,11 @@
         <object-name>window_strut_r_interior</object-name>
         <object-name>wing_l_interior</object-name>
         <object-name>wing_r_interior</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Front</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Back</object-name>
+        <object-name>Garmin196-GPS-non-Canvas</object-name>
+        <object-name>GPSMountFront</object-name>
+        <object-name>GPSMountBack</object-name>
     </effect>
 
     <!--effect>
@@ -541,6 +543,25 @@
             </or>
         </condition>
     </animation>
+
+    <!-- Gear Damage Spark and Smoke -->
+    <model>
+        <path>Effects/damage/left_gear.xml</path>
+        <offsets>
+            <x-m> -1.4 </x-m>
+            <y-m>  1.0 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Effects/damage/right_gear.xml</path>
+        <offsets>
+            <x-m> -1.4 </x-m>
+            <y-m> -1.0 </y-m>
+            <z-m> -1.5 </z-m>
+        </offsets>
+    </model>
 
     <!--  INSTRUMENTS  ***************************************************  -->
     <!-- panel models -->
@@ -592,23 +613,81 @@
     <!-- non-Canvas remote Garmin 196 GPS (FGDATA) -->
     <!-- TODO Remove this old version, unhide and implement the Canvas version below -->
     <model>
-        <name>Garmin196-GPS-non-Canvas</name>
+        <name>Garmin196-GPS-non-Canvas-Front</name>
         <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
         <offsets>
-            <x-m>-0.21</x-m>
-            <y-m> 0.19</y-m>
-            <z-m>-.30</z-m>
-            <!--z-m>-.85</z-m-->
+            <x-m>-0.03692</x-m>
+            <y-m>0.28598</y-m>
+            <z-m>-0.23994</z-m>
             <heading-deg>-17.0</heading-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>Garmin196-GPS-non-Canvas-Back</name>
+        <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+        <offsets>
+            <x-m> 0.52978</x-m>
+            <y-m>-0.26589</y-m>
+            <z-m>-0.44722</z-m>
+            <heading-deg>17.0</heading-deg>
         </offsets>
     </model>
     <animation>
         <type>select</type>
-        <object-name>Garmin196-GPS-non-Canvas</object-name>
+        <object-name>Garmin196-GPS-non-Canvas-Front</object-name>
+        <object-name>GPSMountFront</object-name>
         <condition>
-            <property>/sim/model/j3cub/garmin196-visible</property>
+            <and>
+                <property>/sim/model/j3cub/garmin196-visible</property>
+                <or>
+                    <equals>
+                        <property>/sim/current-view/name</property>
+                        <value>Cockpit Front Seat View</value>
+                    </equals>
+                    <and>
+                        <not-equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>2</value>
+                        </not-equals>
+                        <equals>
+                            <property>/sim/model/payload</property>
+                            <value>1</value>
+                        </equals>
+                    </and>       
+                </or>
+            </and>
         </condition>
-    </animation>    
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>Garmin196-GPS-non-Canvas-Back</object-name>
+        <object-name>GPSMountBack</object-name>
+        <condition>
+            <and>
+                <property>/sim/model/j3cub/garmin196-visible</property>
+                <not-equals>
+                    <property>/sim/current-view/name</property>
+                    <value>Cockpit Front Seat View</value>
+                </not-equals>
+                <or>
+                    <and>
+                        <equals>
+                            <property>/sim/model/payload-package</property>
+                            <value>2</value>
+                        </equals>
+                        <equals>
+                            <property>/sim/model/payload</property>
+                            <value>1</value>
+                        </equals>
+                    </and>
+                    <equals>
+                        <property>/sim/model/payload</property>
+                        <value>0</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>  
     
     <!-- Canvas local Garmin 196 GPS -->
     <!--<model>
@@ -671,52 +750,118 @@
       </not-equals>
     </condition>
   </animation>
-<!--  BASIC AIRCRAFT FEATURES  **********************************************************  -->
 
-<!-- propeller -->
+    <!--  BASIC AIRCRAFT FEATURES  **********************************************************  -->
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller</object-name>
-    <condition>
-      <less-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>300</value>
-      </less-than>
-    </condition>
-  </animation>
+    <!-- Propeller No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>propeller</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>300</value>
+                </less-than>
+                <not>
+                    <property alias="/params/engine/crashed"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller_slow</object-name>
-    <condition>
-      <less-than>
-        <property>engines/engine/rpm</property>
-        <value>1500</value>
-      </less-than>
-      <greater-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>200</value>
-      </greater-than>
-    </condition>
-  </animation>
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slow</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property>engines/engine/rpm</property>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>200</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+            </and>
+        </condition>
+    </animation>
 
-  <animation>
-    <type>select</type>
-    <object-name>propeller_fast</object-name>
-    <condition>
-      <greater-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>1500</value>
-      </greater-than>
-    </condition>
-  </animation>
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fast</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>1500</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Propeller Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>propellerD</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property>engines/engine[0]/rpm</property>
+                    <value>300</value>
+                </less-than>
+                <property alias="/params/engine/crashed"/>
+            </and>
+            
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slowD</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property>engines/engine/rpm</property>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>200</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fastD</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property>engines/engine[0]/rpm</property>
+                <value>1500</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+            </and>
+        </condition>
+    </animation>
 
   <animation>
     <type>spin</type>
     <object-name>propeller</object-name>
     <object-name>propeller_slow</object-name>
     <object-name>propeller_fast</object-name>
+    <object-name>propellerD</object-name>
+    <object-name>propeller_slowD</object-name>
+    <object-name>propeller_fastD</object-name>
     <property>engines/engine[0]/rpm</property>
     <factor>-1</factor>
     <center>
@@ -737,6 +882,17 @@
   <type>rotate</type>
   <object-name>aileron_l</object-name>
   <property>surface-positions/left-aileron-pos-norm</property>
+  <condition>
+    <and>
+        <not-equals>
+            <property alias="/params/wing_left_damaged/property"/>
+            <value>1</value>
+        </not-equals>
+        <not>
+            <property alias="/params/crash/property"/>
+        </not>
+    </and>
+  </condition>
   <factor>-18.0</factor>
   <axis>
     <x1-m>1.219</x1-m>
@@ -752,6 +908,17 @@
   <type>rotate</type>
   <object-name>aileron_r</object-name>
   <property>surface-positions/right-aileron-pos-norm</property>
+  <condition>
+    <and>
+        <not-equals>
+            <property alias="/params/wing_right_damaged/property"/>
+            <value>1</value>
+        </not-equals>
+        <not>
+            <property alias="/params/crash/property"/>
+        </not>
+    </and>
+  </condition>
   <factor>18.0</factor>
   <axis>
     <x1-m>1.219</x1-m>
@@ -762,6 +929,128 @@
     <z2-m>0.095</z2-m>
   </axis>
  </animation>
+ 
+    <!-- Left Wing No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_l</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>aileron_hinge_1_l</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Wing No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_r</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>aileron_hinge_1_r</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Both Collapsed -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <condition>
+            <property alias="/params/crash/property"/>
+        </condition>
+    </animation>
+
+    <!-- Right Wing Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_rB</object-name>
+        <object-name>wing_rB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Wing Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>aileron_lB</object-name>
+        <object-name>wing_lB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Left Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_lD</object-name>
+        <object-name>aileron_lD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Wings Right Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_rD</object-name>
+        <object-name>aileron_rD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
 
  <animation>
   <type>rotate</type>
@@ -822,8 +1111,39 @@
             </and>
         </condition>
     </animation>
-    
+
     <!-- Tail Gear Strut No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tail_wheel_strut</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_tail_broken/property"/>
+                </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation> 
+
+    <!-- Tail Gear Strut End and Axle No Damage -->
     <animation>
         <type>select</type>
         <object-name>tail_wheel_strut_end</object-name>
@@ -890,6 +1210,63 @@
         </condition>
     </animation>
 
+    <!-- Brake Cable -->
+    <animation>
+        <type>select</type>
+        <object-name>brake_cable_l</object-name>
+        <object-name>brake_cable_r</object-name>
+        <condition>
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </or>
+        </condition>
+    </animation>
+
+    <!-- Upper Suspension -->
+    <animation>
+        <type>select</type>
+        <object-name>suspension_tie</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>suspension_coil_l</object-name>
+        <object-name>suspension_coil_r</object-name>
+        <object-name>suspension_low_2_l</object-name>
+        <object-name>suspension_low_2_r</object-name>
+        <object-name>wheel_strut_link_l</object-name>
+        <object-name>wheel_strut_link_r</object-name>
+        <condition>
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>5</value>
+                </equals>
+            </or>
+        </condition>
+    </animation>
+
     <!-- Left Gear No Damage -->
     <animation>
         <type>select</type>
@@ -907,7 +1284,22 @@
         </condition>
     </animation>
 
-    <!-- Left Gear Bush and Ski -->
+    <!-- Left Gear Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_lD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Gear Bush and Ski No Damage -->
     <animation>
         <type>select</type>
         <object-name>tyre_l_bush</object-name>
@@ -916,6 +1308,27 @@
                 <not>
                     <property alias="/params/gear_left_broken/property"/>
                 </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Gear Bush and Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_l_bushD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
                 <or>
                     <equals>
                         <property alias="/params/bushkit"/>
@@ -946,8 +1359,23 @@
             </and>
         </condition>
     </animation>
+    
+    <!-- Right Gear Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>tyre_rD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
 
-    <!-- Right Gear Bush and Ski -->
+    <!-- Right Gear Bush and Ski No Damage -->
     <animation>
         <type>select</type>
         <object-name>tyre_r_bush</object-name>
@@ -970,27 +1398,34 @@
         </condition>
     </animation>
 
-    <!-- Suspension No Damage -->
+    <!-- Right Gear Bush and Ski Damage -->
     <animation>
         <type>select</type>
-        <object-name>brake_cable_l</object-name>
-        <object-name>brake_cable_r</object-name>
-        <object-name>suspension_tie</object-name>
-        <object-name>suspension_coil_l</object-name>
-        <object-name>suspension_coil_r</object-name>
-        <object-name>suspension_link_l</object-name>
-        <object-name>suspension_link_r</object-name>
-        <object-name>suspension_low_2_l</object-name>
-        <object-name>suspension_low_2_r</object-name>
+        <object-name>tyre_r_bushD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Suspension No Damage -->
+    <animation>
+        <type>select</type>
         <object-name>suspension_upper_l</object-name>
-        <object-name>suspension_upper_r</object-name>
         <object-name>wheel_strut_l</object-name>
-        <object-name>wheel_strut_r</object-name>
         <object-name>suspension_lower_l</object-name>
-        <object-name>suspension_lower_r</object-name>
         <object-name>axle_l</object-name>
-        <object-name>axle_r</object-name>
-        <object-name>tail_wheel_strut</object-name>
        <condition>
             <and>
                 <not>
@@ -1017,7 +1452,105 @@
             </and>
         </condition>
     </animation>
+    
+    <!-- Left Suspention Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
 
+    <!-- Right Suspension No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>suspension_upper_r</object-name>
+        <object-name>wheel_strut_r</object-name>
+        <object-name>suspension_lower_r</object-name>
+        <object-name>axle_r</object-name>
+       <condition>
+            <and>
+                <not>
+                    <property alias="/params/gear_right_broken/property"/>
+                </not>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Suspention Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wheel_strut_rD</object-name>       
+        <object-name>suspension_lower_rD</object-name>        
+        <object-name>suspension_upper_rD</object-name>       
+        <object-name>axle_rD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+        
     <!-- Left Ski No Damage -->
     <animation>
         <type>select</type>
@@ -1039,6 +1572,33 @@
                 <not>
                     <property alias="/params/gear_left_broken/property"/>
                 </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_left_broken/property"/>
                 <equals>
                     <property alias="/params/bushkit"/>
                     <value>4</value>
@@ -1076,7 +1636,47 @@
         </condition>
     </animation>
 
+    <!-- Right Ski Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightSkiSpringD</object-name>
+        <condition>
+            <and>
+                <property alias="/params/gear_right_broken/property"/>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>    
+
     <!-- ############################# Ski Lite ####################### --> 
+    <!-- Ski Spring -->
+    <animation>
+        <type>select</type>
+        <object-name>RightSkiSpringL</object-name>
+        <object-name>LeftSkiSpringL</object-name>
+        <condition>
+            <equals>
+                <property alias="/params/bushkit"/>
+                <value>5</value>
+            </equals>
+        </condition>
+    </animation>
+
     <!-- Left Ski Lite No Damage -->
     <animation>
         <type>select</type>
@@ -1086,12 +1686,31 @@
         <object-name>LeftSkiWireBL</object-name>
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
-        <object-name>LeftSkiSpringL</object-name>
         <condition>
             <and>
                 <not>
-                    <property alias="/params/gear_left_broken/property"/>
+                    <property alias="/params/ski_left_damaged/property"/>
                 </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>5</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+   <!-- Left Ski Lite Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>LeftSkiLD</object-name>
+        <object-name>LeftSkiAxleLD</object-name>
+        <object-name>LeftSkiWireFLD</object-name>
+        <object-name>LeftSkiWireBLD</object-name>
+        <object-name>LeftCableConnectFLD</object-name>
+        <object-name>LeftCableConnectBLD</object-name>
+        <condition>
+            <and>    
+                <property alias="/params/ski_left_damaged/property"/>
                 <equals>
                     <property alias="/params/bushkit"/>
                     <value>5</value>
@@ -1109,12 +1728,31 @@
         <object-name>RightSkiWireBL</object-name>
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
-        <object-name>RightSkiSpringL</object-name>
         <condition>
             <and>
                 <not>
-                    <property alias="/params/gear_right_broken/property"/>
+                    <property alias="/params/ski_right_damaged/property"/>
                 </not>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>5</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+   <!-- Right Ski Lite Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>RightSkiLD</object-name>
+        <object-name>RightSkiAxleLD</object-name>
+        <object-name>RightSkiWireFLD</object-name>
+        <object-name>RightSkiWireBLD</object-name>
+        <object-name>RightCableConnectFLD</object-name>
+        <object-name>RightCableConnectBLD</object-name>
+        <condition>
+            <and>    
+                <property alias="/params/ski_right_damaged/property"/>
                 <equals>
                     <property alias="/params/bushkit"/>
                     <value>5</value>
@@ -1142,6 +1780,42 @@
         </condition>
     </animation>
 
+    <!-- Left Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Right Pontoons Not Damaged -->
     <animation>
         <type>select</type>
@@ -1160,15 +1834,182 @@
         </condition>
     </animation>
 
+    <!--Right Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Pontoons orAmphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudder</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Pontoons or Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudder</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Pontoons or Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Pontoons or Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LRwheel</object-name>
+        <object-name>LRAxle</object-name>
+        <object-name>LRtarm</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_left_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Left Amphibious Not Damaged -->
     <animation>
         <type>select</type>
         <object-name>L-Float</object-name>
-        <object-name>LRwheel</object-name>
-        <object-name>LRAxle</object-name>
         <object-name>LFrontWheel</object-name>
         <object-name>LAxle</object-name>
-        <object-name>LRtarm</object-name>
         <object-name>Ldamper</object-name>
         <object-name>Lstrut.001</object-name>
         <object-name>Lstrut.002</object-name>
@@ -1186,15 +2027,86 @@
         </condition>
     </animation>
 
+    <!-- Left Amphibious Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatD</object-name>
+        <object-name>LFrontWheelD</object-name>
+        <object-name>LAxleD</object-name>
+        <object-name>LdamperD</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>
+        <object-name>LFrontWheelB</object-name>
+        <object-name>LAxleB</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Amphibious Not Damaged or Damaged and not Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RRwheel</object-name>
+        <object-name>RRAxle</object-name>
+        <object-name>RRtarm</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/pontoon_right_damaged/property"/>
+                        <value>2</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
     <!-- Right Amphibious Not Damaged -->
     <animation>
         <type>select</type>
         <object-name>R-Float</object-name>
-        <object-name>RRwheel</object-name>
-        <object-name>RRAxle</object-name>
         <object-name>RFrontWheel</object-name>
         <object-name>RAxle</object-name>
-        <object-name>RRtarm</object-name>
         <object-name>Rdamper</object-name>
         <object-name>Rstrut.001</object-name>
         <object-name>Rstrut.002</object-name>
@@ -1212,51 +2124,70 @@
         </condition>
     </animation>
 
-    <!-- Left Float Rudder Not Damaged -->
+    <!--Right Amphibious Damaged -->
     <animation>
         <type>select</type>
-        <object-name>LHrudder</object-name>
-        <condition>
-            <and>
-                <equals>
-                    <property alias="/params/pontoon_left_damaged/property"/>
-                    <value>0</value>
-                </equals>
-                <or>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>2</value>
-                    </equals>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>3</value>
-                    </equals>
-                </or>
-            </and>
-        </condition>
-    </animation>
-
-    <!--Right Float Rudder Not Damaged -->
-    <animation>
-        <type>select</type>
-        <object-name>RHrudder</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>RFrontWheelD</object-name>
+        <object-name>RAxleD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
         <condition>
             <and>
                 <equals>
                     <property alias="/params/pontoon_right_damaged/property"/>
-                    <value>0</value>
+                    <value>2</value>
                 </equals>
-                <or>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>2</value>
-                    </equals>
-                    <equals>
-                        <property alias="/params/bushkit"/>
-                        <value>3</value>
-                    </equals>
-                </or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
             </and>
+        </condition>
+    </animation>
+
+    <!--Right Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>RFrontWheelB</object-name>
+        <object-name>RAxleB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Float Rudder -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudder</object-name>
+        <object-name>RHrudder</object-name>
+        <condition>     
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </or>
         </condition>
     </animation>
 
@@ -1265,9 +2196,6 @@
         <type>select</type>
         <object-name>RuddWires</object-name>
         <object-name>FloatStruts</object-name>
-        <object-name>FloatReinforceLeft</object-name>
-        <object-name>FloatReinforceRight</object-name>
-        <object-name>FloatReinforceJoin</object-name>
         <object-name>RudderCatch</object-name>
         <object-name>RudderHandle</object-name>
         <object-name>RudderScrews</object-name>
@@ -1286,7 +2214,7 @@
         </condition>
     </animation>
 
-    <!-- Rudder cable -->
+    <!-- Rudder Cable -->
     <animation>
         <type>select</type>
         <object-name>RudderCable</object-name>
@@ -1342,7 +2270,7 @@
         </axis>
     </animation>
 
-    <!-- MOD: Amphibious Front Gear -->
+    <!-- Amphibious Front Gear -->
     <animation>
         <name>LeftFrontGear</name>
         <object-name>Lstrut.001</object-name>
@@ -1818,7 +2746,7 @@
             <y>0.0</y>
             <z>1.0</z>
         </axis>
-    </animation>
+    </animation>   
 
     <!-- suspension left gear and ski -->
     <animation>
@@ -1840,6 +2768,24 @@
         <object-name>LeftCableConnectB</object-name>
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
+                
+        <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>axle_lD</object-name>
+        <object-name>wheel_strut_lD</object-name>
+        <object-name>suspension_lower_lD</object-name>
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
     </animation> 
 
     <animation>
@@ -1967,6 +2913,7 @@
     <animation>
         <type>rotate</type>
         <object-name>LeftSkiWireB</object-name>
+        <object-name>LeftSkiWireBD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2011,6 +2958,24 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
+
+        <object-name>tyre_rD</object-name>
+        <object-name>tyre_r_bushD</object-name>
+        <object-name>axle_rD</object-name>
+        <object-name>wheel_strut_rD</object-name>
+        <object-name>suspension_lower_rD</object-name>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
     </animation> 
 
     <animation>
@@ -2138,6 +3103,7 @@
     <animation>
         <type>rotate</type>
         <object-name>RightSkiWireB</object-name>
+        <object-name>RightSkiWireBD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2174,6 +3140,13 @@
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
         <object-name>LeftSkiSpringL</object-name>
+
+        <object-name>LeftSkiLD</object-name>
+        <object-name>LeftSkiAxleLD</object-name>
+        <object-name>LeftSkiWireFLD</object-name>
+        <object-name>LeftSkiWireBLD</object-name>
+        <object-name>LeftCableConnectFLD</object-name>
+        <object-name>LeftCableConnectBLD</object-name>
     </animation> 
 
     <animation>
@@ -2260,6 +3233,13 @@
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
         <object-name>RightSkiSpringL</object-name>
+        
+        <object-name>RightSkiLD</object-name>
+        <object-name>RightSkiAxleLD</object-name>
+        <object-name>RightSkiWireFLD</object-name>
+        <object-name>RightSkiWireBLD</object-name>
+        <object-name>RightCableConnectFLD</object-name>
+        <object-name>RightCableConnectBLD</object-name>
     </animation> 
 
     <animation>
@@ -2283,6 +3263,7 @@
     <animation>
         <type>rotate</type>
         <object-name>RightSkiWireBL</object-name>
+        <object-name>RightSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2310,6 +3291,7 @@
     <animation>
         <type>rotate</type>
         <object-name>RightSkiWireBL</object-name>
+        <object-name>RightSkiWireBLD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
              <entry>
@@ -2348,7 +3330,7 @@
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
         <object-name>LeftSkiSpring</object-name>
-        <object-name>LeftSkiWireF</object-name>
+
         <object-name>LeftSkiL</object-name>
         <object-name>LeftSkiAxleL</object-name>
         <object-name>LeftSkiWireFL</object-name>
@@ -2356,6 +3338,20 @@
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
         <object-name>LeftSkiSpringL</object-name>
+
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -2400,7 +3396,7 @@
         <object-name>LeftSkiWheel</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
         <object-name>LeftSkiSpring</object-name>
-        <object-name>LeftSkiWireF</object-name>
+
         <object-name>LeftSkiL</object-name>
         <object-name>LeftSkiAxleL</object-name>
         <object-name>LeftSkiWireFL</object-name>
@@ -2408,6 +3404,20 @@
         <object-name>LeftCableConnectFL</object-name>
         <object-name>LeftCableConnectBL</object-name>
         <object-name>LeftSkiSpringL</object-name>
+
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftSkiWireFD</object-name>
+        <object-name>LeftSkiWireBD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiSpringD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
@@ -2446,7 +3456,7 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
-        <object-name>RightSkiWireF</object-name>
+
         <object-name>RightSkiL</object-name>
         <object-name>RightSkiAxleL</object-name>
         <object-name>RightSkiWireFL</object-name>
@@ -2454,6 +3464,20 @@
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
         <object-name>RightSkiSpringL</object-name>
+
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiSpringD</object-name>
         <condition>
             <less-than>
                <property>/position/altitude-agl-m</property>
@@ -2498,7 +3522,7 @@
         <object-name>RightSkiWheel</object-name>
         <object-name>RightSkiWheelAxle</object-name>
         <object-name>RightSkiSpring</object-name>
-        <object-name>RightSkiWireF</object-name>
+
         <object-name>RightSkiL</object-name>
         <object-name>RightSkiAxleL</object-name>
         <object-name>RightSkiWireFL</object-name>
@@ -2506,6 +3530,20 @@
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
         <object-name>RightSkiSpringL</object-name>
+
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightSkiWireFD</object-name>
+        <object-name>RightSkiWireBD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        <object-name>RightSkiSpringD</object-name>
         <property>/fdm/jsbsim/ski/atan-actual</property>
         <interpolation>
             <entry>
@@ -2631,21 +3669,67 @@
     <animation>
         <type>select</type>
         <object-name>sprayer</object-name>
-        <object-name>container</object-name>
         <object-name>prop</object-name>
         <condition>
-            <property>sim/model/sprayer</property>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>                
+            </and>
         </condition>
     </animation>
+
+    <!-- Hopper -->
+    <animation>
+        <type>select</type>
+        <object-name>container</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>1</value>
+                    </equals>
+                </or>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>                
+            </and>
+        </condition>
+    </animation>
+            
+    
     <animation>
         <type>select</type>
         <object-name>seat_rear</object-name>
         <object-name>stick_back</object-name>
         <condition>
-            <not-equals>
-                <property>sim/model/sprayer</property>
-                <value>1</value>
-            </not-equals>
+            <or>
+                <and>
+                    <equals>
+                        <property>sim/model/payload-package</property>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property>sim/model/payload</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>0</value>
+                </equals> 
+            </or>                
         </condition>
     </animation>
     <animation>
@@ -2665,6 +3749,193 @@
         </center>
     </animation>
 
+    <!-- water drop -->
+    <animation>
+        <type>select</type>
+        <object-name>ReleaseDoor</object-name>
+        <object-name>ReleaseTube</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ReleaseDoor</object-name>
+        <property>controls/armament/trigger</property>
+        <factor>23</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.5994 </x-m>
+            <y-m>-0.00003</y-m>
+            <z-m>-1.1649 </z-m>
+        </center>
+    </animation>
+
+    <!--barrel drop -->
+    <animation>
+        <type>select</type>
+        <object-name>drumMountLeft</object-name>
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <object-name>drumMountRight</object-name>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>sim/model/payload-package</property>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property>sim/model/payload</property>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property>fdm/jsbsim/bushkit</property>
+                        <value>2</value>
+                    </equals>
+                    <equals>
+                        <property>fdm/jsbsim/bushkit</property>
+                        <value>3</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>67.5</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>135</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.62561 </x-m>
+            <y-m>-1.02684 </y-m>
+            <z-m>-1.4633  </z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>drumLeftDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.6</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>45</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.6296 </x-m>
+            <y-m>-0.9359 </y-m>
+            <z-m>-1.2525 </z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>67.5</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>135</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.62561 </x-m>
+            <y-m> 1.03244 </y-m>
+            <z-m>-1.45254 </z-m>
+        </center>
+    </animation>
+   <animation>
+        <type>rotate</type>
+        <object-name>drumRightDoor</object-name>
+        <property alias="/params/drums/property"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.6</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>45</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m> 0.6296 </x-m>
+            <y-m> 0.9401 </y-m>
+            <z-m>-1.2425 </z-m>
+        </center>
+    </animation>
+    
 <!--  Interior Effects  *************************************************  -->
 
     <animation>
@@ -2868,153 +4139,244 @@
         </hovered>
     </animation>
 
-
-<!-- pilot (and safety belts)  -->
-
-  <model>
-    <name>pilot</name>
-    <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
-    <offsets>
-      <x-m>0.617</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.776</z-m>
-    </offsets>
-  </model>
+    <!-- pilot rear seat-->
+    <model>
+        <name>pilot</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>0.617</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.776</z-m>
+        </offsets>
+    </model>
+    
+    <!-- pilot front seat-->    
+    <model>
+        <name>pilot-front</name>
+        <path>Aircraft/J3Cub/Models/Pilot/pilot.xml</path>
+        <offsets>
+            <x-m>-0.050</x-m>
+            <y-m>0.0</y-m>
+            <z-m>-0.79083</z-m>
+        </offsets>
+    </model>
 
     <animation>
         <type>select</type>
         <object-name>pilot</object-name>
-        <!--object-name>pilot_belt</object-name-->
+        <condition>
+            <or>
+                <and>
+                    <not-equals>
+                        <property>/sim/current-view/view-number</property>
+                        <value>0</value>
+                    </not-equals>
+                    <property>/sim/model/occupants</property>
+                    <property>/pax/pilot/present</property>
+                    <equals>
+                        <property>/sim/model/payload</property>
+                        <value>0</value>
+                    </equals>
+                </and>                          
+                <and>
+                    <not-equals>
+                        <property>/sim/current-view/view-number</property>
+                        <value>0</value>
+                    </not-equals>
+                    <property>/sim/model/occupants</property>
+                    <property>/pax/pilot/present</property>
+                    <equals>
+                        <property>/sim/model/payload</property>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property>/sim/model/payload-package</property>
+                        <value>2</value>
+                    </equals>
+                </and>           
+            </or>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>pilot-front</object-name>
         <condition>
             <and>
                 <not-equals>
                     <property>sim/current-view/view-number</property>
-                    <value>0</value>
+                    <value>8</value>
                 </not-equals>
                 <property>sim/model/occupants</property>
+                <or>
+                    <and>
+                        <not>
+                            <property>sim/model/payload</property>
+                        </not>
+                        <property>pax/passenger/present</property>
+                    </and>      
+                    <and>
+                        <property>sim/model/payload</property>
+                        <equals>
+                            <property>sim/model/payload-package</property>
+                            <value>2</value>
+                        </equals>
+                        <property>pax/passenger/present</property>
+                    </and>
+                    <and>
+                        <property>sim/model/payload</property>
+                        <less-than>
+                            <property>sim/model/payload-package</property>
+                            <value>2</value>
+                        </less-than>
+                        <property>pax/passenger/present</property>    
+                    </and>
+                </or>
             </and>
         </condition>
     </animation>
 
-    <!-- <animation>
-    <type>select</type>
-    <object-name>copilot_belt</object-name>
-    <condition>
-      <not-equals>
-        <property>sim/current-view/name</property>
-        <value>Co-Pilot View</value>
-      </not-equals>
-    </condition>
-  </animation  -->
+    <!-- joysticks  -->
+    <animation>
+        <type>rotate</type>
+        <object-name>stick_front</object-name>
+        <property>controls/flight/elevator</property>
+        <factor>-8</factor>
+        <center>
+            <x-m>-0.050</x-m>
+            <y-m>0.00</y-m>
+            <z-m>-1.135</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
 
-<!-- joysticks  -->
+    <animation>
+        <type>rotate</type>
+        <object-name>stick_front</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>-8</factor>
+        <center>
+            <x-m>-0.050</x-m>
+            <y-m>0.00</y-m>
+            <z-m>-1.135</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
 
- <animation>
-  <type>rotate</type>
-  <object-name>stick_front</object-name>
-  <property>controls/flight/elevator</property>
-  <factor>-8</factor>
-  <center>
-   <x-m>-0.050</x-m>
-   <y-m>0.00</y-m>
-   <z-m>-1.135</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>stick_back</object-name>
+        <property>controls/flight/elevator</property>
+        <factor>-8</factor>
+        <center>
+            <x-m>0.655</x-m>
+            <y-m>0.00</y-m>
+            <z-m>-1.135</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
 
- <animation>
-  <type>rotate</type>
-  <object-name>stick_front</object-name>
-  <property>controls/flight/aileron</property>
-  <factor>-8</factor>
-  <center>
-   <x-m>-0.050</x-m>
-   <y-m>0.00</y-m>
-   <z-m>-1.135</z-m>
-  </center>
-  <axis>
-   <x>1.0</x>
-   <y>0.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>stick_back</object-name>
+        <property>controls/flight/aileron</property>
+        <factor>-8</factor>
+        <center>
+            <x-m>0.655</x-m>
+            <y-m>0.00</y-m>
+            <z-m>-1.135</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
 
- <animation>
-  <type>rotate</type>
-  <object-name>stick_back</object-name>
-  <property>controls/flight/elevator</property>
-  <factor>-8</factor>
-  <center>
-   <x-m>0.655</x-m>
-   <y-m>0.00</y-m>
-   <z-m>-1.135</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>knob</type>
+        <object-name>throttle_front</object-name>
+        <property>controls/engines/engine/throttle</property>
+        <factor>36</factor>
+        <center>
+            <x-m>0.058</x-m>
+            <y-m>-0.332</y-m>
+            <z-m>-0.582</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>-1.0</y>
+            <z>0.0</z>
+        </axis>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/engine/throttle</property>
+                <factor>.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>throttle_front</tooltip-id>
+                <label>Throttle: %s</label>
+                <property>controls/engines/engine/throttle</property>
+            </binding>
+        </hovered>
+    </animation>
 
- <animation>
-  <type>rotate</type>
-  <object-name>stick_back</object-name>
-  <property>controls/flight/aileron</property>
-  <factor>-8</factor>
-  <center>
-   <x-m>0.655</x-m>
-   <y-m>0.00</y-m>
-   <z-m>-1.135</z-m>
-  </center>
-  <axis>
-   <x>1.0</x>
-   <y>0.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
-
-<!-- throttle    -->
-
- <animation>
-  <type>rotate</type>
-  <object-name>throttle_front</object-name>
-  <property>controls/engines/engine/throttle</property>
-  <factor>36</factor>
-  <center>
-   <x-m>0.058</x-m>
-   <y-m>-0.332</y-m>
-   <z-m>-0.582</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>-1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
-
- <animation>
-  <type>rotate</type>
-  <object-name>throttle_back</object-name>
-  <property>controls/engines/engine/throttle</property>
-  <factor>36</factor>
-  <center>
-   <x-m>0.718</x-m>
-   <y-m>-0.332</y-m>
-   <z-m>-0.582</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>-1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>knob</type>
+        <object-name>throttle_back</object-name>
+        <property>controls/engines/engine/throttle</property>
+        <factor>36</factor>
+        <min>36</min>
+        <max>75</max>
+        <center>
+            <x-m>0.718</x-m>
+            <y-m>-0.332</y-m>
+            <z-m>-0.582</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>-1.0</y>
+            <z>0.0</z>
+        </axis>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/engine/throttle</property>
+                <factor>.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>throttle_back</tooltip-id>
+                <label>Throttle: %s</label>
+                <property>controls/engines/engine/throttle</property>
+            </binding>
+        </hovered>
+    </animation>
 
 <!-- rudder pedals; front only and just token movement -->
-
 <animation>
   <type>rotate</type>
   <object-name>rudderpedal_l</object-name>
@@ -3322,6 +4684,36 @@
         <object-name>tail_wheel_axle_bush</object-name>
         <object-name>tyre_l_bush</object-name>
         <object-name>tyre_r_bush</object-name>
+        
+        <object-name>wheel_strut_rD</object-name>       
+        <object-name>suspension_lower_rD</object-name>        
+        <object-name>suspension_upper_rD</object-name>       
+        <object-name>axle_rD</object-name>
+        <object-name>tyre_rD</object-name>      
+        <object-name>tyre_r_bushD</object-name>          
+        <object-name>wheel_strut_lD</object-name>       
+        <object-name>suspension_lower_lD</object-name>        
+        <object-name>suspension_upper_lD</object-name>       
+        <object-name>axle_lD</object-name>
+        <object-name>tyre_lD</object-name>
+        <object-name>tyre_l_bushD</object-name>
+        <object-name>wing_lD</object-name>
+        <object-name>wing_rD</object-name>
+        <object-name>wing_lB</object-name>
+        <object-name>wing_rB</object-name>
+        <object-name>wing_lC</object-name>
+        <object-name>wing_rC</object-name>
+        <object-name>aileron_lD</object-name>
+        <object-name>aileron_rD</object-name>
+        <object-name>aileron_lB</object-name>
+        <object-name>aileron_rB</object-name>
+        <object-name>aileron_lC</object-name>
+        <object-name>aileron_rC</object-name>
+        
+        <object-name>drumLeft</object-name>
+        <object-name>drumLeftDoor</object-name>
+        <object-name>drumRight</object-name>
+        <object-name>drumRightDoor</object-name>
         <property-base>sim/model/livery/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>texture.png</texture>
@@ -3335,42 +4727,32 @@
         <object-name>LeftSkiAxleBr</object-name>
         <object-name>LeftSkiBraceL</object-name>
         <object-name>LeftSkiBraceR</object-name>
-        <object-name>LeftSkiWireF</object-name>
-        <object-name>LeftSkiWireB</object-name>
         <object-name>LeftCableConnectF</object-name>
         <object-name>LeftCableConnectB</object-name>
         <object-name>LeftSkiWheel</object-name>
-        <object-name>LeftSkiSpring</object-name>
         <object-name>LeftSkiWheelAxle</object-name>
-        <object-name>LeftSkiL</object-name>
-        <object-name>LeftSkiAxleL</object-name>
-        <object-name>LeftSkiWireFL</object-name>
-        <object-name>LeftSkiWireBL</object-name>
-        <object-name>LeftCableConnectFL</object-name>
-        <object-name>LeftCableConnectBL</object-name>
-        <object-name>LeftSkiSpringL</object-name>
         <object-name>RightSki</object-name>
         <object-name>RightSkiAxle</object-name>
         <object-name>RightSkiAxleBl</object-name>
         <object-name>RightSkiAxleBr</object-name>
         <object-name>RightSkiBraceL</object-name>
         <object-name>RightSkiBraceR</object-name>
-        <object-name>RightSkiWireF</object-name>
-        <object-name>RightSkiWireB</object-name>
         <object-name>RightCableConnectF</object-name>
         <object-name>RightCableConnectB</object-name>
         <object-name>RightSkiWheel</object-name>
-        <object-name>RightSkiSpring</object-name>
         <object-name>RightSkiWheelAxle</object-name>
+
+        <object-name>LeftSkiL</object-name>
+        <object-name>LeftSkiAxleL</object-name>
+        <object-name>LeftCableConnectFL</object-name>
+        <object-name>LeftCableConnectBL</object-name>
         <object-name>RightSkiL</object-name>
         <object-name>RightSkiAxleL</object-name>
-        <object-name>RightSkiWireFL</object-name>
-        <object-name>RightSkiWireBL</object-name>
         <object-name>RightCableConnectFL</object-name>
         <object-name>RightCableConnectBL</object-name>
-        <object-name>RightSkiSpringL</object-name>
         <object-name>RearSkiL</object-name>
         <object-name>RearSkiAxleL</object-name>
+
         <object-name>FloatStruts</object-name>
         <object-name>L-Float</object-name>
         <object-name>R-Float</object-name>
@@ -3394,6 +4776,63 @@
         <object-name>Rstrut.002</object-name>
         <object-name>LHrudder</object-name>
         <object-name>RHrudder</object-name>
+        
+        <object-name>LeftSkiD</object-name>
+        <object-name>LeftSkiAxleD</object-name>
+        <object-name>LeftSkiAxleBlD</object-name>
+        <object-name>LeftSkiAxleBrD</object-name>
+        <object-name>LeftSkiBraceLD</object-name>
+        <object-name>LeftSkiBraceRD</object-name>
+        <object-name>LeftCableConnectFD</object-name>
+        <object-name>LeftCableConnectBD</object-name>
+        <object-name>LeftSkiWheelD</object-name>
+        <object-name>LeftSkiWheelAxleD</object-name>
+        <object-name>RightSkiD</object-name>
+        <object-name>RightSkiAxleD</object-name>
+        <object-name>RightSkiWheelAxleD</object-name>
+        <object-name>RightSkiAxleBlD</object-name>
+        <object-name>RightSkiAxleBrD</object-name>
+        <object-name>RightSkiBraceLD</object-name>
+        <object-name>RightSkiBraceRD</object-name>
+        <object-name>RightCableConnectFD</object-name>
+        <object-name>RightCableConnectBD</object-name>
+        <object-name>RightSkiWheelD</object-name>
+        
+        <object-name>LeftSkiLD</object-name>
+        <object-name>LeftSkiAxleLD</object-name>
+        <object-name>LeftCableConnectFLD</object-name>
+        <object-name>LeftCableConnectBLD</object-name>
+        <object-name>RightSkiLD</object-name>
+        <object-name>RightSkiAxleLD</object-name>
+        <object-name>RightCableConnectFLD</object-name>
+        <object-name>RightCableConnectBLD</object-name>
+        
+        <object-name>L-FloatCD</object-name>
+        <object-name>R-FloatCD</object-name>
+        <object-name>L-FloatCB</object-name>
+        <object-name>R-FloatCB</object-name>
+        <object-name>L-FloatD</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>L-FloatB</object-name>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>
+        <object-name>LdamperD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
         <property-base>sim/model/liveryfloat/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>floats.png</texture>

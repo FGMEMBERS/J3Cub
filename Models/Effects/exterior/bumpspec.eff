@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PropertyList>
-  <name>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</name>
+  <name>bumpspec</name>
   <inherits-from>Effects/model-combined-deferred</inherits-from>
   <parameters>
+    <grain-texture-enabled type="int">2</grain-texture-enabled>
+	<grain-magnification type="float"><use>/environment/aircraft-effects/dirt</use></grain-magnification>
+	<texture n="7">
+		<image>Models/Geometry/Nimitz/rust_texture.png</image>
+		<type>2d</type>
+		<filter>linear-mipmap-linear</filter>
+		<wrap-s>repeat</wrap-s>
+		<wrap-t>repeat</wrap-t>
+		<internal-format>normalized</internal-format>
+	</texture>
     <rain-enabled type="int">2</rain-enabled>
-    <normalmap-enabled type="int"> 1 </normalmap-enabled>
+    <!--normalmap-enabled type="int"> 1 </normalmap-enabled>
     <normalmap-dds type="int"> 0 </normalmap-dds>
-    <normalmap-tiling type="float"> 1.0 </normalmap-tiling>
+    <normalmap-tiling type="float"> 1.0 </normalmap-tiling-->
     <lightmap-enabled type="int"> 0 </lightmap-enabled>
     <reflection-enabled type="int"> 1 </reflection-enabled>
     <reflection-correction type="float"> -0.7 </reflection-correction>
     <reflection-dynamic type="int"> 1 </reflection-dynamic>
-    <reflection-fresnel type="float"> 0.0 </reflection-fresnel>
-    <reflection-rainbow type="float"> 0.0 </reflection-rainbow>
-    <reflection-noise type="float"> 0.0 </reflection-noise>
+    <reflection-fresnel type="float"> 0.2 </reflection-fresnel>
+    <reflection-rainbow type="float"> 0.3 </reflection-rainbow>
+    <reflection-noise type="float"> 0.2 </reflection-noise>
+    <ambient-correction type="float"> 0.1 </ambient-correction> 
     <texture n= "5" >
         <type>cubemap</type>
         <images>
@@ -25,7 +36,6 @@
             <negative-z>Aircraft/Generic/Effects/fgfs-sky2/5.png</negative-z>
         </images>
     </texture>
-    <ambient-correction type="float"> 0.1 </ambient-correction>
   </parameters>
 <!--WARNING: Do not edit below this line -->
 <!-- ####################

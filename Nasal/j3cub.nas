@@ -146,7 +146,7 @@ var thunder = func (name) {
 
 var reset_system = func {
     if (getprop("/fdm/jsbsim/running")) {
-        Cub.autostart(0);
+        j3cub.autostart(0);
         setprop("/controls/engines/engine/starter", 1);
     }
 
@@ -160,34 +160,9 @@ var reset_system = func {
     props.globals.getNode("/fdm/jsbsim/gear/unit[2]/broken", 0).setBoolValue(0);
     props.globals.getNode("/fdm/jsbsim/pontoon-damage/left-pontoon", 0).setIntValue(0);
     props.globals.getNode("/fdm/jsbsim/pontoon-damage/right-pontoon", 0).setIntValue(0);
-
-    setprop("/engines/active-engine/kill-engine", 0);
-
-}
-
-##############
-# Insecticid
-##############
-var capacity = 0.01;
-var insecticidRelease = func {
-    if (getprop("/controls/armament/trigger") and getprop("/payload/weight[15]/weight-lb")) {
-        var weight = getprop("/payload/weight[15]/weight-lb");
-        var velocity = getprop("/velocities/airspeed-kt");
-        weight = weight - capacity * velocity;
-        setprop("/payload/weight[15]/weight-lb", weight); 
-    }
-}
-
-############################################
-# Global loop function
-# If you need to run nasal as loop, add it in this function
-############################################
-var global_system_loop = func {
-    Cub.physics_loop();
-    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
-        setprop("/controls/engines/engine/starter", 0);
-    }
-    insecticidRelease();
+    props.globals.getNode("/fdm/jsbsim/ski-damage/left-ski", 0).setIntValue(0);
+    props.globals.getNode("/fdm/jsbsim/ski-damage/right-ski", 0).setIntValue(0);
+    setprop("/engines/active-engine/crash-engine", 0);
 }
 
 var update_pax = func {
@@ -196,10 +171,6 @@ var update_pax = func {
     state = bits.switch(state, 1, getprop("pax/passenger/present"));
     setprop("/payload/pax-state", state);
 };
-
-setlistener("/pax/pilot/present", update_pax, 0, 0);
-setlistener("/pax/passenger/present", update_pax, 0, 0);
-update_pax();
 
 var update_securing = func {
     var state = 0;
@@ -211,12 +182,98 @@ var update_securing = func {
     setprop("/payload/securing-state", state);
 };
 
-setlistener("/sim/model/j3cub/securing/pitot-cover-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/chock-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownL-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
-setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
-update_securing();
+##############
+# Payload
+##############
+var capacity = 0.0;
+var weight = 0.0;
+var velocity = 0; 
+var payload_release = func {
+    if (!getprop("/sim/model/payload")) {
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0.0);  
+        return;
+    }
+    if (getprop("/controls/armament/trigger") and
+            getprop("/sim/model/payload") and 
+            (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") or
+                getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") < .01)) {
+        logger.screen.white("Hopper is empty");
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0);
+        return;
+    }
+    if (getprop("/sim/current-view/view-number") == 0 and 
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2) {
+        setprop("/sim/current-view/view-number", 8);
+        logger.screen.white("Your not allowed to sit on hopper");
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }
+    if (getprop("/sim/current-view/view-number") == 8 and
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2 and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]")) {
+        logger.screen.white("Your not allowed to sit on hopper");
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }
+    if (getprop("/sim/current-view/view-number") != 0 and
+            getprop("/sim/current-view/view-number") != 8 and
+            getprop("/sim/model/payload") == 1 and
+            getprop("/sim/model/payload-package") < 2 and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]")) {
+        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+    }   
+    if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 0 and
+            getprop("/sim/model/payload")) {
+        capacity = 0.01;    
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = getprop("/velocities/airspeed-kt");
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    } else if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 1 and
+            getprop("/sim/model/payload")) {
+        capacity = .75;
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    } else if (getprop("/controls/armament/trigger") and
+            getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]") and
+            getprop("/sim/model/payload-package") == 2 and
+            getprop("/sim/model/payload") and
+            getprop("/sim/model/drums/rotate/position-norm") > .633) {
+        capacity = 5;
+        weight = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]");
+        velocity = 9.8;
+        weight = weight - capacity * velocity;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
+    }
+}
+
+var drum_release = func {
+    j3cub.drums.toggle();
+}
+
+var resolve_impact = func (n) {
+    #print("Retardant impact!");
+    var node = props.globals.getNode(n.getValue());
+    var pos  = geo.Coord.new().set_latlon
+                   (node.getNode("impact/latitude-deg").getValue(),
+                    node.getNode("impact/longitude-deg").getValue(),
+                    node.getNode("impact/elevation-m").getValue());
+    # The arguments are: position, radius and volume (currently unused).
+    wildfire.resolve_foam_drop(pos, 10, 0);
+    #wildfire.resolve_retardant_drop(pos, 10, 0);
+}
 
 #var log_cabin_temp = func {
 #    if (getprop("/sim/model/j3cub/enable-fog-frost")) {
@@ -235,6 +292,45 @@ update_securing();
 #};
 #var fog_frost_timer = maketimer(30.0, log_fog_frost);
 
+#var set_limits = func () {
+   
+#    var limits = props.globals.getNode("/limits/mass-and-balance");
+#    var ac_limits = props.globals.getNode("/limits/mass-and-balance");
+
+    # Get the mass limits of the current engine
+#    var ramp_mass = limits.getNode("maximum-ramp-mass-lbs");
+#    var takeoff_mass = limits.getNode("maximum-takeoff-mass-lbs");
+#    var landing_mass = limits.getNode("maximum-landing-mass-lbs");
+
+    # Get the actual mass limit nodes of the aircraft
+#    var ac_ramp_mass = ac_limits.getNode("maximum-ramp-mass-lbs");
+#    var ac_takeoff_mass = ac_limits.getNode("maximum-takeoff-mass-lbs");
+#    var ac_landing_mass = ac_limits.getNode("maximum-landing-mass-lbs");
+
+    # Set the mass limits of the aircraft
+#    ac_ramp_mass.unalias();
+#    ac_takeoff_mass.unalias();
+#    ac_landing_mass.unalias();
+
+#    ac_ramp_mass.alias(ramp_mass);
+#    ac_takeoff_mass.alias(takeoff_mass);
+#    ac_landing_mass.alias(landing_mass);
+#};
+
+############################################
+# Global loop function
+# If you need to run nasal as loop, add it in this function
+############################################
+var global_system_loop = func {
+    j3cub.physics_loop();
+    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
+        setprop("/controls/engines/engine/starter", 0);
+    }
+    if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
+        setprop("/instrumentation/garmin196/antenne-deg", 180);
+    payload_release();
+}
+
 ##########################################
 # SetListerner must be at the end of this file
 ##########################################
@@ -246,10 +342,31 @@ setlistener("/sim/signals/fdm-initialized", func {
 
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
+    
+    # Listen for release of payload
+    setlistener("controls/armament/trigger", drum_release);
+    
+    # Listen for view impact of released payload
+    setlistener("/sim/ai/aircraft/impact/retardant", resolve_impact);
 
+    setlistener("/pax/pilot/present", update_pax, 0, 0);
+    setlistener("/pax/passenger/present", update_pax, 0, 0);
+    update_pax();
+    
+    setlistener("/sim/model/j3cub/securing/pitot-cover-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/chock-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownL-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownR-visible", update_securing, 0, 0);
+    setlistener("/sim/model/j3cub/securing/tiedownT-visible", update_securing, 0, 0);
+    update_securing();
+    
+    # Initialize mass limits
+    #set_limits();
+  
     reset_system();
     j3cub.rightWindow.toggle();
     j3cub.rightDoor.toggle();
+
     var j3cub_timer = maketimer(0.25, func{global_system_loop()});
     j3cub_timer.start();
 });

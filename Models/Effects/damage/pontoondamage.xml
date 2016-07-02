@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-    <path>c172p-pontoon-damage.ac</path>
+    <path>j3cub-pontoon-damage.ac</path>
     <texture-path>../../../Models</texture-path>
     <nopreview/>
     <offsets>
@@ -12,71 +12,75 @@
     </offsets>
 
     <effect>
-        <inherits-from>Aircraft/c172p/Models/Effects/exterior/bumpspec</inherits-from>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
         <object-name>L-FloatCD</object-name>
         <object-name>R-FloatCD</object-name>
         <object-name>L-FloatCB</object-name>
         <object-name>R-FloatCB</object-name>
-        <object-name>L-FloatOD</object-name>
-        <object-name>R-FloatOD</object-name>
-        <object-name>L-FloatOB</object-name>
-        <object-name>R-FloatOB</object-name>
-        <object-name>LdamperOD</object-name>
-        <object-name>RdamperOD</object-name>
-        <object-name>LdamperOB</object-name>
-        <object-name>RdamperOB</object-name>
-        <object-name>LstrutOD.001</object-name>
-        <object-name>LstrutOD.002</object-name>
-        <object-name>LstrutOB.001</object-name>
-        <object-name>LstrutOB.002</object-name>
-        <object-name>RstrutOD.001</object-name>
-        <object-name>RstrutOD.002</object-name>
-        <object-name>RstrutOB.001</object-name>
-        <object-name>RstrutOB.002</object-name>
-        <object-name>LHrudderD</object-name>
-        <object-name>RHrudderD</object-name>
+        <object-name>L-FloatD</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>L-FloatB</object-name>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>        
+        <object-name>LdamperD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
         <object-name>LHrudderB</object-name>
         <object-name>RHrudderB</object-name>
     </effect>
 
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
-	 <type>material</type>
-	 <object-name>L-FloatCD</object-name>
-	 <object-name>R-FloatCD</object-name>
-	 <object-name>L-FloatCB</object-name>
-	 <object-name>R-FloatCB</object-name>
-	 <object-name>L-FloatOD</object-name>
-	 <object-name>R-FloatOD</object-name>
-	 <object-name>L-FloatOB</object-name>
-	 <object-name>R-FloatOB</object-name>
-	 <object-name>LdamperOD</object-name>
-	 <object-name>RdamperOD</object-name>
-	 <object-name>LdamperOB</object-name>
-	 <object-name>RdamperOB</object-name>
-	 <object-name>LstrutOD.001</object-name>
-	 <object-name>LstrutOD.002</object-name>
-	 <object-name>LstrutOB.001</object-name>
-	 <object-name>LstrutOB.002</object-name>
-	 <object-name>RstrutOD.001</object-name>
-	 <object-name>RstrutOD.002</object-name>
-	 <object-name>RstrutOB.001</object-name>
-	 <object-name>RstrutOB.002</object-name>
-	 <object-name>LHrudderD</object-name>
-	 <object-name>RHrudderD</object-name>
-	 <object-name>LHrudderB</object-name>
-	 <object-name>RHrudderB</object-name>
-	 <object-name>FloatStruts</object-name>
-	 <shininess>128</shininess>
-	 <specular>
-		 <r>1</r>
-		 <g>1</g>
-		 <b>1</b>
-	 </specular>
-	 <ambient>
-		 <r>1</r>
-		 <g>1</g>
-		 <b>1</b>
-	 </ambient>
- </animation>
+        <type>material</type>
+        <object-name>L-FloatCD</object-name>
+        <object-name>R-FloatCD</object-name>
+        <object-name>L-FloatCB</object-name>
+        <object-name>R-FloatCB</object-name>
+        <object-name>L-FloatD</object-name>
+        <object-name>R-FloatD</object-name>
+        <object-name>L-FloatB</object-name>
+        <object-name>R-FloatB</object-name>
+        <object-name>RRwheelB</object-name>
+        <object-name>RRtarmB</object-name>
+        <object-name>LRwheelB</object-name>
+        <object-name>LRtarmB</object-name>        
+        <object-name>LdamperD</object-name>
+        <object-name>RdamperD</object-name>
+        <object-name>LdamperB</object-name>
+        <object-name>RdamperB</object-name>
+        <object-name>Lstrut.001D</object-name>
+        <object-name>Lstrut.002D</object-name>
+        <object-name>Lstrut.001B</object-name>
+        <object-name>Lstrut.002B</object-name>
+        <object-name>Rstrut.001D</object-name>
+        <object-name>Rstrut.002D</object-name>
+        <object-name>Rstrut.001B</object-name>
+        <object-name>Rstrut.002B</object-name>
+        <object-name>LHrudderB</object-name>
+        <object-name>RHrudderB</object-name>
+        <shininess>128</shininess>
+        <specular>
+             <r>1</r>
+             <g>1</g>
+             <b>1</b>
+        </specular>
+        <ambient>
+             <r>1</r>
+             <g>1</g>
+             <b>1</b>
+        </ambient>
+    </animation> -->
+    
 </PropertyList>

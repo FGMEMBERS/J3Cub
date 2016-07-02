@@ -99,4 +99,18 @@
         <property type="string">/fdm/jsbsim/hydro/spray-wake-speed-kt-actual</property>
     </signal>
 
+    <!-- Sprayer - Water Drop -->
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/payload/release-payload-actual</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/fdm/jsbsim/payload/release-payload-drum-actual</property>
+    </signal>
+    <signal>
+        <type>int8</type>
+        <property type="string">/sim/model/payload-package</property>
+    </signal>
+
 </PropertyList>

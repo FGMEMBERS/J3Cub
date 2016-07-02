@@ -10,9 +10,9 @@
         <x-m>0.0</x-m>
         <pitch-deg>0.0</pitch-deg>
     </offsets>
-    
+
     <effect>
-        <inherits-from>Effects/grain/dirt</inherits-from>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
         <object-name>FloatStruts</object-name>
         <object-name>LRtarm</object-name>
         <object-name>RRtarm</object-name>
@@ -30,26 +30,7 @@
         <object-name>RHrudder</object-name>
     </effect>
 
-     <effect>
-        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec-floats</inherits-from>
-        <object-name>FloatStruts</object-name>
-        <object-name>LRtarm</object-name>
-        <object-name>RRtarm</object-name>
-        <object-name>L-Float</object-name>
-        <object-name>R-Float</object-name>
-        <object-name>L-FloatC</object-name>
-        <object-name>R-FloatC</object-name>
-        <object-name>Ldamper</object-name>
-        <object-name>Rdamper</object-name>
-        <object-name>Lstrut.001</object-name>
-        <object-name>Lstrut.002</object-name>
-        <object-name>Rstrut.001</object-name>
-        <object-name>Rstrut.002</object-name>
-        <object-name>LHrudder</object-name>
-        <object-name>RHrudder</object-name>
-    </effect>
-
-    <!--  Specularity fix -->
+    <!--  Specularity fix
     <animation>
         <type>material</type>
         <object-name>FloatStruts</object-name>
@@ -86,8 +67,8 @@
             <g>1</g>
             <b>1</b>
         </ambient>
-    </animation>
-    
+    </animation> -->
+
     <effect>
         <inherits-from>Effects/interior/j3cub-flashlight</inherits-from>
         <object-name>nosedn1</object-name>
@@ -110,16 +91,11 @@
         <object-name>screw_2</object-name>
         <object-name>screw_3</object-name>
         <object-name>screw_4</object-name>
-        <object-name>RuddWires</object-name>
-        <object-name>FloatStruts</object-name>
-        <object-name>FloatReinforceLeft</object-name>
-        <object-name>FloatReinforceRight</object-name>
-        <object-name>FloatReinforceJoin</object-name>
         <object-name>RudderCatch</object-name>
         <object-name>RudderHandle</object-name>
         <object-name>RudderScrews</object-name>
         <object-name>RudderTube</object-name>
         <object-name>RudderCable</object-name>
     </effect>
-    
+
 </PropertyList>

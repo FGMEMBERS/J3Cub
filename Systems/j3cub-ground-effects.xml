@@ -101,7 +101,7 @@
                     <property>gear/unit[0]/broken</property>
                     <switch>
                         <property>bushkit</property-->
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
                         <!--value> -10.00 </value>
                         <value> -17.70 </value>
                         <value>   0.00 </value>
@@ -111,7 +111,7 @@
                     <value>0.0</value>
                 </ifthen>
             </function>
-        </fcs_function>
+        </fcs_function-->
 
         <fcs_function name="z-position-effect-left-gear">
             <output>contact/unit[7]/z-position</output>
@@ -119,14 +119,14 @@
                 <ifthen>
                     <property>gear/unit[1]/broken</property>
                     <switch>
-                        <property>bushkit</property-->
+                        <property>bushkit</property>
 
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
-                        <!--value> -9.5</value>
-                        <value>-14.5</value>
-                        <value>-16.0</value>
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
+                        <value>-69.5</value>
+                        <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
+                        <value>-83.5</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
@@ -140,21 +140,21 @@
                 <ifthen>
                     <property>gear/unit[2]/broken</property>
                     <switch>
-                        <property>bushkit</property-->
+                        <property>bushkit</property>
 
-                        <!-- Default/26"/36"/pontoon/amphibious/skis -->
-                        <!--value> -8.0</value>
-                        <value>-15.5</value>
-                        <value>-17.4</value>
+                        <!-- Default/35"/pontoon/amphibious/skis/skis-lite -->
+                        <value>-69.8</value>
+                        <value>-75.5</value>
                         <value>  0.0</value>
                         <value>  0.0</value>
+                        <value>-83.5</value>
                         <value>-21.0</value>
                     </switch>
                     <value>0.0</value>
                 </ifthen>
             </function>
         </fcs_function>
-        -->
+
         <!-- ================================================================== -->
         <!-- Contact points wing tips                                           -->
         <!-- ================================================================== -->
@@ -162,20 +162,20 @@
         <switch name="z-position-left-wing-tip">
             <output>contact/unit[4]/z-position</output>
             <default value="5"/>
-            <!-- use when damage states activated
+
+            <!-- use when damage states activated -->
             <test logic="AND" value="48">
                 crash EQ 1
-            </test-->>
-
+            </test>
             <!-- -10 when on/above water -->
-            <!--test logic="AND" value="-10">
+            <test logic="AND" value="-10">
                 contact/unit[4]/solid EQ 0
             </test>
-
             <test logic="AND" value="40">
                 wing-damage/left-wing EQ 1.0
-                contact/unit[12]/WOW EQ
-            </test-->
+                contact/unit[12]/WOW EQ 1
+            </test>
+
             <test logic="AND" value="5">
                 contact/unit[4]/WOW EQ 1
             </test>
@@ -185,27 +185,26 @@
             <output>contact/unit[5]/z-position</output>
             <default value="5"/>
 
-                        <!-- use when damage states activated
+            <!-- use when damage states activated -->
             <test logic="AND" value="48">
                 crash EQ 1
-            </test-->
-
+            </test>
             <!-- -10 when on/above water -->
-            <!--test logic="AND" value="-10">
+            <test logic="AND" value="-10">
                 contact/unit[5]/solid EQ 0
             </test>
-
             <test logic="AND" value="40">
                 wing-damage/right-wing EQ 1.0
                 contact/unit[12]/WOW EQ 1
-            </test-->
+            </test>
+
             <test logic="AND" value="5">
                 contact/unit[5]/WOW EQ 1
             </test>
         </switch>
 
         <!-- ================================================================== -->
-        <!-- Contact points top of fuselage and empennage                       -->
+        <!-- Contact points top of fuselage and empennage for water crash                      -->
         <!-- ================================================================== -->
 
         <switch name="z-position-nose-top">
@@ -219,9 +218,9 @@
 
         <switch name="z-position-nose">
             <output>contact/unit[10]/z-position</output>
-            <default value="-3"/>
+            <default value="-37"/>
 
-            <test logic="AND" value="-10">
+            <test logic="AND" value="-3">
                 contact/unit[10]/solid EQ 0
             </test>
         </switch>
@@ -239,7 +238,7 @@
             <output>contact/unit[12]/z-position</output>
             <default value="71"/>
 
-            <!-- 160 puts tail higher in the air when upside down -->
+            <!-- tail higher in the air when upside down over water -->
             <test logic="AND" value="130">
                 contact/unit[12]/solid EQ 0
             </test>
@@ -253,36 +252,96 @@
             <output>gear/unit[19]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-117.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-107">
                 bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-99">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-96.5">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-right-fwd-pontoon">
             <output>gear/unit[20]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-117.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-107">
                 bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-102">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-98">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-left-aft-pontoon">
             <output>gear/unit[21]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-110.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-105">
                 bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-105">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-100">
+                bushkit EQ 3
+                pontoon-damage/left-pontoon EQ 1
+            </test>
+
         </switch>
 
         <switch name="z-position-right-aft-pontoon">
             <output>gear/unit[22]/z-position</output>
             <default value="30"/>
 
-            <test logic="AND" value="-110.5">
+            <!-- Not Damaged -->
+            <test logic="AND" value="-105">
                 bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 0
             </test>
+
+            <!-- Damaged -->
+            <test logic="AND" value="-105">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 2
+            </test>
+
+            <!-- Broken -->
+            <test logic="AND" value="-100.5">
+                bushkit EQ 3
+                pontoon-damage/right-pontoon EQ 1
+            </test>
+
         </switch>
 
         <!-- ================================================================== -->
@@ -343,10 +402,16 @@
             <output>contact/unit[26]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-83">
+            <test logic="AND" value="-84">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[1]/broken EQ 0
+            </test>
+
+            <test logic="AND" value="-86">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[1]/broken EQ 1
             </test>
 
         </switch>
@@ -355,10 +420,16 @@
             <output>contact/unit[27]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-82">
+            <test logic="AND" value="-83.5">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[2]/broken EQ 0
+            </test>
+
+            <test logic="AND" value="-86">
+                simulation/sim-time-sec GT 0.25
+                bushkit EQ 5
+                gear/unit[2]/broken EQ 1
             </test>
 
         </switch>
@@ -367,7 +438,7 @@
             <output>contact/unit[28]/z-position</output>
             <default value="0"/>
 
-            <test logic="AND" value="-32.5">
+            <test logic="AND" value="-33">
                 simulation/sim-time-sec GT 0.25
                 bushkit EQ 5
                 gear/unit[2]/broken EQ 0
@@ -551,6 +622,192 @@
                         </gt>
                     </product>
                 </or>
+            </function>
+        </fcs_function>
+
+        <!-- release liqued payload-->
+        <fcs_function name="payload/release-payload">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                </and>
+            </function>
+        </fcs_function>
+
+        <!-- release drum payload-->
+        <fcs_function name="payload/release-payload-drum">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.63</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum1">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.66</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum2">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.69</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum3">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.73</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum4">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.76</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum5">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.79</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum6">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.83</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum7">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.86</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
+            </function>
+        </fcs_function>
+        <fcs_function name="payload/release-payload-drum8">
+            <function>
+                <and>
+                    <property>/controls/armament/trigger</property>
+                    <gt>
+                        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</property>
+                        <value>0.1</value>
+                    </gt>
+                    <gt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.89</value>
+                    </gt>
+                    <lt>
+                        <property>/sim/model/drums/rotate/position-norm</property>
+                        <value>0.95</value>
+                    </lt>
+                </and>
             </function>
         </fcs_function>
 

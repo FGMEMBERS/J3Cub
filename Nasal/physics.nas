@@ -1,7 +1,6 @@
 var reset_all_damage = func
 {
     setprop("/engines/active-engine/crash-engine", 0);
-    setprop("/engines/active-engine/kill-engine", 0);
 
     # Landing gear
     setprop("/fdm/jsbsim/gear/unit[0]/broken", 0);
@@ -18,6 +17,12 @@ var reset_all_damage = func
     # Pontoons
     setprop("/fdm/jsbsim/pontoon-damage/left-pontoon", 0);
     setprop("/fdm/jsbsim/pontoon-damage/right-pontoon", 0);
+
+    # Ski-lite
+    setprop("/fdm/jsbsim/ski-damage/left-ski", 0);
+    setprop("/fdm/jsbsim/ski-damage/right-ski", 0);
+    
+    setprop("/controls/engines/engine/magnetos", 3);
 }
 
 var repair_damage = func {
@@ -60,6 +65,11 @@ var physics_loop = func
     }
     if (getprop("/fdm/jsbsim/bushkit") == 2 or getprop("/fdm/jsbsim/bushkit") == 3)
         poll_surface();
+    if (getprop("/fdm/jsbsim/contact/unit[9]/WOW") or
+            getprop("/fdm/jsbsim/contact/unit[10]/WOW" or
+            getprop("/fdm/jsbsim/contact/unit[11]/WOW" or
+            getprop("/fdm/jsbsim/contact/unit[12]/WOW"))))
+        killengine();
 }
 
 var set_bushkit = func (bushkit) {
@@ -103,8 +113,8 @@ setlistener("/sim/signals/fdm-initialized", func {
             else
                 gui.popupTip("Left wing DAMAGED!", 5);
 
-            if (getprop("position/altitude-agl-m") < 10)
-                killengine();
+            #if (getprop("position/altitude-agl-m") < 10)
+            #    killengine();
         }
     }, 0, 0);
 
@@ -124,8 +134,8 @@ setlistener("/sim/signals/fdm-initialized", func {
             else
                 gui.popupTip("Right wing DAMAGED!", 5);
 
-            if (getprop("position/altitude-agl-m") < 10)
-                killengine();
+            #if (getprop("position/altitude-agl-m") < 10)
+            #    killengine();
         }
     }, 0, 0);
 
@@ -164,4 +174,12 @@ setlistener("/sim/signals/fdm-initialized", func {
                 gui.popupTip("Right pontoon DAMAGED!", 5);
         }
     }, 0, 0);
+    
+    setlistener("/engines/active-engine/crashed", func (n) {
+        if (n.getValue()) setprop("/controls/engines/engine/magnetos", 0); 
+    }, 0, 0);
+
+    setlistener("/fdm/jsbsim/settings/damage", func {
+        reset_all_damage();
+    });
 });

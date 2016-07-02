@@ -123,7 +123,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                         <value>3</value>
                     </eq>
                     <sum>
-                        <value>138.0</value>
+                        <value>117.0</value>
                         <property>left-pontoon/leaked-water-lbs</property>
                     </sum>
                 </product>
@@ -139,7 +139,7 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
                         <value>3</value>
                     </eq>
                     <sum>
-                        <value>138.0</value>
+                        <value>115.0</value>
                         <property>right-pontoon/leaked-water-lbs</property>
                     </sum>
                 </product>
@@ -192,7 +192,8 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
         <switch name="drag-Sprayer">
             <default value="1"/>
             <test logic="AND" value="1.12">
-                /sim/model/sprayer EQ 1
+                /sim/model/payload-package EQ 0
+                /sim/model/payload EQ 1
             </test>
             <output>gear/drag-coef[6]</output>
         </switch>

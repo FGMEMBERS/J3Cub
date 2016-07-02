@@ -24,7 +24,7 @@
         <input>
             <greater-than>
                 <property>payload/weight[0]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
@@ -37,7 +37,7 @@
         <input>
             <greater-than>
                 <property>payload/weight[1]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
