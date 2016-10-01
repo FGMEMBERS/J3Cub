@@ -40,10 +40,10 @@
             setprop("sim/model/j3cub/payload-package_flag_" ~ p, 1);
             
             # Engine power
-            #var p = getprop("/controls/engines/active-engine");
-            #setprop("sim/model/j3cub/engine_flag_0", 0);
-            #setprop("sim/model/j3cub/engine_flag_1", 0);
-            #setprop("sim/model/j3cub/engine_flag_" ~ p, 1);
+            var p = getprop("/controls/engines/active-engine");
+            setprop("sim/model/j3cub/engine_flag_0", 0);
+            setprop("sim/model/j3cub/engine_flag_1", 0);
+            setprop("sim/model/j3cub/engine_flag_" ~ p, 1);
         </open>
     </nasal>
 
@@ -572,11 +572,11 @@
         
         <hrule/>
 
-        <!--group>
+        <group>
             <layout>vbox</layout>
 
             <text>
-                <label>Engine power options</label>
+                <label>Engine Option</label>
                 <halign>center</halign>
             </text>
 
@@ -585,7 +585,7 @@
 
                 <radio>
                     <halign>left</halign>
-                    <label>160 HP</label>
+                    <label>65 HP</label>
                     <property>sim/model/j3cub/engine_flag_0</property>
                     <live>true</live>
                     <enable>
@@ -604,20 +604,11 @@
                             setprop("sim/model/j3cub/engine_flag_1", 0);
                         </script>
                     </binding>
-                    <binding>
-                        <command>property-assign</command>
-                        <property>/engines/active-engine/oil-level</property>
-                        <value>7.0</value>
-                    </binding>
-                    <binding>
-                        <command>dialog-close</command>
-                        <dialog-name>j3cub-oil-dialog-180</dialog-name>
-                    </binding>
                 </radio>
 
                 <radio>
                     <halign>left</halign>
-                    <label>180 HP</label>
+                    <label>90 HP</label>
                     <property>sim/model/j3cub/engine_flag_1</property>
                     <live>true</live>
                     <enable>
@@ -636,18 +627,11 @@
                             setprop("sim/model/j3cub/engine_flag_1", 1);
                         </script>
                     </binding>
-                    <binding>
-                        <command>property-assign</command>
-                        <property>/engines/active-engine/oil-level</property>
-                        <value>8.0</value>
-                    </binding>
-                    <binding>
-                        <command>dialog-close</command>
-                        <dialog-name>j3cub-oil-dialog-160</dialog-name>
-                    </binding>
                 </radio>
             </group>
-        </group-->
+        </group>
+
+        <hrule/>
 
         <group>
             <layout>vbox</layout>

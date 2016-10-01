@@ -251,6 +251,14 @@
                 <z> -38.99 </z>
             </location>
         </pointmass>
+        <pointmass name="extra weight 90hp">
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x> -34.0 </x>
+                <y>   0.0 </y>
+                <z> -27.0 </z>
+            </location>
+        </pointmass>
     </mass_balance>
 
  <propulsion>
@@ -269,6 +277,36 @@
     <feed> 0 </feed>
 
     <thruster file="CM7445 MCCauley">
+    
+     <sense> 1 </sense>
+     <location unit="IN">
+       <x>   -69.30 </x>
+       <y>     0.00 </y>
+       <z>   -23.00 </z>
+     </location>
+     <orient unit="DEG">
+       <pitch>     0.00 </pitch>
+        <roll>     0.00 </roll>
+         <yaw>     0.00 </yaw>
+     </orient>
+    </thruster>
+  </engine>
+  
+  <engine file="Continental C90">
+    <location unit="IN">
+      <x>   -57.10 </x>
+      <y>     0.00 </y>
+      <z>   -23.00 </z>
+    </location>
+    <orient unit="DEG">
+      <pitch>     0.00 </pitch>
+       <roll>     0.00 </roll>
+        <yaw>     0.00 </yaw>
+    </orient>
+    <feed> 0 </feed>
+
+    <thruster file="CM7445 MCCauley2">
+    
      <sense> 1 </sense>
      <location unit="IN">
        <x>   -69.30 </x>
@@ -1083,6 +1121,7 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
+          <!--value>0.9</value--> <!-- tune-down value -->
           <table>
             <independentVar lookup="row">aero/alpha-rad</independentVar>
             <tableData>

@@ -261,6 +261,9 @@
                 </tail>
             </tiedowns>
         </securing>
+        <controls>
+            <throttle>/controls/engines/current-engine/throttle</throttle>
+        </controls>
         <cockpit>
             <electrical>
                 <gear-amphibious>/sim/model/j3cub/lighting/amphibious</gear-amphibious>
@@ -760,7 +763,7 @@
         <condition>
             <and>
                 <less-than>
-                    <property>engines/engine[0]/rpm</property>
+                    <property alias="/params/engine/rpm"/>
                     <value>300</value>
                 </less-than>
                 <not>
@@ -776,11 +779,11 @@
         <condition>
             <and>
               <less-than>
-                <property>engines/engine/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </less-than>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>200</value>
               </greater-than>
               <not>
@@ -796,7 +799,7 @@
         <condition>
             <and>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </greater-than>
               <not>
@@ -813,7 +816,7 @@
         <condition>
             <and>
                 <less-than>
-                    <property>engines/engine[0]/rpm</property>
+                    <property alias="/params/engine/rpm"/>
                     <value>300</value>
                 </less-than>
                 <property alias="/params/engine/crashed"/>
@@ -828,11 +831,11 @@
         <condition>
             <and>
               <less-than>
-                <property>engines/engine/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </less-than>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>200</value>
               </greater-than>
               <property alias="/params/engine/crashed"/>
@@ -846,7 +849,7 @@
         <condition>
             <and>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </greater-than>
               <property alias="/params/engine/crashed"/>
@@ -862,7 +865,7 @@
     <object-name>propellerD</object-name>
     <object-name>propeller_slowD</object-name>
     <object-name>propeller_fastD</object-name>
-    <property>engines/engine[0]/rpm</property>
+    <property alias="/params/engine/rpm"/>
     <factor>-1</factor>
     <center>
    <x-m>-1.39</x-m>
@@ -4307,7 +4310,7 @@
     <animation>
         <type>knob</type>
         <object-name>throttle_front</object-name>
-        <property>controls/engines/engine/throttle</property>
+        <property>/controls/engines/current-engine/throttle</property>
         <factor>36</factor>
         <center>
             <x-m>0.058</x-m>
@@ -4322,7 +4325,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
                 <factor>.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -4334,7 +4337,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>throttle_front</tooltip-id>
                 <label>Throttle: %s</label>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
             </binding>
         </hovered>
     </animation>
@@ -4342,7 +4345,7 @@
     <animation>
         <type>knob</type>
         <object-name>throttle_back</object-name>
-        <property>controls/engines/engine/throttle</property>
+        <property>/controls/engines/current-engine/throttle</property>
         <factor>36</factor>
         <min>36</min>
         <max>75</max>
@@ -4359,7 +4362,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
                 <factor>.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -4371,7 +4374,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>throttle_back</tooltip-id>
                 <label>Throttle: %s</label>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
             </binding>
         </hovered>
     </animation>

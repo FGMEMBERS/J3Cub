@@ -3,18 +3,19 @@
 ##########################################
 
 var autostart = func (msg=1) {
-    if (getprop("/engines/engine/running")) {
+    if (getprop("/engines/active-engine/running")) {
         if (msg)
             gui.popupTip("Engine already running", 5);
         return;
     }
 
-    setprop("/controls/engines/engine/magnetos", 3);
-    setprop("/controls/engines/engine/throttle", 0.2);
-    setprop("/controls/engines/engine/mixture", 1.0);
+    setprop("/controls/switches/magnetos", 3);
+    setprop("/controls/engines/current-engine/throttle", 0.2);
+    setprop("/controls/engines/current-engine/mixture", 1.0);
     setprop("/controls/flight/elevator-trim", 0.0);
-    setprop("/controls/engines/engine/master-bat", 1);
-    setprop("/controls/engines/engine/master-alt", 1);
+    setprop("/controls/switches/master-bat", 1);
+    setprop("/controls/switches/master-alt", 1);
+    setprop("/controls/switches/master-avionics", 1);
 
     # if empty get fuel or warn
     # setprop("/consumables/fuel/tank[0]/empty", 1);
@@ -34,8 +35,13 @@ var autostart = func (msg=1) {
     #setprop("/engines/active-engine/oil-level", 7.0);
     #setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
     
-    if (msg)
-        gui.popupTip("Hold down \"s\" to start the engine", 5);
+        ############################
+    # All set, starting engine
+    setprop("/controls/engines/current-engine/starter", 1);
+    setprop("/engines/active-engine/auto-start", 1);
+    
+    #if (msg)
+    #    gui.popupTip("Hold down \"s\" to start the engine", 5);
 };
 
 ##########################################
@@ -147,7 +153,6 @@ var thunder = func (name) {
 var reset_system = func {
     if (getprop("/fdm/jsbsim/running")) {
         j3cub.autostart(0);
-        setprop("/controls/engines/engine/starter", 1);
     }
 
     # These properties are aliased to MP properties in /sim/multiplay/generic/.
@@ -188,6 +193,7 @@ var update_securing = func {
 var capacity = 0.0;
 var weight = 0.0;
 var velocity = 0; 
+var prior_view = "";
 var payload_release = func {
     if (!getprop("/sim/model/payload")) {
         setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", 0.0);  
@@ -202,13 +208,18 @@ var payload_release = func {
         return;
     }
     if (getprop("/sim/current-view/view-number") == 0 and 
+            (prior_view == 0 or prior_view == 1) and
             getprop("/sim/model/payload") == 1 and
-            getprop("/sim/model/payload-package") < 2) {
+            getprop("/sim/model/payload-package") < 2) {           
         setprop("/sim/current-view/view-number", 8);
-        logger.screen.white("Your not allowed to sit on hopper");
-        if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
-            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
-        setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
+        } else {
+            if (getprop("/sim/current-view/view-number") == 0 and
+            prior_view == 8)
+                setprop("/sim/current-view/view-number", 1);
+
+            if (!getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"))
+                setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]", getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"));
+            setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", 0);
     }
     if (getprop("/sim/current-view/view-number") == 8 and
             getprop("/sim/model/payload") == 1 and
@@ -257,6 +268,7 @@ var payload_release = func {
         weight = weight - capacity * velocity;
         setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[15]", weight);
     }
+    prior_view = getprop("/sim/current-view/view-number");
 }
 
 var drum_release = func {
@@ -317,15 +329,21 @@ var resolve_impact = func (n) {
 #    ac_landing_mass.alias(landing_mass);
 #};
 
+setlistener("/controls/engines/active-engine", func (node) {
+    # Set new mass limits for Fuel and Payload Settings dialog
+    #set_limits(node);
+
+    # Emit a sound because the engine has been replaced
+    click("engine-repair", 6.0);
+}, 0, 0);
+
 ############################################
 # Global loop function
 # If you need to run nasal as loop, add it in this function
 ############################################
 var global_system_loop = func {
     j3cub.physics_loop();
-    if (getprop("/engines/engine/running") and getprop("/controls/engines/engine/starter")){
-        setprop("/controls/engines/engine/starter", 0);
-    }
+
     if (getprop("/instrumentation/garmin196/antenne-deg") < 180) 
         setprop("/instrumentation/garmin196/antenne-deg", 180);
     payload_release();
@@ -335,6 +353,9 @@ var global_system_loop = func {
 # SetListerner must be at the end of this file
 ##########################################
 setlistener("/sim/signals/fdm-initialized", func {
+
+    prior_view = getprop("/sim/current-view/view-number");
+
     # Use Nasal to make some properties persistent. <aircraft-data> does
     # not work reliably.
     #aircraft.data.add("/sim/model/j3cub/immat-on-panel");
@@ -362,7 +383,16 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Initialize mass limits
     #set_limits();
-  
+
+    setlistener("/engines/active-engine/running", func (node) {
+        var autostart = getprop("/engines/active-engine/auto-start");
+        var cranking  = getprop("/engines/active-engine/cranking");
+        if (cranking and node.getBoolValue()) {
+            setprop("/controls/engines/current-engine/starter", 0);
+            setprop("/engines/active-engine/auto-start", 0);
+        }
+    }, 0, 0);
+
     reset_system();
     j3cub.rightWindow.toggle();
     j3cub.rightDoor.toggle();
