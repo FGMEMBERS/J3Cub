@@ -91,7 +91,18 @@
             <pitch-deg>0</pitch-deg>
         </offsets>
     </model>
-    
+
+    <model>
+        <name>Riflecase</name>
+        <path>Effects/packages/riflecase.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
     <nasal>
         <load>
 
@@ -529,7 +540,15 @@
         <object-name>window_l_0_interior</object-name>
         <object-name>window_r_0_interior</object-name>
     </effect> 
- 
+
+    <animation>
+        <type>select</type>
+        <object-name>riflecase</object-name>
+        <condition>
+            <property>/sim/model/riflecase</property>
+        </condition>
+    </animation>
+
      <!-- Hide interior glass when in exterior view -->
     <animation>
         <type>select</type>

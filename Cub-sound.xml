@@ -14,6 +14,10 @@
             <path>Sounds/engstart.wav</path>
             <property>/engines/active-engine/cranking</property>
             <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
+            </volume>
+            <volume>
                 <offset>0.4</offset>
             </volume>
         </crank>
@@ -28,6 +32,10 @@
                     <property>/engines/active-engine/running</property>
                 </not>
             </condition>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
+            </volume>
             <volume>
                 <offset>0.5</offset>
             </volume>
@@ -88,6 +96,9 @@
                 <type>log</type>
                 <factor>0.25</factor>
             </volume>
+            <volume>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
+            </volume>
         </rumble>
 
         <squeal>
@@ -114,6 +125,9 @@
                 <internal>dt_stop</internal>
                 <factor>0.05</factor>
                 <max>1.0</max>
+            </volume>
+            <volume>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <pitch>
                 <property>/velocities/airspeed-kt</property>

@@ -130,6 +130,8 @@ version 2.0  090410-->
             </map>
             <payload type="bool">false</payload>
             <payload-package type="int">0</payload-package>
+            
+            <riflecase type="bool">false</riflecase>
 
         </model>
 
