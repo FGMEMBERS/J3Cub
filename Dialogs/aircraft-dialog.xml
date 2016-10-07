@@ -615,7 +615,10 @@
                         </script>
                     </binding>
                 </radio>
-
+            </group>    
+                
+            <group>
+                <layout>hbox</layout>
                 <radio>
                     <halign>left</halign>
                     <label>90 HP</label>
@@ -638,6 +641,24 @@
                         </script>
                     </binding>
                 </radio>
+                <checkbox>
+                    <halign>left</halign>
+                    <label>PA-18</label>
+                    <enable>
+                        <and>
+                            <not>
+                                <property>/sim/freeze/replay-state</property>
+                            </not>
+                            <property>/controls/engines/active-engine</property>
+                        </and>
+                    </enable>
+                    <property>/sim/model/pa-18</property>
+                    <live>true</live>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                </checkbox>
+                
             </group>
         </group>
 

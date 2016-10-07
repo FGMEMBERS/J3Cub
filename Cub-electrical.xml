@@ -55,9 +55,9 @@
     <prop>/systems/electrical/outputs/strobe-lights</prop>
   </output>
 
-  <output>
-    <name>Taxi Lights Power</name>
-    <prop>/systems/electrical/outputs/taxi-lights</prop>
+  <output>  
+    <name>Taxi Light Power</name>
+    <prop>/systems/electrical/outputs/taxi-light</prop>
   </output>
 
   <output>
@@ -107,6 +107,14 @@
 
   <connector>
     <input>Master Bus</input>
+    <output>Taxi Light Power</output>
+    <switch>
+      <prop>/controls/switches/taxi-light</prop>
+    </switch>
+  </connector>
+
+  <connector>
+    <input>Master Bus</input>
     <output>Beacon Power</output>
     <switch>
       <prop>/controls/switches/flashing-beacon</prop>
@@ -118,14 +126,6 @@
     <output>Strobe Lights Power</output>
     <switch>
       <prop>/controls/switches/strobe-lights</prop>
-    </switch>
-  </connector>
-
-  <connector>
-    <input>Master Bus</input>
-    <output>Taxi Lights Power</output>
-    <switch>
-      <prop>/controls/switches/taxi-lights</prop>
     </switch>
   </connector>
 

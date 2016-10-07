@@ -392,6 +392,10 @@ setlistener("/sim/signals/fdm-initialized", func {
             setprop("/engines/active-engine/auto-start", 0);
         }
     }, 0, 0);
+    
+    setprop("/sim/rendering/als-secondary-lights/landing-light1-offset-deg", 1);
+    setprop("/sim/rendering/als-secondary-lights/landing-light2-offset-deg", -4);
+    setprop("/sim/rendering/als-secondary-lights/landing-light3-offset-deg", 3);
 
     reset_system();
     j3cub.rightWindow.toggle();

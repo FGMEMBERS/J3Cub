@@ -1,0 +1,861 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <path>PA-18.ac</path>
+
+    <params>
+        <crash>
+            <property>sim/multiplay/generic/int[15]</property>
+        </crash>
+        <bushkit>sim/model/variant</bushkit>
+        <!-- 0 = normal, 1 = broken, 2 = damaged -->
+        <wing_left_damaged>
+            <property>sim/multiplay/generic/int[18]</property>
+        </wing_left_damaged>
+        <wing_right_damaged>
+            <property>sim/multiplay/generic/int[19]</property>
+        </wing_right_damaged>
+        <engine>
+            <rpm>engines/engine[2]/rpm</rpm>
+            <crashed>sim/multiplay/generic/int[3]</crashed>
+        </engine>
+        <lighting>
+            <navigation>sim/multiplay/generic/int[9]</navigation>
+            <beacon>sim/model/pa-18/lighting/beacon/state</beacon>
+            <strobes>sim/model/pa-18/lighting/strobes/state</strobes>
+            <taxi>
+                <property>sim/multiplay/generic/int[4]</property>
+            </taxi>
+            <landing>
+                <property>sim/multiplay/generic/int[5]</property>
+            </landing>
+        </lighting>
+    </params>
+
+    <effect>
+        <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
+        <object-name>wing_r_p18</object-name>
+        <object-name>wing_l-p18</object-name>
+        <object-name>flaps_p18</object-name>
+        <object-name>fuelcap_l_p18</object-name>
+        <object-name>fuelcap_r_p18</object-name>
+        <object-name>nose_p18</object-name>
+        <object-name>nose_strut_r_p18</object-name>
+        <object-name>nose_strut_l_p18</object-name>
+        <object-name>nose_under_p18</object-name>
+        <object-name>navLightLeft_p18</object-name>
+        <object-name>navLightLeft_p18.001</object-name>
+        <object-name>navLightRight_p18</object-name>
+        <object-name>navLightRight_p18.001</object-name>
+        <object-name>propeller_0_p18</object-name>
+        <object-name>beaconMount_p18</object-name>
+        <object-name>BeaconOff_p18</object-name>
+        <object-name>navLightBack_p18</object-name>
+        <object-name>navLightBack_p18.001</object-name>
+    </effect>
+
+    <effect>
+        <inherits-from>Effects/model-transparent</inherits-from>
+        <object-name>propeller_slow_p18</object-name>
+        <object-name>propeller_fast_p18</object-name>
+        <object-name>landinglightcover_p18</object-name>
+        <object-name>strobe1_p18</object-name>
+        <object-name>strobe2_p18</object-name>
+        <object-name>landinglight_p18</object-name>
+        <object-name>taxilight_p18</object-name>
+        <object-name>navlight_left_p18</object-name>
+        <object-name>navlight_right_p18</object-name>
+        <object-name>navlight_back_p18</object-name>
+        <object-name>BeaconOffX_p18</object-name>
+    </effect>
+
+    <!-- interior effects -->
+    <effect>
+        <inherits-from>Effects/interior/j3cub-interior</inherits-from>
+        <object-name>Cylinder_1_p18</object-name>
+        <object-name>floor_lever_l_p18</object-name>
+        <object-name>floor_lever_r_p18</object-name>
+        <object-name>pedal_rest_l_p18</object-name>
+        <object-name>pedal_rest_r_p18</object-name>
+        <object-name>rudderpedal_l_p18</object-name>
+        <object-name>rudderpedal_r_p18</object-name>        
+        <object-name>stick_front_p18</object-name>
+    </effect>
+
+    <!-- Red Beacon light -->
+    <animation>
+        <type>material</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <emission>
+            <red>1</red>
+            <green>0.05</green>
+            <blue>0.05</blue>
+            <factor-prop alias="/params/lighting/beacon"/>
+        </emission>
+    </animation>
+    
+    <!-- Red Nav light -->
+    <animation>
+        <type>material</type>
+        <object-name>navLightLeft_p18.001</object-name>
+        <emission>
+            <red>1</red>
+            <green>0.05</green>
+            <blue>0.05</blue>
+            <factor-prop alias="/params/lighting/navigation"/>
+        </emission>
+    </animation>
+
+    <!-- Green Nav light -->
+    <animation>
+        <type>material</type>
+        <object-name>navLightRight_p18.001</object-name>
+        <emission>
+            <red>0.05</red>
+            <green>1</green>
+            <blue>0.05</blue>
+            <factor-prop alias="/params/lighting/navigation"/>
+        </emission>
+    </animation>
+    
+    <!-- White Nav light -->
+    <animation>
+        <type>material</type>
+        <object-name>navLightBack_p18.001</object-name>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop alias="/params/lighting/navigation"/>
+        </emission>
+    </animation>
+
+    <!-- Green navigation light on starboard side (right) -->
+    <model>
+        <name>nav-light-right</name>
+        <path>Effects/lights/procedural_light_nav_right.xml</path>
+        <offsets>
+            <x-m>0.432</x-m>
+            <y-m>5.3041</y-m>
+            <z-m>0.1448</z-m>
+        </offsets>
+    </model>
+
+    <!-- Red navigation light on port side (left) -->
+    <model>
+        <name>nav-light-left</name>
+        <path>Effects/lights/procedural_light_nav_left.xml</path>
+        <offsets>
+            <x-m> 0.4208</x-m>
+            <y-m>-5.3013</y-m>
+            <z-m> 0.1375</z-m>
+        </offsets>
+    </model>
+    
+    <!-- White navigation light on under side (back) -->
+    <model>
+        <name>nav-light-tail</name>
+        <path>Effects/lights/procedural_light_nav_tail.xml</path>
+        <offsets>
+            <x-m> 3.3005</x-m>
+            <y-m> 0.0003</y-m>
+            <z-m>-0.7881</z-m>
+        </offsets>
+    </model>
+
+    <animation>
+        <type>select</type>
+        <object-name>bulkhead_strut_l_p18</object-name>
+        <object-name>bulkhead_strut_r_p18</object-name>
+        <object-name>Cylinder_1_p18</object-name>
+        <object-name>exhaust_inner_p18</object-name>
+        <object-name>exhaust_outer_p18</object-name>
+        <object-name>floor_lever_l_p18</object-name>
+        <object-name>floor_lever_r_p18</object-name>
+        <object-name>fuselage_p18</object-name>
+        <object-name>fuelcap_l_p18</object-name>
+        <object-name>fuelcap_r_p18</object-name>
+        <object-name>landinglight2_p18</object-name>
+        <object-name>landinglightcover_p18</object-name>
+        <object-name>nose_p18</object-name>
+        <object-name>nose_strut_r_p18</object-name>
+        <object-name>nose_strut_l_p18</object-name>
+        <object-name>nose_under_p18</object-name>
+        <object-name>oil_overflow_p18</object-name>
+        <object-name>oil_rad_p18</object-name>
+        <object-name>overflowpipe_p18</object-name>
+        <object-name>pedal_rest_l_p18</object-name>
+        <object-name>pedal_rest_r_p18</object-name>
+        <object-name>propeller_0_p18</object-name>
+        <object-name>rudderpedal_l_p18</object-name>
+        <object-name>rudderpedal_r_p18</object-name>
+        <object-name>stick_front_p18</object-name>
+        <object-name>beaconMount_p18</object-name>
+        <object-name>BeaconOff_p18</object-name>
+        <object-name>navLightBack_p18</object-name>
+        <object-name>navLightBack_p18.001</object-name>
+        <object-name>flaps_p18</object-name>
+        <condition>
+            <property>/sim/model/pa-18</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>suspension_link_l_p18</object-name>
+        <object-name>suspension_link_r_p18</object-name>
+        <object-name>wheel_strut_link_l_p18</object-name>
+        <object-name>wheel_strut_link_r_p18</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>0</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>1</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>5</value>
+                    </equals>
+                </or>
+                <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>wing_l_p18</object-name>
+        <object-name>navLightLeft_p18</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+                <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>wing_r_p18</object-name>
+        <object-name>navLightRight_p18</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+                <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>flaps_p18</object-name>
+        <property>surface-positions/flap-pos-norm</property>
+        <factor>0.02</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>flaps_p18</object-name>
+        <property>surface-positions/flap-pos-norm</property>
+        <factor>30</factor>
+        <center>
+            <x-m> 1.2006</x-m>
+            <y-m>-0.0033</y-m>
+            <z-m> 0.0359</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- Propeller No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>propeller_1_p18</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property alias="/params/engine/rpm"/>
+                    <value>300</value>
+                </less-than>
+                <not>
+                    <property alias="/params/engine/crashed"/>
+                </not>
+                <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slow_p18</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property alias="/params/engine/rpm"/>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property alias="/params/engine/rpm"/>
+                <value>200</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+              <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fast_p18</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property alias="/params/engine/rpm"/>
+                <value>1500</value>
+              </greater-than>
+              <not>
+                <property alias="/params/engine/crashed"/>
+              </not>
+                <property>/sim/model/pa-18</property>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Propeller Damaged
+    <animation>
+        <type>select</type>
+        <object-name>propellerD_p18</object-name>
+        <condition>
+            <and>
+                <less-than>
+                    <property alias="/params/engine/rpm"/>
+                    <value>300</value>
+                </less-than>
+                <property alias="/params/engine/crashed"/>
+                <not>
+                    <property>/controls/engines/active-engine</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_slowD_p18</object-name>
+        <condition>
+            <and>
+              <less-than>
+                <property alias="/params/engine/rpm"/>
+                <value>1500</value>
+              </less-than>
+              <greater-than>
+                <property alias="/params/engine/rpm"/>
+                <value>200</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+              <not>
+                <property>/controls/engines/active-engine</property>
+              </not>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>propeller_fastD_p18</object-name>
+        <condition>
+            <and>
+              <greater-than>
+                <property alias="/params/engine/rpm"/>
+                <value>1500</value>
+              </greater-than>
+              <property alias="/params/engine/crashed"/>
+              <not>
+                <property>/controls/engines/active-engine</property>
+              </not>
+            </and>
+        </condition>
+    </animation>-->
+
+    <!-- Landing Light -->
+    <animation>
+        <type>select</type>
+        <object-name>landinglight_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/landing/property"/>
+                <not>
+                    <property>/sim/rendering/rembrandt/enabled</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Taxi Light -->
+    <animation>
+        <type>select</type>
+        <object-name>taxilight_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/taxi/property"/>
+                <not>
+                    <property>/sim/rendering/rembrandt/enabled</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Recessed Light -->
+    <animation>
+        <type>select</type>
+        <object-name>landinglight2_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <or>
+                    <property alias="/params/lighting/landing/property"/>
+                    <property alias="/params/lighting/taxi/property"/>
+                </or>
+                <not>
+                    <property>/sim/rendering/rembrandt/enabled</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!--animation>
+        <type>light</type>
+        <light-type>spot</light-type>
+        <name>LandingLight</name>
+        <object-name>LandingLightCone_p18</object-name>
+        <nopreview/>
+        <condition>
+            <property alias="/params/lighting/landing/property"/>
+        </condition>
+        <position>
+            <x>-0.078</x>
+            <y>-3.086</y>
+            <z>0.536</z>
+        </position>
+        <direction>
+            <x>-1</x>
+            <y>0</y>
+            <z>-0.1</z>
+        </direction>
+        <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.55</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.95</r>
+            <g>0.95</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.95</r>
+            <g>0.95</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.0</l>
+            <q>0.00015</q>
+        </attenuation>
+        <exponent>25</exponent>
+        <cutoff>85</cutoff>
+        <near-m>2</near-m>
+        <far-m>250</far-m>
+    </animation>
+
+    <animation>
+        <type>light</type>
+        <light-type>spot</light-type>
+        <name>TaxiLight</name>
+        <object-name>TaxiLightCone_p18</object-name>
+        <nopreview/>
+        <condition>
+            <property alias="/params/lighting/taxi/property"/>
+        </condition>
+        <position>
+            <x>-0.078</x>
+            <y>-3.086</y>
+            <z>0.536</z>
+        </position>
+        <direction>
+            <x>-1</x>
+            <y>0</y>
+            <z>-0.3</z>
+        </direction>
+        <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.55</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.85</r>
+            <g>0.85</g>
+            <b>0.65</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.85</r>
+            <g>0.85</g>
+            <b>0.7</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.0</l>
+            <q>0.0018</q>
+        </attenuation>
+        <exponent>4.5</exponent>
+        <cutoff>160</cutoff>
+        <near-m>2</near-m>
+        <far-m>150</far-m>
+    </animation-->
+
+    <animation>
+        <type>select</type>
+        <object-name>landinglightcover_p18</object-name>
+        <condition>
+            <not>
+                <property alias="/params/lighting/landing/property"/>
+            </not>
+        </condition>
+    </animation>
+    <animation>
+        <type>noshadow</type>
+        <object-name>landinglight_p18</object-name>
+        <object-name>taxilight_p18</object-name>
+    </animation>
+
+    <!--Landing Light-->
+    <animation>
+        <type>flash</type>
+        <object-name>landinglight_p18</object-name>
+        <center>
+            <x-m>-0.0061</x-m>
+            <y-m>-3.6943</y-m>
+            <z-m> 0.0714</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+
+    <!--Taxi Light-->
+    <animation>
+        <type>flash</type>
+        <object-name>taxilight_p18</object-name>
+        <center>
+            <x-m>-0.0061</x-m>
+            <y-m>-3.5659</y-m>
+            <z-m> 0.0639</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>5</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+
+    <!-- ================================================================== -->
+    <!-- Basic And Rembrandt Lighting                                       -->
+    <!-- ================================================================== -->
+
+    <animation>
+        <type>select</type>
+        <object-name>navlight_left_p18</object-name><!-- TODO Drop Rembrandt or add a real Rembrandt light -->
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <not>
+                    <property>/sim/rendering/shaders/skydome</property>
+                </not>
+                <not-equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>1</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>navlight_right_p18</object-name><!-- TODO Drop Rembrandt or add a real Rembrandt light -->
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <not>
+                    <property>/sim/rendering/shaders/skydome</property>
+                </not>
+                <not-equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>1</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>navlight_back_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <not>
+                    <property>/sim/rendering/shaders/skydome</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- ================================================================== -->
+    <!-- ALS Lighting                                                       -->
+    <!-- ================================================================== -->
+    <animation>
+        <type>select</type>
+        <object-name>nav-light-left</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <property>/sim/rendering/shaders/skydome</property>
+                <not-equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>1</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>nav-light-right</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <property>/sim/rendering/shaders/skydome</property>
+                <not-equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>1</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>nav-light-tail</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/navigation"/>
+                <property>/sim/rendering/shaders/skydome</property>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Strobe -->
+    <animation>
+        <type>select</type>
+        <object-name>strobe1_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/strobes"/>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>strobe2_p18</object-name>
+        <nopreview/>
+        <condition>
+            <and>
+                <property alias="/params/lighting/strobes"/>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <Plane.014Xparams>
+        <light-near>0.8</light-near>
+        <light-med>3.2</light-med>
+        <light-far>160</light-far>
+    </Plane.014Xparams>
+    <animation>
+        <name>Plane.014XGroup</name>
+        <object-name>strobe1_p18</object-name>
+        <object-name>strobe2_p18</object-name>
+    </animation>
+    <animation>
+        <type>alpha-test</type>
+        <object-name>Plane.014XGroup</object-name>
+        <alpha-factor>0.001</alpha-factor>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>strobe1_p18</object-name>
+        <offset-m>5.36</offset-m>
+        <axis>
+            <x> 0.4675</x>
+            <y>-5.3222</y>
+            <z> 0.1384</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>strobe2_p18</object-name>
+        <offset-m>5.36</offset-m>
+        <axis>
+            <x>0.4787</x>
+            <y>5.325 </y>
+            <z>0.1447</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>billboard</type>
+        <object-name>strobe1_p18</object-name>
+        <object-name>strobe2_p18</object-name>
+        <spherical type="bool">true</spherical>
+    </animation>
+    <animation>
+        <type>dist-scale</type>
+        <object-name>strobe1_p18</object-name>
+        <object-name>strobe2_p18</object-name>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep alias="/Plane.014Xparams/light-near"/>
+            </entry>
+            <entry>
+                <ind>500</ind>
+                <dep alias="/Plane.014Xparams/light-med"/>
+            </entry>
+            <entry>
+                <ind>16000</ind>
+                <dep alias="/Plane.014Xparams/light-far"/>
+            </entry>
+        </interpolation>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <nopreview/>
+        <condition>
+            <property alias="/params/lighting/beacon"/>
+        </condition>
+    </animation>
+    <BeaconOffXparams>
+        <light-near>0.4</light-near>
+        <light-med>0.8</light-med>
+        <light-far>10</light-far>
+    </BeaconOffXparams>
+    <animation>
+        <type>alpha-test</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <alpha-factor>0.001</alpha-factor>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <offset-m>4.945</offset-m>
+        <axis>
+            <!--MOD:Position beacon light at MEDIAN point of the object-->
+            <x>4.8397</x>
+            <y>0.0001</y>
+            <z>0.8918</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>billboard</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <spherical type="bool">true</spherical>
+    </animation>
+    <animation>
+        <type>dist-scale</type>
+        <object-name>BeaconOffX_p18</object-name>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep alias="/BeaconOffXparams/light-near"/>
+            </entry>
+            <entry>
+                <ind>500</ind>
+                <dep alias="/BeaconOffXparams/light-med"/>
+            </entry>
+            <entry>
+                <ind>16000</ind>
+                <dep alias="/BeaconOffXparams/light-far"/>
+            </entry>
+        </interpolation>
+    </animation>
+</PropertyList>

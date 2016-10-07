@@ -768,6 +768,72 @@
                 </traverse>
             </kinematic>
         </channel>
+        
+                <channel name="Flaps">
+            <!-- Disable flap movement if electrical voltage is too low -->
+            <switch name="Flaps Command">
+                <default value="fcs/flap-cmd-norm"/>
+                <output>fcs/flap-input-norm</output>
+
+                <!-- Route back the (normalized) output of the <kinematic>
+                     to its input in order to disable it.
+  
+                <test logic="AND" value="fcs/flap-pos-norm">
+                    /systems/electrical/outputs/flaps le 16
+                </test>              -->
+            </switch>
+
+            <kinematic name="Flaps Control">
+                <input>fcs/flap-input-norm</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>10</position>
+                        <time>2</time>
+                    </setting>
+                    <setting>
+                        <position>20</position>
+                        <time>1</time>
+                    </setting>
+                    <setting>
+                        <position>30</position>
+                        <time>1</time>
+                    </setting>
+                </traverse>
+                <output>fcs/flap-pos-deg</output>
+            </kinematic>
+
+            <aerosurface_scale name="Flap Position Normalizer">
+                <input>fcs/flap-pos-deg</input>
+                <domain>
+                    <min>0</min> <!-- Flaps actual minimum position -->
+                    <max>30</max> <!-- Flaps actual maximum position -->
+                </domain>
+                <range>
+                    <min>0</min> <!-- Flaps normalized minimum position -->
+                    <max>1</max> <!-- Flaps normalized maximum position -->
+                </range>
+                <output>fcs/flap-pos-norm</output>
+            </aerosurface_scale>
+
+            <kinematic name="Flaps Lever">
+                <input>/controls/flight/flaps</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>1</time>
+                    </setting>
+                </traverse>
+                <output>/sim/model/pa-18/cockpit/flaps-lever</output>
+            </kinematic>
+        </channel>
 
     </flight_control>
 
@@ -935,6 +1001,24 @@
       </product>
     </function>
 
+    <function name="aero/coefficient/CLDf">
+        <description>Delta_lift_due_to_flap_deflection</description>
+        <product>
+            <property>aero/qbar-psf</property>
+            <property>metrics/Sw-sqft</property>
+            <property>aero/function/kCLge</property>
+            <table>
+                <independentVar>fcs/flap-pos-deg</independentVar>
+                <tableData>
+                    0.0000	0.0000
+                    10.0000	0.2000
+                    20.0000	0.3000
+                    30.0000	0.3500
+                </tableData>
+            </table>
+        </product>
+    </function>
+
     <function name="aero/force/Lift_pitch_rate">
         <description>Lift_due_to_pitch_rate</description>
         <product>
@@ -1043,6 +1127,24 @@
            <abs><property>fcs/elevator-pos-rad</property></abs>
            <value> 0.0400 </value>
        </product>
+    </function>
+    
+    <function name="aero/coefficient/CDDf">
+        <description>Delta_drag_due_to_flap_deflection</description>
+        <product>
+            <property>aero/qbar-psf</property>
+            <property>metrics/Sw-sqft</property>
+            <property>aero/function/kCDge</property>
+            <table>
+                <independentVar>fcs/flap-pos-deg</independentVar>
+                <tableData>
+                      0.0000	0.0000
+                      10.0000	0.0070
+                      20.0000	0.0120
+                      30.0000	0.0180
+                  </tableData>
+            </table>
+        </product>
     </function>
 
     <function name="aero/force/Drag_gear">
@@ -1186,6 +1288,24 @@
            <property>aero/alphadot-rad_sec</property>
            <value> -7.5904 </value>	<!-- Du Y -->
        </product>
+    </function>
+
+    <function name="aero/coefficient/Cmdf">
+        <description>Delta_pitching_moment_due_to_flap_deflection</description>
+        <product>
+            <property>aero/qbar-psf</property>
+            <property>metrics/Sw-sqft</property>
+            <property>metrics/cbarw-ft</property>
+            <table>
+                <independentVar>fcs/flap-pos-deg</independentVar>
+                <tableData>
+                    0.0000	    0.0000
+                    10.0000	   -0.0654
+                    20.0000	   -0.0981
+                    30.0000    -0.1140
+                </tableData>
+            </table>
+        </product>
     </function>
 
   </axis>
