@@ -4698,20 +4698,13 @@
         <object-name>strut_fix_rear_1_l</object-name>
         <object-name>strut_fix_rear_2_</object-name>
         <object-name>strut_fix_rear_2_l</object-name>
-        <object-name>window_l_0</object-name>
-        <object-name>window_l_0_interior</object-name>
+        <object-name>window_handle</object-name>
         <object-name>window_l_1</object-name>
         <object-name>window_l_1_interior</object-name>
-        <object-name>window_r_0</object-name>
-        <object-name>window_r_0_interior</object-name>
         <object-name>window_r_1</object-name>
         <object-name>window_r_1_interior</object-name>
-        <object-name>window_rear_l_0</object-name>
-        <object-name>window_rear_l_0_interior</object-name>
         <object-name>window_rear_l_1</object-name>
         <object-name>window_rear_l_1_interior</object-name>
-        <object-name>window_rear_r_0</object-name>
-        <object-name>window_rear_r_0_interior</object-name>
         <object-name>window_rear_r_1</object-name>
         <object-name>window_rear_r_1_interior</object-name>
         <object-name>tyre_l</object-name>
