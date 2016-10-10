@@ -75,13 +75,37 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
             <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[12]</output>
         </switch>
 
-        <!--switch name="extra-weight-180hp">
+        <switch name="extra-weight-90hp">
             <default value="0"/>
-            <test logic="AND" value="142">
+            <test logic="AND" value="35">
                 /controls/engines/active-engine EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[13]</output>
-        </switch-->
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[16]</output>
+        </switch>
+        <switch name="extra-weight-150hp">
+            <default value="0"/>
+            <test logic="AND" value="71">
+                /controls/engines/active-engine EQ 2
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[17]</output>
+        </switch>
+
+        <switch name="extra-weight-left-fuel-tank">
+            <default value="0"/>
+            <test logic="OR" value="111.29">
+                /controls/engines/active-engine EQ 1
+                /controls/engines/active-engine EQ 2
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[16]</output>
+        </switch>
+        <switch name="extra-weight-right-fuel-tank">
+            <default value="0"/>
+            <test logic="OR" value="111.29">
+                /controls/engines/active-engine EQ 1
+                /controls/engines/active-engine EQ 2
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[17]</output>
+        </switch>
 
         <fcs_function name="extra-weight-left-float">
             <function>

@@ -67,7 +67,7 @@
         <object-name>wing_l</object-name>
         <condition>
             <not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </not>
         </condition>
     </animation>
@@ -341,7 +341,7 @@
 
         <water-rudder-norm>sim/multiplay/generic/float[5]</water-rudder-norm>
         <engine>
-            <rpm>engines/engine[2]/rpm</rpm>
+            <rpm>controls/flight/speedbrake</rpm>
             <crashed>sim/multiplay/generic/int[3]</crashed>
         </engine>
 
@@ -772,7 +772,7 @@
                     <property alias="/params/engine/crashed"/>
                 </not>
                 <not>
-                    <property>/sim/model/pa-18</property>
+                    <property>/sim/model/j3cub/pa-18</property>
                 </not>
             </and>
         </condition>
@@ -795,7 +795,7 @@
                 <property alias="/params/engine/crashed"/>
               </not>
               <not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -814,7 +814,7 @@
                 <property alias="/params/engine/crashed"/>
               </not>
               <not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -832,7 +832,7 @@
                 </less-than>
                 <property alias="/params/engine/crashed"/>
                 <not>
-                    <property>/sim/model/pa-18</property>
+                    <property>/sim/model/j3cub/pa-18</property>
                 </not>
             </and>
         </condition>
@@ -853,7 +853,7 @@
               </greater-than>
               <property alias="/params/engine/crashed"/>
               <not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -870,7 +870,7 @@
               </greater-than>
               <property alias="/params/engine/crashed"/>
               <not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -972,7 +972,7 @@
                     <property alias="/params/crash/property"/>
                 </not>
                 <not>
-                    <property>/sim/model/pa-18</property>
+                    <property>/sim/model/j3cub/pa-18</property>
                 </not>
             </and>
         </condition>
@@ -992,7 +992,7 @@
                     <property alias="/params/crash/property"/>
                 </not>
                 <not>
-                    <property>/sim/model/pa-18</property>
+                    <property>/sim/model/j3cub/pa-18</property>
                 </not>
             </and>
         </condition>

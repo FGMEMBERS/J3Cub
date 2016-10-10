@@ -5,7 +5,7 @@
  
     <params>
         <engine>
-            <rpm>engines/engine[2]/rpm</rpm>
+            <rpm>controls/flight/speedbrake</rpm>
         </engine>
     </params>
 

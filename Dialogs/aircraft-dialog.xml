@@ -43,6 +43,7 @@
             var p = getprop("/controls/engines/active-engine");
             setprop("sim/model/j3cub/engine_flag_0", 0);
             setprop("sim/model/j3cub/engine_flag_1", 0);
+            setprop("sim/model/j3cub/engine_flag_2", 0);
             setprop("sim/model/j3cub/engine_flag_" ~ p, 1);
         </open>
     </nasal>
@@ -612,13 +613,12 @@
                             setprop("/controls/engines/active-engine", 0);
                             setprop("sim/model/j3cub/engine_flag_0", 1);
                             setprop("sim/model/j3cub/engine_flag_1", 0);
+                            setprop("sim/model/j3cub/engine_flag_2", 0);
+                            setprop("sim/model/j3cub/pa-18", 0);
                         </script>
                     </binding>
                 </radio>
-            </group>    
-                
-            <group>
-                <layout>hbox</layout>
+            
                 <radio>
                     <halign>left</halign>
                     <label>90 HP</label>
@@ -638,12 +638,41 @@
                             setprop("/controls/engines/active-engine", 1);
                             setprop("sim/model/j3cub/engine_flag_0", 0);
                             setprop("sim/model/j3cub/engine_flag_1", 1);
+                            setprop("sim/model/j3cub/engine_flag_2", 0);
                         </script>
                     </binding>
                 </radio>
+                
+                <radio>
+                    <halign>left</halign>
+                    <label>150 HP</label>
+                    <property>sim/model/j3cub/engine_flag_2</property>
+                    <live>true</live>
+                    <enable>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            setprop("/controls/engines/active-engine", 2);
+                            setprop("sim/model/j3cub/engine_flag_0", 0);
+                            setprop("sim/model/j3cub/engine_flag_1", 0);
+                            setprop("sim/model/j3cub/engine_flag_2", 1);
+                            setprop("sim/model/j3cub/pa-18", 1);
+                        </script>
+                    </binding>
+                </radio>
+                </group>
                 <checkbox>
                     <halign>left</halign>
                     <label>PA-18</label>
+                    <property>/sim/model/j3cub/pa-18</property>
+                    <live>true</live>
                     <enable>
                         <and>
                             <not>
@@ -652,8 +681,6 @@
                             <property>/controls/engines/active-engine</property>
                         </and>
                     </enable>
-                    <property>/sim/model/pa-18</property>
-                    <live>true</live>
                     <binding>
                         <command>dialog-apply</command>
                     </binding>

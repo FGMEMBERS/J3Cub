@@ -47,6 +47,15 @@
             <condition>
                 <equals>
                     <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/rpm</property>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -78,6 +87,13 @@
                     </equals>
                     <property>/engines/engine[1]/cranking</property>
                 </and>
+                <and>
+                    <equals>
+                        <property>/controls/engines/active-engine</property>
+                        <value>2</value>
+                    </equals>
+                    <property>/engines/engine[2]/cranking</property>
+                </and>
             </or>
         </input>
         <output>
@@ -102,6 +118,13 @@
                         <value>1</value>
                     </equals>
                     <property>/engines/engine[1]/running</property>
+                </and>
+                <and>
+                    <equals>
+                        <property>/controls/engines/active-engine</property>
+                        <value>2</value>
+                    </equals>
+                    <property>/engines/engine[2]/running</property>
                 </and>
             </or>
         </input>
@@ -159,6 +182,15 @@
     <filter>
         <name>Engine MP-OSI</name>
         <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/mp-osi</property>
+        </input>
         <input>
             <condition>
                 <equals>
@@ -226,6 +258,15 @@
             <condition>
                 <equals>
                     <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/oil-temperature-degf</property>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -245,6 +286,15 @@
         <gain>
             <property>/engines/active-engine/low-oil-pressure-factor</property>
         </gain>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/oil-pressure-psi</property>
+        </input>
         <input>
             <condition>
                 <equals>
@@ -306,6 +356,26 @@
         </output>
     </filter>
 
+    <filter>
+        <name>Engine 150 HP Magnetos</name>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/controls/switches/magnetos</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/controls/engines/engine[2]/magnetos</property>
+        </output>
+    </filter>
+
     <!-- ============================================================== -->
     <!-- Starter                                                        -->
     <!-- ============================================================== -->
@@ -339,6 +409,22 @@
         </input>
         <output>
             <property>/controls/engines/engine[1]/starter</property>
+        </output>
+    </logic>
+
+    <logic>
+        <name>Engine 150 HP Starter</name>
+        <input>
+            <and>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+                <property>/controls/engines/current-engine/starter</property>
+            </and>
+        </input>
+        <output>
+            <property>/controls/engines/engine[2]/starter</property>
         </output>
     </logic>
 
@@ -386,6 +472,26 @@
         </output>
     </filter>
 
+    <filter>
+        <name>Engine 150 HP Throttle</name>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/controls/engines/current-engine/throttle</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/controls/engines/engine[2]/throttle</property>
+        </output>
+    </filter>
+
     <!-- ============================================================== -->
     <!-- Mixture                                                        -->
     <!-- ============================================================== -->
@@ -427,6 +533,26 @@
         </input>
         <output>
             <property>/controls/engines/engine[1]/mixture</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Engine 150 HP Mixture</name>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/controls/engines/current-engine/mixture</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/controls/engines/engine[2]/mixture</property>
         </output>
     </filter>
     

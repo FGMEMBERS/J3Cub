@@ -161,8 +161,8 @@ version 2.0  090410-->
             <path>/sim/model/j3cub/brake-parking</path>
             <path>/sim/model/j3cub/garmin196-visible</path>
             <path>/sim/model/payload</path>
-            <path>/sim/model/pa-18</path>
             <path>/sim/model/payload-package</path>
+            <path>/sim/model/j3cub/pa-18</path>
             <path>/fdm/jsbsim/bushkit</path>
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/dirt</path>
@@ -310,6 +310,10 @@ version 2.0  090410-->
             <starter type="bool">false</starter>
             <magnetos type="int">0</magnetos>
         </switches>
+        
+        <flight>
+            <speedbrake alias="/engines/active-engine/rpm"/>
+        </flight>
     </controls>
 
     <engines>
@@ -326,10 +330,6 @@ version 2.0  090410-->
             <kill-engine type="bool">false</kill-engine>
             <auto-start type="bool">false</auto-start>
         </active-engine>
-
-        <engine n="2">
-            <rpm alias="/engines/active-engine/rpm"/>
-        </engine>
 
         <current-engine>
             <starter type="bool">true</starter>
@@ -491,6 +491,34 @@ version 2.0  090410-->
             <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[15]"/>
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">300.0</max-lb>
+        </weight>
+        <weight>
+            <name type="string">Engine90hp</name><!-- based on 65hp at 173 lb -->
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[16]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[16]"/>
+            <min-lb type="double">0.0</min-lb>
+            <max-lb type="double">35</max-lb>
+        </weight>
+        <weight>
+            <name type="string">Engine150hp</name><!-- based on dry weight of 244 lb -->
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[17]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[17]"/>
+            <min-lb type="double">0.0</min-lb>
+            <max-lb type="double">71</max-lb>
+        </weight>
+        <weight>
+            <name type="string">FuelLeftWing</name><!-- based on 18 gal @ 6.183 lb per gal -->
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[18]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[18]"/>
+            <min-lb type="double">0.0</min-lb>
+            <max-lb type="double">111.29</max-lb>
+        </weight>
+        <weight>
+            <name type="string">FuelRightWing</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[19]"/>
+            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[19]"/>
+            <min-lb type="double">0.0</min-lb>
+            <max-lb type="double">111.29</max-lb>
         </weight>
         <pax-state type="int">0</pax-state>
     </payload>

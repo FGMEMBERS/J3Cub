@@ -42,7 +42,7 @@
                     <value>1</value>
                 </not-equals>
                 <property>/controls/lighting/landing-light</property>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </input>
         <output>
@@ -67,7 +67,7 @@
                     <value>1</value>
                 </not-equals>
                 <property>/controls/lighting/taxi-light</property>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </input>
         <output>
@@ -145,7 +145,7 @@
                 </greater-than>
             </and>
             <property>controls/lighting/nav-lights</property>
-            <property>/sim/model/pa-18</property>
+            <property>/sim/model/j3cub/pa-18</property>
         </input>
         <output>
             <property>/sim/model/pa-18/lighting/nav-lights</property>
@@ -191,7 +191,7 @@
                     <value>20.0</value>
                 </greater-than>
                 <property>/controls/lighting/beacon-light</property>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </input>
         <output>
@@ -213,7 +213,7 @@
                 </greater-than>
             </and>
             <property>controls/lighting/strobe-lights</property>
-            <property>/sim/model/pa-18</property>
+            <property>/sim/model/j3cub/pa-18</property>
         </input>
         <output>
             <property>/sim/model/pa-18/lighting/strobes/enabled</property>

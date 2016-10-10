@@ -17,7 +17,7 @@
             <property>sim/multiplay/generic/int[19]</property>
         </wing_right_damaged>
         <engine>
-            <rpm>engines/engine[2]/rpm</rpm>
+            <rpm>controls/flight/speedbrake</rpm>
             <crashed>sim/multiplay/generic/int[3]</crashed>
         </engine>
         <lighting>
@@ -212,7 +212,7 @@
         <object-name>switch_landing_p18</object-name>
         <object-name>switch_taxi_p18</object-name>
         <condition>
-            <property>/sim/model/pa-18</property>
+            <property>/sim/model/j3cub/pa-18</property>
         </condition>
     </animation>
 
@@ -242,7 +242,7 @@
                         <value>5</value>
                     </equals>
                 </or>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>
@@ -260,7 +260,7 @@
                 <not>
                     <property alias="/params/crash/property"/>
                 </not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>
@@ -278,7 +278,7 @@
                 <not>
                     <property alias="/params/crash/property"/>
                 </not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>
@@ -324,7 +324,7 @@
                 <not>
                     <property alias="/params/engine/crashed"/>
                 </not>
-                <property>/sim/model/pa-18</property>
+                <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>
@@ -345,7 +345,7 @@
               <not>
                 <property alias="/params/engine/crashed"/>
               </not>
-              <property>/sim/model/pa-18</property>
+              <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>
@@ -362,7 +362,7 @@
               <not>
                 <property alias="/params/engine/crashed"/>
               </not>
-                <property>/sim/model/pa-18</property>
+              <property>/sim/model/j3cub/pa-18</property>
             </and>
         </condition>
     </animation>

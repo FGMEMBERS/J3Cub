@@ -251,12 +251,37 @@
                 <z> -38.99 </z>
             </location>
         </pointmass>
+        <!-- pointmass 16-19 -->
         <pointmass name="extra weight 90hp">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
                 <x> -34.0 </x>
                 <y>   0.0 </y>
                 <z> -27.0 </z>
+            </location>
+        </pointmass>
+        <pointmass name="extra weight 150hp">
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x> -34.0 </x>
+                <y>   0.0 </y>
+                <z> -27.0 </z>
+            </location>
+        </pointmass>
+        <pointmass name="extra weight fuel left wing">
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x> 0.4403 </x>
+                <y> -1.1602 </y>
+                <z> 0.0544 </z>
+            </location>
+        </pointmass>
+        <pointmass name="extra weight fuel right wing">
+            <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+                <x> 0.4403 </x>
+                <y> 1.1602 </y>
+                <z> 0.0544 </z>
             </location>
         </pointmass>
     </mass_balance>
@@ -275,9 +300,7 @@
         <yaw>     0.00 </yaw>
     </orient>
     <feed> 0 </feed>
-
     <thruster file="CM7445 MCCauley">
-    
      <sense> 1 </sense>
      <location unit="IN">
        <x>   -69.30 </x>
@@ -304,9 +327,7 @@
         <yaw>     0.00 </yaw>
     </orient>
     <feed> 0 </feed>
-
     <thruster file="CM7445 MCCauley2">
-    
      <sense> 1 </sense>
      <location unit="IN">
        <x>   -69.30 </x>
@@ -321,14 +342,60 @@
     </thruster>
   </engine>
 
+  <engine file="eng_io320">
+    <location unit="IN">
+        <x> -19.7 </x>
+        <y> 0 </y>
+        <z> 26.6 </z>
+    </location>
+    <orient unit="DEG">
+        <roll> 0.0 </roll>
+        <pitch> 0 </pitch>
+        <yaw> 0 </yaw>
+    </orient>
+    <feed>0</feed> <!-- from intermediate tank (float chamber 2) -->
+    <thruster file="prop_75in2f">
+        <location unit="IN">
+            <x> -37.7 </x>
+            <y> 0 </y>
+            <z> 26.6 </z>
+        </location>
+        <orient unit="DEG">
+            <roll> 0.0 </roll>
+            <pitch> 0.0 </pitch>
+            <yaw> 0.0 </yaw>
+        </orient>
+        <sense> 1 </sense>
+        <p_factor> 5 </p_factor>
+    </thruster>
+  </engine>
+
   <tank type="FUEL" number="0">
      <location unit="IN">
-       <x>     0.00 </x>
+       <x>    -0.3 </x>
        <y>     0.00 </y>
-       <z>     0.00 </z>
+       <z>    -0.66 </z>
      </location>
-     <capacity unit="LBS"> 75.00 </capacity>
+     <capacity unit="LBS"> 74.19 </capacity>
      <contents unit="LBS"> 65.00 </contents>
+  </tank>
+  <tank type="FUEL" number="1">
+     <location unit="IN">
+       <x>     0.4403 </x>
+       <y>     -1.1602 </y>
+       <z>     0.0544 </z>
+     </location>
+     <capacity unit="LBS"> 111.29 </capacity>
+     <contents unit="LBS">   0.00 </contents>
+  </tank>
+  <tank type="FUEL" number="2">
+     <location unit="IN">
+       <x>     0.4403 </x>
+       <y>     1.1602 </y>
+       <z>     0.0544 </z>
+     </location>
+     <capacity unit="LBS"> 111.29 </capacity>
+     <contents unit="LBS">   0.00 </contents>
   </tank>
 
  </propulsion>
