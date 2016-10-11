@@ -986,6 +986,8 @@
       <property>propulsion/engine/prop-induced-velocity_fps</property>
       <property>propulsion/engine[1]/prop-induced-velocity_fps</property>
       <property>propulsion/engine[1]/prop-induced-velocity_fps</property>
+      <property>propulsion/engine[2]/prop-induced-velocity_fps</property>
+      <property>propulsion/engine[2]/prop-induced-velocity_fps</property>
     </sum>
   </function>
  
@@ -1576,7 +1578,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y> 0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 1.0 </x>
@@ -1588,7 +1590,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y> 0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
@@ -1600,7 +1602,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y> 0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
@@ -1612,7 +1614,7 @@
             <location unit="IN">
                 <x> 20.6 </x>
                 <y> 0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
@@ -1624,7 +1626,7 @@
             <location unit="IN">
                 <x> 44.6 </x>
                 <y> 0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
@@ -1636,7 +1638,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y>-12.0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 1.0 </x>
@@ -1648,7 +1650,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y> 12.0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 1.0 </x>
@@ -1660,7 +1662,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y>-12.0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
@@ -1672,7 +1674,7 @@
             <location unit="IN">
                 <x> 32.6 </x>
                 <y> 12.0 </y>
-                <z> 38.5 </z>
+                <z> -2 </z>
             </location>
             <direction>
                 <x> 0.0 </x>
