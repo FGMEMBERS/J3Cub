@@ -2,8 +2,7 @@
 
 <!--
 ***********************************************************************************
-c172p-detailed, May 2015 
-Extra weight and drag due to bush wheels, floats and 180 hp engine
+Extra weight and drag due to bush wheels, floats, 90 hp and 150 hp engine
 ***********************************************************************************
  -->
 
@@ -92,19 +91,24 @@ Extra weight and drag due to bush wheels, floats and 180 hp engine
 
         <switch name="extra-weight-left-fuel-tank">
             <default value="0"/>
-            <test logic="OR" value="111.29">
-                /controls/engines/active-engine EQ 1
-                /controls/engines/active-engine EQ 2
+            <test logic="AND" value="90.00">
+                /sim/model/j3cub/pa-18 EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[16]</output>
+            <output>/fdm/jsbsim/propulsion/tank[1]/contents-lbs</output>
         </switch>
         <switch name="extra-weight-right-fuel-tank">
             <default value="0"/>
-            <test logic="OR" value="111.29">
-                /controls/engines/active-engine EQ 1
-                /controls/engines/active-engine EQ 2
+            <test logic="AND" value="90.00">
+                /sim/model/j3cub/pa-18 EQ 1
             </test>
-            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[17]</output>
+            <output>/fdm/jsbsim/propulsion/tank[2]/contents-lbs</output>
+        </switch>
+        <switch name="weight-center-fuel-tank">
+            <default value="65"/>
+            <test logic="AND" value="0">
+                /sim/model/j3cub/pa-18 EQ 1
+            </test>
+            <output>/fdm/jsbsim/propulsion/tank[0]/contents-lbs</output>
         </switch>
 
         <fcs_function name="extra-weight-left-float">

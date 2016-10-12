@@ -674,15 +674,27 @@
                     <property>/sim/model/j3cub/pa-18</property>
                     <live>true</live>
                     <enable>
-                        <and>
-                            <not>
-                                <property>/sim/freeze/replay-state</property>
-                            </not>
-                            <property>/controls/engines/active-engine</property>
-                        </and>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
                     </enable>
                     <binding>
                         <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            if (getprop("sim/model/j3cub/engine_flag_2") and !getprop("sim/model/j3cub/pa-18"))
+                            {
+                                setprop("sim/model/j3cub/engine_flag_1", 1);
+                                setprop("sim/model/j3cub/engine_flag_2", 0);
+                            } else
+                            if (getprop("sim/model/j3cub/engine_flag_0") and getprop("sim/model/j3cub/pa-18"))
+                            {
+                                setprop("sim/model/j3cub/engine_flag_0", 0);
+                                setprop("sim/model/j3cub/engine_flag_1",1);
+                            } 
+                        </script>
                     </binding>
                 </checkbox>
                 

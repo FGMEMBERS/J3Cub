@@ -5421,10 +5421,15 @@
         <object-name>screw_3Amp</object-name>
         <object-name>screw_4Amp</object-name>
         <condition>
-            <equals>
-               <property alias="/params/bushkit"/>
-               <value>3</value>
-            </equals>
+            <and>
+                <equals>
+                   <property alias="/params/bushkit"/>
+                   <value>3</value>
+                </equals>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
+            </and>
         </condition>
     </animation>
 
@@ -5443,6 +5448,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5461,6 +5469,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5479,6 +5490,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5497,6 +5511,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5516,6 +5533,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5534,6 +5554,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5552,6 +5575,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5570,6 +5596,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5593,6 +5622,9 @@
                     <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>

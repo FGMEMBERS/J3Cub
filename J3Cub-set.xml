@@ -170,9 +170,6 @@ version 2.0  090410-->
             <!--path>/sim/model/j3cub/enable-fog-frost</path-->
             <path>/fdm/jsbsim/settings/damage</path>
             <path>/controls/engines/active-engine</path>
-            <path>/controls/lighting/taxi-light</path>
-            <path>/controls/lighting/landing-light</path>
-            <path>/controls/lighting/nav-lights</path>
             <!--path>/fdm/jsbsim/complex</path-->
         </aircraft-data>
 
@@ -505,20 +502,6 @@ version 2.0  090410-->
             <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[17]"/>
             <min-lb type="double">0.0</min-lb>
             <max-lb type="double">71</max-lb>
-        </weight>
-        <weight>
-            <name type="string">FuelLeftWing</name><!-- based on 18 gal @ 6.183 lb per gal -->
-            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[18]"/>
-            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[18]"/>
-            <min-lb type="double">0.0</min-lb>
-            <max-lb type="double">111.29</max-lb>
-        </weight>
-        <weight>
-            <name type="string">FuelRightWing</name>
-            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[19]"/>
-            <arm-in alias="/fdm/jsbsim/inertia/pointmass-location-X-inches[19]"/>
-            <min-lb type="double">0.0</min-lb>
-            <max-lb type="double">111.29</max-lb>
         </weight>
         <pax-state type="int">0</pax-state>
     </payload>

@@ -208,9 +208,18 @@
         </output>
     </filter>
 
-    <!--filter>
+    <filter>
         <name>Engine Fuel Flow</name>
         <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/fuel-flow-gph</property>
+        </input>
         <input>
             <condition>
                 <equals>
@@ -235,6 +244,15 @@
             <condition>
                 <equals>
                     <property>/controls/engines/active-engine</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+            <property>/engines/engine[2]/egt-norm</property>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/controls/engines/active-engine</property>
                     <value>1</value>
                 </equals>
             </condition>
@@ -246,7 +264,7 @@
         <output>
             <property>/engines/active-engine/egt-norm</property>
         </output>
-    </filter-->
+    </filter>
 
     <filter>
         <name>Engine Oil Temperature</name>
