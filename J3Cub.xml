@@ -274,80 +274,92 @@
 
    <engine file="Continental A-65-8">
     <location unit="IN">
-      <x>   -57.10 </x>
-      <y>     0.00 </y>
-      <z>   -23.00 </z>
+      <!--x> -57.10 </x>
+      <y>   0.00 </y>
+      <z> -23.00 </z-->
+      <x> -37.43 </x>
+      <y>   0.0  </y>
+      <z> -25.96 </z>
     </location>
     <orient unit="DEG">
-      <pitch>     0.00 </pitch>
-       <roll>     0.00 </roll>
-        <yaw>     0.00 </yaw>
+      <pitch> 0.00 </pitch>
+       <roll> 0.00 </roll>
+        <yaw> 0.00 </yaw>
     </orient>
     <feed> 3 </feed><!-- from intermediate tank (float chamber 3) -->
     <thruster file="CM7445 MCCauley">
      <sense> 1 </sense>
      <location unit="IN">
-       <x>   -69.30 </x>
+       <!--x>   -69.30 </x>
        <y>     0.00 </y>
-       <z>   -23.00 </z>
+       <z>   -23.00 </z-->
+       <x> -54.53 </x>
+       <y>   0.00 </y>
+       <z> -19.92 </z>
      </location>
      <orient unit="DEG">
-       <pitch>     0.00 </pitch>
-        <roll>     0.00 </roll>
-         <yaw>     0.00 </yaw>
+        <pitch> 0.00 </pitch>
+        <roll>  0.00 </roll>
+        <yaw>   0.00 </yaw>
      </orient>
     </thruster>
   </engine>
   
   <engine file="Continental C90">
     <location unit="IN">
-      <x>   -57.10 </x>
-      <y>     0.00 </y>
-      <z>   -23.00 </z>
+      <!--x> -57.10 </x>
+      <y>   0.00 </y>
+      <z> -23.00 </z-->
+      <x> -37.81 </x>
+      <y>   0.0  </y>
+      <z> -25.96 </z>
     </location>
     <orient unit="DEG">
-      <pitch>     0.00 </pitch>
-       <roll>     0.00 </roll>
-        <yaw>     0.00 </yaw>
+        <pitch> 0.00 </pitch>
+        <roll>  0.00 </roll>
+        <yaw>   0.00 </yaw>
     </orient>
     <feed> 4 </feed><!-- from intermediate tank (float chamber 4) -->
     <thruster file="CM7445 MCCauley2">
      <sense> 1 </sense>
      <location unit="IN">
-       <x>   -69.30 </x>
+       <!--x>   -69.30 </x>
        <y>     0.00 </y>
-       <z>   -23.00 </z>
+       <z>   -23.00 </z-->
+       <x> -55.62 </x>
+       <y>   0.00 </y>
+       <z> -20.23 </z>
      </location>
      <orient unit="DEG">
-       <pitch>     0.00 </pitch>
-        <roll>     0.00 </roll>
-         <yaw>     0.00 </yaw>
+        <pitch> 0.00 </pitch>
+        <roll>  0.00 </roll>
+        <yaw>   0.00 </yaw>
      </orient>
     </thruster>
   </engine>
 
   <engine file="eng_io320">
     <location unit="IN">
-        <x> -19.7 </x>
-        <y> 0 </y>
-        <z> 26.6 </z>
+        <x> -38.19 </x>
+        <y>   0.0  </y>
+        <z> -23.62 </z>
     </location>
     <orient unit="DEG">
-        <roll> 0.0 </roll>
-        <pitch> 0 </pitch>
-        <yaw> 0 </yaw>
+        <roll>  0.0 </roll>
+        <pitch> 0.0 </pitch>
+        <yaw>   0.0 </yaw>
     </orient>
     <feed>5</feed> <!-- from intermediate tank (float chamber 5) -->
     <thruster file="prop_75in2f">
         <location unit="IN">
-            <x> -37.7 </x>
-            <y> 0 </y>
-            <z> 26.6 </z>
+            <x> -56.69 </x>
+            <y>   0.00 </y>
+            <z> -20.55 </z>
         </location>
         <orient unit="DEG">
-            <roll> 0.0 </roll>
+            <roll>  0.0 </roll>
             <pitch> 0.0 </pitch>
-            <yaw> 0.0 </yaw>
+            <yaw>   0.0 </yaw>
         </orient>
         <sense> 1 </sense>
         <p_factor> 5 </p_factor>
@@ -356,27 +368,27 @@
 
   <tank type="FUEL" number="0">
      <location unit="IN">
-       <x>    -0.3 </x>
-       <y>     0.00 </y>
-       <z>    -0.66 </z>
+       <x> -0.3 </x>
+       <y>  0.00 </y>
+       <z> -0.66 </z>
      </location>
      <capacity unit="LBS"> 74.19 </capacity>
      <contents unit="LBS"> 65.00 </contents>
   </tank>
   <tank type="FUEL" number="1">
      <location unit="IN">
-       <x>     0.4403 </x>
-       <y>     -1.1602 </y>
-       <z>     0.0544 </z>
+       <x>  0.4403 </x>
+       <y> -1.1602 </y>
+       <z>  0.0544 </z>
      </location>
      <capacity unit="LBS"> 111.29 </capacity>
      <contents unit="LBS">   0.00 </contents>
   </tank>
   <tank type="FUEL" number="2">
      <location unit="IN">
-       <x>     0.4403 </x>
-       <y>     1.1602 </y>
-       <z>     0.0544 </z>
+       <x> 0.4403 </x>
+       <y> 1.1602 </y>
+       <z> 0.0544 </z>
      </location>
      <capacity unit="LBS"> 111.29 </capacity>
      <contents unit="LBS">   0.00 </contents>
@@ -384,9 +396,9 @@
   <!-- Tank number 3, Float chamber  -->
   <tank type="FUEL" number="3">
      <location unit="IN">
-       <x>    -0.3 </x>
-       <y>     0.00 </y>
-       <z>    -0.66 </z>
+       <x> -0.3 </x>
+       <y>  0.00 </y>
+       <z> -0.66 </z>
      </location>
      <capacity unit="LBS"> 0.1 </capacity>
      <contents unit="LBS"> 0.0 </contents>
@@ -394,9 +406,9 @@
   <!-- Tank number 4, Float chamber  -->
   <tank type="FUEL" number="4">
      <location unit="IN">
-       <x>    -0.3 </x>
-       <y>     0.00 </y>
-       <z>    -0.66 </z>
+       <x> -0.3 </x>
+       <y>  0.00 </y>
+       <z> -0.66 </z>
      </location>
      <capacity unit="LBS"> 0.1 </capacity>
      <contents unit="LBS"> 0.0 </contents>
@@ -404,9 +416,9 @@
   <!-- Tank number 5, Float chamber  -->
   <tank type="FUEL" number="5">
      <location unit="IN">
-       <x>    -0.3 </x>
-       <y>     0.00 </y>
-       <z>    -0.66 </z>
+       <x> -0.3 </x>
+       <y>  0.00 </y>
+       <z> -0.66 </z>
      </location>
      <capacity unit="LBS"> 0.1 </capacity>
      <contents unit="LBS"> 0.0 </contents>

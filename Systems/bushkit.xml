@@ -110,6 +110,27 @@ Extra weight and drag due to bush wheels, floats, 90 hp and 150 hp engine
             </test>
             <output>/fdm/jsbsim/propulsion/tank[0]/contents-lbs</output>
         </switch>
+        <!--switch name="extra-weight-left-fuel-tank">
+            <default value="0"/>
+            <test logic="AND" value="0.00">
+                /sim/model/j3cub/pa-18 EQ 1
+            </test>
+            <output>/fdm/jsbsim/propulsion/tank[1]/contents-lbs</output>
+        </switch>
+        <switch name="extra-weight-right-fuel-tank">
+            <default value="0"/>
+            <test logic="AND" value="0.00">
+                /sim/model/j3cub/pa-18 EQ 1
+            </test>
+            <output>/fdm/jsbsim/propulsion/tank[2]/contents-lbs</output>
+        </switch>
+        <switch name="weight-center-fuel-tank">
+            <default value="0"/>
+            <test logic="AND" value="0">
+                /sim/model/j3cub/pa-18 EQ 1
+            </test>
+            <output>/fdm/jsbsim/propulsion/tank[0]/contents-lbs</output>
+        </switch-->
 
         <fcs_function name="extra-weight-left-float">
             <function>
