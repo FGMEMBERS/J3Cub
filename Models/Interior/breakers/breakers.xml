@@ -396,7 +396,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>c172p.click("cb")</script>
+                <script>j3cub.click("cb")</script>
             </binding>
         </action>
         <hovered>

@@ -2314,7 +2314,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("parking")</script>
+                <script>j3cub.click("rudder")</script>
             </binding>
         </action>
         <hovered>
@@ -4757,14 +4757,10 @@
         <object-name>tail_wheel_axle</object-name>
         <object-name>tail_wheel_strut</object-name>
         <object-name>tail_wheel_strut_end</object-name>
-        <object-name>air_scoop_l</object-name>
-        <object-name>air_scoop_r</object-name>
         <object-name>tail_wheel_strut_end_bush</object-name>
         <object-name>tail_wheel_axle_bush</object-name>
         <object-name>tyre_l_bush</object-name>
         <object-name>tyre_r_bush</object-name>
-        <object-name>throttle_front</object-name>
-        <object-name>throttle_back</object-name>
         
         <object-name>wheel_strut_rD</object-name>       
         <object-name>suspension_lower_rD</object-name>        
@@ -4799,39 +4795,17 @@
         <object-name>bulkhead_strut_l_p18</object-name>
         <object-name>bulkhead_strut_r_p18</object-name>
         <object-name>Cylinder_1_p18</object-name>
-        <object-name>exhaust_inner_p18</object-name>
-        <object-name>exhaust_outer_p18</object-name>
-        <object-name>floor_lever_l_p18</object-name>
-        <object-name>floor_lever_r_p18</object-name>
         <object-name>fuselage_p18</object-name>
-        <object-name>fuelcap_l_p18</object-name>
-        <object-name>fuelcap_r_p18</object-name>
-        <object-name>landinglight2_p18</object-name>
-        <object-name>landinglightcover_p18</object-name>
+        <object-name>propeller_0_p18</object-name>
         <object-name>nose_p18</object-name>
         <object-name>nose_strut_r_p18</object-name>
         <object-name>nose_strut_l_p18</object-name>
         <object-name>nose_under_p18</object-name>
         <object-name>oilfilter_p18</object-name>
         <object-name>oil_rad_p18</object-name>
-        <object-name>pedal_rest_l_p18</object-name>
-        <object-name>pedal_rest_r_p18</object-name>
-        <object-name>propeller_0_p18</object-name>
-        <object-name>rudderpedal_l_p18</object-name>
-        <object-name>rudderpedal_r_p18</object-name>
-        <object-name>stick_front_p18</object-name>
         <object-name>beaconMount_p18</object-name>
-        <object-name>BeaconOff_p18</object-name>
         <object-name>navLightBack_p18</object-name>
-        <object-name>navLightBack_p18.001</object-name>
         <object-name>flaps_p18</object-name>
-        <object-name>panel_p18</object-name>
-        <object-name>switch_master_p18</object-name>
-        <object-name>switch_strobe_p18</object-name>
-        <object-name>switch_beacon_p18</object-name>
-        <object-name>switch_nav_p18</object-name>
-        <object-name>switch_landing_p18</object-name>
-        <object-name>switch_taxi_p18</object-name>
         <object-name>wing_l_p18</object-name>
         <object-name>navLightLeft_p18</object-name>
         <object-name>wing_r_p18</object-name>
