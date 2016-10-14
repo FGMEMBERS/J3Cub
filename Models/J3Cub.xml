@@ -2312,6 +2312,10 @@
                 <command>property-toggle</command>
                 <property>/controls/gear/water-rudder</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("parking")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -4157,6 +4161,10 @@
       <command>property-toggle</command>
       <property>consumables/fuel/tank/selected</property>
     </binding>
+    <binding>
+        <command>nasal</command>
+        <script>j3cub.click("dblclk")</script>
+    </binding>
   </action>    
 </animation>
 
@@ -4193,6 +4201,10 @@
                 <min>0</min>
                 <max>1</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("trim")</script>
             </binding>
         </action>
         <hovered>
@@ -4394,6 +4406,10 @@
                 <max>1</max>
                 <wrap>false</wrap>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("throttle")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -4430,6 +4446,10 @@
                 <min>0</min>
                 <max>1</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("throttle")</script>
             </binding>
         </action>
         <hovered>

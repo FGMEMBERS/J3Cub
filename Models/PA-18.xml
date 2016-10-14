@@ -502,7 +502,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -544,7 +544,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -586,7 +586,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -628,7 +628,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -671,7 +671,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -713,7 +713,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -755,7 +755,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -797,7 +797,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -839,7 +839,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -882,7 +882,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -925,7 +925,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -968,7 +968,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("click3")</script>
+                <script>j3cub.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -1539,7 +1539,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>j3cub.click("avionics")</script>
+                <script>j3cub.click("light")</script>
             </binding>
         </action>
         <hovered>
