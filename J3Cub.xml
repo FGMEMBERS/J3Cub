@@ -274,9 +274,6 @@
 
    <engine file="Continental A-65-8">
     <location unit="IN">
-      <!--x> -57.10 </x>
-      <y>   0.00 </y>
-      <z> -23.00 </z-->
       <x> -37.43 </x>
       <y>   0.0  </y>
       <z> -25.96 </z>
@@ -290,9 +287,6 @@
     <thruster file="CM7445 MCCauley">
      <sense> 1 </sense>
      <location unit="IN">
-       <!--x>   -69.30 </x>
-       <y>     0.00 </y>
-       <z>   -23.00 </z-->
        <x> -54.53 </x>
        <y>   0.00 </y>
        <z> -19.92 </z>
@@ -307,10 +301,7 @@
   
   <engine file="Continental C90">
     <location unit="IN">
-      <!--x> -57.10 </x>
-      <y>   0.00 </y>
-      <z> -23.00 </z-->
-      <x> -37.81 </x>
+      <x> -32.25 </x>
       <y>   0.0  </y>
       <z> -25.96 </z>
     </location>
@@ -323,9 +314,6 @@
     <thruster file="CM7445 MCCauley2">
      <sense> 1 </sense>
      <location unit="IN">
-       <!--x>   -69.30 </x>
-       <y>     0.00 </y>
-       <z>   -23.00 </z-->
        <x> -55.62 </x>
        <y>   0.00 </y>
        <z> -20.23 </z>
@@ -340,7 +328,7 @@
 
   <engine file="eng_io320">
     <location unit="IN">
-        <x> -38.19 </x>
+        <x> -22.72 </x>
         <y>   0.0  </y>
         <z> -23.62 </z>
     </location>
