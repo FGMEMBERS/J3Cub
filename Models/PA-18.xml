@@ -1519,9 +1519,9 @@
         <factor>45</factor>
         <offset-deg>-30</offset-deg>
         <center>
-            <x-m>-0.1724</x-m>
-            <y-m> 0.1562</y-m>
-            <z-m>-0.5525</z-m>
+            <x-m>-0.1726</x-m>
+            <y-m> 0.1558</y-m>
+            <z-m>-0.5527</z-m>
         </center>
         <axis>
             <x>0</x>
