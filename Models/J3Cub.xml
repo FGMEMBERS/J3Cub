@@ -13,6 +13,8 @@
         <object-name>bulkhead_strut_r</object-name>
         <object-name>cowl_top</object-name>
         <object-name>cowl_under</object-name>
+        <object-name>cabin_cable_l</object-name>
+        <object-name>cabin_cable_r</object-name>
         <object-name>engine_front_l</object-name>
         <object-name>engine_front_r</object-name>
         <object-name>engine_head_1_l</object-name>
@@ -35,8 +37,6 @@
         <object-name>ex_pipe_3_r</object-name>
         <object-name>exhaust_inner</object-name>
         <object-name>exhaust_outer</object-name>
-        <object-name>floor_lever_l</object-name>
-        <object-name>floor_lever_r</object-name>
         <object-name>fuselage</object-name>
         <object-name>fuel_pipe</object-name>
         <object-name>fuel_gauge</object-name>
@@ -50,14 +50,10 @@
         <object-name>oil_rad</object-name>
         <object-name>overflowpipe</object-name>
         <object-name>panel</object-name>
-        <object-name>pedal_rest_l</object-name>
-        <object-name>pedal_rest_r</object-name>
         <object-name>propeller_fast</object-name>
         <object-name>propeller_0</object-name>
         <object-name>propeller_1</object-name>
         <object-name>propeller_slow</object-name>
-        <object-name>rudderpedal_l</object-name>
-        <object-name>rudderpedal_r</object-name>
         <object-name>stick_front</object-name>
         <object-name>suspension_link_l</object-name>
         <object-name>suspension_link_r</object-name>
@@ -65,6 +61,12 @@
         <object-name>wheel_strut_link_r</object-name>
         <object-name>wing_r</object-name>
         <object-name>wing_l</object-name>
+        <object-name>brake_front_l</object-name>
+        <object-name>brake_front_r</object-name>
+        <object-name>rudderpedal_l</object-name>
+        <object-name>rudderpedal_r</object-name>
+        <object-name>floor_lever_l</object-name>
+        <object-name>floor_lever_r</object-name>
         <condition>
             <not>
                 <property>/sim/model/j3cub/pa-18</property>
@@ -461,16 +463,12 @@
         <object-name>Cylinder.008</object-name>
         <object-name>door_interior</object-name>
         <object-name>door_handle</object-name>
-        <object-name>floor_lever_l</object-name>
-        <object-name>floor_lever_r</object-name>
         <object-name>fuel_gauge</object-name>
         <object-name>fuel_gauge_cap</object-name>
         <object-name>fuel_pipe</object-name>
         <object-name>fuel_tank</object-name>
         <object-name>FuelCutoff</object-name>
         <object-name>panel</object-name>
-        <object-name>pedal_rest_l</object-name>
-        <object-name>pedal_rest_r</object-name>
         <object-name>pitot</object-name>
         <object-name>placard</object-name>
         <object-name>primer</object-name>
@@ -481,6 +479,16 @@
         <object-name>roof_strut_long_r</object-name>
         <object-name>rudderpedal_rear_l</object-name>
         <object-name>rudderpedal_rear_r</object-name>
+        <object-name>rudderpedal_l</object-name>
+        <object-name>rudderpedal_r</object-name>
+        <object-name>brake_front_l</object-name>
+        <object-name>brake_front_r</object-name>
+        <object-name>brake_rear_l</object-name>
+        <object-name>brake_rear_r</object-name>
+        <object-name>floor_lever_l</object-name>
+        <object-name>floor_lever_r</object-name>
+        <object-name>floor_lever_rear_l</object-name>
+        <object-name>floor_lever_rear_r</object-name>
         <object-name>seat_front</object-name>
         <object-name>seat_rear</object-name>
         <object-name>solo_placard</object-name>
@@ -4461,41 +4469,191 @@
             </binding>
         </hovered>
     </animation>
+    
+    <!-- brake peddle -->
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_l</object-name>
+        <object-name>floor_lever_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.5326</x-m>
+            <y-m>-0.2194</y-m>
+            <z-m>-1.058</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_r</object-name>
+        <object-name>floor_lever_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.5325</x-m>
+            <y-m> 0.204 </y-m>
+            <z-m>-1.058 </z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_rear_l</object-name>
+        <object-name>floor_lever_rear_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>30</factor>
+        <center>
+            <x-m> 0.2925</x-m>
+            <y-m>-0.2721</y-m>
+            <z-m>-1.1382</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_rear_r</object-name>
+        <object-name>floor_lever_rear_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>30</factor>
+        <center>
+            <x-m> 0.2926</x-m>
+            <y-m> 0.264 </y-m>
+            <z-m>-1.1382</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
 
-<!-- rudder pedals; front only and just token movement -->
-<animation>
-  <type>rotate</type>
-  <object-name>rudderpedal_l</object-name>
-  <property>surface-positions/rudder-pos-norm</property>
-  <factor>15</factor>
-  <center>
-   <x-m>-0.563</x-m>
-   <y-m>-0.256</y-m>
-   <z-m>-1.050</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
-<animation>
-  <type>rotate</type>
-  <object-name>rudderpedal_r</object-name>
-  <property>surface-positions/rudder-pos-norm</property>
-  <factor>15</factor>
-  <center>
-   <x-m>-0.563</x-m>
-   <y-m>-0.256</y-m>
-   <z-m>-1.050</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>-1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <!-- rudder pedals -->
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_l</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.563</x-m>
+       <y-m>-0.256</y-m>
+       <z-m>-1.050</z-m>
+      </center>
+      <axis>
+       <x>0.0</x>
+       <y>1.0</y>
+       <z>0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_r</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.563</x-m>
+       <y-m>-0.256</y-m>
+       <z-m>-1.050</z-m>
+      </center>
+      <axis>
+       <x> 0.0</x>
+       <y>-1.0</y>
+       <z> 0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_rear_l</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m> 0.2674</x-m>
+       <y-m>-0.2613</y-m>
+       <z-m>-1.1422</z-m>
+      </center>
+      <axis>
+       <x>0.0</x>
+       <y>1.0</y>
+       <z>0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_rear_r</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m> 0.2674</x-m>
+       <y-m>-0.2613</y-m>
+       <z-m>-1.1422</z-m>
+      </center>
+      <axis>
+       <x> 0.0</x>
+       <y>-1.0</y>
+       <z> 0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_rudder_cable_l</object-name>
+        <property>surface-positions/rudder-pos-norm</property>
+        <factor>.025</factor>
+        <axis>
+            <x>.5</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_rudder_cable_r</object-name>
+        <property>surface-positions/rudder-pos-norm</property>
+        <factor>.025</factor>
+        <axis>
+            <x>-.5</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
 <!-- External Effects -->
     <!-- Wing Scrape -->

@@ -84,12 +84,8 @@
     <effect>
         <inherits-from>Effects/interior/j3cub-interior</inherits-from>
         <object-name>Cylinder_1_p18</object-name>
-        <object-name>floor_lever_l_p18</object-name>
-        <object-name>floor_lever_r_p18</object-name>
-        <object-name>pedal_rest_l_p18</object-name>
-        <object-name>pedal_rest_r_p18</object-name>
-        <object-name>rudderpedal_l_p18</object-name>
-        <object-name>rudderpedal_r_p18</object-name>        
+        <object-name>cabin_cable_l_p18</object-name>
+        <object-name>cabin_cable_r_p18</object-name>
         <object-name>stick_front_p18</object-name>
         <object-name>panel_p18</object-name>
         <object-name>switch_master_p18</object-name>
@@ -104,6 +100,12 @@
         <object-name>switch_ignition_p18</object-name>
         <object-name>switch_aux_p18</object-name>
         <object-name>switch_oil_p18</object-name>
+        <object-name>brake_front_l_p18</object-name>
+        <object-name>brake_front_r_p18</object-name>
+        <object-name>rudderpedal_l_p18</object-name>
+        <object-name>rudderpedal_r_p18</object-name>
+        <object-name>floor_lever_l_p18</object-name>
+        <object-name>floor_lever_r_p18</object-name>
     </effect>
 
     <!-- Red Beacon light -->
@@ -211,11 +213,11 @@
         <type>select</type>
         <object-name>bulkhead_strut_l_p18</object-name>
         <object-name>bulkhead_strut_r_p18</object-name>
+        <object-name>cabin_cable_l_p18</object-name>
+        <object-name>cabin_cable_r_p18</object-name>
         <object-name>Cylinder_1_p18</object-name>
         <object-name>exhaust_inner_p18</object-name>
         <object-name>exhaust_outer_p18</object-name>
-        <object-name>floor_lever_l_p18</object-name>
-        <object-name>floor_lever_r_p18</object-name>
         <object-name>fuselage_p18</object-name>
         <object-name>fuelcap_l_p18</object-name>
         <object-name>fuelcap_r_p18</object-name>
@@ -227,11 +229,7 @@
         <object-name>nose_under_p18</object-name>
         <object-name>oilfilter_p18</object-name>
         <object-name>oil_rad_p18</object-name>
-        <object-name>pedal_rest_l_p18</object-name>
-        <object-name>pedal_rest_r_p18</object-name>
         <object-name>propeller_0_p18</object-name>
-        <object-name>rudderpedal_l_p18</object-name>
-        <object-name>rudderpedal_r_p18</object-name>
         <object-name>stick_front_p18</object-name>
         <object-name>beaconMount_p18</object-name>
         <object-name>BeaconOff_p18</object-name>
@@ -274,10 +272,108 @@
         <object-name>gear_up_p18</object-name>
         <object-name>gear_toggle_p18</object-name>
         <object-name>gear_pump_p18</object-name>
-        
+        <object-name>brake_front_l_p18</object-name>
+        <object-name>brake_front_r_p18</object-name>
+        <object-name>rudderpedal_l_p18</object-name>
+        <object-name>rudderpedal_r_p18</object-name>
+        <object-name>floor_lever_l_p18</object-name>
+        <object-name>floor_lever_r_p18</object-name>
         <condition>
             <property>/sim/model/j3cub/pa-18</property>
         </condition>
+    </animation>
+
+    <!-- brake peddle -->
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_l_p18</object-name>
+        <object-name>floor_lever_l_p18</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.4968</x-m>
+            <y-m>-0.2194</y-m>
+            <z-m>-1.0111</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_r_p18</object-name>
+        <object-name>floor_lever_r_p18</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.4967</x-m>
+            <y-m> 0.204 </y-m>
+            <z-m>-1.0111</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_l_p18</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_r_p18</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <!-- rudder pedals -->
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_l_p18</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.5249</x-m>
+       <y-m>-0.2567</y-m>
+       <z-m>-1.0118</z-m>
+      </center>
+      <axis>
+       <x>0.0</x>
+       <y>1.0</y>
+       <z>0.0</z>
+      </axis>
+    </animation>
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_r_p18</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.5249</x-m>
+       <y-m>-0.2567</y-m>
+       <z-m>-1.0118</z-m>
+      </center>
+      <axis>
+       <x> 0.0</x>
+       <y>-1.0</y>
+       <z> 0.0</z>
+      </axis>
     </animation>
 
     <animation>
