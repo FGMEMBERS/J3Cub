@@ -44,10 +44,11 @@
     <effect>
         <inherits-from>Aircraft/J3Cub/Models/Effects/exterior/bumpspec</inherits-from>
         <object-name>wing_r_p18</object-name>
-        <object-name>wing_l-p18</object-name>
+        <object-name>wing_l_p18</object-name>
         <object-name>flaps_p18</object-name>
         <object-name>fuelcap_l_p18</object-name>
         <object-name>fuelcap_r_p18</object-name>
+	<object-name>fuselage_p18</object-name>
         <object-name>oil_rad_p18</object-name>
         <object-name>oilfilter_p18</object-name>
         <object-name>nose_p18</object-name>
