@@ -48,13 +48,6 @@
             <property>controls/armament/trigger</property>
             <value>1</value>
         </binding>
-        <!--binding>
-            <command>nasal</command>
-            <script>
-                if (getprop("/sim/model/payload") and getprop("/sim/model/payload-package") == 2)
-                    j3cub.drums.toggle();
-            </script>
-        </binding-->
         <mod-up>
         <binding>
             <command>property-assign</command>

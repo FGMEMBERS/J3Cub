@@ -45,7 +45,7 @@
     </signal>
 
     <!-- Passengers and baggage -->
-    <!--signal>
+    <signal>
         <type>float</type>
         <property type="string">/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</property>
     </signal>
@@ -55,19 +55,11 @@
     </signal>
     <signal>
         <type>float</type>
-        <property type="string">/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</property>
+        <property type="string">/fdm/jsbsim/inertia/pointmass-weight-lbs[10]</property>
     </signal>
-    <signal>
-        <type>float</type>
-        <property type="string">/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</property>
-    </signal>
-    <signal>
-        <type>float</type>
-        <property type="string">/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</property>
-    </signal-->
 
     <!-- Lights -->
-    <!--signal>
+    <signal>
         <type>bool</type>
         <property type="string">/controls/lighting/nav-lights</property>
     </signal>
@@ -81,7 +73,7 @@
     </signal>
     <signal>
         <type>bool</type>
-        <property type="string">/controls/lighting/landing-lights</property>
+        <property type="string">/controls/lighting/landing-light</property>
     </signal>
     <signal>
         <type>bool</type>
@@ -90,7 +82,7 @@
     <signal>
         <type>float</type>
         <property type="string">/sim/model/material/instruments/factor</property>
-    </signal-->
+    </signal>
 
     <!-- ============================================================== -->
     <!-- Doors and Windows                                              -->

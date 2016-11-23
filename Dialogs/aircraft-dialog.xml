@@ -40,10 +40,11 @@
             setprop("sim/model/j3cub/payload-package_flag_" ~ p, 1);
             
             # Engine power
-            #var p = getprop("/controls/engines/active-engine");
-            #setprop("sim/model/j3cub/engine_flag_0", 0);
-            #setprop("sim/model/j3cub/engine_flag_1", 0);
-            #setprop("sim/model/j3cub/engine_flag_" ~ p, 1);
+            var p = getprop("/controls/engines/active-engine");
+            setprop("sim/model/j3cub/engine_flag_0", 0);
+            setprop("sim/model/j3cub/engine_flag_1", 0);
+            setprop("sim/model/j3cub/engine_flag_2", 0);
+            setprop("sim/model/j3cub/engine_flag_" ~ p, 1);
         </open>
     </nasal>
 
@@ -334,7 +335,17 @@
                 </binding>
             </checkbox>
 
-           <checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Survival gear</label>
+                <property>/sim/model/riflecase</property>
+                <live>true</live>
+                 <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+
+            <checkbox>
                 <halign>left</halign>
                 <label>Show shadow</label>
                 <property>/sim/rendering/shadow-volume</property>
@@ -572,11 +583,11 @@
         
         <hrule/>
 
-        <!--group>
+        <group>
             <layout>vbox</layout>
 
             <text>
-                <label>Engine power options</label>
+                <label>Engine Option</label>
                 <halign>center</halign>
             </text>
 
@@ -585,7 +596,7 @@
 
                 <radio>
                     <halign>left</halign>
-                    <label>160 HP</label>
+                    <label>65 HP</label>
                     <property>sim/model/j3cub/engine_flag_0</property>
                     <live>true</live>
                     <enable>
@@ -602,22 +613,15 @@
                             setprop("/controls/engines/active-engine", 0);
                             setprop("sim/model/j3cub/engine_flag_0", 1);
                             setprop("sim/model/j3cub/engine_flag_1", 0);
+                            setprop("sim/model/j3cub/engine_flag_2", 0);
+                            setprop("sim/model/j3cub/pa-18", 0);
                         </script>
                     </binding>
-                    <binding>
-                        <command>property-assign</command>
-                        <property>/engines/active-engine/oil-level</property>
-                        <value>7.0</value>
-                    </binding>
-                    <binding>
-                        <command>dialog-close</command>
-                        <dialog-name>j3cub-oil-dialog-180</dialog-name>
-                    </binding>
                 </radio>
-
+            
                 <radio>
                     <halign>left</halign>
-                    <label>180 HP</label>
+                    <label>90 HP</label>
                     <property>sim/model/j3cub/engine_flag_1</property>
                     <live>true</live>
                     <enable>
@@ -634,20 +638,70 @@
                             setprop("/controls/engines/active-engine", 1);
                             setprop("sim/model/j3cub/engine_flag_0", 0);
                             setprop("sim/model/j3cub/engine_flag_1", 1);
+                            setprop("sim/model/j3cub/engine_flag_2", 0);
                         </script>
                     </binding>
+                </radio>
+                
+                <radio>
+                    <halign>left</halign>
+                    <label>150 HP</label>
+                    <property>sim/model/j3cub/engine_flag_2</property>
+                    <live>true</live>
+                    <enable>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                    </enable>
                     <binding>
-                        <command>property-assign</command>
-                        <property>/engines/active-engine/oil-level</property>
-                        <value>8.0</value>
+                        <command>dialog-apply</command>
                     </binding>
                     <binding>
-                        <command>dialog-close</command>
-                        <dialog-name>j3cub-oil-dialog-160</dialog-name>
+                        <command>nasal</command>
+                        <script>
+                            setprop("/controls/engines/active-engine", 2);
+                            setprop("sim/model/j3cub/engine_flag_0", 0);
+                            setprop("sim/model/j3cub/engine_flag_1", 0);
+                            setprop("sim/model/j3cub/engine_flag_2", 1);
+                            setprop("sim/model/j3cub/pa-18", 1);
+                        </script>
                     </binding>
                 </radio>
+                </group>
+                <checkbox>
+                    <halign>left</halign>
+                    <label>PA-18</label>
+                    <property>/sim/model/j3cub/pa-18</property>
+                    <live>true</live>
+                    <enable>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            if (getprop("sim/model/j3cub/engine_flag_2") and !getprop("sim/model/j3cub/pa-18"))
+                            {
+                                setprop("sim/model/j3cub/engine_flag_1", 1);
+                                setprop("sim/model/j3cub/engine_flag_2", 0);
+                            } else
+                            if (getprop("sim/model/j3cub/engine_flag_0") and getprop("sim/model/j3cub/pa-18"))
+                            {
+                                setprop("sim/model/j3cub/engine_flag_0", 0);
+                                setprop("sim/model/j3cub/engine_flag_1",1);
+                            } 
+                        </script>
+                    </binding>
+                </checkbox>
+                
             </group>
-        </group-->
+        </group>
+
+        <hrule/>
 
         <group>
             <layout>vbox</layout>

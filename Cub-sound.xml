@@ -12,7 +12,11 @@
         <crank>
             <name>engstart</name>
             <path>Sounds/engstart.wav</path>
-            <property>/engines/engine/cranking</property>
+            <property>/engines/active-engine/cranking</property>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
+            </volume>
             <volume>
                 <offset>0.4</offset>
             </volume>
@@ -23,11 +27,15 @@
             <mode>looped</mode>
             <path>Sounds/cranking.wav</path>
             <condition>
-                <property>/engines/engine/cranking</property>
+                <property>/engines/active-engine/cranking</property>
                 <not>
-                    <property>/engines/engine/running</property>
+                    <property>/engines/active-engine/running</property>
                 </not>
             </condition>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
+            </volume>
             <volume>
                 <offset>0.5</offset>
             </volume>
@@ -36,7 +44,7 @@
         <crank>
             <name>cough</name>
             <path>Sounds/coughing.wav</path>
-            <property>/engines/engine/running</property>
+            <property>/engines/active-engine/running</property>
             <volume>
                 <offset>0.3</offset>
             </volume>
@@ -46,9 +54,9 @@
             <name>engine</name>
             <mode>looped</mode>
             <path>Sounds/wasp.wav</path>
-            <property>/engines/engine/running</property>
+            <property>/engines/active-engine/running</property>
             <volume>
-                <property>/engines/engine/mp-osi</property>
+                <property>/engines/active-engine/mp-osi</property>
                 <factor>0.00375</factor>
                 <min>0.15</min>
                 <max>0.5</max>
@@ -63,7 +71,7 @@
                 <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <pitch>
-                <property>/engines/engine/rpm</property>
+                <property>/engines/active-engine/rpm</property>
                 <factor>0.0004</factor>
                 <min>0.5</min>
                 <max>2.0</max>
@@ -87,6 +95,9 @@
                 <property>/velocities/groundspeed-kt</property>
                 <type>log</type>
                 <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
         </rumble>
 
@@ -114,6 +125,9 @@
                 <internal>dt_stop</internal>
                 <factor>0.05</factor>
                 <max>1.0</max>
+            </volume>
+            <volume>
+                <property>/sim/model/j3cub/sound/volume-boost-door</property>
             </volume>
             <pitch>
                 <property>/velocities/airspeed-kt</property>
@@ -239,6 +253,22 @@
                 <x>-0.3660</x>
                 <y>0.2000</y>
                 <z>-0.4500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+        
+        <switch>
+            <name>click-float-rudder</name>
+            <mode>once</mode>
+            <path>Sounds/lever.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-rudder</property>
+            </condition>
+            <position>
+                <x> 0.3939</x>
+                <y>-0.342 </y>
+                <z>-0.7205</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
@@ -455,12 +485,149 @@
             </volume>
         </pontoons-in-water-right>
 
-<!-- no binding yet?
-  <click>
-   <name>click</name>
-   <path>Sounds/click.wav</path>
-  </click>
--->
+        <switch>
+            <name>click-light-switch</name>
+            <mode>once</mode>
+            <path>Sounds/click.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-light</property>
+            </condition>
+            <position>
+                <x>-0.1681</x>
+                <y> 0.157</y>
+                <z>-0.5526</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <switch>
+            <name>click-master-switch</name>
+            <mode>once</mode>
+            <path>Sounds/click2.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-master</property>
+            </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.4142</y>
+                <z>-0.2996</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <switch>
+            <name>click-avionics-switch</name>
+            <mode>once</mode>
+            <path>Sounds/click3.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-avionics</property>
+            </condition>
+            <position>
+                <x>-0.17142</x>
+                <y> 0.00403</y>
+                <z>-0.55637</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <switch>
+            <name>click-circuit-breaker</name>
+            <mode>once</mode>
+            <path>Sounds/double-click.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-cb</property>
+            </condition>
+            <position>
+                <x>-0.1721</x>
+                <y>-0.2173</y>
+                <z>-0.5727</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <switch>
+            <name>click-magneto-forward</name>
+            <mode>once</mode>
+            <path>Sounds/keys2.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-magneto-forward</property>
+            </condition>
+            <position>
+                <x>-0.1596</x>
+                <y> 0.2284</y>
+                <z>-0.5517</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <switch>
+            <name>click-magneto-back</name>
+            <mode>once</mode>
+            <path>Sounds/keys.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-magneto-back</property>
+            </condition>
+            <position>
+                <x>-0.1596</x>
+                <y> 0.2284</y>
+                <z>-0.5517</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+
+        <throttle>
+            <name>throttle-move</name>
+            <mode>once</mode>
+            <path>Sounds/scroll.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-throttle</property>
+            </condition>
+            <position>
+                <x> 0.3939</x>
+                <y>-0.342 </y>
+                <z>-0.495 </z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </throttle>
+        
+        <trim>
+            <name>trim-rotate</name>
+            <mode>once</mode>
+            <path>Sounds/trim.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-trim</property>
+            </condition>
+            <position>
+                <x> 0.3939</x>
+                <y>-0.342 </y>
+                <z>-0.7205</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </trim>
+
+        <dblclk>
+            <name>dbl-clk</name>
+            <mode>once</mode>
+            <path>Sounds/double-click2.wav</path>
+            <condition>
+                <property>/sim/model/j3cub/sound/click-dblclk</property>
+            </condition>
+            <position>
+                <x> 0.3939</x>
+                <y>-0.342 </y>
+                <z>-0.7205</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </dblclk>
 
         <thunder1>
             <name>thunder1</name>

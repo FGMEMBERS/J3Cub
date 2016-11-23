@@ -3,6 +3,87 @@
 <PropertyList>
 
     <path>Cub.ac</path>
+
+    <animation>
+        <type>select</type>
+        <object-name>Cylinder_1</object-name>
+        <object-name>air_scoop_l</object-name>
+        <object-name>air_scoop_r</object-name>
+        <object-name>bulkhead_strut_l</object-name>
+        <object-name>bulkhead_strut_r</object-name>
+        <object-name>cowl_top</object-name>
+        <object-name>cowl_under</object-name>
+        <object-name>cabin_cable_l</object-name>
+        <object-name>cabin_cable_r</object-name>
+        <object-name>engine_front_l</object-name>
+        <object-name>engine_front_r</object-name>
+        <object-name>engine_head_1_l</object-name>
+        <object-name>engine_head_1_r</object-name>
+        <object-name>engine_head_2_l</object-name>
+        <object-name>engine_head_2_r</object-name>
+        <object-name>engine_l</object-name>
+        <object-name>engine_r</object-name>
+        <object-name>engine_mount_l</object-name>
+        <object-name>engine_mount_r</object-name>
+        <object-name>engine_supp_1_r</object-name>
+        <object-name>engine_supp_2_r</object-name>
+        <object-name>engine_supp_fr_l</object-name>
+        <object-name>engine_supp_rear_l</object-name>
+        <object-name>ex_pipe_1_l</object-name>
+        <object-name>ex_pipe_1_r</object-name>
+        <object-name>ex_pipe_2_l</object-name>
+        <object-name>ex_pipe_2_r</object-name>
+        <object-name>ex_pipe_3_l</object-name>
+        <object-name>ex_pipe_3_r</object-name>
+        <object-name>exhaust_inner</object-name>
+        <object-name>exhaust_outer</object-name>
+        <object-name>fuselage</object-name>
+        <object-name>fuel_pipe</object-name>
+        <object-name>fuel_gauge</object-name>
+        <object-name>fuel_gauge_cap</object-name>
+        <object-name>fuel_tank</object-name>
+        <object-name>nose</object-name>
+        <object-name>nose_strut_r</object-name>
+        <object-name>nose_strut_l</object-name>
+        <object-name>nose_under</object-name>
+        <object-name>oil_overflow</object-name>
+        <object-name>oil_rad</object-name>
+        <object-name>overflowpipe</object-name>
+        <object-name>panel</object-name>
+        <object-name>propeller_fast</object-name>
+        <object-name>propeller_0</object-name>
+        <object-name>propeller_1</object-name>
+        <object-name>propeller_slow</object-name>
+        <object-name>stick_front</object-name>
+        <object-name>suspension_link_l</object-name>
+        <object-name>suspension_link_r</object-name>
+        <object-name>wheel_strut_link_l</object-name>
+        <object-name>wheel_strut_link_r</object-name>
+        <object-name>wing_r</object-name>
+        <object-name>wing_l</object-name>
+        <object-name>brake_front_l</object-name>
+        <object-name>brake_front_r</object-name>
+        <object-name>rudderpedal_l</object-name>
+        <object-name>rudderpedal_r</object-name>
+        <object-name>floor_lever_l</object-name>
+        <object-name>floor_lever_r</object-name>
+        <condition>
+            <not>
+                <property>/sim/model/j3cub/pa-18</property>
+            </not>
+        </condition>
+    </animation>
+
+    <model>
+        <name>PA-18</name>
+        <path>PA-18.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
     
     <model>
         <name>Damage</name>
@@ -91,11 +172,31 @@
             <pitch-deg>0</pitch-deg>
         </offsets>
     </model>
-    
+
+    <model>
+        <name>Riflecase</name>
+        <path>Effects/packages/riflecase.xml</path>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model>
+
     <nasal>
         <load>
-
             var rplayer = cmdarg();
+
+            # Beacon and strobes lighting
+            var lighting_beacon_enabled = rplayer.getNode("sim/multiplay/generic/int[1]").getPath();
+            var lighting_strobes_enabled = rplayer.getNode("sim/multiplay/generic/int[2]").getPath();
+
+            var lighting_beacon_state = rplayer.getNode("sim/model/c172p/lighting/beacon").getPath();
+            var lighting_strobes_state = rplayer.getNode("sim/model/c172p/lighting/strobes").getPath();
+
+            aircraft.light.new(lighting_beacon_state, [0.10, 0.90], lighting_beacon_enabled);
+            aircraft.light.new(lighting_strobes_state, [0.015, 1.985], lighting_strobes_enabled);
 
             io.include("Aircraft/j3cub/Nasal/registration_number.nas");
 
@@ -114,7 +215,7 @@
             setlistener(pax_state_path, func (node) {
                 var state = node.getValue();
                    pilot.setBoolValue(bits.test(state, 0));
-                passenger.setBoolValue(bits.test(state, 1));
+                   passenger.setBoolValue(bits.test(state, 1));
             }, 1, 0);
 
             # Securing attributes
@@ -242,7 +343,7 @@
 
         <water-rudder-norm>sim/multiplay/generic/float[5]</water-rudder-norm>
         <engine>
-            <rpm>engines/engine[2]/rpm</rpm>
+            <rpm>controls/flight/speedbrake</rpm>
             <crashed>sim/multiplay/generic/int[3]</crashed>
         </engine>
 
@@ -261,6 +362,9 @@
                 </tail>
             </tiedowns>
         </securing>
+        <controls>
+            <throttle>/controls/engines/current-engine/throttle</throttle>
+        </controls>
         <cockpit>
             <electrical>
                 <gear-amphibious>/sim/model/j3cub/lighting/amphibious</gear-amphibious>
@@ -290,6 +394,8 @@
         <object-name>window_rear_l_1</object-name>
         <object-name>window_1_1</object-name>
         <object-name>window_r_1</object-name>
+        <object-name>window_strut_l</object-name>
+        <object-name>window_strut_r</object-name>
         <object-name>wheel_strut_r</object-name>
         <object-name>wheel_strut_l</object-name>
         <object-name>strut_vert_rear_r</object-name>
@@ -314,102 +420,7 @@
         <object-name>suspension_upper_r</object-name>
         <object-name>suspension_lower_l</object-name>
         <object-name>suspension_lower_r</object-name>
-     </effect>
-
-    <!--  Specularity fix 
-    <animation>
-        <type>material</type>
-        <object-name>brake_cable_l</object-name>
-        <object-name>brake_cable_r</object-name>
-        <object-name>cable_guide_1_l</object-name>
-        <object-name>cable_guide_1_r</object-name>
-        <object-name>cable_guide_2_l</object-name>
-        <object-name>cable_guide_2_r</object-name>
-        <object-name>cable_guide_3_l</object-name>
-        <object-name>cable_guide_3_r</object-name>
-        <object-name>cable_guide_4_l</object-name>
-        <object-name>cable_guide_4_r</object-name>
-        <object-name>cable_l</object-name>
-        <object-name>cable_r</object-name>
-        <object-name>cable_wheel_l</object-name>
-        <object-name>cable_wheel_r</object-name>
-        <object-name>fuselage</object-name>
-        <object-name>rudder</object-name>
-        <object-name>elevator</object-name>
-        <object-name>aileron_r</object-name>
-        <object-name>aileron_l</object-name>
-        <object-name>wing_r</object-name>
-        <object-name>wing_l</object-name>
-        <object-name>tailplane</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
-        <object-name>cowl_top</object-name>
-        <object-name>cowl_under</object-name>
-        <object-name>door</object-name>
-        <object-name>nose</object-name>
-        <object-name>nose_strut_r</object-name>
-        <object-name>nose_strut_l</object-name>
-        <object-name>nose_top</object-name> 
-        <object-name>nose_under</object-name>
-        <object-name>window_l_1</object-name>
-        <object-name>window_rear_r_1</object-name>
-        <object-name>window_rear_l_1</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
-        <object-name>strut_vert_rear_r</object-name>
-        <object-name>strut_vert_rear_l</object-name>
-        <object-name>strut_vert_fr_r</object-name>
-        <object-name>strut_vert_fr_l</object-name>
-        <object-name>strut_tie_r</object-name>
-        <object-name>strut_tie_l</object-name>
-        <object-name>strut_rear_r</object-name>
-        <object-name>strut_rear_l</object-name>
-        <object-name>strut_front_r</object-name>
-        <object-name>strut_front_l</object-name>
-        <object-name>tyre_r</object-name>
-        <object-name>tyre_l</object-name>
-        <object-name>step</object-name>
-        <object-name>strut_fix_r</object-name>
-        <object-name>strut_fix_l</object-name>
-        <object-name>strut_fix_rear_1_</object-name>
-        <object-name>strut_fix_rear_1_l</object-name>
-        <object-name>strut_fix_rear_2_</object-name>
-        <object-name>strut_fix_rear_2_l</object-name>
-        <object-name>tail_struts</object-name>
-        <object-name>tail_wheel_strut</object-name>
-        <object-name>tail_wheel</object-name>
-        <object-name>tail_wheel_strut_end</object-name>
-        <object-name>suspension_tie</object-name>
-        <object-name>suspension_upper_l</object-name>
-        <object-name>suspension_upper_r</object-name>
-        <object-name>suspension_lower_l</object-name>
-        <object-name>suspension_lower_r</object-name>
-        <object-name>suspension_link_l</object-name>
-        <object-name>suspension_link_r</object-name>
-        <object-name>suspension_coil_l</object-name>
-        <object-name>suspension_coil_r</object-name>
-        <object-name>wheel_strut_r</object-name>
-        <object-name>wheel_strut_l</object-name>
-        <object-name>wheel_strut_link_r</object-name>
-        <object-name>wheel_strut_link_l</object-name>
-        <object-name>wheel_hub_r</object-name>
-        <object-name>wheel_hub_l</object-name>
-        <object-name>tyre_r</object-name>
-        <object-name>tyre_l</object-name>
-        <shininess>128</shininess>
-		<specular>
-			<r>1</r>
-            <g>1</g>
-            <b>1</b>
-            <factor-prop>controls/lighting/lighting-norm</factor-prop>
-		</specular>
-		<ambient>
-		    <r>1</r>
-            <g>1</g>
-            <b>1</b>
-            <factor-prop>controls/lighting/lighting-norm</factor-prop>
-        </ambient>
-     </animation>-->
+    </effect>
 
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
@@ -452,16 +463,12 @@
         <object-name>Cylinder.008</object-name>
         <object-name>door_interior</object-name>
         <object-name>door_handle</object-name>
-        <object-name>floor_lever_l</object-name>
-        <object-name>floor_lever_r</object-name>
         <object-name>fuel_gauge</object-name>
         <object-name>fuel_gauge_cap</object-name>
         <object-name>fuel_pipe</object-name>
         <object-name>fuel_tank</object-name>
         <object-name>FuelCutoff</object-name>
         <object-name>panel</object-name>
-        <object-name>pedal_rest_l</object-name>
-        <object-name>pedal_rest_l.001</object-name>
         <object-name>pitot</object-name>
         <object-name>placard</object-name>
         <object-name>primer</object-name>
@@ -472,14 +479,22 @@
         <object-name>roof_strut_long_r</object-name>
         <object-name>rudderpedal_rear_l</object-name>
         <object-name>rudderpedal_rear_r</object-name>
+        <object-name>rudderpedal_l</object-name>
+        <object-name>rudderpedal_r</object-name>
+        <object-name>brake_front_l</object-name>
+        <object-name>brake_front_r</object-name>
+        <object-name>brake_rear_l</object-name>
+        <object-name>brake_rear_r</object-name>
+        <object-name>floor_lever_l</object-name>
+        <object-name>floor_lever_r</object-name>
+        <object-name>floor_lever_rear_l</object-name>
+        <object-name>floor_lever_rear_r</object-name>
         <object-name>seat_front</object-name>
         <object-name>seat_rear</object-name>
         <object-name>solo_placard</object-name>
         <object-name>spar</object-name>
         <object-name>stick_back</object-name>
         <object-name>stick_front</object-name>
-        <object-name>window_strut_l</object-name>
-        <object-name>window_strut_r</object-name>
         <object-name>window_handle</object-name>
         <object-name>screen_strut_l</object-name>
         <object-name>screen_strut_r</object-name>
@@ -503,16 +518,6 @@
         <object-name>GPSMountBack</object-name>
     </effect>
 
-    <!--effect>
-        <inherits-from>Effects/interior/interior-glass-shadow</inherits-from>
-        <object-name>screen</object-name>
-        <object-name>window_top</object-name>
-        <object-name>window_rear_l_0</object-name>
-        <object-name>window_rear_r_0</object-name>
-        <object-name>window_l_0</object-name>
-        <object-name>window_r_0</object-name>
-    </effect--> 
-
     <effect>
         <inherits-from>Effects/interior/interior-glass-reflection-front</inherits-from>
         <object-name>window_top_interior</object-name>
@@ -526,7 +531,15 @@
         <object-name>window_l_0_interior</object-name>
         <object-name>window_r_0_interior</object-name>
     </effect> 
- 
+
+    <animation>
+        <type>select</type>
+        <object-name>riflecase</object-name>
+        <condition>
+            <property>/sim/model/riflecase</property>
+        </condition>
+    </animation>
+
      <!-- Hide interior glass when in exterior view -->
     <animation>
         <type>select</type>
@@ -760,11 +773,14 @@
         <condition>
             <and>
                 <less-than>
-                    <property>engines/engine[0]/rpm</property>
+                    <property alias="/params/engine/rpm"/>
                     <value>300</value>
                 </less-than>
                 <not>
                     <property alias="/params/engine/crashed"/>
+                </not>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
                 </not>
             </and>
         </condition>
@@ -776,15 +792,18 @@
         <condition>
             <and>
               <less-than>
-                <property>engines/engine/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </less-than>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>200</value>
               </greater-than>
               <not>
                 <property alias="/params/engine/crashed"/>
+              </not>
+              <not>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -796,11 +815,14 @@
         <condition>
             <and>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </greater-than>
               <not>
                 <property alias="/params/engine/crashed"/>
+              </not>
+              <not>
+                <property>/sim/model/j3cub/pa-18</property>
               </not>
             </and>
         </condition>
@@ -813,12 +835,14 @@
         <condition>
             <and>
                 <less-than>
-                    <property>engines/engine[0]/rpm</property>
+                    <property alias="/params/engine/rpm"/>
                     <value>300</value>
                 </less-than>
                 <property alias="/params/engine/crashed"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
-            
         </condition>
     </animation>
 
@@ -828,14 +852,17 @@
         <condition>
             <and>
               <less-than>
-                <property>engines/engine/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </less-than>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>200</value>
               </greater-than>
               <property alias="/params/engine/crashed"/>
+              <not>
+                <property>/sim/model/j3cub/pa-18</property>
+              </not>
             </and>
         </condition>
     </animation>
@@ -846,10 +873,13 @@
         <condition>
             <and>
               <greater-than>
-                <property>engines/engine[0]/rpm</property>
+                <property alias="/params/engine/rpm"/>
                 <value>1500</value>
               </greater-than>
               <property alias="/params/engine/crashed"/>
+              <not>
+                <property>/sim/model/j3cub/pa-18</property>
+              </not>
             </and>
         </condition>
     </animation>
@@ -857,12 +887,18 @@
   <animation>
     <type>spin</type>
     <object-name>propeller</object-name>
+    <object-name>propeller.001</object-name>
+    <object-name>propeller.009</object-name>
     <object-name>propeller_slow</object-name>
     <object-name>propeller_fast</object-name>
+    <object-name>propeller_0_p18</object-name>
+    <object-name>propeller_1_p18</object-name>
+    <object-name>propeller_slow_p18</object-name>
+    <object-name>propeller_fast_p18</object-name>
     <object-name>propellerD</object-name>
     <object-name>propeller_slowD</object-name>
     <object-name>propeller_fastD</object-name>
-    <property>engines/engine[0]/rpm</property>
+    <property alias="/params/engine/rpm"/>
     <factor>-1</factor>
     <center>
    <x-m>-1.39</x-m>
@@ -934,6 +970,45 @@
     <animation>
         <type>select</type>
         <object-name>wing_l</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Wing No Damage -->
+    <animation>
+        <type>select</type>
+        <object-name>wing_r</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/wing_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <not>
+                    <property alias="/params/crash/property"/>
+                </not>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Aileron No Damage -->
+    <animation>
+        <type>select</type>
         <object-name>aileron_l</object-name>
         <object-name>aileron_hinge_1_l</object-name>
         <condition>
@@ -949,10 +1024,9 @@
         </condition>
     </animation>
 
-    <!-- Right Wing No Damage -->
+    <!-- Right Aileron No Damage -->
     <animation>
         <type>select</type>
-        <object-name>wing_r</object-name>
         <object-name>aileron_r</object-name>
         <object-name>aileron_hinge_1_r</object-name>
         <condition>
@@ -2245,6 +2319,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>/controls/gear/water-rudder</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("rudder")</script>
             </binding>
         </action>
         <hovered>
@@ -4091,6 +4169,10 @@
       <command>property-toggle</command>
       <property>consumables/fuel/tank/selected</property>
     </binding>
+    <binding>
+        <command>nasal</command>
+        <script>j3cub.click("dblclk")</script>
+    </binding>
   </action>    
 </animation>
 
@@ -4127,6 +4209,10 @@
                 <min>0</min>
                 <max>1</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("trim")</script>
             </binding>
         </action>
         <hovered>
@@ -4307,7 +4393,7 @@
     <animation>
         <type>knob</type>
         <object-name>throttle_front</object-name>
-        <property>controls/engines/engine/throttle</property>
+        <property>/controls/engines/current-engine/throttle</property>
         <factor>36</factor>
         <center>
             <x-m>0.058</x-m>
@@ -4322,11 +4408,15 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
                 <factor>.05</factor>
                 <min>0</min>
                 <max>1</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("throttle")</script>
             </binding>
         </action>
         <hovered>
@@ -4334,7 +4424,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>throttle_front</tooltip-id>
                 <label>Throttle: %s</label>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
             </binding>
         </hovered>
     </animation>
@@ -4342,7 +4432,7 @@
     <animation>
         <type>knob</type>
         <object-name>throttle_back</object-name>
-        <property>controls/engines/engine/throttle</property>
+        <property>/controls/engines/current-engine/throttle</property>
         <factor>36</factor>
         <min>36</min>
         <max>75</max>
@@ -4359,11 +4449,15 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
                 <factor>.05</factor>
                 <min>0</min>
                 <max>1</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>j3cub.click("throttle")</script>
             </binding>
         </action>
         <hovered>
@@ -4371,45 +4465,195 @@
                 <command>set-tooltip</command>
                 <tooltip-id>throttle_back</tooltip-id>
                 <label>Throttle: %s</label>
-                <property>controls/engines/engine/throttle</property>
+                <property>/controls/engines/current-engine/throttle</property>
             </binding>
         </hovered>
     </animation>
+    
+    <!-- brake peddle -->
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_l</object-name>
+        <object-name>floor_lever_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.5326</x-m>
+            <y-m>-0.2194</y-m>
+            <z-m>-1.058</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_front_r</object-name>
+        <object-name>floor_lever_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>30</factor>
+        <center>
+            <x-m>-0.5325</x-m>
+            <y-m> 0.204 </y-m>
+            <z-m>-1.058 </z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_rear_l</object-name>
+        <object-name>floor_lever_rear_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>30</factor>
+        <center>
+            <x-m> 0.2925</x-m>
+            <y-m>-0.2721</y-m>
+            <z-m>-1.1382</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>brake_rear_r</object-name>
+        <object-name>floor_lever_rear_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>30</factor>
+        <center>
+            <x-m> 0.2926</x-m>
+            <y-m> 0.264 </y-m>
+            <z-m>-1.1382</z-m>
+        </center>
+        <axis>
+            <x> 0.0</x>
+            <y>-1.0</y>
+            <z> 0.0</z>
+        </axis>
+    </animation>
 
-<!-- rudder pedals; front only and just token movement -->
-<animation>
-  <type>rotate</type>
-  <object-name>rudderpedal_l</object-name>
-  <property>surface-positions/rudder-pos-norm</property>
-  <factor>15</factor>
-  <center>
-   <x-m>-0.563</x-m>
-   <y-m>-0.256</y-m>
-   <z-m>-1.050</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_l</object-name>
+        <property>controls/gear/brake-left</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_cable_r</object-name>
+        <property>controls/gear/brake-right</property>
+        <factor>.02</factor>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
-<animation>
-  <type>rotate</type>
-  <object-name>rudderpedal_r</object-name>
-  <property>surface-positions/rudder-pos-norm</property>
-  <factor>15</factor>
-  <center>
-   <x-m>-0.563</x-m>
-   <y-m>-0.256</y-m>
-   <z-m>-1.050</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>-1.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <!-- rudder pedals -->
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_l</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.563</x-m>
+       <y-m>-0.256</y-m>
+       <z-m>-1.050</z-m>
+      </center>
+      <axis>
+       <x>0.0</x>
+       <y>1.0</y>
+       <z>0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_r</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m>-0.563</x-m>
+       <y-m>-0.256</y-m>
+       <z-m>-1.050</z-m>
+      </center>
+      <axis>
+       <x> 0.0</x>
+       <y>-1.0</y>
+       <z> 0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_rear_l</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m> 0.2674</x-m>
+       <y-m>-0.2613</y-m>
+       <z-m>-1.1422</z-m>
+      </center>
+      <axis>
+       <x>0.0</x>
+       <y>1.0</y>
+       <z>0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>rudderpedal_rear_r</object-name>
+      <property>surface-positions/rudder-pos-norm</property>
+      <factor>15</factor>
+      <center>
+       <x-m> 0.2674</x-m>
+       <y-m>-0.2613</y-m>
+       <z-m>-1.1422</z-m>
+      </center>
+      <axis>
+       <x> 0.0</x>
+       <y>-1.0</y>
+       <z> 0.0</z>
+      </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_rudder_cable_l</object-name>
+        <property>surface-positions/rudder-pos-norm</property>
+        <factor>.025</factor>
+        <axis>
+            <x>.5</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>cabin_rudder_cable_r</object-name>
+        <property>surface-positions/rudder-pos-norm</property>
+        <factor>.025</factor>
+        <axis>
+            <x>-.5</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
 <!-- External Effects -->
     <!-- Wing Scrape -->
@@ -4494,7 +4738,7 @@
         <name>spray-left</name>
         <offsets>
             <x-m>-1.0</x-m>
-            <y-m>-1.5</y-m>
+            <y-m>-1.048</y-m>
             <z-m>-2.0</z-m>
         </offsets>
     </model>
@@ -4503,7 +4747,7 @@
         <name>spray-right</name>
         <offsets>
             <x-m>-1.0</x-m>
-            <y-m>1.5</y-m>
+            <y-m>1.048</y-m>
             <z-m>-2.0</z-m>
         </offsets>
     </model>
@@ -4514,7 +4758,7 @@
         <name>spray-wake</name>
         <offsets>
             <x-m>1</x-m>
-            <y-m>-1.5</y-m>
+            <y-m>-1.048</y-m>
             <z-m>-4.25</z-m>
             <pitch-deg> -50 </pitch-deg>
         </offsets>
@@ -4524,7 +4768,7 @@
         <name>spray-wake</name>
         <offsets>
             <x-m>1</x-m>
-            <y-m>1.5</y-m>
+            <y-m>1.048</y-m>
             <z-m>-4.25</z-m>
             <pitch-deg> -50 </pitch-deg>
         </offsets>
@@ -4632,20 +4876,13 @@
         <object-name>strut_fix_rear_1_l</object-name>
         <object-name>strut_fix_rear_2_</object-name>
         <object-name>strut_fix_rear_2_l</object-name>
-        <object-name>window_l_0</object-name>
-        <object-name>window_l_0_interior</object-name>
+        <object-name>window_handle</object-name>
         <object-name>window_l_1</object-name>
         <object-name>window_l_1_interior</object-name>
-        <object-name>window_r_0</object-name>
-        <object-name>window_r_0_interior</object-name>
         <object-name>window_r_1</object-name>
         <object-name>window_r_1_interior</object-name>
-        <object-name>window_rear_l_0</object-name>
-        <object-name>window_rear_l_0_interior</object-name>
         <object-name>window_rear_l_1</object-name>
         <object-name>window_rear_l_1_interior</object-name>
-        <object-name>window_rear_r_0</object-name>
-        <object-name>window_rear_r_0_interior</object-name>
         <object-name>window_rear_r_1</object-name>
         <object-name>window_rear_r_1_interior</object-name>
         <object-name>tyre_l</object-name>
@@ -4678,8 +4915,6 @@
         <object-name>tail_wheel_axle</object-name>
         <object-name>tail_wheel_strut</object-name>
         <object-name>tail_wheel_strut_end</object-name>
-        <object-name>air_scoop_l</object-name>
-        <object-name>air_scoop_r</object-name>
         <object-name>tail_wheel_strut_end_bush</object-name>
         <object-name>tail_wheel_axle_bush</object-name>
         <object-name>tyre_l_bush</object-name>
@@ -4714,6 +4949,27 @@
         <object-name>drumLeftDoor</object-name>
         <object-name>drumRight</object-name>
         <object-name>drumRightDoor</object-name>
+
+        <object-name>bulkhead_strut_l_p18</object-name>
+        <object-name>bulkhead_strut_r_p18</object-name>
+        <object-name>Cylinder_1_p18</object-name>
+        <object-name>fuselage_p18</object-name>
+        <object-name>propeller_0_p18</object-name>
+        <object-name>nose_p18</object-name>
+        <object-name>nose_strut_r_p18</object-name>
+        <object-name>nose_strut_l_p18</object-name>
+        <object-name>nose_under_p18</object-name>
+        <object-name>oilfilter_p18</object-name>
+        <object-name>oil_rad_p18</object-name>
+        <object-name>beaconMount_p18</object-name>
+        <object-name>navLightBack_p18</object-name>
+        <object-name>flaps_p18</object-name>
+        <object-name>wing_l_p18</object-name>
+        <object-name>navLightLeft_p18</object-name>
+        <object-name>wing_r_p18</object-name>
+        <object-name>navLightRight_p18</object-name>
+        <object-name>flaps_p18</object-name>
+
         <property-base>sim/model/livery/</property-base>
         <texture-prop>texture</texture-prop>
         <texture>texture.png</texture>
@@ -4872,7 +5128,7 @@
  </offsets>
 </model>
 
-    <!-- registration (Fr - immatriculation)   -->
+    <!-- registration (Fr - immatriculation)
     <model>
         <path>Aircraft/J3Cub/Models/Immat/immat.xml</path>
         <offsets>
@@ -4883,7 +5139,7 @@
             <pitch-deg>   0.0 </pitch-deg>
             <heading-deg> 0.0 </heading-deg>
         </offsets>
-    </model>
+    </model>   -->
 
     <!-- Pitot tube cover "remove before flight" -->
     <model>
@@ -5317,10 +5573,15 @@
         <object-name>screw_3Amp</object-name>
         <object-name>screw_4Amp</object-name>
         <condition>
-            <equals>
-               <property alias="/params/bushkit"/>
-               <value>3</value>
-            </equals>
+            <and>
+                <equals>
+                   <property alias="/params/bushkit"/>
+                   <value>3</value>
+                </equals>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
+            </and>
         </condition>
     </animation>
 
@@ -5339,6 +5600,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5357,6 +5621,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5375,6 +5642,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5393,6 +5663,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5412,6 +5685,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5430,6 +5706,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5448,6 +5727,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5466,6 +5748,9 @@
                    <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>
@@ -5489,6 +5774,9 @@
                     <value>3</value>
                 </equals>
                 <property alias="/params/cockpit/electrical/gear-amphibious"/>
+                <not>
+                    <property>/sim/model/j3cub/pa-18</property>
+                </not>
             </and>
         </condition>
     </animation>

@@ -32,6 +32,7 @@ var repair_damage = func {
 var killengine = func
 {
     setprop("/engines/active-engine/crash-engine", 1);
+    setprop("/controls/switches/magnetos", 0);
 }
 
 # Check if on water
@@ -60,15 +61,11 @@ var bushkit_change_timeout = 3.0;
 
 var physics_loop = func
 {
-    if (getprop("/sim/freeze/replay-state")) {
+    if (getprop("/sim/freeze/replay-state"))
         return;
-    }
     if (getprop("/fdm/jsbsim/bushkit") == 2 or getprop("/fdm/jsbsim/bushkit") == 3)
         poll_surface();
-    if (getprop("/fdm/jsbsim/contact/unit[9]/WOW") or
-            getprop("/fdm/jsbsim/contact/unit[10]/WOW" or
-            getprop("/fdm/jsbsim/contact/unit[11]/WOW" or
-            getprop("/fdm/jsbsim/contact/unit[12]/WOW"))))
+    if (getprop("/engines/active-engine/killed"))
         killengine();
 }
 

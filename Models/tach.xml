@@ -2,6 +2,12 @@
 <PropertyList>
 
  <path>tach.ac</path>
+ 
+    <params>
+        <engine>
+            <rpm>controls/flight/speedbrake</rpm>
+        </engine>
+    </params>
 
     <effect>
         <inherits-from>Effects/interior/j3cub-flashlight</inherits-from>
@@ -18,7 +24,7 @@
  <animation>
   <type>rotate</type>
   <object-name>Needle1</object-name>
-  <property>/engines/engine[0]/rpm</property>
+  <property alias="/params/engine/rpm"/>
   <interpolation>
    <entry>
     <ind>0</ind>
